@@ -9,108 +9,167 @@
 #import "VHBoomMenuButton.h"
 #include <stdlib.h>
 
+@interface VHBoomMenuButton ()
+
+@property (nonatomic, strong) NSMutableArray<NSValue *> *piecePositions;
+@property (nonatomic, assign) CGFloat startPositionX;
+@property (nonatomic, assign) CGFloat startPositionY;
+@property (nonatomic, assign) BOOL    ableToStartDragging;
+@property (nonatomic, assign) BOOL    isDragging;
+@property (nonatomic, assign) CGFloat simpleCircleButtonRadius;
+@property (nonatomic, assign) CGFloat textInsideCircleButtonRadius;
+@property (nonatomic, assign) CGFloat textOutsideCircleButtonWidth;
+@property (nonatomic, assign) CGFloat textOutsideCircleButtonHeight;
+@property (nonatomic, assign) CGFloat hamButtonWidth;
+@property (nonatomic, assign) CGFloat hamButtonHeight;
+@property (nonatomic, assign) BOOL needToAdjustTextOutsideCircleButtonHeightError;
+
+@end
+
 @implementation VHBoomMenuButton
 
 - (id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame])
     {
-        self.shadowRadius = frame.size.width / 2 + DEFAULT_BOOM_MENU_BUTTON_SHADOW_WIDTH;
-        self.shadowOffset = CGSizeMake(DEFAULT_BOOM_MENU_BUTTON_SHADOW_OFFSET_X, DEFAULT_BOOM_MENU_BUTTON_SHADOW_OFFSET_Y);
-        self.shadowOpacity = DEFAULT_BOOM_MENU_BUTTON_SHADOW_OPACITY;
-        self.shadowColor = DEFAULT_BOOM_MENU_BUTTON_SHADOW_COLOR;
+        self.shadowRadius                  = frame.size.width / 2 + DEFAULT_BOOM_MENU_BUTTON_SHADOW_WIDTH;
+        self.shadowOffset                  = CGSizeMake(DEFAULT_BOOM_MENU_BUTTON_SHADOW_OFFSET_X, DEFAULT_BOOM_MENU_BUTTON_SHADOW_OFFSET_Y);
+        self.shadowOpacity                 = DEFAULT_BOOM_MENU_BUTTON_SHADOW_OPACITY;
+        self.shadowColor                   = DEFAULT_BOOM_MENU_BUTTON_SHADOW_COLOR;
+
+        self.buttonRadius                  = frame.size.width / 2;
+
+        self.dotRadius                     = DEFAULT_BOOM_MENU_BUTTON_DOT_RADIUS;
+        self.hamWidth                      = DEFAULT_BOOM_MENU_BUTTON_HAM_WIDTH;
+        self.hamHeight                     = DEFAULT_BOOM_MENU_BUTTON_HAM_HEIGHT;
+        self.blockWidth                    = DEFAULT_BOOM_MENU_BUTTON_BLOCK_WIDTH;
+        self.blockHeight                   = DEFAULT_BOOM_MENU_BUTTON_BLOCK_HEIGHT;
+
+        self.buttonNormalColor             = DEFAULT_BOOM_MENU_BUTTON_NORMAL_COLOR;
+        self.buttonPressedColor            = DEFAULT_BOOM_MENU_BUTTON_PRESSED_COLOR;
+
+        self.buttonPlaceAlignmentEnum      = DEFAULT_BOOM_MENU_BUTTON_PLACE_ALIGNMENT;
+        self.showOrderEnum                 = DEFAULT_BOOM_MENU_BUTTON_SHOW_ORDER;
+        self.hideOrderEnum                 = DEFAULT_BOOM_MENU_BUTTON_HIDE_ORDER;
+        self.boomEnum                      = DEFAULT_BOOM_MENU_BUTTON_BOOM_ENUM;
+
+        self.showMoveEaseEnum              = DEFAULT_BOOM_MENU_BUTTON_SHOW_MOVE_EASE_ENUM;
+        self.showScaleEaseEnum             = DEFAULT_BOOM_MENU_BUTTON_SHOW_SCALE_EASE_ENUM;
+        self.showRotateEaseEnum            = DEFAULT_BOOM_MENU_BUTTON_SHOW_ROTATE_EASE_ENUM;
+        self.hideMoveEaseEnum              = DEFAULT_BOOM_MENU_BUTTON_HIDE_MOVE_EASE_ENUM;
+        self.hideScaleEaseEnum             = DEFAULT_BOOM_MENU_BUTTON_HIDE_SCALE_EASE_ENUM;
+        self.hideRotateEaseEnum            = DEFAULT_BOOM_MENU_BUTTON_HIDE_ROTATE_EASE_ENUM;
+
+        self.dimColor                      = DEFAULT_BOOM_MENU_BUTTON_DIM_COLOR;
+        self.autoHide                      = DEFAULT_BOOM_MENU_BUTTON_AUTO_HIDE;
+        self.cancelable                    = DEFAULT_BOOM_MENU_BUTTON_CANCELABLE;
+        self.noBackground                  = DEFAULT_BOOM_MENU_BUTTON_NO_BACKGROUND;
+        self.draggable                     = DEFAULT_BOOM_MENU_BUTTON_DRAGGABLE;
+        self.frames                        = DEFAULT_BOOM_MENU_BUTTON_FRAMES;
+        self.duration                      = DEFAULT_BOOM_MENU_BUTTON_DURATION;
+        self.delay                         = DEFAULT_BOOM_MENU_BUTTON_DELAY;
+        self.rotationDegree                = DEFAULT_BOOM_MENU_BUTTON_ROTATION_DEGREE;
+
+        self.buttonHorizontalMargin = DEFAULT_BOOM_MENU_BUTTON_HORIZONTAL_MARGIN;
+        self.buttonVerticalMargin = DEFAULT_BOOM_MENU_BUTTON_VERTICAL_MARGIN;
+        self.buttonInclinedMargin = DEFAULT_BOOM_MENU_BUTTON_INCLINED_MARGIN;
+        self.buttonBottomMargin = DEFAULT_BOOM_MENU_BUTTON_BOTTOM_MARGIN;
+        self.buttonTopMargin = DEFAULT_BOOM_MENU_BUTTON_TOP_MARGIN;
+        self.buttonLeftMargin = DEFAULT_BOOM_MENU_BUTTON_LEFT_MARGIN;
+        self.buttonRightMargin = DEFAULT_BOOM_MENU_BUTTON_RIGHT_MARGIN;
+        self.pieceHorizontalMargin = DEFAULT_BOOM_MENU_BUTTON_PIECE_HORIZONTAL_MARGIN;
+        self.pieceVerticalMargin = DEFAULT_BOOM_MENU_BUTTON_PIECE_VERTICAL_MARGIN;
+        self.pieceInclinedMargin = DEFAULT_BOOM_MENU_BUTTON_PIECE_INCLINED_MARGIN;
+        self.lastHamButtonMarginMoreTop = DEFAULT_BOOM_MENU_BUTTON_LAST_HAM_BUTTON_MARGIN_MORE_TOP;
+        self.lastHamButtonTopMargin = DEFAULT_BOOM_MENU_BUTTON_LAST_HAM_BUTTOM_TOP_MARGIN;
+
+        self.boomButtonBuilders            = [NSMutableArray array];
+
+        self.backgroundColor               = [UIColor clearColor];
+
+        self.ableToStartDragging           = NO;
+        self.isDragging                    = NO;
         
-        self.buttonRadius = frame.size.width / 2;
-        
-        self.dotRadius = DEFAULT_BOOM_MENU_BUTTON_DOT_RADIUS;
-        self.barWidth = DEFAULT_BOOM_MENU_BUTTON_BAR_WIDTH;
-        self.barHeight = DEFAULT_BOOM_MENU_BUTTON_BAR_HEIGHT;
-        self.blockWidth = DEFAULT_BOOM_MENU_BUTTON_BLOCK_WIDTH;
-        self.blockHeight = DEFAULT_BOOM_MENU_BUTTON_BLOCK_HEIGHT;
-        
-        self.simpleCircleButtonRadius = DEFAULT_SIMPLE_CIRCLE_BUTTON_RADIUS;
-        
-        self.buttonNormalColor = DEFAULT_BOOM_MENU_BUTTON_NORMAL_COLOR;
-        self.buttonPressedColor = DEFAULT_BOOM_MENU_BUTTON_PRESSED_COLOR;
-        
-        self.showOrderEnum = DEFAULT_BOOM_MENU_BUTTON_SHOW_ORDER;
-        self.hideOrderEnum = DEFAULT_BOOM_MENU_BUTTON_HIDE_ORDER;
-        self.boomEnum = DEFAULT_BOOM_MENU_BUTTON_BOOM_ENUM;
-        
-        self.buttonCircle = [CAShapeLayer layer];
-        [self.buttonCircle setPath:[[UIBezierPath bezierPathWithOvalInRect:CGRectMake(0,
-                                                                                0,
-                                                                                frame.size.width,
-                                                                                frame.size.height)] CGPath]];
-        [self.buttonCircle setFillColor:self.buttonNormalColor.CGColor];
-        [[self layer] addSublayer:self.buttonCircle];
-        self.backgroundColor = [UIColor clearColor];
-        
-        self.showMoveEaseEnum = DEFAULT_BOOM_MENU_BUTTON_SHOW_MOVE_EASE_ENUM;
-        self.showScaleEaseEnum = DEFAULT_BOOM_MENU_BUTTON_SHOW_SCALE_EASE_ENUM;
-        self.showRotateEaseEnum = DEFAULT_BOOM_MENU_BUTTON_SHOW_ROTATE_EASE_ENUM;
-        self.hideMoveEaseEnum = DEFAULT_BOOM_MENU_BUTTON_HIDE_MOVE_EASE_ENUM;
-        self.hideScaleEaseEnum = DEFAULT_BOOM_MENU_BUTTON_HIDE_SCALE_EASE_ENUM;
-        self.hideRotateEaseEnum = DEFAULT_BOOM_MENU_BUTTON_HIDE_ROTATE_EASE_ENUM;
-        
-        self.dimColor = DEFAULT_BOOM_MENU_BUTTON_DIM_COLOR;
-        self.autoHide = DEFAULT_BOOM_MENU_BUTTON_AUTO_HIDE;
-        self.cancelable = DEFAULT_BOOM_MENU_BUTTON_CANCELABLE;
-        self.frames = DEFAULT_BOOM_MENU_BUTTON_FRAMES;
-        self.duration = DEFAULT_BOOM_MENU_BUTTON_DURATION;
-        self.delay = DEFAULT_BOOM_MENU_BUTTON_DELAY;
-        self.rotationDegree = DEFAULT_BOOM_MENU_BUTTON_ROTATION_DEGREE;
-        
-        self.animatingViewsNumber = 0;
-        
-        self.boomButtonBuilders = [NSMutableArray array];
+        self.animatingViewsNumber          = 0;
     }
     return self;
 }
 
 - (void)drawRect:(CGRect)rect
 {
-    CGRect shadowRect = CGRectMake(0, 0, self.shadowRadius * 2, self.shadowRadius * 2);
-    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithOvalInRect:shadowRect];
-    self.layer.masksToBounds = NO;
-    self.layer.shadowColor = self.shadowColor.CGColor;
-    CGSize shadowOffset = CGSizeMake(self.shadowOffset.width - (self.shadowRadius - self.frame.size.width / 2),
-                                     self.shadowOffset.height - (self.shadowRadius - self.frame.size.height / 2));
-    self.layer.shadowOffset = shadowOffset;
-    self.layer.shadowOpacity = self.shadowOpacity;
-    self.layer.shadowPath = shadowPath.CGPath;
+    if (self.noBackground == NO)
+    {
+        self.buttonCircle        = [CAShapeLayer layer];
+        [self.buttonCircle setPath:[[UIBezierPath bezierPathWithOvalInRect:CGRectMake(0,
+                                                                                      0,
+                                                                                      self.frame.size.width,
+                                                                                      self.frame.size.height)] CGPath]];
+        [self.buttonCircle setFillColor:self.buttonNormalColor.CGColor];
+        [[self layer] addSublayer:self.buttonCircle];
+
+        CGRect shadowRect        = CGRectMake(0, 0, self.shadowRadius * 2, self.shadowRadius * 2);
+        UIBezierPath *shadowPath = [UIBezierPath bezierPathWithOvalInRect:shadowRect];
+        self.layer.masksToBounds = NO;
+        self.layer.shadowColor   = self.shadowColor.CGColor;
+        CGSize shadowOffset      = CGSizeMake(self.shadowOffset.width - (self.shadowRadius - self.frame.size.width / 2),
+                                         self.shadowOffset.height - (self.shadowRadius - self.frame.size.height / 2));
+        self.layer.shadowOffset  = shadowOffset;
+        self.layer.shadowOpacity = self.shadowOpacity;
+        self.layer.shadowPath    = shadowPath.CGPath;
+    }
+    else
+    {
+        [self.buttonCircle removeFromSuperlayer];
+        self.layer.shadowOpacity = 0.0f;
+    }
 }
 
 #pragma mark - Place Dots, Bars or Blocks
 
 - (void)layoutSubviews
 {
+    [self removePieces];
+
     [super layoutSubviews];
-    
-    NSMutableArray<NSValue *> *piecePositions = [self calculatePiecePositons];
-    
-    long pieceNumber = [[VHPiecePlaceManager sharedManager] numbersWithEnum:self.piecePlaceEnum];
-    
-    self.pieces = [NSMutableArray arrayWithCapacity:pieceNumber];
-    self.startPositions = [NSMutableArray arrayWithCapacity:pieceNumber];
-    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-    
+
+    self.piecePositions = [self calculatePiecePositons];
+
+    long pieceNumber    = [[VHPiecePlaceManager sharedManager] numbersWithEnum:self.piecePlaceEnum];
+
+    [[VHErrorManager sharedManager] errorJudgeWithPieceNumber:pieceNumber andBuilderNumber:[self.boomButtonBuilders count]];
+
+    self.pieces         = [NSMutableArray arrayWithCapacity:pieceNumber];
+
     for (int i = 0; i < pieceNumber; i++)
     {
-        VHBoomPiece *piece = [self getBoomPieceAt:[piecePositions objectAtIndex:i] withColor:[self.boomButtonBuilders objectAtIndex:i].buttonNormalColor];
+        VHBoomPiece *piece = [self getBoomPieceAt:[self.piecePositions objectAtIndex:i] withColor:[self.boomButtonBuilders objectAtIndex:i].buttonNormalColor];
         [self.pieces addObject:piece];
         [self addSubview:piece];
-        CGPoint centerPointOfPieceInWindow = [self convertPoint:piece.frame.origin toView:window];
-        centerPointOfPieceInWindow = CGPointMake(centerPointOfPieceInWindow.x + piece.frame.size.width / 2, centerPointOfPieceInWindow.y + piece.frame.size.height / 2);
-        [self.startPositions addObject:[NSValue valueWithCGPoint:centerPointOfPieceInWindow]];
     }
+
+    [self calculateStartPositions];
 }
 
 - (NSMutableArray<NSValue *> *)calculatePiecePositons
 {
     switch (self.buttonEnum) {
         case VHSimpleCircle:
-            return [[VHPiecePlaceManager sharedManager] positionsWithEnum:self.piecePlaceEnum withParentFrame:self.bounds withDotRadius:self.dotRadius];
+        case VHTextInsideCircle:
+        case VHTextOutsideCircle:
+            return [[VHPiecePlaceManager sharedManager] positionsWithEnum:self.piecePlaceEnum
+                                                          withParentFrame:self.bounds
+                                                            withDotRadius:self.dotRadius
+                                                     withHorizontalMargin:self.pieceHorizontalMargin
+                                                       withVerticalMargin:self.pieceVerticalMargin
+                                                       withInclinedMargin:self.pieceInclinedMargin];
+            break;
+        case VHButtonHam:
+            return [[VHPiecePlaceManager sharedManager] positionsWithEnum:self.piecePlaceEnum
+                                                          withParentFrame:self.bounds
+                                                             withHamWidth:self.hamWidth
+                                                            withHamHeight:self.hamHeight
+                                                     withHorizontalMargin:self.pieceHorizontalMargin
+                                                       withVerticalMargin:self.pieceInclinedMargin];
             break;
         default:
             break;
@@ -122,7 +181,12 @@
 {
     switch (self.buttonEnum) {
         case VHSimpleCircle:
+        case VHTextInsideCircle:
+        case VHTextOutsideCircle:
             return [[VHDot alloc] initWithFrame:[position CGRectValue] withColor:color];
+            break;
+        case VHButtonHam:
+            return [[VHHam alloc] initWithFrame:[position CGRectValue] withColor:color];
             break;
         default:
             break;
@@ -134,21 +198,47 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    UITouch *anyTouch = [touches anyObject];
-    CGPoint touchLocation = [anyTouch locationInView:self];
-    CGRect selfRect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    UITouch *anyTouch        = [touches anyObject];
+    CGPoint touchLocation    = [anyTouch locationInView:self];
+    CGRect selfRect          = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     if (CGRectContainsPoint(selfRect, touchLocation))
     {
         [self.buttonCircle setFillColor:self.buttonPressedColor.CGColor];
+        if (self.draggable)
+        {
+    self.startPositionX      = touchLocation.x;
+    self.startPositionY      = touchLocation.y;
+    self.ableToStartDragging = YES;
+        }
+    }
+}
+
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    if (self.draggable && self.ableToStartDragging)
+    {
+        self.isDragging = YES;
+        UITouch *anyTouch = [touches anyObject];
+        CGPoint touchLocationInParent = [anyTouch locationInView:self.superview];
+        self.frame = CGRectMake(touchLocationInParent.x - self.startPositionX, touchLocationInParent.y - self.startPositionY, self.frame.size.width, self.frame.size.height);
     }
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
+    [self.buttonCircle setFillColor:self.buttonNormalColor.CGColor];
+    
+    if (self.isDragging)
+    {
+        self.ableToStartDragging = NO;
+        self.isDragging = NO;
+        [self calculateStartPositions];
+        return;
+    }
+    
     UITouch *anyTouch = [touches anyObject];
     CGPoint touchLocation = [anyTouch locationInView:self];
     CGRect selfRect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    [self.buttonCircle setFillColor:self.buttonNormalColor.CGColor];
     if (CGRectContainsPoint(selfRect, touchLocation))
     {
         [self boom];
@@ -158,6 +248,14 @@
 - (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self.buttonCircle setFillColor:self.buttonNormalColor.CGColor];
+    
+    if (self.isDragging)
+    {
+        self.ableToStartDragging = NO;
+        self.isDragging = NO;
+        [self calculateStartPositions];
+        return;
+    }
 }
 
 #pragma mark Animation
@@ -167,6 +265,10 @@
     if (self.animatingViewsNumber != 0)
     {
         return;
+    }
+    if ([self.boomDelegate respondsToSelector:@selector(onBoomWillShow)])
+    {
+        [self.boomDelegate onBoomWillShow];
     }
     [self createButtons];
     [self dimBackground];
@@ -179,6 +281,10 @@
     {
         return;
     }
+    if ([self.boomDelegate respondsToSelector:@selector(onBoomWillHide)])
+    {
+        [self.boomDelegate onBoomWillHide];
+    }
     [self lightBackground];
     [self startHideAnimations];
 }
@@ -190,7 +296,14 @@
     [UIView animateWithDuration:self.duration + (self.pieces.count - 1) * self.delay animations:^
     {
         self.background.backgroundColor = self.dimColor;
-    } completion:nil];
+    }
+                     completion:^(BOOL finished)
+    {
+        if ([self.boomDelegate respondsToSelector:@selector(onBoomDidShow)])
+        {
+            [self.boomDelegate onBoomDidShow];
+        }
+    }];
 }
 
 - (void)lightBackground
@@ -200,7 +313,14 @@
     [UIView animateWithDuration:self.duration + (self.pieces.count - 1) * self.delay animations:^
      {
          self.background.backgroundColor = [UIColor clearColor];
-     } completion:nil];
+     }
+                     completion:^(BOOL finished)
+     {
+         if ([self.boomDelegate respondsToSelector:@selector(onBoomDidHide)])
+         {
+             [self.boomDelegate onBoomDidHide];
+         }
+     }];
 }
 
 - (void)startShowAnimations
@@ -208,6 +328,11 @@
     if (nil != self.background)
     {
         [self removeAllSubViews:self.background];
+    }
+    
+    if (self.buttonEnum == VHTextOutsideCircle)
+    {
+        [self adjustErrorForTextOutSideCircleButtonForStartYPosition];
     }
     
     [self calculateEndPositions];
@@ -227,11 +352,17 @@
                                          button:button
                                   startPosition:startPosition
                                     endPosition:endPosition
-                                          index:index];
+                                          index:index
+                                    delayFactor:i];
     }
 }
 
-- (void)setShowAnimationForEverySubButton:(VHBoomPiece *)piece button:(VHBoomButton *)button startPosition:(CGPoint)startPosition endPosition:(CGPoint)endPosition index:(int)buttonIndex
+- (void)setShowAnimationForEverySubButton:(VHBoomPiece *)piece
+                                   button:(VHBoomButton *)button
+                            startPosition:(CGPoint)startPosition
+                              endPosition:(CGPoint)endPosition
+                                    index:(int)index
+                              delayFactor:(int)delayFactor
 {
     self.animatingViewsNumber++;
     
@@ -299,6 +430,13 @@
          rotateAnimation.fillMode = kCAFillModeForwards;
          for (UIView *rotateView in button.rotateViews)
          {
+             // http://joeshang.github.io/2014/12/19/understand-anchorpoint-position-frame/
+             if (rotateView.frame.size.width == 0 || rotateView.frame.size.height == 0) continue;
+             CGFloat anchorPointX = (button.rotateAnchorPoint.x - (rotateView.frame.origin.x + rotateView.frame.size.width / 2)) / rotateView.frame.size.width + 0.5;
+             CGFloat anchorPointY = (button.rotateAnchorPoint.y - (rotateView.frame.origin.y + rotateView.frame.size.height / 2)) / rotateView.frame.size.height + 0.5;
+             CGRect originalFrame = rotateView.layer.frame;
+             [rotateView.layer setAnchorPoint:CGPointMake(anchorPointX, anchorPointY)];
+             rotateView.layer.frame = originalFrame;
              [rotateView.layer addAnimation:rotateAnimation forKey:nil];
          }
          
@@ -306,17 +444,17 @@
          button.layer.frame = button.frame;
          
          [group setAnimations:@[xAnimation, yAnimation, scaleAnimation]];
-         [button.layer addAnimation:group forKey:[NSString stringWithFormat:@"%d", buttonIndex]];
+         [button.layer addAnimation:group forKey:[NSString stringWithFormat:@"%d", index]];
          [CATransaction commit];
 
      }];
     
     CAKeyframeAnimation *scaleAnimationAtFirst = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
     scaleAnimationAtFirst.values = @[@(piece.frame.size.width / button.frame.size.width)];
-    scaleAnimationAtFirst.duration = buttonIndex * self.delay;
+    scaleAnimationAtFirst.duration = delayFactor * self.delay;
     scaleAnimationAtFirst.removedOnCompletion = NO;
     scaleAnimationAtFirst.fillMode = kCAFillModeForwards;
-    [button.layer addAnimation:scaleAnimationAtFirst forKey:[NSString stringWithFormat:@"%d", buttonIndex]];
+    [button.layer addAnimation:scaleAnimationAtFirst forKey:[NSString stringWithFormat:@"%d", index]];
     
     [CATransaction commit];
 }
@@ -335,11 +473,17 @@
                                          button:[self.boomButtons objectAtIndex:index]
                                   startPosition:endPosition
                                     endPosition:startPosition
-                                          index:index];
+                                          index:index
+                                    delayFactor:i];
     }
 }
 
-- (void)setHideAnimationForEverySubButton:(VHBoomPiece *)piece button:(VHBoomButton *)button startPosition:(CGPoint)startPosition endPosition:(CGPoint)endPosition index:(int)buttonIndex
+- (void)setHideAnimationForEverySubButton:(VHBoomPiece *)piece
+                                   button:(VHBoomButton *)button
+                            startPosition:(CGPoint)startPosition
+                              endPosition:(CGPoint)endPosition
+                                    index:(int)index
+                              delayFactor:(int)delayFactor
 {
     self.animatingViewsNumber++;
     
@@ -369,7 +513,7 @@
     group.duration = self.duration;
     group.removedOnCompletion = NO;
     group.fillMode = kCAFillModeForwards;
-    group.beginTime = [button.layer convertTime:CACurrentMediaTime() fromLayer:nil] + buttonIndex * self.delay;
+    group.beginTime = [button.layer convertTime:CACurrentMediaTime() fromLayer:nil] + delayFactor * self.delay;
     
     CAKeyframeAnimation *xAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position.x"];
     xAnimation.values = xs;
@@ -388,7 +532,7 @@
     opacityAnimation.duration = self.duration;
     opacityAnimation.removedOnCompletion = NO;
     opacityAnimation.fillMode = kCAFillModeForwards;
-    opacityAnimation.beginTime = [button.layer convertTime:CACurrentMediaTime() fromLayer:nil] + buttonIndex * self.delay;
+    opacityAnimation.beginTime = [button.layer convertTime:CACurrentMediaTime() fromLayer:nil] + delayFactor * self.delay;
     for (UIView *goneView in button.goneViews)
     {
         [goneView.layer addAnimation:opacityAnimation forKey:nil];
@@ -399,14 +543,14 @@
     rotateAnimation.duration = self.duration;
     rotateAnimation.removedOnCompletion = NO;
     rotateAnimation.fillMode = kCAFillModeForwards;
-    rotateAnimation.beginTime = [button.layer convertTime:CACurrentMediaTime() fromLayer:nil] + buttonIndex * self.delay;
+    rotateAnimation.beginTime = [button.layer convertTime:CACurrentMediaTime() fromLayer:nil] + delayFactor * self.delay;
     for (UIView *rotateView in button.rotateViews)
     {
         [rotateView.layer addAnimation:rotateAnimation forKey:nil];
     }
     
     [group setAnimations:@[xAnimation, yAnimation, scaleAnimation]];
-    [button.layer addAnimation:group forKey:[NSString stringWithFormat:@"%d", buttonIndex]];
+    [button.layer addAnimation:group forKey:[NSString stringWithFormat:@"%d", index]];
     [CATransaction commit];
 }
 
@@ -424,17 +568,61 @@
 
 - (void)createButtons
 {
+    [[VHErrorManager sharedManager] errorJudgeWithPiecePlaceEnum:self.piecePlaceEnum andButtonPlaceEnum:self.buttonPlaceEnum];
+    
+    self.boomButtons = [NSMutableArray arrayWithCapacity:self.pieces.count];
+    int buttonNumber = (int)self.pieces.count;
+    
     switch (self.buttonEnum)
     {
         case VHSimpleCircle:
-            self.boomButtons = [NSMutableArray arrayWithCapacity:self.pieces.count];
-            int buttonNumber = (int)self.pieces.count;
             for (int i = 0; i < buttonNumber; i++)
             {
                 VHSimpleCircleButtonBuilder *builder = (VHSimpleCircleButtonBuilder *)[self.boomButtonBuilders objectAtIndex:i];
-                [[builder withIndex:i] withDelegate:self];
+                builder.delegate = self;
+                builder.index = i;
                 VHSimpleCircleButton *simpleCircleButton = [builder createButton];
                 [self.boomButtons setObject:simpleCircleButton atIndexedSubscript:i];
+                
+                self.simpleCircleButtonRadius = builder.buttonRadius;
+            }
+            break;
+        case VHTextInsideCircle:
+            for (int i = 0; i < buttonNumber; i++)
+            {
+                VHTextInsideCircleButtonBuilder *builder = (VHTextInsideCircleButtonBuilder *)[self.boomButtonBuilders objectAtIndex:i];
+                builder.delegate = self;
+                builder.index = i;
+                VHTextInsideCircleButton *textInsideCircleButton = [builder createButton];
+                [self.boomButtons setObject:textInsideCircleButton atIndexedSubscript:i];
+                
+                self.textInsideCircleButtonRadius = builder.buttonRadius;
+            }
+            break;
+        case VHTextOutsideCircle:
+            for (int i = 0; i < buttonNumber; i++)
+            {
+                VHTextOutsideCircleButtonBuilder *builder = (VHTextOutsideCircleButtonBuilder *)[self.boomButtonBuilders objectAtIndex:i];
+                builder.delegate = self;
+                builder.index = i;
+                VHTextOutsideCircleButton *textOutsideCircleButton = [builder createButton];
+                [self.boomButtons setObject:textOutsideCircleButton atIndexedSubscript:i];
+                
+                self.textOutsideCircleButtonWidth = builder.buttonWidth;
+                self.textOutsideCircleButtonHeight = builder.buttonHeight;
+            }
+            break;
+        case VHButtonHam:
+            for (int i = 0; i < buttonNumber; i++)
+            {
+                VHHamButtonBuilder *builder = (VHHamButtonBuilder *)[self.boomButtonBuilders objectAtIndex:i];
+                builder.delegate = self;
+                builder.index = i;
+                VHHamButton *hamButton = [builder createButton];
+                [self.boomButtons setObject:hamButton atIndexedSubscript:i];
+                
+                self.hamButtonWidth = builder.buttonWidth;
+                self.hamButtonHeight = builder.buttonHeight;
             }
             break;
         default:
@@ -462,9 +650,89 @@
     }
 }
 
+- (void)calculateStartPositions
+{
+    self.needToAdjustTextOutsideCircleButtonHeightError = YES;
+    
+    long pieceNumber = [[VHPiecePlaceManager sharedManager] numbersWithEnum:self.piecePlaceEnum];
+    self.startPositions = [NSMutableArray arrayWithCapacity:pieceNumber];
+    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+    
+    for (int i = 0; i < pieceNumber; i++)
+    {
+        VHBoomPiece *piece = [self getBoomPieceAt:[self.piecePositions objectAtIndex:i] withColor:[self.boomButtonBuilders objectAtIndex:i].buttonNormalColor];
+        CGPoint centerPointOfPieceInWindow = [self convertPoint:piece.frame.origin toView:window];
+        centerPointOfPieceInWindow = CGPointMake(centerPointOfPieceInWindow.x + piece.frame.size.width / 2, centerPointOfPieceInWindow.y + piece.frame.size.height / 2);
+        [self.startPositions addObject:[NSValue valueWithCGPoint:centerPointOfPieceInWindow]];
+    }
+}
+
 - (void)calculateEndPositions
 {
-    self.endPositions = [[VHButtonPlaceManager sharedManager] positionsWithEnum:self.buttonPlaceEnum withParentFrame:[UIScreen mainScreen].bounds withButtonRadius:self.simpleCircleButtonRadius];
+    switch (self.buttonEnum) {
+        case VHSimpleCircle:
+            self.endPositions = [[VHButtonPlaceManager sharedManager] positionsWithEnum:self.buttonPlaceEnum
+                                                                          withAlignment:self.buttonPlaceAlignmentEnum
+                                                                        withParentFrame:[UIScreen mainScreen].bounds
+                                                                       withButtonRadius:self.simpleCircleButtonRadius
+                                                                       withButtonNumber:self.boomButtonBuilders.count
+                                                             withButtonHorizontalMargin:self.buttonHorizontalMargin
+                                                               withButtonInclinedMargin:self.buttonVerticalMargin
+                                                               withButtonVerticalMargin:self.buttonInclinedMargin
+                                                                    withButtonTopMargin:self.buttonTopMargin
+                                                                 withButtonBottomMargin:self.buttonBottomMargin
+                                                                   withButtonLeftMargin:self.buttonLeftMargin
+                                                                  withButtonRightMargin:self.buttonRightMargin];
+            break;
+        case VHTextInsideCircle:
+            self.endPositions = [[VHButtonPlaceManager sharedManager] positionsWithEnum:self.buttonPlaceEnum
+                                                                          withAlignment:self.buttonPlaceAlignmentEnum
+                                                                        withParentFrame:[UIScreen mainScreen].bounds
+                                                                       withButtonRadius:self.textInsideCircleButtonRadius
+                                                                       withButtonNumber:self.boomButtonBuilders.count
+                                                             withButtonHorizontalMargin:self.buttonHorizontalMargin
+                                                               withButtonInclinedMargin:self.buttonVerticalMargin
+                                                               withButtonVerticalMargin:self.buttonInclinedMargin
+                                                                    withButtonTopMargin:self.buttonTopMargin
+                                                                 withButtonBottomMargin:self.buttonBottomMargin
+                                                                   withButtonLeftMargin:self.buttonLeftMargin
+                                                                  withButtonRightMargin:self.buttonRightMargin];
+            break;
+        case VHTextOutsideCircle:
+            self.endPositions = [[VHButtonPlaceManager sharedManager] positionsWithEnum:self.buttonPlaceEnum
+                                                                          withAlignment:self.buttonPlaceAlignmentEnum
+                                                                        withParentFrame:[UIScreen mainScreen].bounds
+                                                                        withButtonWidth:self.textOutsideCircleButtonWidth
+                                                                       withButtonHeight:self.textOutsideCircleButtonHeight
+                                                                       withButtonNumber:self.boomButtonBuilders.count
+                                                             withButtonHorizontalMargin:self.buttonHorizontalMargin
+                                                               withButtonInclinedMargin:self.buttonVerticalMargin
+                                                               withButtonVerticalMargin:self.buttonInclinedMargin
+                                                                    withButtonTopMargin:self.buttonTopMargin
+                                                                 withButtonBottomMargin:self.buttonBottomMargin
+                                                                   withButtonLeftMargin:self.buttonLeftMargin
+                                                                  withButtonRightMargin:self.buttonRightMargin];
+            break;
+        case VHButtonHam:
+            self.endPositions = [[VHButtonPlaceManager sharedManager] positionsForHamWithEnum:self.buttonPlaceEnum
+                                                                                withAlignment:self.buttonPlaceAlignmentEnum
+                                                                              withParentFrame:[UIScreen mainScreen].bounds
+                                                                              withButtonWidth:self.hamButtonWidth
+                                                                             withButtonHeight:self.hamButtonHeight
+                                                                             withButtonNumber:self.boomButtonBuilders.count
+                                                                   withButtonHorizontalMargin:self.buttonHorizontalMargin
+                                                                     withButtonVerticalMargin:self.buttonVerticalMargin
+                                                                          withButtonTopMargin:self.buttonTopMargin
+                                                                       withButtonBottomMargin:self.buttonBottomMargin
+                                                                         withButtonLeftMargin:self.buttonLeftMargin
+                                                                        withButtonRightMargin:self.buttonRightMargin
+                                                                  withLastButtonMarginMoreTop:self.lastHamButtonMarginMoreTop
+                                                                      withLastButtonTopMargin:self.lastHamButtonTopMargin];
+            break;
+        default:
+            break;
+    }
+    
 }
 
 - (VHBoomButton *)putSubButtonInBackground:(VHBoomButton *)button withPosition:(CGPoint)position
@@ -540,7 +808,7 @@
 
 - (void)onBackgroundClick
 {
-    if ([self.boomDelegate respondsToSelector:@selector(onBackgroundClick)])
+    if ([self.boomDelegate respondsToSelector:@selector(onBoomBackgroundClick)])
     {
         [self.boomDelegate onBoomBackgroundClick];
     }
@@ -550,13 +818,70 @@
     }
 }
 
-#pragma mark - Add Builders
+#pragma mark - Builders
 
-- (void)addBuilderBlock:(void (^)(VHSimpleCircleButtonBuilder *))block
+- (void)addSimpleCircleButtonBuilderBlock:(void (^)(VHSimpleCircleButtonBuilder *))block
 {
     VHSimpleCircleButtonBuilder *builder = [[VHSimpleCircleButtonBuilder alloc] init];
     block(builder);
     [self.boomButtonBuilders addObject:builder];
+}
+
+- (void)addTextInsideCircleButtonBuilderBlock:(void (^)(VHTextInsideCircleButtonBuilder *))block
+{
+    VHTextInsideCircleButtonBuilder *builder = [[VHTextInsideCircleButtonBuilder alloc] init];
+    block(builder);
+    [self.boomButtonBuilders addObject:builder];
+}
+
+- (void)addTextOutsideCircleButtonBuilderBlock:(void (^)(VHTextOutsideCircleButtonBuilder *))block
+{
+    VHTextOutsideCircleButtonBuilder *builder = [[VHTextOutsideCircleButtonBuilder alloc] init];
+    block(builder);
+    [self.boomButtonBuilders addObject:builder];
+}
+
+- (void)addHamButtonBuilderBlock:(void(^)(VHHamButtonBuilder *))block
+{
+    VHHamButtonBuilder *builder = [[VHHamButtonBuilder alloc] init];
+    block(builder);
+    [self.boomButtonBuilders addObject:builder];
+}
+
+- (void)removeBuilders
+{
+    [self.boomButtonBuilders removeAllObjects];
+    [self removePieces];
+}
+
+- (void)removePieces
+{
+    if (self.pieces != nil)
+    {
+        for (VHBoomPiece *piece in self.pieces)
+        {
+            [piece removeFromSuperview];
+        }
+    }
+}
+
+- (void)adjustErrorForTextOutSideCircleButtonForStartYPosition
+{
+    if (self.needToAdjustTextOutsideCircleButtonHeightError == NO)
+    {
+        return;
+    }
+    
+    CGFloat dotWidth = 2 * self.dotRadius;
+    CGFloat dotHeight = dotWidth * self.textOutsideCircleButtonHeight / self.textOutsideCircleButtonWidth;
+    CGFloat yOffset = (dotHeight - dotWidth) / 2;
+    for (int i = 0; i < self.startPositions.count; i++)
+    {
+        CGPoint startPosition = [[self.startPositions objectAtIndex:i] CGPointValue];
+        [self.startPositions setObject:[NSValue valueWithCGPoint:CGPointMake(startPosition.x, startPosition.y + yOffset)] atIndexedSubscript:i];
+    }
+    
+    self.needToAdjustTextOutsideCircleButtonHeightError = NO;
 }
 
 @end

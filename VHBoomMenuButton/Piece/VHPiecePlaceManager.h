@@ -14,7 +14,19 @@
 
 + (instancetype)sharedManager;
 
-- (NSMutableArray<NSValue *> *)positionsWithEnum:(VHPiecePlaceEnum)placeEnum withParentFrame:(CGRect)frame withDotRadius:(CGFloat)radius;
+- (NSMutableArray<NSValue *> *)positionsWithEnum:(VHPiecePlaceEnum)placeEnum
+                                 withParentFrame:(CGRect)frame
+                                   withDotRadius:(CGFloat)radius
+                            withHorizontalMargin:(CGFloat)dotHorizontalMargin
+                              withVerticalMargin:(CGFloat)dotVerticalMargin
+                              withInclinedMargin:(CGFloat)dotInclinedMargin;
+
+- (NSMutableArray<NSValue *> *)positionsWithEnum:(VHPiecePlaceEnum)placeEnum
+                                 withParentFrame:(CGRect)frame
+                                    withHamWidth:(CGFloat)width
+                                   withHamHeight:(CGFloat)height
+                            withHorizontalMargin:(CGFloat)dotHorizontalMargin
+                              withVerticalMargin:(CGFloat)dotVerticalMargin;
 
 - (NSInteger)numbersWithEnum:(VHPiecePlaceEnum)placeEnum;
 

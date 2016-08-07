@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[ViewController pickerView:didSelectRow:inComponent:]:ViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.buttonToPiecePlaceTypesValue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[VHBoomMenuButton dimBackground]:VHBoomMenuButton.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.pieces">
+            </PersistentString>
+            <PersistentString
+               value = "self.background">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__33-[VHBoomMenuButton dimBackground]_block_invoke:VHBoomMenuButton.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.dimColor">
+            </PersistentString>
+            <PersistentString
+               value = "self.background">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[VHTextOutsideCircleButtonBuilder createButton]:VHTextOutsideCircleButtonBuilder.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[VHTextInsideCircleButton initWithImage:pressedImage:normalColor:pressedColor:imageNormalTintColor:imagePressedTintColor:textNormalColor:textPressedColor:imageFrame:textFrame:text:font:lineBreakMode:lines:buttonRadius:shadowRadius:shadowOffset:shadowOpacity:shadowColor:withDelegate:at:]:VHTextInsideCircleButton.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.textFrame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewController setButtonType]:ViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.selectedButtonEnum">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewController setNoBackground]:ViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.bmb.noBackground">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewController setSubButtonsForBMB]:ViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.selectedButtonPlaceEnum">
+            </PersistentString>
+            <PersistentString
+               value = "self.selectedPiecePlaceEnum">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[VHBoomMenuButton getOrderIndex:inSize:]:VHBoomMenuButton.m">
+      </ContextState>
+      <ContextState
+         contextName = "__93-[VHBoomMenuButton setShowAnimationForEverySubButton:button:startPosition:endPosition:index:]_block_invoke:VHBoomMenuButton.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "rotateView.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[VHBoomMenuButton calculateErrorForTextOutSideCircleButtonForStartYPosition]:VHBoomMenuButton.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[value CGPointValue]">
+            </PersistentString>
+            <PersistentString
+               value = "[self.piecePositions objectAtIndex:i]">
+            </PersistentString>
+            <PersistentString
+               value = "self.piecePositions">
+            </PersistentString>
+            <PersistentString
+               value = "[[self.piecePositions objectAtIndex:i] CGPointValue]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__29-[ViewController addButtons:]_block_invoke:ViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[strongSelf.images objectAtIndex:r]">
+            </PersistentString>
+            <PersistentString
+               value = "strongSelf.imageNormalTintColors">
+            </PersistentString>
+            <PersistentString
+               value = "builder.textContent">
+            </PersistentString>
+            <PersistentString
+               value = "[[strongSelf.images objectAtIndex:r] stringByDeletingLastPathComponent]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[VHSimpleCircleButton rotateAnchorPoint]:VHSimpleCircleButton.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.buttonCircle">
+            </PersistentString>
+            <PersistentString
+               value = "self.buttonCircle.frame">
+            </PersistentString>
+            <PersistentString
+               value = "self.frame.size.width">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__105-[VHBoomMenuButton setShowAnimationForEverySubButton:button:startPosition:endPosition:index:delayFactor:]_block_invoke:VHBoomMenuButton.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "button.rotateAnchorPoint.y">
+            </PersistentString>
+            <PersistentString
+               value = "button.frame.size.width / 2">
+            </PersistentString>
+            <PersistentString
+               value = "button.rotateAnchorPoint.x">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[VHBoomMenuButton layoutSubviews]:VHBoomMenuButton.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.piecePositions">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

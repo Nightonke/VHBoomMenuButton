@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		372C9DE71D5652D00098B253 /* VHHam.m in Sources */ = {isa = PBXBuildFile; fileRef = 372C9DE61D5652D00098B253 /* VHHam.m */; };
+		372C9DEA1D5661C50098B253 /* VHHamButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 372C9DE91D5661C50098B253 /* VHHamButton.m */; };
+		372C9DED1D5661EF0098B253 /* VHHamButtonBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 372C9DEC1D5661EF0098B253 /* VHHamButtonBuilder.m */; };
 		3794BF1E1D4DEF4A005B9404 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3794BF1D1D4DEF4A005B9404 /* main.m */; };
 		3794BF211D4DEF4A005B9404 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3794BF201D4DEF4A005B9404 /* AppDelegate.m */; };
 		3794BF241D4DEF4A005B9404 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3794BF231D4DEF4A005B9404 /* ViewController.m */; };
@@ -25,12 +28,39 @@
 		3794BF641D4DF167005B9404 /* VHDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 3794BF5F1D4DF167005B9404 /* VHDefaults.m */; };
 		3794BF651D4DF167005B9404 /* VHUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3794BF611D4DF167005B9404 /* VHUtils.m */; };
 		3794BF6A1D4DF3DD005B9404 /* VHButtonPlaceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3794BF691D4DF3DD005B9404 /* VHButtonPlaceManager.m */; };
-		3794BF6F1D4DF565005B9404 /* android.png in Resources */ = {isa = PBXBuildFile; fileRef = 3794BF6B1D4DF565005B9404 /* android.png */; };
-		3794BF711D4DF565005B9404 /* ios.png in Resources */ = {isa = PBXBuildFile; fileRef = 3794BF6E1D4DF565005B9404 /* ios.png */; };
+		3794BF821D4E37AE005B9404 /* butterfly.png in Resources */ = {isa = PBXBuildFile; fileRef = 3794BF721D4E37AE005B9404 /* butterfly.png */; };
+		3794BF831D4E37AE005B9404 /* peacock.png in Resources */ = {isa = PBXBuildFile; fileRef = 3794BF731D4E37AE005B9404 /* peacock.png */; };
+		3794BF841D4E37AE005B9404 /* rat.png in Resources */ = {isa = PBXBuildFile; fileRef = 3794BF741D4E37AE005B9404 /* rat.png */; };
+		3794BF851D4E37AE005B9404 /* jellyFish.png in Resources */ = {isa = PBXBuildFile; fileRef = 3794BF751D4E37AE005B9404 /* jellyFish.png */; };
+		3794BF861D4E37AE005B9404 /* horse.png in Resources */ = {isa = PBXBuildFile; fileRef = 3794BF761D4E37AE005B9404 /* horse.png */; };
+		3794BF871D4E37AE005B9404 /* dolphin.png in Resources */ = {isa = PBXBuildFile; fileRef = 3794BF771D4E37AE005B9404 /* dolphin.png */; };
+		3794BF881D4E37AE005B9404 /* deer.png in Resources */ = {isa = PBXBuildFile; fileRef = 3794BF781D4E37AE005B9404 /* deer.png */; };
+		3794BF891D4E37AE005B9404 /* cat.png in Resources */ = {isa = PBXBuildFile; fileRef = 3794BF791D4E37AE005B9404 /* cat.png */; };
+		3794BF8A1D4E37AE005B9404 /* bear.png in Resources */ = {isa = PBXBuildFile; fileRef = 3794BF7A1D4E37AE005B9404 /* bear.png */; };
+		3794BF8B1D4E37AE005B9404 /* snake.png in Resources */ = {isa = PBXBuildFile; fileRef = 3794BF7B1D4E37AE005B9404 /* snake.png */; };
+		3794BF8C1D4E37AE005B9404 /* pig.png in Resources */ = {isa = PBXBuildFile; fileRef = 3794BF7C1D4E37AE005B9404 /* pig.png */; };
+		3794BF8D1D4E37AE005B9404 /* eagle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3794BF7D1D4E37AE005B9404 /* eagle.png */; };
+		3794BF8E1D4E37AE005B9404 /* bat.png in Resources */ = {isa = PBXBuildFile; fileRef = 3794BF7E1D4E37AE005B9404 /* bat.png */; };
+		3794BF8F1D4E37AE005B9404 /* bee.png in Resources */ = {isa = PBXBuildFile; fileRef = 3794BF7F1D4E37AE005B9404 /* bee.png */; };
+		3794BF901D4E37AE005B9404 /* owl.png in Resources */ = {isa = PBXBuildFile; fileRef = 3794BF801D4E37AE005B9404 /* owl.png */; };
+		3794BF911D4E37AE005B9404 /* squirrel.png in Resources */ = {isa = PBXBuildFile; fileRef = 3794BF811D4E37AE005B9404 /* squirrel.png */; };
+		3794BF951D4F13E5005B9404 /* TopLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3794BF941D4F13E5005B9404 /* TopLineLabel.m */; };
+		3794BF981D4F166A005B9404 /* BottomLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3794BF971D4F166A005B9404 /* BottomLineLabel.m */; };
+		3794BF9B1D4FB7C8005B9404 /* VHErrorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3794BF9A1D4FB7C8005B9404 /* VHErrorManager.m */; };
+		3794BF9E1D50A5D4005B9404 /* VHTextInsideCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3794BF9D1D50A5D4005B9404 /* VHTextInsideCircleButton.m */; };
+		3794BFA11D50B999005B9404 /* VHTextInsideCircleButtonBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3794BFA01D50B999005B9404 /* VHTextInsideCircleButtonBuilder.m */; };
+		3794BFA41D50FCC8005B9404 /* VHTextOutsideCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3794BFA31D50FCC8005B9404 /* VHTextOutsideCircleButton.m */; };
+		3794BFA71D51012D005B9404 /* VHTextOutsideCircleButtonBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3794BFA61D51012D005B9404 /* VHTextOutsideCircleButtonBuilder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0C4CE23E95B67860E303B2C1 /* Pods-VHBoomMenuButton.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VHBoomMenuButton.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VHBoomMenuButton/Pods-VHBoomMenuButton.debug.xcconfig"; sourceTree = "<group>"; };
+		372C9DE51D5652D00098B253 /* VHHam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHHam.h; sourceTree = "<group>"; };
+		372C9DE61D5652D00098B253 /* VHHam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHHam.m; sourceTree = "<group>"; };
+		372C9DE81D5661C50098B253 /* VHHamButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHHamButton.h; sourceTree = "<group>"; };
+		372C9DE91D5661C50098B253 /* VHHamButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHHamButton.m; sourceTree = "<group>"; };
+		372C9DEB1D5661EF0098B253 /* VHHamButtonBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHHamButtonBuilder.h; sourceTree = "<group>"; };
+		372C9DEC1D5661EF0098B253 /* VHHamButtonBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHHamButtonBuilder.m; sourceTree = "<group>"; };
 		3794BF1A1D4DEF4A005B9404 /* VHBoomMenuButtonExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VHBoomMenuButtonExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3794BF1D1D4DEF4A005B9404 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3794BF1F1D4DEF4A005B9404 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -74,12 +104,40 @@
 		3794BF5F1D4DF167005B9404 /* VHDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHDefaults.m; sourceTree = "<group>"; };
 		3794BF601D4DF167005B9404 /* VHUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHUtils.h; sourceTree = "<group>"; };
 		3794BF611D4DF167005B9404 /* VHUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHUtils.m; sourceTree = "<group>"; };
-		3794BF661D4DF1B4005B9404 /* VHButtonEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VHButtonEnum.h; sourceTree = "<group>"; };
 		3794BF671D4DF1F4005B9404 /* VHButtonPlaceEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VHButtonPlaceEnum.h; sourceTree = "<group>"; };
 		3794BF681D4DF1F4005B9404 /* VHButtonPlaceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VHButtonPlaceManager.h; sourceTree = "<group>"; };
 		3794BF691D4DF3DD005B9404 /* VHButtonPlaceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHButtonPlaceManager.m; sourceTree = "<group>"; };
-		3794BF6B1D4DF565005B9404 /* android.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = android.png; sourceTree = "<group>"; };
-		3794BF6E1D4DF565005B9404 /* ios.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ios.png; sourceTree = "<group>"; };
+		3794BF721D4E37AE005B9404 /* butterfly.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = butterfly.png; sourceTree = "<group>"; };
+		3794BF731D4E37AE005B9404 /* peacock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peacock.png; sourceTree = "<group>"; };
+		3794BF741D4E37AE005B9404 /* rat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rat.png; sourceTree = "<group>"; };
+		3794BF751D4E37AE005B9404 /* jellyFish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jellyFish.png; sourceTree = "<group>"; };
+		3794BF761D4E37AE005B9404 /* horse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horse.png; sourceTree = "<group>"; };
+		3794BF771D4E37AE005B9404 /* dolphin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dolphin.png; sourceTree = "<group>"; };
+		3794BF781D4E37AE005B9404 /* deer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deer.png; sourceTree = "<group>"; };
+		3794BF791D4E37AE005B9404 /* cat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cat.png; sourceTree = "<group>"; };
+		3794BF7A1D4E37AE005B9404 /* bear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bear.png; sourceTree = "<group>"; };
+		3794BF7B1D4E37AE005B9404 /* snake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snake.png; sourceTree = "<group>"; };
+		3794BF7C1D4E37AE005B9404 /* pig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pig.png; sourceTree = "<group>"; };
+		3794BF7D1D4E37AE005B9404 /* eagle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eagle.png; sourceTree = "<group>"; };
+		3794BF7E1D4E37AE005B9404 /* bat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bat.png; sourceTree = "<group>"; };
+		3794BF7F1D4E37AE005B9404 /* bee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bee.png; sourceTree = "<group>"; };
+		3794BF801D4E37AE005B9404 /* owl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = owl.png; sourceTree = "<group>"; };
+		3794BF811D4E37AE005B9404 /* squirrel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = squirrel.png; sourceTree = "<group>"; };
+		3794BF921D4EF9B1005B9404 /* VHButtonPlaceAlignmentEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VHButtonPlaceAlignmentEnum.h; sourceTree = "<group>"; };
+		3794BF931D4F13E5005B9404 /* TopLineLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopLineLabel.h; sourceTree = "<group>"; };
+		3794BF941D4F13E5005B9404 /* TopLineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopLineLabel.m; sourceTree = "<group>"; };
+		3794BF961D4F166A005B9404 /* BottomLineLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomLineLabel.h; sourceTree = "<group>"; };
+		3794BF971D4F166A005B9404 /* BottomLineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomLineLabel.m; sourceTree = "<group>"; };
+		3794BF991D4FB7C8005B9404 /* VHErrorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHErrorManager.h; sourceTree = "<group>"; };
+		3794BF9A1D4FB7C8005B9404 /* VHErrorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHErrorManager.m; sourceTree = "<group>"; };
+		3794BF9C1D50A5D4005B9404 /* VHTextInsideCircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHTextInsideCircleButton.h; sourceTree = "<group>"; };
+		3794BF9D1D50A5D4005B9404 /* VHTextInsideCircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHTextInsideCircleButton.m; sourceTree = "<group>"; };
+		3794BF9F1D50B999005B9404 /* VHTextInsideCircleButtonBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHTextInsideCircleButtonBuilder.h; sourceTree = "<group>"; };
+		3794BFA01D50B999005B9404 /* VHTextInsideCircleButtonBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHTextInsideCircleButtonBuilder.m; sourceTree = "<group>"; };
+		3794BFA21D50FCC8005B9404 /* VHTextOutsideCircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHTextOutsideCircleButton.h; sourceTree = "<group>"; };
+		3794BFA31D50FCC8005B9404 /* VHTextOutsideCircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHTextOutsideCircleButton.m; sourceTree = "<group>"; };
+		3794BFA51D51012D005B9404 /* VHTextOutsideCircleButtonBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHTextOutsideCircleButtonBuilder.h; sourceTree = "<group>"; };
+		3794BFA61D51012D005B9404 /* VHTextOutsideCircleButtonBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHTextOutsideCircleButtonBuilder.m; sourceTree = "<group>"; };
 		A4D62918773E38E3E2CFDAB1 /* Pods-VHBoomMenuButton.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VHBoomMenuButton.release.xcconfig"; path = "Pods/Target Support Files/Pods-VHBoomMenuButton/Pods-VHBoomMenuButton.release.xcconfig"; sourceTree = "<group>"; };
 		AA778F4B5F879FB7833B8621 /* libPods-VHBoomMenuButton.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VHBoomMenuButton.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -137,6 +195,8 @@
 				3794BF5F1D4DF167005B9404 /* VHDefaults.m */,
 				3794BF601D4DF167005B9404 /* VHUtils.h */,
 				3794BF611D4DF167005B9404 /* VHUtils.m */,
+				3794BF991D4FB7C8005B9404 /* VHErrorManager.h */,
+				3794BF9A1D4FB7C8005B9404 /* VHErrorManager.m */,
 				3794BF3D1D4DF0A8005B9404 /* Animation */,
 				3794BF3C1D4DF0A3005B9404 /* BoomButton */,
 				3794BF311D4DF04F005B9404 /* Piece */,
@@ -147,13 +207,31 @@
 		3794BF1B1D4DEF4A005B9404 /* VHBoomMenuButtonExample */ = {
 			isa = PBXGroup;
 			children = (
-				3794BF6B1D4DF565005B9404 /* android.png */,
+				3794BF721D4E37AE005B9404 /* butterfly.png */,
+				3794BF731D4E37AE005B9404 /* peacock.png */,
+				3794BF741D4E37AE005B9404 /* rat.png */,
+				3794BF751D4E37AE005B9404 /* jellyFish.png */,
+				3794BF761D4E37AE005B9404 /* horse.png */,
+				3794BF771D4E37AE005B9404 /* dolphin.png */,
+				3794BF781D4E37AE005B9404 /* deer.png */,
+				3794BF791D4E37AE005B9404 /* cat.png */,
+				3794BF7A1D4E37AE005B9404 /* bear.png */,
+				3794BF7B1D4E37AE005B9404 /* snake.png */,
+				3794BF7C1D4E37AE005B9404 /* pig.png */,
+				3794BF7D1D4E37AE005B9404 /* eagle.png */,
+				3794BF7E1D4E37AE005B9404 /* bat.png */,
+				3794BF7F1D4E37AE005B9404 /* bee.png */,
+				3794BF801D4E37AE005B9404 /* owl.png */,
+				3794BF811D4E37AE005B9404 /* squirrel.png */,
 				3794BF6D1D4DF565005B9404 /* Base.lproj */,
-				3794BF6E1D4DF565005B9404 /* ios.png */,
 				3794BF1F1D4DEF4A005B9404 /* AppDelegate.h */,
 				3794BF201D4DEF4A005B9404 /* AppDelegate.m */,
 				3794BF221D4DEF4A005B9404 /* ViewController.h */,
 				3794BF231D4DEF4A005B9404 /* ViewController.m */,
+				3794BF931D4F13E5005B9404 /* TopLineLabel.h */,
+				3794BF941D4F13E5005B9404 /* TopLineLabel.m */,
+				3794BF961D4F166A005B9404 /* BottomLineLabel.h */,
+				3794BF971D4F166A005B9404 /* BottomLineLabel.m */,
 				3794BF2D1D4DEF4A005B9404 /* Info.plist */,
 				3794BF1C1D4DEF4A005B9404 /* Supporting Files */,
 			);
@@ -175,6 +253,8 @@
 				3794BF331D4DF078005B9404 /* VHBoomPiece.m */,
 				3794BF341D4DF078005B9404 /* VHDot.h */,
 				3794BF351D4DF078005B9404 /* VHDot.m */,
+				372C9DE51D5652D00098B253 /* VHHam.h */,
+				372C9DE61D5652D00098B253 /* VHHam.m */,
 				3794BF361D4DF078005B9404 /* VHPiecePlaceEnum.h */,
 				3794BF371D4DF078005B9404 /* VHPiecePlaceManager.h */,
 				3794BF381D4DF078005B9404 /* VHPiecePlaceManager.m */,
@@ -185,10 +265,10 @@
 		3794BF3C1D4DF0A3005B9404 /* BoomButton */ = {
 			isa = PBXGroup;
 			children = (
+				3794BF681D4DF1F4005B9404 /* VHButtonPlaceManager.h */,
 				3794BF691D4DF3DD005B9404 /* VHButtonPlaceManager.m */,
 				3794BF671D4DF1F4005B9404 /* VHButtonPlaceEnum.h */,
-				3794BF681D4DF1F4005B9404 /* VHButtonPlaceManager.h */,
-				3794BF661D4DF1B4005B9404 /* VHButtonEnum.h */,
+				3794BF921D4EF9B1005B9404 /* VHButtonPlaceAlignmentEnum.h */,
 				3794BF3E1D4DF0CE005B9404 /* VHBoomButton.h */,
 				3794BF3F1D4DF0CE005B9404 /* VHBoomButton.m */,
 				3794BF401D4DF0CE005B9404 /* VHBoomButtonBuilder.h */,
@@ -197,6 +277,18 @@
 				3794BF431D4DF0CE005B9404 /* VHSimpleCircleButton.m */,
 				3794BF441D4DF0CE005B9404 /* VHSimpleCircleButtonBuilder.h */,
 				3794BF451D4DF0CE005B9404 /* VHSimpleCircleButtonBuilder.m */,
+				3794BF9C1D50A5D4005B9404 /* VHTextInsideCircleButton.h */,
+				3794BF9D1D50A5D4005B9404 /* VHTextInsideCircleButton.m */,
+				3794BF9F1D50B999005B9404 /* VHTextInsideCircleButtonBuilder.h */,
+				3794BFA01D50B999005B9404 /* VHTextInsideCircleButtonBuilder.m */,
+				3794BFA21D50FCC8005B9404 /* VHTextOutsideCircleButton.h */,
+				3794BFA31D50FCC8005B9404 /* VHTextOutsideCircleButton.m */,
+				3794BFA51D51012D005B9404 /* VHTextOutsideCircleButtonBuilder.h */,
+				3794BFA61D51012D005B9404 /* VHTextOutsideCircleButtonBuilder.m */,
+				372C9DE81D5661C50098B253 /* VHHamButton.h */,
+				372C9DE91D5661C50098B253 /* VHHamButton.m */,
+				372C9DEB1D5661EF0098B253 /* VHHamButtonBuilder.h */,
+				372C9DEC1D5661EF0098B253 /* VHHamButtonBuilder.m */,
 			);
 			path = BoomButton;
 			sourceTree = "<group>";
@@ -291,8 +383,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3794BF711D4DF565005B9404 /* ios.png in Resources */,
-				3794BF6F1D4DF565005B9404 /* android.png in Resources */,
+				3794BF891D4E37AE005B9404 /* cat.png in Resources */,
+				3794BF861D4E37AE005B9404 /* horse.png in Resources */,
+				3794BF911D4E37AE005B9404 /* squirrel.png in Resources */,
+				3794BF841D4E37AE005B9404 /* rat.png in Resources */,
+				3794BF881D4E37AE005B9404 /* deer.png in Resources */,
+				3794BF831D4E37AE005B9404 /* peacock.png in Resources */,
+				3794BF851D4E37AE005B9404 /* jellyFish.png in Resources */,
+				3794BF8F1D4E37AE005B9404 /* bee.png in Resources */,
+				3794BF901D4E37AE005B9404 /* owl.png in Resources */,
+				3794BF871D4E37AE005B9404 /* dolphin.png in Resources */,
+				3794BF8C1D4E37AE005B9404 /* pig.png in Resources */,
+				3794BF8E1D4E37AE005B9404 /* bat.png in Resources */,
+				3794BF8A1D4E37AE005B9404 /* bear.png in Resources */,
+				3794BF8B1D4E37AE005B9404 /* snake.png in Resources */,
+				3794BF8D1D4E37AE005B9404 /* eagle.png in Resources */,
+				3794BF821D4E37AE005B9404 /* butterfly.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,22 +410,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				3794BF241D4DEF4A005B9404 /* ViewController.m in Sources */,
+				3794BFA11D50B999005B9404 /* VHTextInsideCircleButtonBuilder.m in Sources */,
+				3794BF9B1D4FB7C8005B9404 /* VHErrorManager.m in Sources */,
+				3794BF981D4F166A005B9404 /* BottomLineLabel.m in Sources */,
 				3794BF3A1D4DF078005B9404 /* VHDot.m in Sources */,
 				3794BF391D4DF078005B9404 /* VHBoomPiece.m in Sources */,
 				3794BF491D4DF0CE005B9404 /* VHSimpleCircleButtonBuilder.m in Sources */,
 				3794BF531D4DF111005B9404 /* VHAnimationManager.m in Sources */,
+				372C9DE71D5652D00098B253 /* VHHam.m in Sources */,
 				3794BF631D4DF167005B9404 /* VHBoomMenuButton.m in Sources */,
+				372C9DEA1D5661C50098B253 /* VHHamButton.m in Sources */,
 				3794BF551D4DF111005B9404 /* VHEaseManager.m in Sources */,
 				3794BF621D4DF167005B9404 /* VHBackgroundView.m in Sources */,
 				3794BF461D4DF0CE005B9404 /* VHBoomButton.m in Sources */,
 				3794BF211D4DEF4A005B9404 /* AppDelegate.m in Sources */,
+				3794BF951D4F13E5005B9404 /* TopLineLabel.m in Sources */,
 				3794BF541D4DF111005B9404 /* VHEase.m in Sources */,
 				3794BF3B1D4DF078005B9404 /* VHPiecePlaceManager.m in Sources */,
 				3794BF651D4DF167005B9404 /* VHUtils.m in Sources */,
 				3794BF6A1D4DF3DD005B9404 /* VHButtonPlaceManager.m in Sources */,
+				3794BFA71D51012D005B9404 /* VHTextOutsideCircleButtonBuilder.m in Sources */,
 				3794BF471D4DF0CE005B9404 /* VHBoomButtonBuilder.m in Sources */,
+				372C9DED1D5661EF0098B253 /* VHHamButtonBuilder.m in Sources */,
 				3794BF641D4DF167005B9404 /* VHDefaults.m in Sources */,
+				3794BFA41D50FCC8005B9404 /* VHTextOutsideCircleButton.m in Sources */,
 				3794BF481D4DF0CE005B9404 /* VHSimpleCircleButton.m in Sources */,
+				3794BF9E1D50A5D4005B9404 /* VHTextInsideCircleButton.m in Sources */,
 				3794BF1E1D4DEF4A005B9404 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,6 +574,7 @@
 				3794BF301D4DEF4A005B9404 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

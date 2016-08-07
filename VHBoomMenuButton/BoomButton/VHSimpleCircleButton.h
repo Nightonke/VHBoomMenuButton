@@ -10,30 +10,15 @@
 #import "VHUtils.h"
 #import "VHDefaults.h"
 #import "VHBoomButton.h"
-#import "VHButtonClickDelegate.h"
 
 @interface VHSimpleCircleButton : VHBoomButton
 
 @property (nonatomic        ) CGFloat               shadowRadius;
-@property (nonatomic        ) CGSize                shadowOffset;
-@property (nonatomic        ) CGFloat               shadowOpacity;
-@property (nonatomic        ) UIColor               *shadowColor;
 
 @property (nonatomic        ) CGFloat               buttonRadius;
 
-@property (nonatomic        ) NSString              *imageNormal;
-@property (nonatomic        ) NSString              *imagePressed;
-@property (nonatomic        ) UIColor               *buttonNormalColor;
-@property (nonatomic        ) UIColor               *buttonPressedColor;
-@property (nonatomic        ) UIColor               *imageNormalTintColor;
-@property (nonatomic        ) UIColor               *imagePressedTintColor;
-
 @property (nonatomic        ) UIImageView           *image;
 @property (nonatomic, strong) CAShapeLayer          *buttonCircle;
-
-@property (nonatomic,       ) int                   index;
-
-@property (nonatomic, weak  ) id<VHButtonClickDelegate> delegate;
 
 /**
  *  Init simple circle button with all properties.
@@ -60,6 +45,7 @@
                  pressedColor:(UIColor *)pressedColor
          imageNormalTintColor:(UIColor *)imageNormalTintColor
         imagePressedTintColor:(UIColor *)imagePressedTintColor
+                   imageFrame:(CGRect)imageFrame
                  buttonRadius:(CGFloat)buttonRadius
                  shadowRadius:(CGFloat)shadowRadius
                  shadowOffset:(CGSize) shadowOffset

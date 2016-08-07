@@ -15,6 +15,7 @@
 {
     if (self = [super initWithFrame:frame])
     {
+        self.layer.allowsEdgeAntialiasing = YES;
         self.layer.cornerRadius = frame.size.width / 2;
         self.layer.masksToBounds = YES;
         self.layer.backgroundColor = color.CGColor;

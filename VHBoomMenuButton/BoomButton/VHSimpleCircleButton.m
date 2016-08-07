@@ -16,6 +16,7 @@
                  pressedColor:(UIColor *)pressedColor
          imageNormalTintColor:(UIColor *)imageNormalTintColor
         imagePressedTintColor:(UIColor *)imagePressedTintColor
+                   imageFrame:(CGRect)imageFrame
                  buttonRadius:(CGFloat)buttonRadius
                  shadowRadius:(CGFloat)shadowRadius
                  shadowOffset:(CGSize) shadowOffset
@@ -33,6 +34,14 @@
         self.buttonPressedColor     = pressedColor;
         self.imageNormalTintColor   = imageNormalTintColor;
         self.imagePressedTintColor  = imagePressedTintColor;
+        if (CGRectIsNull(imageFrame))
+        {
+            self.imageFrame         = frame;
+        }
+        else
+        {
+            self.imageFrame         = imageFrame;
+        }
         self.buttonRadius           = buttonRadius;
         self.shadowRadius           = shadowRadius;
         self.shadowOffset           = shadowOffset;
@@ -49,16 +58,28 @@
         [self.buttonCircle setFillColor:self.buttonNormalColor.CGColor];
         [[self layer] addSublayer:self.buttonCircle];
 
-        UIImage *imageContent       = [UIImage imageNamed:self.imageNormal];
-        if (self.imageNormalTintColor != nil && self.imagePressedTintColor != nil)
+        if (imageNormal != nil)
         {
-            imageContent            = [imageContent imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            self.imageNormalContent      = [UIImage imageNamed:self.imageNormal];
+            if (self.imageNormalTintColor != nil && self.imagePressedTintColor != nil)
+            {
+                self.imageNormalContent            = [self.imageNormalContent imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            }
         }
-        self.image                  = [[UIImageView alloc] initWithImage:imageContent];
-        self.image.frame            = frame;
-        if (self.imagePressedTintColor != nil)
+        if (imagePressed != nil)
         {
-            [self.image setTintColor:self.imagePressedTintColor];
+            self.imagePressedContent      = [UIImage imageNamed:self.imagePressed];
+            if (self.imageNormalTintColor != nil && self.imagePressedTintColor != nil)
+            {
+                self.imagePressedContent            = [self.imagePressedContent imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            }
+        }
+        
+        self.image                  = [[UIImageView alloc] initWithImage:self.imageNormalContent];
+        self.image.frame            = self.imageFrame;
+        if (self.imageNormalTintColor != nil)
+        {
+            [self.image setTintColor:self.imageNormalTintColor];
         }
         [self addSubview:self.image];
 
@@ -90,24 +111,17 @@
     CGRect selfRect       = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     if (CGRectContainsPoint(selfRect, touchLocation))
     {
-        [self.buttonCircle setFillColor:self.buttonPressedColor.CGColor];
-        if (self.imageNormalTintColor != nil)
-        {
-            [self.image setTintColor:self.imageNormalTintColor];
-        }
+        [self toPressed];
     }
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
+    [self toNormal];
+    
     UITouch *anyTouch     = [touches anyObject];
     CGPoint touchLocation = [anyTouch locationInView:self];
     CGRect selfRect       = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    [self.buttonCircle setFillColor:self.buttonNormalColor.CGColor];
-    if (self.imagePressedTintColor != nil)
-    {
-        [self.image setTintColor:self.imagePressedTintColor];
-    }
     if (CGRectContainsPoint(selfRect, touchLocation))
     {
         [self click];
@@ -116,11 +130,33 @@
 
 - (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
+    [self toNormal];
+}
+
+- (void)toNormal
+{
+    if (self.imageNormalTintColor != nil)
+    {
+        [self.image setTintColor:self.imageNormalTintColor];
+    }
+    if (self.imageNormalContent != nil)
+    {
+        self.image.image = self.imageNormalContent;
+    }
+    [self.buttonCircle setFillColor:self.buttonNormalColor.CGColor];
+}
+
+- (void)toPressed
+{
     if (self.imagePressedTintColor != nil)
     {
         [self.image setTintColor:self.imagePressedTintColor];
     }
-    [self.buttonCircle setFillColor:self.buttonNormalColor.CGColor];
+    if (self.imagePressedContent != nil)
+    {
+        self.image.image = self.imagePressedContent;
+    }
+    [self.buttonCircle setFillColor:self.buttonPressedColor.CGColor];
 }
 
 - (void)click
@@ -146,6 +182,12 @@
 - (NSMutableArray<UIView *> *)rotateViews
 {
     return [NSMutableArray arrayWithObjects:self.image, nil];
+}
+
+- (CGPoint)rotateAnchorPoint
+{
+    CGPoint center = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
+    return center;
 }
 
 @end

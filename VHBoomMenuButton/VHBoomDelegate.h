@@ -11,7 +11,9 @@
 @optional
 - (void)onBoomClick:(int)index;
 - (void)onBoomBackgroundClick;
-- (void)onBoomHiding:(float)process;
-- (void)onBoomShowing:(float)process;
+- (void)onBoomWillHide;
+- (void)onBoomDidHide;
+- (void)onBoomWillShow;
+- (void)onBoomDidShow;
 
 @end

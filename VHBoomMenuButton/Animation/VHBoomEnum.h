@@ -11,11 +11,14 @@
 
 typedef NS_ENUM(NSUInteger, VHBoomEnum)
 {
-    StraightLine = 0,
-//    Parabola_1 = 1,
-//    Parabola_2 = 2,
-//    HorizontalThrow_1 = 3,
-//    HorizontalThrow_2 = 4,
+    VHBoomStraightLine = 0,
+    VHBoomParabola_1 = 1,
+    VHBoomParabola_2 = 2,
+    VHBoomParabola_3 = 3,
+    VHBoomParabola_4 = 4,
+    VHBoomHorizontalThrow_1 = 5,
+    VHBoomHorizontalThrow_2 = 6,
+//    Random = 5,
 };
 
 #endif /* VHBoomEnum_h */

@@ -25,4 +25,9 @@
     return [NSMutableArray arrayWithCapacity:0];
 }
 
+- (CGPoint)rotateAnchorPoint
+{
+    return CGPointZero;
+}
+
 @end

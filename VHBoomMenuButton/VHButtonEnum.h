@@ -14,8 +14,7 @@ typedef NS_ENUM(NSUInteger, VHButtonEnum)
     VHSimpleCircle = 0,
     VHTextInsideCircle = 1,
     VHTextOutsideCircle = 2,
-    VHHam = 3,
-    VHBlock = 4,
+    VHButtonHam = 3,
     VHUNKNOWN = 100,
 };
 

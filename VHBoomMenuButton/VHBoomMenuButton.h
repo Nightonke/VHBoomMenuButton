@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "VHDot.h"
+#import "VHHam.h"
 #import "VHPiecePlaceEnum.h"
 #import "VHButtonEnum.h"
 #import "VHOrderEnum.h"
@@ -27,63 +28,94 @@
 #import "VHBoomButtonBuilder.h"
 #import "VHBoomPiece.h"
 #import "VHEaseEnum.h"
+#import "VHButtonPlaceAlignmentEnum.h"
+#import "VHErrorManager.h"
+#import "VHTextInsideCircleButton.h"
+#import "VHTextInsideCircleButtonBuilder.h"
+#import "VHTextOutsideCircleButton.h"
+#import "VHTextOutsideCircleButtonBuilder.h"
+#import "VHHamButton.h"
+#import "VHHamButtonBuilder.h"
 
 @interface VHBoomMenuButton : UIView<VHButtonClickDelegate, VHBackgroundClickDelegate>
 
-@property (nonatomic        ) CGFloat             shadowRadius;// BMB's shadow radius
-@property (nonatomic        ) CGSize              shadowOffset;// BMB's shadow offset relative to itself
-@property (nonatomic        ) CGFloat             shadowOpacity;// BMB's shadow opacity
-@property (nonatomic        ) UIColor             *shadowColor;
+@property (nonatomic, assign) CGFloat                    shadowRadius;// BMB's shadow radius
+@property (nonatomic, assign) CGSize                     shadowOffset;// BMB's shadow offset relative to itself
+@property (nonatomic, assign) CGFloat                    shadowOpacity;// BMB's shadow opacity
+@property (nonatomic, strong) UIColor                    *shadowColor;
 
-@property (nonatomic        ) CGFloat             buttonRadius;
-@property (nonatomic, strong) CAShapeLayer        *buttonCircle;
-@property (nonatomic, strong) VHBackgroundView    *background;
+@property (nonatomic, assign) CGFloat                    buttonRadius;
+@property (nonatomic, strong) CAShapeLayer               *buttonCircle;
+@property (nonatomic, strong) VHBackgroundView           *background;
 
-@property (nonatomic        ) CGFloat             dotRadius;
-@property (nonatomic        ) CGFloat             barWidth;
-@property (nonatomic        ) CGFloat             barHeight;
-@property (nonatomic        ) CGFloat             blockWidth;
-@property (nonatomic        ) CGFloat             blockHeight;
+@property (nonatomic, assign) CGFloat                    dotRadius;
+@property (nonatomic, assign) CGFloat                    hamWidth;
+@property (nonatomic, assign) CGFloat                    hamHeight;
+@property (nonatomic, assign) CGFloat                    blockWidth;
+@property (nonatomic, assign) CGFloat                    blockHeight;
 
-@property (nonatomic        ) CGFloat             simpleCircleButtonRadius;
-// Values for other buttons here.
+@property (nonatomic, strong) UIColor                    *buttonNormalColor;
+@property (nonatomic, strong) UIColor                    *buttonPressedColor;
 
-@property (nonatomic, strong) UIColor             *buttonNormalColor;
-@property (nonatomic, strong) UIColor             *buttonPressedColor;
+@property (nonatomic, strong) NSMutableArray<VHBoomPiece                                       *> *pieces;
 
-@property (nonatomic, strong) NSMutableArray<VHBoomPiece         *> *pieces;
+@property (nonatomic, strong) NSMutableArray<VHBoomButton                                    *> *boomButtons;
+@property (nonatomic, strong) NSMutableArray<VHBoomButtonBuilder               *> *boomButtonBuilders;
 
-@property (nonatomic, strong) NSMutableArray<VHBoomButton        *> *boomButtons;
-@property (nonatomic, strong) NSMutableArray<VHBoomButtonBuilder *> *boomButtonBuilders;
+@property (nonatomic, assign) VHButtonEnum               buttonEnum;
+@property (nonatomic, assign) VHPiecePlaceEnum           piecePlaceEnum;
+@property (nonatomic, assign) VHButtonPlaceEnum          buttonPlaceEnum;
+@property (nonatomic, assign) VHButtonPlaceAlignmentEnum buttonPlaceAlignmentEnum;
+@property (nonatomic, assign) VHOrderEnum                showOrderEnum;
+@property (nonatomic, assign) VHOrderEnum                hideOrderEnum;
+@property (nonatomic, assign) VHBoomEnum                 boomEnum;
 
-@property (nonatomic        ) VHButtonEnum        buttonEnum;
-@property (nonatomic        ) VHPiecePlaceEnum    piecePlaceEnum;
-@property (nonatomic        ) VHButtonPlaceEnum   buttonPlaceEnum;
-@property (nonatomic        ) VHOrderEnum         showOrderEnum;
-@property (nonatomic        ) VHOrderEnum         hideOrderEnum;
-@property (nonatomic        ) VHBoomEnum          boomEnum;
+@property (nonatomic, strong) NSMutableArray<NSValue                                                   *> *startPositions;
+@property (nonatomic, strong) NSMutableArray<NSValue                                                   *> *endPositions;
 
-@property (nonatomic, strong) NSMutableArray<NSValue             *> *startPositions;
-@property (nonatomic, strong) NSMutableArray<NSValue             *> *endPositions;
+@property (nonatomic, assign) VHEaseEnum                 showMoveEaseEnum;
+@property (nonatomic, assign) VHEaseEnum                 showScaleEaseEnum;
+@property (nonatomic, assign) VHEaseEnum                 showRotateEaseEnum;
+@property (nonatomic, assign) VHEaseEnum                 hideMoveEaseEnum;
+@property (nonatomic, assign) VHEaseEnum                 hideScaleEaseEnum;
+@property (nonatomic, assign) VHEaseEnum                 hideRotateEaseEnum;
 
-@property (nonatomic        ) VHEaseEnum          showMoveEaseEnum;
-@property (nonatomic        ) VHEaseEnum          showScaleEaseEnum;
-@property (nonatomic        ) VHEaseEnum          showRotateEaseEnum;
-@property (nonatomic        ) VHEaseEnum          hideMoveEaseEnum;
-@property (nonatomic        ) VHEaseEnum          hideScaleEaseEnum;
-@property (nonatomic        ) VHEaseEnum          hideRotateEaseEnum;
+@property (nonatomic, strong) UIColor                    *dimColor;
+@property (nonatomic, assign) BOOL                       autoHide;
+@property (nonatomic, assign) BOOL                       cancelable;
+@property (nonatomic, assign) BOOL                       noBackground;
+@property (nonatomic, assign) BOOL                       draggable;
+@property (nonatomic, assign) int                        frames;
+@property (nonatomic, assign) float                      duration;
+@property (nonatomic, assign) float                      delay;
+@property (nonatomic, assign) float                      rotationDegree;
+@property (nonatomic, weak  ) id<            VHBoomDelegate                         > boomDelegate;
 
-@property (nonatomic        ) UIColor             *dimColor;
-@property (nonatomic        ) BOOL                autoHide;
-@property (nonatomic        ) BOOL                cancelable;
-@property (nonatomic        ) int                 frames;
-@property (nonatomic        ) float               duration;
-@property (nonatomic        ) float               delay;
-@property (nonatomic        ) float               rotationDegree;
-@property (nonatomic, weak  ) id<VHBoomDelegate > boomDelegate;
+@property (nonatomic, assign) int                        animatingViewsNumber;
 
-@property (nonatomic        ) int                 animatingViewsNumber;
+@property (nonatomic, assign) CGFloat buttonHorizontalMargin;
+@property (nonatomic, assign) CGFloat buttonVerticalMargin;
+@property (nonatomic, assign) CGFloat buttonInclinedMargin;
+@property (nonatomic, assign) CGFloat buttonBottomMargin;
+@property (nonatomic, assign) CGFloat buttonTopMargin;
+@property (nonatomic, assign) CGFloat buttonLeftMargin;
+@property (nonatomic, assign) CGFloat buttonRightMargin;
+@property (nonatomic, assign) BOOL lastHamButtonMarginMoreTop;
+@property (nonatomic, assign) CGFloat lastHamButtonTopMargin;
 
-- (void)addBuilderBlock:(void(^)(VHSimpleCircleButtonBuilder *))block;
+@property (nonatomic, assign) CGFloat pieceHorizontalMargin;
+@property (nonatomic, assign) CGFloat pieceVerticalMargin;
+@property (nonatomic, assign) CGFloat pieceInclinedMargin;
+
+- (void)boom;
+
+- (void)reboom;
+
+- (void)addSimpleCircleButtonBuilderBlock:(void(^)(VHSimpleCircleButtonBuilder *))block;
+- (void)addTextInsideCircleButtonBuilderBlock:(void(^)(VHTextInsideCircleButtonBuilder *))block;
+- (void)addTextOutsideCircleButtonBuilderBlock:(void(^)(VHTextOutsideCircleButtonBuilder *))block;
+- (void)addHamButtonBuilderBlock:(void(^)(VHHamButtonBuilder *))block;
+
+- (void)removeBuilders;
 
 @end

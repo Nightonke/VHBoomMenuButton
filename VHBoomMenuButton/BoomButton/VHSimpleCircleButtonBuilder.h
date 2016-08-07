@@ -14,16 +14,11 @@
 
 @interface VHSimpleCircleButtonBuilder : VHBoomButtonBuilder
 
-@property (nonatomic        ) CGFloat      shadowRadius;
+@property (nonatomic, assign) CGFloat shadowRadius;
 
-@property (nonatomic        ) CGFloat      buttonRadius;
-
-@property (nonatomic, strong) CAShapeLayer *buttonCircle;
+@property (nonatomic, assign) CGFloat buttonRadius;
 
 - (instancetype)init;
-
-- (instancetype)withShadowRadius:(CGFloat)shadowRadius;
-- (instancetype)withButtonRadius:(CGFloat)buttonRadius;
 
 - (VHSimpleCircleButton *)createButton;
 

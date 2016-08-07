@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "VHBoomDelegate.h"
 
-@interface ViewController : UIViewController<VHBoomDelegate>
+@interface ViewController : UIViewController<VHBoomDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
 
 @end

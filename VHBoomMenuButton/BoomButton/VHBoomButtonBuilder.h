@@ -26,23 +26,11 @@
 @property (nonatomic, strong) UIColor               *imageNormalTintColor;
 @property (nonatomic, strong) UIColor               *imagePressedTintColor;
 @property (nonatomic, strong) UIImageView           *image;
+@property (nonatomic,       ) CGRect                imageFrame;
 
 @property (nonatomic        ) int                   index;
 
 @property (nonatomic, weak  ) id<VHButtonClickDelegate> delegate;
-
-
-- (instancetype)withShadowOffset:(CGSize)shadowOffset;
-- (instancetype)withShadowOpacity:(CGFloat)shadowOpacity;
-- (instancetype)withShadowColor:(UIColor *)shadowColor;
-- (instancetype)withImageNormal:(NSString *)imageNormal;
-- (instancetype)withImagePressed:(NSString *)imagePressed;
-- (instancetype)withButtonNormalColor:(UIColor *)buttonNormalColor;
-- (instancetype)withButtonPressedColor:(UIColor *)buttonPressedColor;
-- (instancetype)withImageNormalTintColor:(UIColor *)imageNormalTintColor;
-- (instancetype)withImagePressedTintColor:(UIColor *)imagePressedTintColor;
-- (instancetype)withIndex:(int)index;
-- (instancetype)withDelegate:(id<VHButtonClickDelegate>)delegate;
 
 - (VHBoomButton *)createButton;
 
