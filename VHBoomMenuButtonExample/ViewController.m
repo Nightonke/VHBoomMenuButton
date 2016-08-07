@@ -419,6 +419,7 @@
                 break;
             case VHButtonHam:
             {
+                self.bmb.lastHamButtonMarginMoreTop = NO;
                 [self.bmb addHamButtonBuilderBlock:^(VHHamButtonBuilder *builder) {
                     __strong typeof(weakSelf) strongSelf = weakSelf;
                     builder.imageNormal                  = [strongSelf.images objectAtIndex:i];
