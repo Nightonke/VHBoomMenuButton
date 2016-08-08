@@ -23,10 +23,10 @@
 ###Usage
 1. [Basic Usage]()
 2. [Boom Buttons]()
-	1. [Simple Circle Button]()
-	2. [Text Inside Circle Button]()
-	3. [Text Outside Circle Button]()
-	4. [Ham Button]()
+    1. [Simple Circle Button]()
+    2. [Text Inside Circle Button]()
+    3. [Text Outside Circle Button]()
+    4. [Ham Button]()
 3. [Boom Types]()
 4. [Button Place Alignments]()
 5. [Ease Types]()
@@ -54,11 +54,105 @@ Use BMB by:
 #Note
 1. From my [BMB in Android version](https://github.com/Nightonke/BoomMenu). 
 2. I'm a new guy in iOS, so if there is any bug or enhancement, just put it in issues or mail(Nightonke@outlook.com)
-3. Structure of BMB:
+3. Structure of BMB:  
+    ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/structure.png?raw=true)  
+    BMB is seperated into 3 sub-parts and 1 main part, for managing the animations, pieces on the BMB and the Boom-button on the screen. So if you wanna fork then add more boom-buttons to BMB, let's name it A, just:
+    1. create a ABuilder in BoomButton extends [VHBoomButtonBuilder](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButton/BoomButton/VHBoomButtonBuilder.h)
+    2. create a AButton in BoomButton extends [VHBoomButton](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButton/BoomButton/VHBoomButton.h)
+    3. create a APiece in Piece extends [VHBoomPiece](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButton/Piece/VHBoomPiece.h)
+    4. add your piece-place and button-place logic in [VHPiecePlaceManager](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButton/Piece/VHPiecePlaceManager.h) and [VHButtonPlaceManager](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButton/BoomButton/VHButtonPlaceManager.h)
 
 #Usage
 ###Basic Usage
+Let's check a very simple usage with just 3 buttons.  
+```
+//
+//  ViewController.m
+//  VHBoomMenuButtonTest
+//
+//  Created by 黄伟平 on 16/8/7.
+//  Copyright © 2016年 黄伟平. All rights reserved.
+//
 
+#import "ViewController.h"
+#import "VHBoomMenuButton.h"
+
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16)) / 255.0 green:((float)((rgbValue & 0xFF00) >> 8)) / 255.0 blue:((float)(rgbValue & 0xFF)) / 255.0 alpha:1.0]
+
+@interface ViewController ()
+
+@end
+
+@implementation ViewController
+
+- (void)loadView
+{
+    CGRect screenFrame         = [[UIScreen mainScreen] bounds];
+    self.view                  = [[UIView alloc] initWithFrame:screenFrame];
+    self.view.backgroundColor  = [UIColor whiteColor];
+    self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    
+    // Put bmb in your VC
+    CGFloat bmbRadius = 60;
+    VHBoomMenuButton *bmb = [[VHBoomMenuButton alloc] initWithFrame:CGRectMake(screenFrame.size.width - 20 - bmbRadius,
+                                                                               screenFrame.size.height - 20 - bmbRadius,
+                                                                               bmbRadius,
+                                                                               bmbRadius)];
+    
+    // Select the button type you want
+    bmb.buttonEnum = VHSimpleCircle;
+    
+    // Tell BMB how to place the button on itself(before BOOM)
+    bmb.piecePlaceEnum = VHPiecePlace_DOT_3_1;
+    
+    // Tell BMB how to place the button on screen(after BOOM)
+    bmb.buttonPlaceEnum = VHButtonPlace_SC_3_3;
+    
+    // Add some buttons by builder
+    [bmb addSimpleCircleButtonBuilderBlock:^(VHSimpleCircleButtonBuilder *builder) {
+        builder.imageNormal                  = @"bat";
+        builder.buttonNormalColor = UIColorFromRGB(0xD32F2F);
+        builder.buttonPressedColor = UIColorFromRGB(0xF44336);
+    }];
+    
+    [bmb addSimpleCircleButtonBuilderBlock:^(VHSimpleCircleButtonBuilder *builder) {
+        builder.imageNormal                  = @"bear";
+        builder.buttonNormalColor = UIColorFromRGB(0xD32F2F);
+        builder.buttonPressedColor = UIColorFromRGB(0xF44336);
+    }];
+    
+    [bmb addSimpleCircleButtonBuilderBlock:^(VHSimpleCircleButtonBuilder *builder) {
+        builder.imageNormal                  = @"bee";
+        builder.buttonNormalColor = UIColorFromRGB(0xD32F2F);
+        builder.buttonPressedColor = UIColorFromRGB(0xF44336);
+    }];
+    
+    [self.view addSubview:bmb];
+}
+
+@end
+
+```
+
+All you need to do is just select some properties then add your buttons.  
+
+But, WARNING! You must keep ```the number of piecePlaceEnum```, ```the number of buttonPlaceEnum```, ```the number of builders you add``` to be the same. The name of piecePlaceEnum is VHPiecePlace_XXX_N_M, where XXX is name, N is number and M is different types. Similarly, the name of buttonPlaceEnum is VHButtonPlace_YYY_N_M. You must keep the first N equals to the second one. But you needn't keep the two M same. (Just like the code above: ```VHPiecePlace_DOT_3_1``` and ```VHButtonPlace_SC_3_3```)
+
+#Boom Buttons
+
+###Simple Circle Button
+This is the most simple button type here. Set button type for your BMB: ```bmb.buttonEnum = VHSimpleCircle```
+
+####Piece Place Type
+Set piece-place type for your BMB: ```bmb.piecePlaceEnum = VHPiecePlace_DOT_3_1```. For number 1 to 9, BMB supports the following place type: (1 <= M <= number of images)   
+
+| Number of Button | VHPiecePlaceEnum | Images |
+| :-------- | :--------| :--------|
+| 1  | VHPiecePlace\_DOT\_1 | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/DOT_1.png?raw=true) | 
+| 2  | VHPiecePlace\_DOT\_2\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/DOT_2_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/DOT_2_2.png?raw=true) | 
+| 3  | VHPiecePlace\_DOT\_3\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/DOT_3_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/DOT_3_2.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/DOT_3_3.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/DOT_3_4.png?raw=true) | 
+| 4  | VHPiecePlace\_DOT\_4\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/DOT_4_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/DOT_4_2.png?raw=true) | 
+| 5  | VHPiecePlace\_DOT\_5\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/DOT_5_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/DOT_5_2.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/DOT_5_3.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/DOT_5_4.png?raw=true) |
 
 #Versions
 
