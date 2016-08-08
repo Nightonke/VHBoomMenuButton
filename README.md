@@ -9,7 +9,10 @@
 [![JellyToggleButton](https://github.com/Nightonke/JellyToggleButton/blob/master/app/src/main/res/mipmap-hdpi/ic_launcher.png?raw=true)](https://github.com/Nightonke/JellyToggleButton)
 [![FaceOffToggleButton](https://github.com/Nightonke/FaceOffToggleButton/blob/master/app/src/main/res/mipmap-hdpi/ic_launcher.png?raw=true)](https://github.com/Nightonke/FaceOffToggleButton)
 
-![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/Gif_0.gif?raw=true)        
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/Gif_0.gif?raw=true)
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/Gif_1.gif?raw=true)  
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/Gif_2.gif?raw=true)
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/Gif_3.gif?raw=true)  
 
 #Guide
 
@@ -46,7 +49,12 @@
 Use BMB by:  
 
 1. Pod: ```pod "VHBoomMenuButton", "~> 0.0.3"``` 
-2. Copy the source code of the BMB to your project.
+2. Or copy the source code of the BMB to your project.
+
+#Note
+1. From my [BMB in Android version](https://github.com/Nightonke/BoomMenu). 
+2. I'm a new guy in iOS, so if there is any bug or enhancement, just put it in issues or mail(Nightonke@outlook.com)
+3. Structure of BMB:
 
 #Usage
 ###Basic Usage
