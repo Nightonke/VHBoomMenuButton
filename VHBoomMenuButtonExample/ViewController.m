@@ -342,6 +342,7 @@
     self.bmb.boomEnum                 = VHBoomParabola_1;
     self.bmb.buttonPlaceAlignmentEnum = VHButtonPlaceAlignmentBottom;
     self.bmb.boomDelegate             = self;
+    self.bmb.showOrderEnum = Default;
     [self.view addSubview:self.bmb];
     
     [self updateBMB];
