@@ -6,6 +6,9 @@
 //  Copyright © 2016年 黄伟平. All rights reserved.
 //
 
+/**
+ *  Delegate for background clicked.
+ */
 @protocol VHBackgroundClickDelegate <NSObject>
 
 @required

@@ -7,6 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+
+#import "VHBackgroundClickDelegate.h"
+#import "VHBackgroundView.h"
+#import "VHBoomDelegate.h"
+#import "VHButtonClickDelegate.h"
+#import "VHButtonEnum.h"
+#import "VHDefaults.h"
+#import "VHUtils.h"
+#import "VHErrorManager.h"
+
+#import "VHAnimationManager.h"
+#import "VHBoomEnum.h"
+#import "VHEase.h"
+#import "VHEaseEnum.h"
+#import "VHEaseManager.h"
+#import "VHOrderEnum.h"
+
+
+
 #import "VHDot.h"
 #import "VHHam.h"
 #import "VHPiecePlaceEnum.h"

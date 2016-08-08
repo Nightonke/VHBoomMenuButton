@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "VHBackgroundClickDelegate.h"
 
+/**
+ *  Background of BMB.
+ */
 @interface VHBackgroundView : UIView
 
 @property (nonatomic, weak) id<VHBackgroundClickDelegate> delegate;
