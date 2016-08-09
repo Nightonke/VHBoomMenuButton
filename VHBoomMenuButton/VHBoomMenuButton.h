@@ -51,15 +51,12 @@
 @property (nonatomic, assign) CGFloat                    shadowOpacity;// BMB's shadow opacity
 @property (nonatomic, strong) UIColor                    *shadowColor;
 
-@property (nonatomic, assign) CGFloat                    buttonRadius;
 @property (nonatomic, strong) CAShapeLayer               *buttonCircle;
 @property (nonatomic, strong) VHBackgroundView           *background;
 
 @property (nonatomic, assign) CGFloat                    dotRadius;
 @property (nonatomic, assign) CGFloat                    hamWidth;
 @property (nonatomic, assign) CGFloat                    hamHeight;
-@property (nonatomic, assign) CGFloat                    blockWidth;
-@property (nonatomic, assign) CGFloat                    blockHeight;
 
 @property (nonatomic, strong) UIColor                    *buttonNormalColor;
 @property (nonatomic, strong) UIColor                    *buttonPressedColor;

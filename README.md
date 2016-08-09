@@ -46,17 +46,18 @@
 3. [Button Place Alignments]()
 4. [Boom Types]()
 5. [Ease Types]()
-6. [Background Dim]()
-7. [Auto Hide]()
-8. [NoBackground]()
-9. [Draggable]()
-10. [Frames, Duration and Delay]()
-11. [Rotate Degree]()
-12. [Shadow]()
-13. [Dimensions]()
-14. [Boom or Reboom It Programmatically]()
-15. [Delegate]()
-16. [Warnings]()
+6. [Frames, Duration and Delay]()
+7. [Background Dim]()
+8. [Auto Hide]()
+9. [Cancelable]()
+10. [NoBackground]()
+11. [Draggable]()
+12. [Rotate Degree]()
+13. [Shadow]()
+14. [Dimensions]()
+15. [Boom or Reboom It Programmatically]()
+16. [Delegate]()
+17. [Warnings]()
 
 [Versions]()  
 [License]()
@@ -79,7 +80,7 @@ Use BMB by:
     4. add your piece-place and button-place logic in [VHPiecePlaceManager](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButton/Piece/VHPiecePlaceManager.h) and [VHButtonPlaceManager](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButton/BoomButton/VHButtonPlaceManager.h)
 
 #Usage
-###Basic Usage
+##Basic Usage
 Let's check a very simple usage with just 3 buttons.  
 ```
 //
@@ -154,7 +155,7 @@ All you need to do is just select some properties then add your buttons.
 
 But, WARNING! You must keep ```the number of piecePlaceEnum```, ```the number of buttonPlaceEnum```, ```the number of builders you add``` to be the same. The name of piecePlaceEnum is VHPiecePlace_XXX_N_M, where XXX is name, N is number and M is different types. Similarly, the name of buttonPlaceEnum is VHButtonPlace_YYY_N_M. You must keep the first N equals to the second one. But you needn't keep the two M same. (Just like the code above: ```VHPiecePlace_DOT_3_1``` and ```VHButtonPlace_SC_3_3```)
 
-#Boom Buttons
+##Boom Buttons
 
 ###Simple Circle Button
 ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SimpleCircleButton.png?raw=true)  
@@ -373,6 +374,95 @@ Just set the below properties of BMB to toggle last-ham-button-margin-more-top o
 bmb.lastHamButtonMarginMoreTop = YES;
 bmb.lastHamButtonTopMargin     = 50;
 ```
+
+###Common Button Place Types
+
+####VHButtonPlace_Horizontal
+
+```VHButtonPlace_Horizontal``` is a common button-place-type for any button. It just simple horizontally puts all the buttons on a horizontal-line. You can use this in iPad, because iPad is wide enough for it.
+
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/Horizontal.png)
+
+####VHButtonPlace_Vertical
+
+Just like ```VHButtonPlace_Horizontal```:  
+
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/Vertical.png)
+
+##Button Place Alignments
+If you don't want to put your buttons on the center of screen, just like the image above, you can use [VHButtonPlaceAlignmentEnum](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButton/BoomButton/VHButtonPlaceAlignmentEnum.h) to adjust the alignment:
+
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/Bottom.png)
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/BottomLeft.png)
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/BottomRight.png)
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/Left.png)
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/Right.png)
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/Top.png)
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/TopLeft.png)
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/TopRight.png)
+
+##Boom Types
+Check [VHBoomEnum](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButton/Animation/VHBoomEnum.h) to use different boom-types to make BMB more cute by ```bmb.boomEnum = VHBoomParabola_3;```.
+
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/Parabola1.gif)
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/Parabola2.gif)
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/Parabola3.gif)
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/Parabola4.gif)
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/HorizontalThrow1.gif)
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/HorizontalThrow2.gif)
+
+```VHBoomStraightLine``` is just a straight line. And ```VHBoomRandom``` is combination of the all the other boom-types.
+
+##Ease Types
+To make BMB more cute, you can use [VHEaseEnum](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButton/Animation/VHEaseEnum.h) to set the 6 properties below:  
+```
+bmb.showMoveEaseEnum  = VHEaseOutCirc;
+bmb.showScaleEaseEnum = VHEaseOutCirc;
+bmb.showScaleEaseEnum = VHEaseOutCubic;
+bmb.hideMoveEaseEnum  = VHEaseInBack;
+bmb.hideScaleEaseEnum = VHEaseInCirc;
+bmb.hideScaleEaseEnum = VHEaseInCubic;
+```
+
+##Frames, Duration and Delay
+```
+bmb.frames   = 30;
+bmb.duration = 3;
+bmb.delay    = 1;
+```
+Frames property is useful to control the frames of animation, which can help to make your application performance well.  
+Duration means the duration of each animation of button.  
+Delay means the delay between each button.  
+So, the total time of animation is (N - 1) * delay + duration, where N is the number of buttons.
+
+##Background Dim
+Use ```bmb.dimColor = [UIColor blueColor];``` to set the background color when BMB is BOOM.
+
+##Auto Hide
+Use ```bmb.autoHide = NO;``` to set whether the BMB will reboom when one of the buttons was clicked.
+
+##Cancelable
+Use ```bmb.cancelable = NO;``` to set whether the BMB can be hided by clicking the background.
+
+##NoBackground
+Use ```bmb.noBackground = YES;``` to remove the background of BMB. Is that useful? Yep, you will not use BMB in NavigationBar with a background, right?
+
+##Draggable
+Use ```bmb.draggable = YES;``` to make BMB draggable.
+
+##Rotate Degree
+Use ```bmb.rotationDegree = M_PI * 10;``` to set the rotation degree of views that are able to rotate in the animations.
+
+##Shadow
+```
+bmb.shadowOffset  = CGSizeMake(0, 10);
+bmb.shadowColor   = [UIColor redColor];
+bmb.shadowOpacity = 1;
+bmb.shadowRadius  = 40;
+```
+Set the shadow of BMB by the above properties.
+
+##Dimensions
 
 
 #Versions

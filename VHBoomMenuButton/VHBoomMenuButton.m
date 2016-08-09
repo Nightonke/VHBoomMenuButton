@@ -37,8 +37,6 @@
         self.shadowOpacity              = DEFAULT_BOOM_MENU_BUTTON_SHADOW_OPACITY;
         self.shadowColor                = DEFAULT_BOOM_MENU_BUTTON_SHADOW_COLOR;
 
-        self.buttonRadius               = frame.size.width / 2;
-
         self.dotRadius                  = DEFAULT_BOOM_MENU_BUTTON_DOT_RADIUS;
         self.hamWidth                   = DEFAULT_BOOM_MENU_BUTTON_HAM_WIDTH;
         self.hamHeight                  = DEFAULT_BOOM_MENU_BUTTON_HAM_HEIGHT;
