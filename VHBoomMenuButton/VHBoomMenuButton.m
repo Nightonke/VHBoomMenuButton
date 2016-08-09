@@ -40,8 +40,6 @@
         self.dotRadius                  = DEFAULT_BOOM_MENU_BUTTON_DOT_RADIUS;
         self.hamWidth                   = DEFAULT_BOOM_MENU_BUTTON_HAM_WIDTH;
         self.hamHeight                  = DEFAULT_BOOM_MENU_BUTTON_HAM_HEIGHT;
-        self.blockWidth                 = DEFAULT_BOOM_MENU_BUTTON_BLOCK_WIDTH;
-        self.blockHeight                = DEFAULT_BOOM_MENU_BUTTON_BLOCK_HEIGHT;
 
         self.buttonNormalColor          = DEFAULT_BOOM_MENU_BUTTON_NORMAL_COLOR;
         self.buttonPressedColor         = DEFAULT_BOOM_MENU_BUTTON_PRESSED_COLOR;
