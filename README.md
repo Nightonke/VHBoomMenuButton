@@ -24,12 +24,21 @@
 1. [Basic Usage]()
 2. [Boom Buttons]()
     1. [Simple Circle Button]()
-        1. Piece Place Type
-        2. Button Place Type
-        3. Properties
+        1. [Piece Place Type]()
+        2. [Button Place Type]()
+        3. [Properties]()
     2. [Text Inside Circle Button]()
+        1. [Piece Place Type]()
+        2. [Button Place Type]()
+        3. [Properties]()
     3. [Text Outside Circle Button]()
+        1. [Piece Place Type]()
+        2. [Button Place Type]()
+        3. [Properties]()
     4. [Ham Button]()
+        1. [Piece Place Type]()
+        2. [Button Place Type]()
+        3. [Properties]()
 3. [Boom Types]()
 4. [Button Place Alignments]()
 5. [Ease Types]()
@@ -103,7 +112,7 @@ Let's check a very simple usage with just 3 buttons.
                                                                                bmbRadius)];
     
     // Select the button type you want
-    bmb.buttonEnum = VHSimpleCircle;
+    bmb.buttonEnum = VHButtonSimpleCircle;
     
     // Tell BMB how to place the button on itself(before BOOM)
     bmb.piecePlaceEnum = VHPiecePlace_DOT_3_1;
@@ -144,7 +153,7 @@ But, WARNING! You must keep ```the number of piecePlaceEnum```, ```the number of
 #Boom Buttons
 
 ###Simple Circle Button
-This is the most simple button type here. Set button type for your BMB: ```bmb.buttonEnum = VHSimpleCircle```
+This is the most simple button type here. Set button type for your BMB: ```bmb.buttonEnum = VHButtonSimpleCircle```
 
 ####Piece Place Type
 Set piece-place type for your BMB: ```bmb.piecePlaceEnum = VHPiecePlace_DOT_3_1```. For number 1 to 9, BMB supports the following place type: (1 <= M <= number of images)   
@@ -183,21 +192,21 @@ For each simple circle button, you can set its properties by set builder's prope
     builder.shadowOffset          = CGSizeMake(5, 5);            // Shadow offset
     builder.shadowOpacity         = 0;                           // Shadow opactity
     builder.shadowColor           = [UIColor redColor];          // Shadow color
-    builder.imageNormal           = @"bat";                      // image of button normally
-    builder.imagePressed          = @"bear";                     // image of button when button is clicked
-    builder.buttonNormalColor     = UIColorFromRGB(0xD32F2F);    // color of button normally
-    builder.buttonPressedColor    = UIColorFromRGB(0xF44336);    // color of button when the button is clicked
-    builder.imageNormalTintColor  = UIColorFromRGB(0xD32F2F);    // tint color of image normally
-    builder.imagePressedTintColor = UIColorFromRGB(0xffffff);    // tint color of image when button is clicked
-    builder.imageFrame            = CGRectMake(10, 10, 60, 60);  // frame of image
-    builder.buttonRadius          = 50;                          // radius of button
-    builder.shadowRadius          = 55;                          // radius of shadow
+    builder.imageNormal           = @"bat";                      // Image of button normally
+    builder.imagePressed          = @"bear";                     // Image of button when button is clicked
+    builder.buttonNormalColor     = UIColorFromRGB(0xD32F2F);    // Color of button normally
+    builder.buttonPressedColor    = UIColorFromRGB(0xF44336);    // Color of button when the button is clicked
+    builder.imageNormalTintColor  = UIColorFromRGB(0xD32F2F);    // Tint color of image normally
+    builder.imagePressedTintColor = UIColorFromRGB(0xffffff);    // Tint color of image when button is clicked
+    builder.imageFrame            = CGRectMake(10, 10, 60, 60);  // Frame of image
+    builder.buttonRadius          = 50;                          // Radius of button
+    builder.shadowRadius          = 55;                          // Radius of shadow
 }];
 ```
 Notice that you don't have to set all the properties here. Check the [default properties](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButton/VHDefaults.h) that are used when you don't set them.
 
 ###Text Inside Circle Button
-This is a circle button with a text in it. Set button type for your BMB: ```bmb.buttonEnum = VHTextInsideCircle```
+This is a circle button with a text in it. Set button type for your BMB: ```bmb.buttonEnum = VHButtonTextInsideCircle```
 
 ####Piece Place Type
 Same in simple circle button.
@@ -211,26 +220,77 @@ Same in simple circle button.
     builder.shadowOffset          = CGSizeMake(5, 5);              // Shadow offset
     builder.shadowOpacity         = 0;                             // Shadow opactity
     builder.shadowColor           = [UIColor redColor];            // Shadow color
-    builder.imageNormal           = @"bat";                        // image of button normally
-    builder.imagePressed          = @"bear";                       // image of button when button is clicked
-    builder.buttonNormalColor     = UIColorFromRGB(0xD32F2F);      // color of button normally
-    builder.buttonPressedColor    = UIColorFromRGB(0xF44336);      // color of button when the button is clicked
-    builder.imageNormalTintColor  = UIColorFromRGB(0x000000);      // tint color of image normally
-    builder.imagePressedTintColor = UIColorFromRGB(0xffffff);      // tint color of image when button is clicked
-    builder.imageFrame            = CGRectMake(10, 10, 80, 80);    // frame of image
-    builder.buttonRadius          = 50;                            // radius of button
-    builder.shadowRadius          = 55;                            // radius of shadow
-    builder.textNormalColor       = UIColorFromRGB(0xffffff);      // color of text normally
-    builder.textPressedColor      = UIColorFromRGB(0x000000);      // color of text when the button is clicked
-    builder.textFrame             = CGRectMake(0, 10, 100, 20);    // frame of text
-    builder.textContent           = @"BAT HERE!";                  // text
-    builder.font                  = [UIFont systemFontOfSize:18];  // font
-    builder.lineBreakMode         = NSLineBreakByClipping;         // line break mode
-    builder.lines                 = 0;                             // lines
-    builder.rotateImage           = YES;                           // whether rotate the image
-    builder.rotateText            = YES;                           // whether rotate the text
+    builder.imageNormal           = @"bat";                        // Image of button normally
+    builder.imagePressed          = @"bear";                       // Image of button when button is clicked
+    builder.buttonNormalColor     = UIColorFromRGB(0xD32F2F);      // Color of button normally
+    builder.buttonPressedColor    = UIColorFromRGB(0xF44336);      // Color of button when the button is clicked
+    builder.imageNormalTintColor  = UIColorFromRGB(0x000000);      // Tint color of image normally
+    builder.imagePressedTintColor = UIColorFromRGB(0xffffff);      // Tint color of image when button is clicked
+    builder.imageFrame            = CGRectMake(10, 10, 80, 80);    // Frame of image
+    builder.buttonRadius          = 50;                            // Radius of button
+    builder.shadowRadius          = 55;                            // Radius of shadow
+    builder.textNormalColor       = UIColorFromRGB(0xffffff);      // Color of text normally
+    builder.textPressedColor      = UIColorFromRGB(0x000000);      // Color of text when the button is clicked
+    builder.textFrame             = CGRectMake(0, 10, 100, 20);    // Frame of text
+    builder.textContent           = @"BAT HERE!";                  // Text
+    builder.font                  = [UIFont systemFontOfSize:18];  // Font
+    builder.lineBreakMode         = NSLineBreakByClipping;         // Line break mode
+    builder.lines                 = 0;                             // Lines
+    builder.rotateImage           = YES;                           // Whether rotate the image
+    builder.rotateText            = YES;                           // Whether rotate the text
 }];
 ```
+
+###Text Outside Circle Button
+Text outside circle button, as its name, is a circle button with a text outside it. Set button type for your BMB: ```bmb.buttonEnum = VHButtonTextOutsideCircle```
+
+####Piece Place Type
+Same in simple circle button.
+
+#### Button Place Type
+Same in simple circle button. But notice that there are still some different when the buttons are show on the screen, because text-outside-circle-button is not a circle but a rectangle.
+
+####Properties
+```
+[bmb addTextOutsideCircleButtonBuilderBlock:^(VHTextOutsideCircleButtonBuilder *builder) {
+    builder.shadowOffset          = CGSizeMake(5, 5);              // Shadow offset
+    builder.textShadowOffset      = CGSizeMake(2, 2);              // Shadow offset of text
+    builder.shadowOpacity         = 0;                             // Shadow opactity
+    builder.shadowColor           = [UIColor redColor];            // Shadow color
+    builder.textShadowColor       = UIColorFromARGB(0xffff0000);   // Shadow color of text
+    builder.imageNormal           = @"bat";                        // Image of button normally
+    builder.imagePressed          = @"bear";                       // Image of button when button is clicked
+    builder.buttonNormalColor     = UIColorFromRGB(0xD32F2F);      // Color of button normally
+    builder.buttonPressedColor    = UIColorFromRGB(0xF44336);      // Color of button when the button is clicked
+    builder.imageNormalTintColor  = UIColorFromRGB(0x000000);      // Tint color of image normally
+    builder.imagePressedTintColor = UIColorFromRGB(0xffffff);      // Tint color of image when button is clicked
+    builder.imageFrame            = CGRectMake(15, 15, 60, 60);    // Frame of image
+    builder.textFrame             = CGRectMake(0, 90, 90, 20);     // Frame of text
+    builder.buttonWidth           = 90;                            // Width of button
+    builder.buttonHeight          = 120;                           // Height of button
+    builder.textNormalColor       = UIColorFromRGB(0xffffff);      // Color of text normally
+    builder.textPressedColor      = UIColorFromRGB(0x000000);      // Color of text when the button is clicked
+    builder.textContent           = @"BAT HERE!";                  // Text
+    builder.lineBreakMode         = NSLineBreakByClipping;         // Line break mode
+    builder.lines                 = 0;                             // Lines
+    builder.rotateImage           = YES;                           // Whether rotate the image
+    builder.rotateText            = YES;                           // Whether rotate the text
+    builder.shadowText            = YES;                           // Whether show the shadow of text
+}];
+```
+
+###Ham Buttom
+
+Text outside circle button, as its name, is a circle button with a text outside it. Set button type for your BMB: ```bmb.buttonEnum = VHButtonTextOutsideCircle```
+
+####Piece Place Type
+Same in simple circle button.
+
+#### Button Place Type
+Same in simple circle button. But notice that there are still some different when the buttons are show on the screen, because text-outside-circle-button is not a circle but a rectangle.
+
+####Properties
+
 
 #Versions
 
