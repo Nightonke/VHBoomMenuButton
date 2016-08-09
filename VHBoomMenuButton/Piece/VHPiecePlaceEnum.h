@@ -13,7 +13,7 @@ typedef NS_ENUM(NSUInteger, VHPiecePlaceEnum)
 {
     
     // Dots
-    VHPiecePlace_DOT_1 = 0,
+    VHPiecePlace_DOT_1   = 0,
     VHPiecePlace_DOT_2_1 = 1,
     VHPiecePlace_DOT_2_2 = 2,
     VHPiecePlace_DOT_3_1 = 3,
@@ -48,12 +48,12 @@ typedef NS_ENUM(NSUInteger, VHPiecePlaceEnum)
     VHPiecePlace_DOT_9_1 = 32,
     VHPiecePlace_DOT_9_2 = 33,
     VHPiecePlace_DOT_9_3 = 34,
-    
-    VHPiecePlace_HAM_1 = 35,
-    VHPiecePlace_HAM_2 = 36,
-    VHPiecePlace_HAM_3 = 37,
-    VHPiecePlace_HAM_4 = 38,
-    VHPiecePlace_HAM_5 = 39,
+
+    VHPiecePlace_HAM_1   = 35,
+    VHPiecePlace_HAM_2   = 36,
+    VHPiecePlace_HAM_3   = 37,
+    VHPiecePlace_HAM_4   = 38,
+    VHPiecePlace_HAM_5   = 39,
 };
 
 #endif /* VHDotPlaceEnum_h */

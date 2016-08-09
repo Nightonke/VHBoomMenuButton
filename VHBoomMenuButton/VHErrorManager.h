@@ -16,6 +16,12 @@
 
 + (instancetype)sharedManager;
 
+/**
+ *  Judge whether the number of pieces and the number of builders are the same
+ *
+ *  @param pieceNumber   Number of pieces
+ *  @param builderNumber Number of builders
+ */
 - (void)errorJudgeWithPieceNumber:(long)pieceNumber andBuilderNumber:(long)builderNumber;
 
 - (void)errorJudgeWithPiecePlaceEnum:(VHPiecePlaceEnum)pieceEnum andButtonPlaceEnum:(VHButtonPlaceEnum)buttonEnum;

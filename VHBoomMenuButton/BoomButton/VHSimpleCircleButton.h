@@ -13,32 +13,13 @@
 
 @interface VHSimpleCircleButton : VHBoomButton
 
-@property (nonatomic        ) CGFloat               shadowRadius;
+@property (nonatomic, assign) CGFloat      shadowRadius;
 
-@property (nonatomic        ) CGFloat               buttonRadius;
+@property (nonatomic, assign) CGFloat      buttonRadius;
 
-@property (nonatomic        ) UIImageView           *image;
-@property (nonatomic, strong) CAShapeLayer          *buttonCircle;
+@property (nonatomic, strong) UIImageView  *image;
+@property (nonatomic, strong) CAShapeLayer *buttonCircle;
 
-/**
- *  Init simple circle button with all properties.
- *
- *  @param imageNormal           <#imageNormal description#>
- *  @param imagePressed          <#imagePressed description#>
- *  @param normalColor           <#normalColor description#>
- *  @param pressedColor          <#pressedColor description#>
- *  @param imageNormalTintColor  <#imageNormalTintColor description#>
- *  @param imagePressedTintColor <#imagePressedTintColor description#>
- *  @param buttonRadius          <#buttonRadius description#>
- *  @param shadowRadius          <#shadowRadius description#>
- *  @param shadowOffset          <#shadowOffset description#>
- *  @param shadowOpacity         <#shadowOpacity description#>
- *  @param shadowColor           <#shadowColor description#>
- *  @param delegate              <#delegate description#>
- *  @param index                 <#index description#>
- *
- *  @return <#return value description#>
- */
 - (instancetype)initWithImage:(NSString *)imageNormal
                  pressedImage:(NSString *)imagePressed
                   normalColor:(UIColor *)normalColor

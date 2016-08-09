@@ -52,39 +52,39 @@
         self.textPressedColor       = textPressedColor;
         if (CGRectIsNull(imageFrame))
         {
-            self.imageFrame             = CGRectMake(0, 0, buttonWidth, buttonWidth);;
+            self.imageFrame = CGRectMake(0, 0, buttonWidth, buttonWidth);;
         }
         else
         {
-            self.imageFrame             = imageFrame;
+            self.imageFrame = imageFrame;
         }
         if (CGRectIsNull(textFrame))
         {
-            self.textFrame              = CGRectMake(10, buttonWidth + 5, self.frame.size.width - 20, buttonHeight - buttonWidth - 5);
+            self.textFrame = CGRectMake(10, buttonWidth + 5, self.frame.size.width - 20, buttonHeight - buttonWidth - 5);
         }
         else
         {
-            self.textFrame              = textFrame;
+            self.textFrame = textFrame;
         }
-        self.textContent            = textContent;
-        self.font                   = font;
-        self.lineBreakMode          = lineBreakMode;
-        self.lines                  = lines;
-        self.rotateImage            = rotateImage;
-        self.rotateText             = rotateText;
-        self.shadowText = shadowText;
-        self.buttonWidth = buttonWidth;
-        self.buttonHeight = buttonHeight;
-        self.shadowRadius           = shadowRadius;
-        self.shadowOffset           = shadowOffset;
-        self.shadowOpacity          = shadowOpacity;
-        self.shadowColor            = shadowColor;
+        self.textContent      = textContent;
+        self.font             = font;
+        self.lineBreakMode    = lineBreakMode;
+        self.lines            = lines;
+        self.rotateImage      = rotateImage;
+        self.rotateText       = rotateText;
+        self.shadowText       = shadowText;
+        self.buttonWidth      = buttonWidth;
+        self.buttonHeight     = buttonHeight;
+        self.shadowRadius     = shadowRadius;
+        self.shadowOffset     = shadowOffset;
+        self.shadowOpacity    = shadowOpacity;
+        self.shadowColor      = shadowColor;
         self.textShadowOffset = textShadowOffset;
-        self.textShadowColor = textShadowColor;
-        self.delegate               = delegate;
-        self.index                  = index;
-        
-        self.buttonCircle           = [CAShapeLayer layer];
+        self.textShadowColor  = textShadowColor;
+        self.delegate         = delegate;
+        self.index            = index;
+
+        self.buttonCircle     = [CAShapeLayer layer];
         [self.buttonCircle setPath:[[UIBezierPath bezierPathWithOvalInRect:CGRectMake(0,
                                                                                       0,
                                                                                       frame.size.width,
@@ -94,43 +94,43 @@
         
         if (imageNormal != nil)
         {
-            self.imageNormalContent      = [UIImage imageNamed:self.imageNormal];
+            self.imageNormalContent = [UIImage imageNamed:self.imageNormal];
             if (self.imageNormalTintColor != nil && self.imagePressedTintColor != nil)
             {
-                self.imageNormalContent            = [self.imageNormalContent imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                self.imageNormalContent = [self.imageNormalContent imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             }
         }
         if (imagePressed != nil)
         {
-            self.imagePressedContent      = [UIImage imageNamed:self.imagePressed];
+            self.imagePressedContent = [UIImage imageNamed:self.imagePressed];
             if (self.imageNormalTintColor != nil && self.imagePressedTintColor != nil)
             {
-                self.imagePressedContent            = [self.imagePressedContent imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                self.imagePressedContent = [self.imagePressedContent imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             }
         }
-        self.image                  = [[UIImageView alloc] initWithImage:self.imageNormalContent];
+        self.image = [[UIImageView alloc] initWithImage:self.imageNormalContent];
         if (CGRectIsNull(imageFrame))
         {
-            imageFrame                  = frame;
+            imageFrame = frame;
         }
-        self.image.frame            = imageFrame;
+        self.image.frame = imageFrame;
         if (self.imageNormalTintColor != nil)
         {
             [self.image setTintColor:self.imageNormalTintColor];
         }
         [self addSubview:self.image];
         
-        self.text                   = [[UILabel alloc] initWithFrame:self.textFrame];
-        self.text.text              = self.textContent;
-        self.text.font              = self.font;
-        self.text.lineBreakMode     = self.lineBreakMode;
-        self.text.numberOfLines     = self.lines;
-        self.text.textAlignment     = NSTextAlignmentCenter;
-        self.text.textColor         = self.textNormalColor;
-        self.text.backgroundColor   = [UIColor clearColor];
+        self.text                 = [[UILabel alloc] initWithFrame:self.textFrame];
+        self.text.text            = self.textContent;
+        self.text.font            = self.font;
+        self.text.lineBreakMode   = self.lineBreakMode;
+        self.text.numberOfLines   = self.lines;
+        self.text.textAlignment   = NSTextAlignmentCenter;
+        self.text.textColor       = self.textNormalColor;
+        self.text.backgroundColor = [UIColor clearColor];
         if (self.shadowText)
         {
-            self.text.shadowColor = self.textShadowColor;
+            self.text.shadowColor  = self.textShadowColor;
             self.text.shadowOffset = textShadowOffset;
         }
         [self addSubview:self.text];
@@ -225,7 +225,7 @@
 
 - (VHButtonEnum)type
 {
-    return VHTextOutsideCircle;
+    return VHButtonTextOutsideCircle;
 }
 
 - (NSMutableArray<UIView *> *)goneViews

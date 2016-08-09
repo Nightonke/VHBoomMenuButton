@@ -85,27 +85,27 @@
 
         if (imageNormal != nil)
         {
-            self.imageNormalContent      = [UIImage imageNamed:self.imageNormal];
+            self.imageNormalContent = [UIImage imageNamed:self.imageNormal];
             if (self.imageNormalTintColor != nil && self.imagePressedTintColor != nil)
             {
-                self.imageNormalContent            = [self.imageNormalContent imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                self.imageNormalContent = [self.imageNormalContent imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             }
         }
         if (imagePressed != nil)
         {
-            self.imagePressedContent      = [UIImage imageNamed:self.imagePressed];
+            self.imagePressedContent = [UIImage imageNamed:self.imagePressed];
             if (self.imageNormalTintColor != nil && self.imagePressedTintColor != nil)
             {
-                self.imagePressedContent            = [self.imagePressedContent imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                self.imagePressedContent = [self.imagePressedContent imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             }
         }
 
-        self.image                  = [[UIImageView alloc] initWithImage:self.imageNormalContent];
+        self.image = [[UIImageView alloc] initWithImage:self.imageNormalContent];
         if (CGRectIsNull(imageFrame))
         {
-            imageFrame                  = frame;
+            imageFrame = frame;
         }
-        self.image.frame            = imageFrame;
+        self.image.frame = imageFrame;
         if (self.imageNormalTintColor != nil)
         {
             [self.image setTintColor:self.imageNormalTintColor];
@@ -212,7 +212,7 @@
 
 - (VHButtonEnum)type
 {
-    return VHTextInsideCircle;
+    return VHButtonTextInsideCircle;
 }
 
 - (NSMutableArray<UIView *> *)goneViews

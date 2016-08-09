@@ -11,16 +11,16 @@
 @optional
 
 /**
- *  When one of the sub button is clicked.
+ *  When one of the sub button was clicked.
  *
  *  @param index Index of the clicked sub button.
  */
-- (void)onBoomClick:(int)index;
+- (void)onBoomClicked:(int)index;
 
 /**
- *  When the background is clicked.
+ *  When the background was clicked.
  */
-- (void)onBoomBackgroundClick;
+- (void)onBoomBackgroundClicked;
 
 /**
  *  The reboom animation is going to start.

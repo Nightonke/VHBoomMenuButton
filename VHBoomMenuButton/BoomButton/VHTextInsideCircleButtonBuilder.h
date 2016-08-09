@@ -14,9 +14,9 @@
 
 @interface VHTextInsideCircleButtonBuilder : VHBoomButtonBuilder
 
-@property (nonatomic, assign) CGFloat shadowRadius;
+@property (nonatomic, assign) CGFloat         shadowRadius;
 
-@property (nonatomic, assign) CGFloat buttonRadius;
+@property (nonatomic, assign) CGFloat         buttonRadius;
 
 @property (nonatomic, strong) UIColor         *textNormalColor;
 @property (nonatomic, strong) UIColor         *textPressedColor;

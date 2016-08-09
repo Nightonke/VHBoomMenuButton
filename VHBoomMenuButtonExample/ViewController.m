@@ -338,7 +338,7 @@
     }
     self.scrollView.contentSize = contentRect.size;
     
-    self.bmb.buttonEnum               = VHSimpleCircle;
+    self.bmb.buttonEnum               = VHButtonSimpleCircle;
     self.bmb.boomEnum                 = VHBoomParabola_1;
     self.bmb.buttonPlaceAlignmentEnum = VHButtonPlaceAlignmentBottom;
     self.bmb.boomDelegate             = self;
@@ -369,7 +369,7 @@
         __weak typeof(self) weakSelf = self;
         switch (self.selectedButtonEnum)
         {
-            case VHSimpleCircle:
+            case VHButtonSimpleCircle:
             {
                 [self.bmb addSimpleCircleButtonBuilderBlock:^(VHSimpleCircleButtonBuilder *builder) {
                     __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -382,7 +382,7 @@
                 }];
             }
                 break;
-            case VHTextInsideCircle:
+            case VHButtonTextInsideCircle:
             {
                 [self.bmb addTextInsideCircleButtonBuilderBlock:^(VHTextInsideCircleButtonBuilder *builder) {
                     __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -399,7 +399,7 @@
                 }];
             }
                 break;
-            case VHTextOutsideCircle:
+            case VHButtonTextOutsideCircle:
             {
                 [self.bmb addTextOutsideCircleButtonBuilderBlock:^(VHTextOutsideCircleButtonBuilder *builder) {
                     __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -528,9 +528,9 @@
             [self.placePickerView reloadComponent:1];
             [self.placePickerView selectRow:0 inComponent:1 animated:YES];
             switch (self.selectedButtonEnum) {
-                case VHSimpleCircle:
-                case VHTextInsideCircle:
-                case VHTextOutsideCircle:
+                case VHButtonSimpleCircle:
+                case VHButtonTextInsideCircle:
+                case VHButtonTextOutsideCircle:
                     self.selectedPiecePlaceEnum = row;
                     break;
                 case VHButtonHam:
@@ -572,7 +572,7 @@
     [self.placePickerView selectRow:0 inComponent:1 animated:NO];
     [self updateBMB];
     
-    if (self.bmb.buttonEnum == VHTextOutsideCircle)
+    if (self.bmb.buttonEnum == VHButtonTextOutsideCircle)
     {
         // Make the background darker to show the label clearly
         self.bmb.dimColor = UIColorFromARGB(0x77000000);
@@ -627,7 +627,7 @@
 
 #pragma mark - Delegates from BMB
 
-- (void)onBoomClick:(int)index
+- (void)onBoomClicked:(int)index
 {
     NSString *name = [[self.images objectAtIndex:index] substringToIndex:[self.images objectAtIndex:index].length - 4];
     self.statusLabel.text = [NSString stringWithFormat:@"%@ was clicked!", [[[name substringToIndex:1] uppercaseString] stringByAppendingString:[name substringFromIndex:1]]];
@@ -637,7 +637,7 @@
     }
 }
 
-- (void)onBoomBackgroundClick
+- (void)onBoomBackgroundClicked
 {
     self.statusLabel.text = [NSString stringWithFormat:@"Background was clicked!"];
 }
@@ -666,7 +666,7 @@
 
 - (void)initTestValues
 {
-    self.selectedButtonEnum = VHSimpleCircle;
+    self.selectedButtonEnum = VHButtonSimpleCircle;
     self.selectedPiecePlaceEnum = VHPiecePlace_DOT_1;
     self.selectedButtonPlaceEnum = VHButtonPlace_SC_1;
     self.selectedBoomEnum = VHBoomStraightLine;
@@ -768,9 +768,9 @@
 - (void)initPieceAndButtonPlaceTypes
 {
     switch (self.selectedButtonEnum) {
-        case VHSimpleCircle:
-        case VHTextInsideCircle:
-        case VHTextOutsideCircle:
+        case VHButtonSimpleCircle:
+        case VHButtonTextInsideCircle:
+        case VHButtonTextOutsideCircle:
             [self initCircleButtonValues];
             break;
         case VHButtonHam:
@@ -1030,7 +1030,8 @@
                            @"Parabola 3",
                            @"Parabola 4",
                            @"Horizontal Throw 1",
-                           @"Horizontal Throw 2"];
+                           @"Horizontal Throw 2",
+                           @"Random"];
     
     self.buttonAlignmentTypesName = @[@"Center",
                                       @"Top",

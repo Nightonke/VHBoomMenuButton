@@ -22,7 +22,7 @@
 @property (nonatomic, assign) CGFloat textOutsideCircleButtonHeight;
 @property (nonatomic, assign) CGFloat hamButtonWidth;
 @property (nonatomic, assign) CGFloat hamButtonHeight;
-@property (nonatomic, assign) BOOL needToAdjustTextOutsideCircleButtonHeightError;
+@property (nonatomic, assign) BOOL    needToAdjustTextOutsideCircleButtonHeightError;
 
 @end
 
@@ -32,69 +32,74 @@
 {
     if (self = [super initWithFrame:frame])
     {
-        self.shadowRadius                  = frame.size.width / 2 + DEFAULT_BOOM_MENU_BUTTON_SHADOW_WIDTH;
-        self.shadowOffset                  = CGSizeMake(DEFAULT_BOOM_MENU_BUTTON_SHADOW_OFFSET_X, DEFAULT_BOOM_MENU_BUTTON_SHADOW_OFFSET_Y);
-        self.shadowOpacity                 = DEFAULT_BOOM_MENU_BUTTON_SHADOW_OPACITY;
-        self.shadowColor                   = DEFAULT_BOOM_MENU_BUTTON_SHADOW_COLOR;
+        self.shadowRadius               = frame.size.width / 2 + DEFAULT_BOOM_MENU_BUTTON_SHADOW_WIDTH;
+        self.shadowOffset               = CGSizeMake(DEFAULT_BOOM_MENU_BUTTON_SHADOW_OFFSET_X, DEFAULT_BOOM_MENU_BUTTON_SHADOW_OFFSET_Y);
+        self.shadowOpacity              = DEFAULT_BOOM_MENU_BUTTON_SHADOW_OPACITY;
+        self.shadowColor                = DEFAULT_BOOM_MENU_BUTTON_SHADOW_COLOR;
 
-        self.buttonRadius                  = frame.size.width / 2;
+        self.buttonRadius               = frame.size.width / 2;
 
-        self.dotRadius                     = DEFAULT_BOOM_MENU_BUTTON_DOT_RADIUS;
-        self.hamWidth                      = DEFAULT_BOOM_MENU_BUTTON_HAM_WIDTH;
-        self.hamHeight                     = DEFAULT_BOOM_MENU_BUTTON_HAM_HEIGHT;
-        self.blockWidth                    = DEFAULT_BOOM_MENU_BUTTON_BLOCK_WIDTH;
-        self.blockHeight                   = DEFAULT_BOOM_MENU_BUTTON_BLOCK_HEIGHT;
+        self.dotRadius                  = DEFAULT_BOOM_MENU_BUTTON_DOT_RADIUS;
+        self.hamWidth                   = DEFAULT_BOOM_MENU_BUTTON_HAM_WIDTH;
+        self.hamHeight                  = DEFAULT_BOOM_MENU_BUTTON_HAM_HEIGHT;
+        self.blockWidth                 = DEFAULT_BOOM_MENU_BUTTON_BLOCK_WIDTH;
+        self.blockHeight                = DEFAULT_BOOM_MENU_BUTTON_BLOCK_HEIGHT;
 
-        self.buttonNormalColor             = DEFAULT_BOOM_MENU_BUTTON_NORMAL_COLOR;
-        self.buttonPressedColor            = DEFAULT_BOOM_MENU_BUTTON_PRESSED_COLOR;
+        self.buttonNormalColor          = DEFAULT_BOOM_MENU_BUTTON_NORMAL_COLOR;
+        self.buttonPressedColor         = DEFAULT_BOOM_MENU_BUTTON_PRESSED_COLOR;
 
-        self.buttonPlaceAlignmentEnum      = DEFAULT_BOOM_MENU_BUTTON_PLACE_ALIGNMENT;
-        self.showOrderEnum                 = DEFAULT_BOOM_MENU_BUTTON_SHOW_ORDER;
-        self.hideOrderEnum                 = DEFAULT_BOOM_MENU_BUTTON_HIDE_ORDER;
-        self.boomEnum                      = DEFAULT_BOOM_MENU_BUTTON_BOOM_ENUM;
+        self.buttonPlaceAlignmentEnum   = DEFAULT_BOOM_MENU_BUTTON_PLACE_ALIGNMENT;
+        self.showOrderEnum              = DEFAULT_BOOM_MENU_BUTTON_SHOW_ORDER;
+        self.hideOrderEnum              = DEFAULT_BOOM_MENU_BUTTON_HIDE_ORDER;
+        self.boomEnum                   = DEFAULT_BOOM_MENU_BUTTON_BOOM_ENUM;
 
-        self.showMoveEaseEnum              = DEFAULT_BOOM_MENU_BUTTON_SHOW_MOVE_EASE_ENUM;
-        self.showScaleEaseEnum             = DEFAULT_BOOM_MENU_BUTTON_SHOW_SCALE_EASE_ENUM;
-        self.showRotateEaseEnum            = DEFAULT_BOOM_MENU_BUTTON_SHOW_ROTATE_EASE_ENUM;
-        self.hideMoveEaseEnum              = DEFAULT_BOOM_MENU_BUTTON_HIDE_MOVE_EASE_ENUM;
-        self.hideScaleEaseEnum             = DEFAULT_BOOM_MENU_BUTTON_HIDE_SCALE_EASE_ENUM;
-        self.hideRotateEaseEnum            = DEFAULT_BOOM_MENU_BUTTON_HIDE_ROTATE_EASE_ENUM;
+        self.showMoveEaseEnum           = DEFAULT_BOOM_MENU_BUTTON_SHOW_MOVE_EASE_ENUM;
+        self.showScaleEaseEnum          = DEFAULT_BOOM_MENU_BUTTON_SHOW_SCALE_EASE_ENUM;
+        self.showRotateEaseEnum         = DEFAULT_BOOM_MENU_BUTTON_SHOW_ROTATE_EASE_ENUM;
+        self.hideMoveEaseEnum           = DEFAULT_BOOM_MENU_BUTTON_HIDE_MOVE_EASE_ENUM;
+        self.hideScaleEaseEnum          = DEFAULT_BOOM_MENU_BUTTON_HIDE_SCALE_EASE_ENUM;
+        self.hideRotateEaseEnum         = DEFAULT_BOOM_MENU_BUTTON_HIDE_ROTATE_EASE_ENUM;
 
-        self.dimColor                      = DEFAULT_BOOM_MENU_BUTTON_DIM_COLOR;
-        self.autoHide                      = DEFAULT_BOOM_MENU_BUTTON_AUTO_HIDE;
-        self.cancelable                    = DEFAULT_BOOM_MENU_BUTTON_CANCELABLE;
-        self.noBackground                  = DEFAULT_BOOM_MENU_BUTTON_NO_BACKGROUND;
-        self.draggable                     = DEFAULT_BOOM_MENU_BUTTON_DRAGGABLE;
-        self.frames                        = DEFAULT_BOOM_MENU_BUTTON_FRAMES;
-        self.duration                      = DEFAULT_BOOM_MENU_BUTTON_DURATION;
-        self.delay                         = DEFAULT_BOOM_MENU_BUTTON_DELAY;
-        self.rotationDegree                = DEFAULT_BOOM_MENU_BUTTON_ROTATION_DEGREE;
+        self.dimColor                   = DEFAULT_BOOM_MENU_BUTTON_DIM_COLOR;
+        self.autoHide                   = DEFAULT_BOOM_MENU_BUTTON_AUTO_HIDE;
+        self.cancelable                 = DEFAULT_BOOM_MENU_BUTTON_CANCELABLE;
+        self.noBackground               = DEFAULT_BOOM_MENU_BUTTON_NO_BACKGROUND;
+        self.draggable                  = DEFAULT_BOOM_MENU_BUTTON_DRAGGABLE;
+        self.frames                     = DEFAULT_BOOM_MENU_BUTTON_FRAMES;
+        self.duration                   = DEFAULT_BOOM_MENU_BUTTON_DURATION;
+        self.delay                      = DEFAULT_BOOM_MENU_BUTTON_DELAY;
+        self.rotationDegree             = DEFAULT_BOOM_MENU_BUTTON_ROTATION_DEGREE;
 
-        self.buttonHorizontalMargin = DEFAULT_BOOM_MENU_BUTTON_HORIZONTAL_MARGIN;
-        self.buttonVerticalMargin = DEFAULT_BOOM_MENU_BUTTON_VERTICAL_MARGIN;
-        self.buttonInclinedMargin = DEFAULT_BOOM_MENU_BUTTON_INCLINED_MARGIN;
-        self.buttonBottomMargin = DEFAULT_BOOM_MENU_BUTTON_BOTTOM_MARGIN;
-        self.buttonTopMargin = DEFAULT_BOOM_MENU_BUTTON_TOP_MARGIN;
-        self.buttonLeftMargin = DEFAULT_BOOM_MENU_BUTTON_LEFT_MARGIN;
-        self.buttonRightMargin = DEFAULT_BOOM_MENU_BUTTON_RIGHT_MARGIN;
-        self.pieceHorizontalMargin = DEFAULT_BOOM_MENU_BUTTON_PIECE_HORIZONTAL_MARGIN;
-        self.pieceVerticalMargin = DEFAULT_BOOM_MENU_BUTTON_PIECE_VERTICAL_MARGIN;
-        self.pieceInclinedMargin = DEFAULT_BOOM_MENU_BUTTON_PIECE_INCLINED_MARGIN;
+        self.buttonHorizontalMargin     = DEFAULT_BOOM_MENU_BUTTON_HORIZONTAL_MARGIN;
+        self.buttonVerticalMargin       = DEFAULT_BOOM_MENU_BUTTON_VERTICAL_MARGIN;
+        self.buttonInclinedMargin       = DEFAULT_BOOM_MENU_BUTTON_INCLINED_MARGIN;
+        self.buttonBottomMargin         = DEFAULT_BOOM_MENU_BUTTON_BOTTOM_MARGIN;
+        self.buttonTopMargin            = DEFAULT_BOOM_MENU_BUTTON_TOP_MARGIN;
+        self.buttonLeftMargin           = DEFAULT_BOOM_MENU_BUTTON_LEFT_MARGIN;
+        self.buttonRightMargin          = DEFAULT_BOOM_MENU_BUTTON_RIGHT_MARGIN;
+        self.pieceHorizontalMargin      = DEFAULT_BOOM_MENU_BUTTON_PIECE_HORIZONTAL_MARGIN;
+        self.pieceVerticalMargin        = DEFAULT_BOOM_MENU_BUTTON_PIECE_VERTICAL_MARGIN;
+        self.pieceInclinedMargin        = DEFAULT_BOOM_MENU_BUTTON_PIECE_INCLINED_MARGIN;
         self.lastHamButtonMarginMoreTop = DEFAULT_BOOM_MENU_BUTTON_LAST_HAM_BUTTON_MARGIN_MORE_TOP;
-        self.lastHamButtonTopMargin = DEFAULT_BOOM_MENU_BUTTON_LAST_HAM_BUTTOM_TOP_MARGIN;
+        self.lastHamButtonTopMargin     = DEFAULT_BOOM_MENU_BUTTON_LAST_HAM_BUTTOM_TOP_MARGIN;
 
-        self.boomButtonBuilders            = [NSMutableArray array];
+        self.boomButtonBuilders         = [NSMutableArray array];
 
-        self.backgroundColor               = [UIColor clearColor];
+        self.backgroundColor            = [UIColor clearColor];
 
-        self.ableToStartDragging           = NO;
-        self.isDragging                    = NO;
-        
-        self.animatingViewsNumber          = 0;
+        self.ableToStartDragging        = NO;
+        self.isDragging                 = NO;
+
+        self.animatingViewsNumber       = 0;
     }
     return self;
 }
 
+/**
+ *  Draw the background, notice that we don't need to draw it if we don't even need a background
+ *
+ *  @param rect The rect
+ */
 - (void)drawRect:(CGRect)rect
 {
     if (self.noBackground == NO)
@@ -126,6 +131,9 @@
 
 #pragma mark - Place Dots, Bars or Blocks
 
+/**
+ *  Layout all the pieces.
+ */
 - (void)layoutSubviews
 {
     [self removePieces];
@@ -150,12 +158,17 @@
     [self calculateStartPositions];
 }
 
+/**
+ *  Calculate where should the pieces lay
+ *
+ *  @return The positions
+ */
 - (NSMutableArray<NSValue *> *)calculatePiecePositons
 {
     switch (self.buttonEnum) {
-        case VHSimpleCircle:
-        case VHTextInsideCircle:
-        case VHTextOutsideCircle:
+        case VHButtonSimpleCircle:
+        case VHButtonTextInsideCircle:
+        case VHButtonTextOutsideCircle:
             return [[VHPiecePlaceManager sharedManager] positionsWithEnum:self.piecePlaceEnum
                                                           withParentFrame:self.bounds
                                                             withDotRadius:self.dotRadius
@@ -177,12 +190,20 @@
     return [NSMutableArray arrayWithCapacity:0];
 }
 
+/**
+ *  Initialise the a piece
+ *
+ *  @param position The position of the piece
+ *  @param color    THe color of the piece
+ *
+ *  @return The piece
+ */
 - (VHBoomPiece *)getBoomPieceAt:(NSValue *)position withColor:(UIColor *)color
 {
     switch (self.buttonEnum) {
-        case VHSimpleCircle:
-        case VHTextInsideCircle:
-        case VHTextOutsideCircle:
+        case VHButtonSimpleCircle:
+        case VHButtonTextInsideCircle:
+        case VHButtonTextOutsideCircle:
             return [[VHDot alloc] initWithFrame:[position CGRectValue] withColor:color];
             break;
         case VHButtonHam:
@@ -196,6 +217,12 @@
 
 #pragma mark - Touch Action
 
+/**
+ *  Touch begin
+ *
+ *  @param touches <#touches description#>
+ *  @param event   <#event description#>
+ */
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     UITouch *anyTouch        = [touches anyObject];
@@ -206,13 +233,19 @@
         [self.buttonCircle setFillColor:self.buttonPressedColor.CGColor];
         if (self.draggable)
         {
-    self.startPositionX      = touchLocation.x;
-    self.startPositionY      = touchLocation.y;
-    self.ableToStartDragging = YES;
+            self.startPositionX      = touchLocation.x;
+            self.startPositionY      = touchLocation.y;
+            self.ableToStartDragging = YES;
         }
     }
 }
 
+/**
+ *  Touch moved
+ *
+ *  @param touches <#touches description#>
+ *  @param event   <#event description#>
+ */
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     if (self.draggable && self.ableToStartDragging)
@@ -224,6 +257,12 @@
     }
 }
 
+/**
+ *  Touch end
+ *
+ *  @param touches <#touches description#>
+ *  @param event   <#event description#>
+ */
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self.buttonCircle setFillColor:self.buttonNormalColor.CGColor];
@@ -245,6 +284,12 @@
     }
 }
 
+/**
+ *  Touch cancel
+ *
+ *  @param touches <#touches description#>
+ *  @param event   <#event description#>
+ */
 - (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self.buttonCircle setFillColor:self.buttonNormalColor.CGColor];
@@ -260,6 +305,9 @@
 
 #pragma mark Animation
 
+/**
+ *  Boom the BMB
+ */
 - (void)boom
 {
     if (self.animatingViewsNumber != 0)
@@ -275,6 +323,9 @@
     [self startShowAnimations];
 }
 
+/**
+ *  Re boom the BMB
+ */
 - (void)reboom
 {
     if (self.animatingViewsNumber != 0)
@@ -289,6 +340,9 @@
     [self startHideAnimations];
 }
 
+/**
+ *  Dim the background when the buttons show up
+ */
 - (void)dimBackground
 {
     [self createBackground];
@@ -306,6 +360,9 @@
     }];
 }
 
+/**
+ *  Light the background when the buttons hide
+ */
 - (void)lightBackground
 {
     [self createBackground];
@@ -323,6 +380,9 @@
      }];
 }
 
+/**
+ *  Start all show animations
+ */
 - (void)startShowAnimations
 {
     if (nil != self.background)
@@ -330,7 +390,7 @@
         [self removeAllSubViews:self.background];
     }
     
-    if (self.buttonEnum == VHTextOutsideCircle)
+    if (self.buttonEnum == VHButtonTextOutsideCircle)
     {
         [self adjustErrorForTextOutSideCircleButtonForStartYPosition];
     }
@@ -357,6 +417,16 @@
     }
 }
 
+/**
+ *  Set animation for each button and piece
+ *
+ *  @param piece         The piece
+ *  @param button        The button
+ *  @param startPosition Start position
+ *  @param endPosition   End position
+ *  @param index         The index of button
+ *  @param delayFactor   Delay factor
+ */
 - (void)setShowAnimationForEverySubButton:(VHBoomPiece *)piece
                                    button:(VHBoomButton *)button
                             startPosition:(CGPoint)startPosition
@@ -459,6 +529,9 @@
     [CATransaction commit];
 }
 
+/**
+ *  Start all hide animations
+ */
 - (void)startHideAnimations
 {
     NSMutableArray<NSNumber *> *indexs = [self getOrderIndex:self.hideOrderEnum inSize:(int)self.pieces.count];
@@ -478,6 +551,16 @@
     }
 }
 
+/**
+ *  Set hide animation for each button and piece
+ *
+ *  @param piece         The piece
+ *  @param button        The button
+ *  @param startPosition Start position
+ *  @param endPosition   End position
+ *  @param index         Index of button
+ *  @param delayFactor   Delay factor
+ */
 - (void)setHideAnimationForEverySubButton:(VHBoomPiece *)piece
                                    button:(VHBoomButton *)button
                             startPosition:(CGPoint)startPosition
@@ -556,6 +639,9 @@
 
 #pragma mark Other Methods
 
+/**
+ *  Create a background if it does not exist
+ */
 - (void)createBackground
 {
     if (nil == self.background)
@@ -566,6 +652,9 @@
     [[[[UIApplication sharedApplication] delegate] window] addSubview:self.background];
 }
 
+/**
+ *  Create buttons from button-builders
+ */
 - (void)createButtons
 {
     [[VHErrorManager sharedManager] errorJudgeWithPiecePlaceEnum:self.piecePlaceEnum andButtonPlaceEnum:self.buttonPlaceEnum];
@@ -575,7 +664,7 @@
     
     switch (self.buttonEnum)
     {
-        case VHSimpleCircle:
+        case VHButtonSimpleCircle:
             for (int i = 0; i < buttonNumber; i++)
             {
                 VHSimpleCircleButtonBuilder *builder = (VHSimpleCircleButtonBuilder *)[self.boomButtonBuilders objectAtIndex:i];
@@ -587,7 +676,7 @@
                 self.simpleCircleButtonRadius = builder.buttonRadius;
             }
             break;
-        case VHTextInsideCircle:
+        case VHButtonTextInsideCircle:
             for (int i = 0; i < buttonNumber; i++)
             {
                 VHTextInsideCircleButtonBuilder *builder = (VHTextInsideCircleButtonBuilder *)[self.boomButtonBuilders objectAtIndex:i];
@@ -599,7 +688,7 @@
                 self.textInsideCircleButtonRadius = builder.buttonRadius;
             }
             break;
-        case VHTextOutsideCircle:
+        case VHButtonTextOutsideCircle:
             for (int i = 0; i < buttonNumber; i++)
             {
                 VHTextOutsideCircleButtonBuilder *builder = (VHTextOutsideCircleButtonBuilder *)[self.boomButtonBuilders objectAtIndex:i];
@@ -630,18 +719,11 @@
     }
 }
 
-- (void)onBackgroundClicked
-{
-    if (self.animatingViewsNumber != 0)
-    {
-        return;
-    }
-    if (self.cancelable)
-    {
-        [self reboom];
-    }
-}
-
+/**
+ *  Remove all sub views in the parent view
+ *
+ *  @param parentView The parent view
+ */
 - (void)removeAllSubViews:(UIView *)parentView
 {
     for (UIView *subViews in parentView.subviews)
@@ -650,6 +732,9 @@
     }
 }
 
+/**
+ *  Calculate out the start positionss
+ */
 - (void)calculateStartPositions
 {
     self.needToAdjustTextOutsideCircleButtonHeightError = YES;
@@ -667,10 +752,13 @@
     }
 }
 
+/**
+ *  Calculate out the end position
+ */
 - (void)calculateEndPositions
 {
     switch (self.buttonEnum) {
-        case VHSimpleCircle:
+        case VHButtonSimpleCircle:
             self.endPositions = [[VHButtonPlaceManager sharedManager] positionsWithEnum:self.buttonPlaceEnum
                                                                           withAlignment:self.buttonPlaceAlignmentEnum
                                                                         withParentFrame:[UIScreen mainScreen].bounds
@@ -684,7 +772,7 @@
                                                                    withButtonLeftMargin:self.buttonLeftMargin
                                                                   withButtonRightMargin:self.buttonRightMargin];
             break;
-        case VHTextInsideCircle:
+        case VHButtonTextInsideCircle:
             self.endPositions = [[VHButtonPlaceManager sharedManager] positionsWithEnum:self.buttonPlaceEnum
                                                                           withAlignment:self.buttonPlaceAlignmentEnum
                                                                         withParentFrame:[UIScreen mainScreen].bounds
@@ -698,7 +786,7 @@
                                                                    withButtonLeftMargin:self.buttonLeftMargin
                                                                   withButtonRightMargin:self.buttonRightMargin];
             break;
-        case VHTextOutsideCircle:
+        case VHButtonTextOutsideCircle:
             self.endPositions = [[VHButtonPlaceManager sharedManager] positionsWithEnum:self.buttonPlaceEnum
                                                                           withAlignment:self.buttonPlaceAlignmentEnum
                                                                         withParentFrame:[UIScreen mainScreen].bounds
@@ -735,6 +823,14 @@
     
 }
 
+/**
+ *  Add the sub button in the background
+ *
+ *  @param button   The button
+ *  @param position The position on the background
+ *
+ *  @return The added button
+ */
 - (VHBoomButton *)putSubButtonInBackground:(VHBoomButton *)button withPosition:(CGPoint)position
 {
     [self createBackground];
@@ -743,25 +839,33 @@
     return button;
 }
 
+/**
+ *  Get current button index in different order
+ *
+ *  @param orderEnum Order
+ *  @param size      The number of buttons
+ *
+ *  @return The order for showing or hiding buttons
+ */
 - (NSMutableArray<NSNumber *> *)getOrderIndex:(VHOrderEnum)orderEnum inSize:(int)size
 {
     NSMutableArray<NSNumber *> *indexs = [NSMutableArray arrayWithCapacity:size];
     
     switch (orderEnum)
     {
-        case Default:
+        case VHOrderDefault:
             for (int i = 0; i < size; i++)
             {
                 [indexs addObject:[NSNumber numberWithInteger:i]];
             }
             break;
-        case Reverse:
+        case VHOrderReverse:
             for (int i = 0; i < size; i++)
             {
                 [indexs addObject:[NSNumber numberWithInteger:size - i - 1]];
             }
             break;
-        case Random:
+        case VHOrderRandom:
             {
                 BOOL used[size];
                 for (int i = 0; i < size; i++)
@@ -792,11 +896,16 @@
 
 #pragma mark - On Button Clicked
 
+/**
+ *  Delegate - When a button was clicked
+ *
+ *  @param index The index of button
+ */
 - (void)onButtonClick:(int)index
 {
-    if ([self.boomDelegate respondsToSelector:@selector(onBoomClick:)])
+    if ([self.boomDelegate respondsToSelector:@selector(onBoomClicked:)])
     {
-        [self.boomDelegate onBoomClick:index];
+        [self.boomDelegate onBoomClicked:index];
     }
     if (self.autoHide)
     {
@@ -806,11 +915,18 @@
 
 #pragma mark - On Background Clicked
 
+/**
+ *  Delegate - When the background was clicked
+ */
 - (void)onBackgroundClick
 {
-    if ([self.boomDelegate respondsToSelector:@selector(onBoomBackgroundClick)])
+    if (self.animatingViewsNumber != 0)
     {
-        [self.boomDelegate onBoomBackgroundClick];
+        return;
+    }
+    if ([self.boomDelegate respondsToSelector:@selector(onBoomBackgroundClicked)])
+    {
+        [self.boomDelegate onBoomBackgroundClicked];
     }
     if (self.cancelable)
     {
@@ -820,6 +936,11 @@
 
 #pragma mark - Builders
 
+/**
+ *  Add a simiple circle button builder
+ *
+ *  @param block The block where you set the properties for the builder
+ */
 - (void)addSimpleCircleButtonBuilderBlock:(void (^)(VHSimpleCircleButtonBuilder *))block
 {
     VHSimpleCircleButtonBuilder *builder = [[VHSimpleCircleButtonBuilder alloc] init];
@@ -827,6 +948,11 @@
     [self.boomButtonBuilders addObject:builder];
 }
 
+/**
+ *  Add a text inside button builder
+ *
+ *  @param block The block where you set the properties for the builder
+ */
 - (void)addTextInsideCircleButtonBuilderBlock:(void (^)(VHTextInsideCircleButtonBuilder *))block
 {
     VHTextInsideCircleButtonBuilder *builder = [[VHTextInsideCircleButtonBuilder alloc] init];
@@ -834,6 +960,11 @@
     [self.boomButtonBuilders addObject:builder];
 }
 
+/**
+ *  Add a text outside button builder
+ *
+ *  @param block The block where you set the properties for the builder
+ */
 - (void)addTextOutsideCircleButtonBuilderBlock:(void (^)(VHTextOutsideCircleButtonBuilder *))block
 {
     VHTextOutsideCircleButtonBuilder *builder = [[VHTextOutsideCircleButtonBuilder alloc] init];
@@ -841,6 +972,11 @@
     [self.boomButtonBuilders addObject:builder];
 }
 
+/**
+ *  Add a ham button builder
+ *
+ *  @param block The block where you set the properties for the builder
+ */
 - (void)addHamButtonBuilderBlock:(void(^)(VHHamButtonBuilder *))block
 {
     VHHamButtonBuilder *builder = [[VHHamButtonBuilder alloc] init];
@@ -848,12 +984,18 @@
     [self.boomButtonBuilders addObject:builder];
 }
 
+/**
+ *  Remove all builders added
+ */
 - (void)removeBuilders
 {
     [self.boomButtonBuilders removeAllObjects];
     [self removePieces];
 }
 
+/**
+ *  Remove pieces
+ */
 - (void)removePieces
 {
     if (self.pieces != nil)
@@ -865,6 +1007,9 @@
     }
 }
 
+/**
+ *  Adjust error
+ */
 - (void)adjustErrorForTextOutSideCircleButtonForStartYPosition
 {
     if (self.needToAdjustTextOutsideCircleButtonHeightError == NO)

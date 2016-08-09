@@ -51,52 +51,52 @@
     
     if (self = [super initWithFrame:frame])
     {
-        self.imageNormal            = imageNormal;
-        self.imagePressed           = imagePressed;
-        self.buttonNormalColor      = normalColor;
-        self.buttonPressedColor     = pressedColor;
-        self.imageNormalTintColor   = imageNormalTintColor;
-        self.imagePressedTintColor  = imagePressedTintColor;
-        self.titleNormalColor        = titleNormalColor;
-        self.titlePressedColor       = titlePressedColor;
-        self.subTitleNormalColor = subTitleNormalColor;
-        self.subTitlePressedColor = subTitlePressedColor;
-        self.titleContent = titleContent;
-        self.titleFont = titleFont;
-        self.titleLineBreakMode = titleLineBreakMode;
-        self.titlelines = titleLines;
-        self.subTitleContent = subTitleContent;
-        self.subTitleFont = subTitleFont;
+        self.imageNormal           = imageNormal;
+        self.imagePressed          = imagePressed;
+        self.buttonNormalColor     = normalColor;
+        self.buttonPressedColor    = pressedColor;
+        self.imageNormalTintColor  = imageNormalTintColor;
+        self.imagePressedTintColor = imagePressedTintColor;
+        self.titleNormalColor      = titleNormalColor;
+        self.titlePressedColor     = titlePressedColor;
+        self.subTitleNormalColor   = subTitleNormalColor;
+        self.subTitlePressedColor  = subTitlePressedColor;
+        self.titleContent          = titleContent;
+        self.titleFont             = titleFont;
+        self.titleLineBreakMode    = titleLineBreakMode;
+        self.titlelines            = titleLines;
+        self.subTitleContent       = subTitleContent;
+        self.subTitleFont          = subTitleFont;
         self.subTitleLineBreakMode = subTitleLineBreakMode;
-        self.subTitlelines = subTitleLines;
-        self.rotateImage            = rotateImage;
-        self.containImage = containImage;
-        self.buttonWidth = buttonWidth;
-        self.buttonHeight = buttonHeight;
-        self.buttonCornerRadius = buttonCornerRadius;
-        self.shadowWidth = shadowWidth;
-        self.shadowHeight = shadowHeight;
-        self.shadowCornerRadius = shadowCornerRadius;
-        self.shadowOffset           = shadowOffset;
-        self.shadowOpacity          = shadowOpacity;
-        self.shadowColor            = shadowColor;
-        self.delegate               = delegate;
-        self.index                  = index;
+        self.subTitlelines         = subTitleLines;
+        self.rotateImage           = rotateImage;
+        self.containImage          = containImage;
+        self.buttonWidth           = buttonWidth;
+        self.buttonHeight          = buttonHeight;
+        self.buttonCornerRadius    = buttonCornerRadius;
+        self.shadowWidth           = shadowWidth;
+        self.shadowHeight          = shadowHeight;
+        self.shadowCornerRadius    = shadowCornerRadius;
+        self.shadowOffset          = shadowOffset;
+        self.shadowOpacity         = shadowOpacity;
+        self.shadowColor           = shadowColor;
+        self.delegate              = delegate;
+        self.index                 = index;
         
         if (CGRectIsNull(imageFrame))
         {
             if (containImage)
             {
-                self.imageFrame             = CGRectMake(0, 0, buttonHeight, buttonHeight);
+                self.imageFrame = CGRectMake(0, 0, buttonHeight, buttonHeight);
             }
             else
             {
-                self.imageFrame             = CGRectMake(0, 0, 0, 0);
+                self.imageFrame = CGRectMake(0, 0, 0, 0);
             }
         }
         else
         {
-            self.imageFrame             = imageFrame;
+            self.imageFrame = imageFrame;
         }
         
         if (subTitleContent == nil)
@@ -104,21 +104,21 @@
             // only show title
             if (CGRectIsNull(titleFrame))
             {
-                self.titleFrame              = CGRectMake(self.imageFrame.origin.x + self.imageFrame.size.width + 5,
+                self.titleFrame = CGRectMake(self.imageFrame.origin.x + self.imageFrame.size.width + 5,
                                                           5,
                                                           self.frame.size.width - self.imageFrame.origin.x - self.imageFrame.size.width - 5,
                                                           buttonHeight - 5);
             }
             else
             {
-                self.titleFrame              = titleFrame;
+                self.titleFrame = titleFrame;
             }
         }
         else
         {
             if (CGRectIsNull(subTitleFrame))
             {
-                self.subTitleFrame              = CGRectMake(self.imageFrame.origin.x + self.imageFrame.size.width + 5,
+                self.subTitleFrame = CGRectMake(self.imageFrame.origin.x + self.imageFrame.size.width + 5,
                                                           buttonHeight - 5 - 20,
                                                           self.frame.size.width - self.imageFrame.origin.x - self.imageFrame.size.width - 5,
                                                           20);
@@ -130,14 +130,14 @@
             
             if (CGRectIsNull(titleFrame))
             {
-                self.titleFrame              = CGRectMake(self.imageFrame.origin.x + self.imageFrame.size.width + 5,
+                self.titleFrame = CGRectMake(self.imageFrame.origin.x + self.imageFrame.size.width + 5,
                                                           5,
                                                           self.frame.size.width - self.imageFrame.origin.x - self.imageFrame.size.width - 5,
                                                           buttonHeight - 5 - subTitleFrame.size.height - 5 - 10);
             }
             else
             {
-                self.titleFrame              = titleFrame;
+                self.titleFrame = titleFrame;
             }
         }
         
@@ -148,18 +148,18 @@
         
         if (imageNormal != nil)
         {
-            self.imageNormalContent      = [UIImage imageNamed:self.imageNormal];
+            self.imageNormalContent = [UIImage imageNamed:self.imageNormal];
             if (self.imageNormalTintColor != nil && self.imagePressedTintColor != nil)
             {
-                self.imageNormalContent            = [self.imageNormalContent imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                self.imageNormalContent = [self.imageNormalContent imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             }
         }
         if (imagePressed != nil)
         {
-            self.imagePressedContent      = [UIImage imageNamed:self.imagePressed];
+            self.imagePressedContent = [UIImage imageNamed:self.imagePressed];
             if (self.imageNormalTintColor != nil && self.imagePressedTintColor != nil)
             {
-                self.imagePressedContent            = [self.imagePressedContent imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                self.imagePressedContent = [self.imagePressedContent imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             }
         }
         self.image                  = [[UIImageView alloc] initWithImage:self.imageNormalContent];

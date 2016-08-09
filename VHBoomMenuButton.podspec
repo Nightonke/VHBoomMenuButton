@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'VHBoomMenuButton'
-  s.version          = '0.0.3'
+  s.version          = '0.0.4'
   s.summary          = 'A menu which can ... BOOM!'
   s.description      = <<-DESC
                        This is a menu-button whose sub buttons will boom to show.
@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/Nightonke/VHBoomMenuButton'
   s.license          = 'MIT'
   s.author           = { 'Nightonke' => "2584541288@qq.com" } 
-  s.source           = { :git => 'https://github.com/Nightonke/VHBoomMenuButton.git', :tag => '0.0.3' }
+  s.source           = { :git => 'https://github.com/Nightonke/VHBoomMenuButton.git', :tag => '0.0.4' }
   s.platform         = :ios, '7.0'
   s.requires_arc     = true
   

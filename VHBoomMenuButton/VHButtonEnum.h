@@ -11,11 +11,11 @@
 
 typedef NS_ENUM(NSUInteger, VHButtonEnum)
 {
-    VHSimpleCircle = 0,
-    VHTextInsideCircle = 1,
-    VHTextOutsideCircle = 2,
-    VHButtonHam = 3,
-    VHUNKNOWN = 100,
+    VHButtonSimpleCircle      = 0,
+    VHButtonTextInsideCircle  = 1,
+    VHButtonTextOutsideCircle = 2,
+    VHButtonHam               = 3,
+    VHUNKNOWN                 = 100,
 };
 
 #endif /* VHButtonEnum_h */

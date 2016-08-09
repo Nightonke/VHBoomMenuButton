@@ -9,6 +9,12 @@
 @protocol VHButtonClickDelegate <NSObject>
 
 @required
+
+/**
+ *  One button was clicked
+ *
+ *  @param index The index of the button
+ */
 - (void)onButtonClick:(int)index;
 
 @end

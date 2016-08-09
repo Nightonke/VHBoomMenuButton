@@ -11,9 +11,9 @@
 
 typedef NS_ENUM(NSUInteger, VHOrderEnum)
 {
-    Default = 0,
-    Reverse = 1,
-    Random  = 2,
+    VHOrderDefault = 0,
+    VHOrderReverse = 1,
+    VHOrderRandom  = 2,
 };
 
 #endif /* VHOrderEnum_h */

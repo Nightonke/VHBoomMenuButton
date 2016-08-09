@@ -16,15 +16,15 @@
 @property (nonatomic, assign) CGFloat               shadowOpacity;
 @property (nonatomic, strong) UIColor               *shadowColor;
 
-@property (nonatomic, copy) NSString              *imageNormal;
-@property (nonatomic, copy) NSString              *imagePressed;
+@property (nonatomic, copy  ) NSString              *imageNormal;
+@property (nonatomic, copy  ) NSString              *imagePressed;
 @property (nonatomic, strong) UIColor               *buttonNormalColor;
 @property (nonatomic, strong) UIColor               *buttonPressedColor;
 @property (nonatomic, strong) UIColor               *imageNormalTintColor;
 @property (nonatomic, strong) UIColor               *imagePressedTintColor;
 
-@property (nonatomic, strong) UIImage *imageNormalContent;
-@property (nonatomic, strong) UIImage *imagePressedContent;
+@property (nonatomic, strong) UIImage               *imageNormalContent;
+@property (nonatomic, strong) UIImage               *imagePressedContent;
 
 @property (nonatomic, assign) CGRect                imageFrame;
 
