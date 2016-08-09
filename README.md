@@ -107,39 +107,39 @@ Let's check a very simple usage with just 3 buttons.
     self.view                  = [[UIView alloc] initWithFrame:screenFrame];
     self.view.backgroundColor  = [UIColor whiteColor];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+
+    // 1. Put bmb in your VC
+    CGFloat bmbRadius          = 60;
+    VHBoomMenuButton *bmb      = [[VHBoomMenuButton alloc] initWithFrame:CGRectMake(screenFrame.size.width - 20 - bmbRadius,
+                                                                                    screenFrame.size.height - 20 - bmbRadius,
+                                                                                    bmbRadius,
+                                                                                    bmbRadius)];
+
+    // 2. Select the button type you want
+    bmb.buttonEnum             = VHButtonSimpleCircle;
+
+    // 3. Tell BMB how to place the button on itself(before BOOM)
+    bmb.piecePlaceEnum         = VHPiecePlace_DOT_3_1;
+
+    // 4. Tell BMB how to place the button on screen(after BOOM)
+    bmb.buttonPlaceEnum        = VHButtonPlace_SC_3_3;
     
-    // Put bmb in your VC
-    CGFloat bmbRadius = 60;
-    VHBoomMenuButton *bmb = [[VHBoomMenuButton alloc] initWithFrame:CGRectMake(screenFrame.size.width - 20 - bmbRadius,
-                                                                               screenFrame.size.height - 20 - bmbRadius,
-                                                                               bmbRadius,
-                                                                               bmbRadius)];
-    
-    // Select the button type you want
-    bmb.buttonEnum = VHButtonSimpleCircle;
-    
-    // Tell BMB how to place the button on itself(before BOOM)
-    bmb.piecePlaceEnum = VHPiecePlace_DOT_3_1;
-    
-    // Tell BMB how to place the button on screen(after BOOM)
-    bmb.buttonPlaceEnum = VHButtonPlace_SC_3_3;
-    
-    // Add some buttons by builder
+    // 5. Add some buttons by builder
     [bmb addSimpleCircleButtonBuilderBlock:^(VHSimpleCircleButtonBuilder *builder) {
-        builder.imageNormal                  = @"bat";
-        builder.buttonNormalColor = UIColorFromRGB(0xD32F2F);
+        builder.imageNormal        = @"bat";
+        builder.buttonNormalColor  = UIColorFromRGB(0xD32F2F);
         builder.buttonPressedColor = UIColorFromRGB(0xF44336);
     }];
     
     [bmb addSimpleCircleButtonBuilderBlock:^(VHSimpleCircleButtonBuilder *builder) {
-        builder.imageNormal                  = @"bear";
-        builder.buttonNormalColor = UIColorFromRGB(0xD32F2F);
+        builder.imageNormal        = @"bear";
+        builder.buttonNormalColor  = UIColorFromRGB(0xD32F2F);
         builder.buttonPressedColor = UIColorFromRGB(0xF44336);
     }];
     
     [bmb addSimpleCircleButtonBuilderBlock:^(VHSimpleCircleButtonBuilder *builder) {
-        builder.imageNormal                  = @"bee";
-        builder.buttonNormalColor = UIColorFromRGB(0xD32F2F);
+        builder.imageNormal        = @"bee";
+        builder.buttonNormalColor  = UIColorFromRGB(0xD32F2F);
         builder.buttonPressedColor = UIColorFromRGB(0xF44336);
     }];
     
