@@ -17,54 +17,54 @@
 #Guide
 
 [中文文档]()  
-[Pod]()  
-[Note]()
+[Pod](https://github.com/Nightonke/VHBoomMenuButton#pod)  
+[Note](https://github.com/Nightonke/VHBoomMenuButton#note)
 
 ###Usage
-1. [Basic Usage]()
-2. [Boom Buttons]()
-    1. [Simple Circle Button]()
-        1. [Piece Place Type]()
-        2. [Button Place Type]()
-        3. [Properties]()
-    2. [Text Inside Circle Button]()
-        1. [Piece Place Type]()
-        2. [Button Place Type]()
-        3. [Properties]()
-    3. [Text Outside Circle Button]()
-        1. [Piece Place Type]()
-        2. [Button Place Type]()
-        3. [Properties]()
-    4. [Ham Button]()
-        1. [Piece Place Type]()
-        2. [Button Place Type]()
-        3. [Properties]()
-        4. [Last Ham Button Margin More Top]()
-    5. [Common Button Place Types]()
-        1. [VHButtonPlace_Horizontal]()
-        2. [VHButtonPlace_Vertical]()
-3. [Button Place Alignments]()
-4. [Boom Types]()
-5. [Ease Types]()
-6. [Frames, Duration and Delay]()
-7. [Background Dim]()
-8. [Auto Hide]()
-9. [Cancelable]()
-10. [NoBackground]()
-11. [Draggable]()
-12. [Rotate Degree]()
-13. [Shadow]()
-14. [Dimensions]()
-15. [Boom or Reboom It Programmatically]()
-16. [Delegate]()
+1. [Basic Usage](https://github.com/Nightonke/VHBoomMenuButton#basic-usage)
+2. [Boom Buttons](https://github.com/Nightonke/VHBoomMenuButton#boom-buttons)
+    1. [Simple Circle Button](https://github.com/Nightonke/VHBoomMenuButton#simple-circle-button)
+        1. [Piece Place Type](https://github.com/Nightonke/VHBoomMenuButton#piece-place-type)
+        2. [Button Place Type](https://github.com/Nightonke/VHBoomMenuButton#button-place-type)
+        3. [Properties](https://github.com/Nightonke/VHBoomMenuButton#properties)
+    2. [Text Inside Circle Button](https://github.com/Nightonke/VHBoomMenuButton#text-inside-circle-button)
+        1. [Piece Place Type](https://github.com/Nightonke/VHBoomMenuButton#piece-place-type-1)
+        2. [Button Place Type](https://github.com/Nightonke/VHBoomMenuButton#button-place-type-1)
+        3. [Properties](https://github.com/Nightonke/VHBoomMenuButton#properties-1)
+    3. [Text Outside Circle Button](https://github.com/Nightonke/VHBoomMenuButton#text-outside-circle-button)
+        1. [Piece Place Type](https://github.com/Nightonke/VHBoomMenuButton#piece-place-type-2)
+        2. [Button Place Type](https://github.com/Nightonke/VHBoomMenuButton#button-place-type-2)
+        3. [Properties](https://github.com/Nightonke/VHBoomMenuButton#properties-2)
+    4. [Ham Button](https://github.com/Nightonke/VHBoomMenuButton#ham-buttom)
+        1. [Piece Place Type](https://github.com/Nightonke/VHBoomMenuButton#piece-place-type-3)
+        2. [Button Place Type](https://github.com/Nightonke/VHBoomMenuButton#button-place-type-3)
+        3. [Properties](https://github.com/Nightonke/VHBoomMenuButton#properties-3)
+        4. [Last Ham Button Margin More Top](https://github.com/Nightonke/VHBoomMenuButton#last-ham-button-margin-more-top)
+    5. [Common Button Place Types](https://github.com/Nightonke/VHBoomMenuButton#common-button-place-types)
+        1. [VHButtonPlace_Horizontal](https://github.com/Nightonke/VHBoomMenuButton#vhbuttonplace_horizontal)
+        2. [VHButtonPlace_Vertical](https://github.com/Nightonke/VHBoomMenuButton#vhbuttonplace_vertical)
+3. [Button Place Alignments](https://github.com/Nightonke/VHBoomMenuButton#button-place-alignments)
+4. [Boom Types](https://github.com/Nightonke/VHBoomMenuButton#boom-types)
+5. [Ease Types](https://github.com/Nightonke/VHBoomMenuButton#ease-types)
+6. [Frames, Duration and Delay](https://github.com/Nightonke/VHBoomMenuButton#frames-duration-and-delay)
+7. [Background Dim](https://github.com/Nightonke/VHBoomMenuButton#background-dim)
+8. [Auto Hide](https://github.com/Nightonke/VHBoomMenuButton#auto-hide)
+9. [Cancelable](https://github.com/Nightonke/VHBoomMenuButton#cancelable)
+10. [NoBackground](https://github.com/Nightonke/VHBoomMenuButton#nobackground)
+11. [Draggable](https://github.com/Nightonke/VHBoomMenuButton#draggable)
+12. [Rotate Degree](https://github.com/Nightonke/VHBoomMenuButton#rotate-degree)
+13. [Shadow](https://github.com/Nightonke/VHBoomMenuButton#shadow)
+14. [Dimensions](https://github.com/Nightonke/VHBoomMenuButton#dimensions)
+15. [Boom or Reboom It Programmatically](https://github.com/Nightonke/VHBoomMenuButton#boom-or-reboom-it-programmatically)
+16. [Delegate](https://github.com/Nightonke/VHBoomMenuButton#delegate)
 
-[Versions]()  
-[License]()
+[Versions](https://github.com/Nightonke/VHBoomMenuButton#versions)  
+[License](https://github.com/Nightonke/VHBoomMenuButton#license)
 
 #Pod
 Use BMB by:  
 
-1. Pod: ```pod "VHBoomMenuButton", "~> 1.0.0"``` 
+1. Pod: ```pod "VHBoomMenuButton", "~> 1.0.2"``` 
 2. Or copy the source code of the BMB to your project.
 
 #Note
@@ -422,6 +422,8 @@ bmb.hideMoveEaseEnum  = VHEaseInBack;
 bmb.hideScaleEaseEnum = VHEaseInCirc;
 bmb.hideScaleEaseEnum = VHEaseInCubic;
 ```
+All ease types:  
+![](https://github.com/Nightonke/WoWoViewPager/blob/master/Pictures/ease.png?raw=true)
 
 ##Frames, Duration and Delay
 ```
@@ -539,7 +541,7 @@ Implement the delegate ```VHBoomDelegate```. The choose the method you want:
 ```
 
 #Versions
-###1.0.0
+###1.0.2
 The first version, my first iOS library.
 
 
