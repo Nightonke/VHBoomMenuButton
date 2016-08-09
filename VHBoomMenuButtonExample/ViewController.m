@@ -411,7 +411,6 @@
                     builder.imageNormalTintColor         = [strongSelf.imageNormalTintColors objectAtIndex:i];
                     builder.imagePressedTintColor        = [strongSelf.imagePressedTintColors objectAtIndex:i];
                     builder.textContent                  = [[strongSelf.images objectAtIndex:i] substringToIndex:[strongSelf.images objectAtIndex:i].length - 4];
-                    builder.imageFrame                   = CGRectMake(10, 10, 60, 60);
                     builder.rotateImage                  = YES;
                     builder.rotateText                   = YES;
                 }];

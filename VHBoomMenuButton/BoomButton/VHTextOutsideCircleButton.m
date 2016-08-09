@@ -111,7 +111,7 @@
         self.image = [[UIImageView alloc] initWithImage:self.imageNormalContent];
         if (CGRectIsNull(imageFrame))
         {
-            imageFrame = frame;
+            imageFrame = CGRectMake(0, 0, buttonWidth, buttonWidth);
         }
         self.image.frame = imageFrame;
         if (self.imageNormalTintColor != nil)
