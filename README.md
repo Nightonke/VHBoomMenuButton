@@ -24,6 +24,9 @@
 1. [Basic Usage]()
 2. [Boom Buttons]()
     1. [Simple Circle Button]()
+        1. Piece Place Type
+        2. Button Place Type
+        3. Properties
     2. [Text Inside Circle Button]()
     3. [Text Outside Circle Button]()
     4. [Ham Button]()
@@ -163,15 +166,71 @@ Set button-place type for your BMB: ```bmb.buttonPlaceEnum = VHButtonPlace_SC_3_
 
 | Number of Button | VHButtonPlaceEnum | Images |
 | :-------- | :--------| :--------|
-| 1  | VHPiecePlace\_SC\_1 | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_1.png?raw=true) | 
-| 2  | VHPiecePlace\_SC\_2\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_2_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_2_2.png?raw=true) | 
-| 3  | VHPiecePlace\_SC\_3\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_3_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_3_2.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_3_3.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_3_4.png?raw=true) | 
-| 4  | VHPiecePlace\_SC\_4\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_4_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_4_2.png?raw=true) | 
-| 5  | VHPiecePlace\_SC\_5\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_5_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_5_2.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_5_3.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_5_4.png?raw=true) |
-| 6  | VHPiecePlace\_SC\_6\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_6_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_6_2.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_6_3.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_6_4.png?raw=true)  ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_6_5.png?raw=true)  ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_6_6.png?raw=true) |
-| 7  | VHPiecePlace\_SC\_7\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_7_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_7_2.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_7_3.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_7_4.png?raw=true)  ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_7_5.png?raw=true)  ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_7_6.png?raw=true) |
-| 8  | VHPiecePlace\_SC\_8\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_2.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_3.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_4.png?raw=true)  ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_5.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_6.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_7.png?raw=true) |
-| 9  | VHPiecePlace\_SC\_9\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_9_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_9_2.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_9_3.png?raw=true) | 
+| 1  | VHButtonPlace\_SC\_1 | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_1.png?raw=true) | 
+| 2  | VHButtonPlace\_SC\_2\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_2_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_2_2.png?raw=true) | 
+| 3  | VHButtonPlace\_SC\_3\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_3_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_3_2.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_3_3.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_3_4.png?raw=true) | 
+| 4  | VHButtonPlace\_SC\_4\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_4_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_4_2.png?raw=true) | 
+| 5  | VHButtonPlace\_SC\_5\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_5_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_5_2.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_5_3.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_5_4.png?raw=true) |
+| 6  | VHButtonPlace\_SC\_6\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_6_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_6_2.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_6_3.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_6_4.png?raw=true)  ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_6_5.png?raw=true)  ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_6_6.png?raw=true) |
+| 7  | VHButtonPlace\_SC\_7\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_7_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_7_2.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_7_3.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_7_4.png?raw=true)  ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_7_5.png?raw=true)  ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_7_6.png?raw=true) |
+| 8  | VHButtonPlace\_SC\_8\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_2.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_3.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_4.png?raw=true)  ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_5.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_6.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_7.png?raw=true) |
+| 9  | VHButtonPlace\_SC\_9\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_9_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_9_2.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_9_3.png?raw=true) | 
+
+####Properties
+For each simple circle button, you can set its properties by set builder's properties. The properties are:  
+```
+[bmb addSimpleCircleButtonBuilderBlock:^(VHSimpleCircleButtonBuilder *builder) {
+    builder.shadowOffset          = CGSizeMake(5, 5);            // Shadow offset
+    builder.shadowOpacity         = 0;                           // Shadow opactity
+    builder.shadowColor           = [UIColor redColor];          // Shadow color
+    builder.imageNormal           = @"bat";                      // image of button normally
+    builder.imagePressed          = @"bear";                     // image of button when button is clicked
+    builder.buttonNormalColor     = UIColorFromRGB(0xD32F2F);    // color of button normally
+    builder.buttonPressedColor    = UIColorFromRGB(0xF44336);    // color of button when the button is clicked
+    builder.imageNormalTintColor  = UIColorFromRGB(0xD32F2F);    // tint color of image normally
+    builder.imagePressedTintColor = UIColorFromRGB(0xffffff);    // tint color of image when button is clicked
+    builder.imageFrame            = CGRectMake(10, 10, 60, 60);  // frame of image
+    builder.buttonRadius          = 50;                          // radius of button
+    builder.shadowRadius          = 55;                          // radius of shadow
+}];
+```
+Notice that you don't have to set all the properties here. Check the [default properties](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButton/VHDefaults.h) that are used when you don't set them.
+
+###Text Inside Circle Button
+This is a circle button with a text in it. Set button type for your BMB: ```bmb.buttonEnum = VHTextInsideCircle```
+
+####Piece Place Type
+Same in simple circle button.
+
+#### Button Place Type
+Same in simple circle button.
+
+####Properties
+```
+[bmb addTextInsideCircleButtonBuilderBlock:^(VHTextInsideCircleButtonBuilder *builder) {
+    builder.shadowOffset          = CGSizeMake(5, 5);              // Shadow offset
+    builder.shadowOpacity         = 0;                             // Shadow opactity
+    builder.shadowColor           = [UIColor redColor];            // Shadow color
+    builder.imageNormal           = @"bat";                        // image of button normally
+    builder.imagePressed          = @"bear";                       // image of button when button is clicked
+    builder.buttonNormalColor     = UIColorFromRGB(0xD32F2F);      // color of button normally
+    builder.buttonPressedColor    = UIColorFromRGB(0xF44336);      // color of button when the button is clicked
+    builder.imageNormalTintColor  = UIColorFromRGB(0x000000);      // tint color of image normally
+    builder.imagePressedTintColor = UIColorFromRGB(0xffffff);      // tint color of image when button is clicked
+    builder.imageFrame            = CGRectMake(10, 10, 80, 80);    // frame of image
+    builder.buttonRadius          = 50;                            // radius of button
+    builder.shadowRadius          = 55;                            // radius of shadow
+    builder.textNormalColor       = UIColorFromRGB(0xffffff);      // color of text normally
+    builder.textPressedColor      = UIColorFromRGB(0x000000);      // color of text when the button is clicked
+    builder.textFrame             = CGRectMake(0, 10, 100, 20);    // frame of text
+    builder.textContent           = @"BAT HERE!";                  // text
+    builder.font                  = [UIFont systemFontOfSize:18];  // font
+    builder.lineBreakMode         = NSLineBreakByClipping;         // line break mode
+    builder.lines                 = 0;                             // lines
+    builder.rotateImage           = YES;                           // whether rotate the image
+    builder.rotateText            = YES;                           // whether rotate the text
+}];
+```
 
 #Versions
 
