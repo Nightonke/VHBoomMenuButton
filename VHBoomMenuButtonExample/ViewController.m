@@ -420,20 +420,20 @@
             {
                 [self.bmb addHamButtonBuilderBlock:^(VHHamButtonBuilder *builder) {
                     __strong typeof(weakSelf) strongSelf = weakSelf;
-                    builder.imageNormal                  = [strongSelf.images objectAtIndex:i];
-                    builder.buttonNormalColor            = [strongSelf.buttonNormalColors objectAtIndex:i];
-                    builder.buttonPressedColor           = [strongSelf.buttonPressedColors objectAtIndex:i];
-                    builder.imageNormalTintColor         = [strongSelf.imageNormalTintColors objectAtIndex:i];
-                    builder.imagePressedTintColor        = [strongSelf.imagePressedTintColors objectAtIndex:i];
-                    builder.titleContent                  = [[strongSelf.images objectAtIndex:i] substringToIndex:[strongSelf.images objectAtIndex:i].length - 4];
-                    builder.subTitleContent = [[strongSelf.images objectAtIndex:i] substringToIndex:[strongSelf.images objectAtIndex:i].length - 4];
-                    builder.rotateImage                  = YES;
+                    builder.imageNormal           = [strongSelf.images objectAtIndex:i];
+                    builder.buttonNormalColor     = [strongSelf.buttonNormalColors objectAtIndex:i];
+                    builder.buttonPressedColor    = [strongSelf.buttonPressedColors objectAtIndex:i];
+                    builder.imageNormalTintColor  = [strongSelf.imageNormalTintColors objectAtIndex:i];
+                    builder.imagePressedTintColor = [strongSelf.imagePressedTintColors objectAtIndex:i];
+                    builder.titleContent          = [[strongSelf.images objectAtIndex:i] substringToIndex:[strongSelf.images objectAtIndex:i].length - 4];
+                    builder.subTitleContent       = [[strongSelf.images objectAtIndex:i] substringToIndex:[strongSelf.images objectAtIndex:i].length - 4];
+                    builder.rotateImage           = YES;
                     
                     if (i == [[VHPiecePlaceManager sharedManager] numbersWithEnum:self.selectedPiecePlaceEnum] - 1 && i != 0)
                     {
-                        builder.containImage = NO;
-                        builder.titleContent = @"Cancel";
-                        builder.titleAlignment = NSTextAlignmentCenter;
+                        builder.containImage    = NO;
+                        builder.titleContent    = @"Cancel";
+                        builder.titleAlignment  = NSTextAlignmentCenter;
                         builder.subTitleContent = nil;
                     }
                 }];

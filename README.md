@@ -39,8 +39,12 @@
         1. [Piece Place Type]()
         2. [Button Place Type]()
         3. [Properties]()
-3. [Boom Types]()
-4. [Button Place Alignments]()
+        4. [Last Ham Button Margin More Top]()
+    5. [Common Button Place Types]()
+        1. [VHButtonPlace_Horizontal]()
+        2. [VHButtonPlace_Vertical]()
+3. [Button Place Alignments]()
+4. [Boom Types]()
 5. [Ease Types]()
 6. [Background Dim]()
 7. [Auto Hide]()
@@ -153,6 +157,7 @@ But, WARNING! You must keep ```the number of piecePlaceEnum```, ```the number of
 #Boom Buttons
 
 ###Simple Circle Button
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SimpleCircleButton.png?raw=true)  
 This is the most simple button type here. Set button type for your BMB: ```bmb.buttonEnum = VHButtonSimpleCircle```
 
 ####Piece Place Type
@@ -171,19 +176,45 @@ Set piece-place type for your BMB: ```bmb.piecePlaceEnum = VHPiecePlace_DOT_3_1`
 | 9  | VHPiecePlace\_DOT\_9\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/DOT_9_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/DOT_9_2.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/DOT_9_3.png?raw=true) | 
 
 #### Button Place Type
-Set button-place type for your BMB: ```bmb.buttonPlaceEnum = VHButtonPlace_SC_3_3```. For number 1 to 9, BMB supports the following place type: (1 <= M <= number of images) 
+Set button-place type for your BMB: ```bmb.buttonPlaceEnum = VHButtonPlace_SC_3_3```.   
+Click [VHButtonPlaceEnum](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButton/BoomButton/VHButtonPlaceEnum.h) to check what kind of button-place-type now BMB supports. Just need to know that in ```VHButtonPlace_SC_N_M```, N is the number of button.  
+![VHButtonPlace\_SC\_1](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_1.png?raw=true)
+![VHButtonPlace\_SC\_2\_1](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_2_1.png?raw=true)
+![VHButtonPlace\_SC\_2\_2](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_2_2.png?raw=true)
+![VHButtonPlace\_SC\_3\_1](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_3_1.png?raw=true)
+![VHButtonPlace\_SC\_3\_2](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_3_2.png?raw=true)
+![VHButtonPlace\_SC\_3\_3](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_3_3.png?raw=true)
+![VHButtonPlace\_SC\_3\_4](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_3_4.png?raw=true)
+![VHButtonPlace\_SC\_4\_1](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_4_1.png?raw=true)
+![VHButtonPlace\_SC\_4\_2](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_4_2.png?raw=true)
+![VHButtonPlace\_SC\_5\_1](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_5_1.png?raw=true)
+![VHButtonPlace\_SC\_5\_2](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_5_2.png?raw=true)
+![VHButtonPlace\_SC\_5\_3](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_5_3.png?raw=true)
+![VHButtonPlace\_SC\_5\_4](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_5_4.png?raw=true)
+![VHButtonPlace\_SC\_6\_1](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_6_1.png?raw=true)
+![VHButtonPlace\_SC\_6\_2](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_6_2.png?raw=true)
+![VHButtonPlace\_SC\_6\_3](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_6_3.png?raw=true)
+![VHButtonPlace\_SC\_6\_4](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_6_4.png?raw=true)
+![VHButtonPlace\_SC\_6\_5](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_6_5.png?raw=true)
+![VHButtonPlace\_SC\_6\_6](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_6_6.png?raw=true)
+![VHButtonPlace\_SC\_7\_1](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_7_1.png?raw=true)
+![VHButtonPlace\_SC\_7\_2](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_7_2.png?raw=true)
+![VHButtonPlace\_SC\_7\_3](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_7_3.png?raw=true)
+![VHButtonPlace\_SC\_7\_4](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_7_4.png?raw=true)
+![VHButtonPlace\_SC\_7\_5](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_7_5.png?raw=true)
+![VHButtonPlace\_SC\_7\_6](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_7_6.png?raw=true)
+![VHButtonPlace\_SC\_8\_1](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_1.png?raw=true)
+![VHButtonPlace\_SC\_8\_2](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_2.png?raw=true)
+![VHButtonPlace\_SC\_8\_3](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_3.png?raw=true)
+![VHButtonPlace\_SC\_8\_4](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_4.png?raw=true)
+![VHButtonPlace\_SC\_8\_5](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_5.png?raw=true)
+![VHButtonPlace\_SC\_8\_6](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_6.png?raw=true)
+![VHButtonPlace\_SC\_8\_7](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_7.png?raw=true)
+![VHButtonPlace\_SC\_9\_1](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_9_1.png?raw=true)
+![VHButtonPlace\_SC\_9\_2](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_9_2.png?raw=true)
+![VHButtonPlace\_SC\_9\_3](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_9_3.png?raw=true)
 
-| Number of Button | VHButtonPlaceEnum | Images |
-| :-------- | :--------| :--------|
-| 1  | VHButtonPlace\_SC\_1 | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_1.png?raw=true) | 
-| 2  | VHButtonPlace\_SC\_2\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_2_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_2_2.png?raw=true) | 
-| 3  | VHButtonPlace\_SC\_3\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_3_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_3_2.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_3_3.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_3_4.png?raw=true) | 
-| 4  | VHButtonPlace\_SC\_4\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_4_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_4_2.png?raw=true) | 
-| 5  | VHButtonPlace\_SC\_5\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_5_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_5_2.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_5_3.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_5_4.png?raw=true) |
-| 6  | VHButtonPlace\_SC\_6\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_6_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_6_2.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_6_3.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_6_4.png?raw=true)  ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_6_5.png?raw=true)  ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_6_6.png?raw=true) |
-| 7  | VHButtonPlace\_SC\_7\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_7_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_7_2.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_7_3.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_7_4.png?raw=true)  ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_7_5.png?raw=true)  ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_7_6.png?raw=true) |
-| 8  | VHButtonPlace\_SC\_8\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_2.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_3.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_4.png?raw=true)  ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_5.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_6.png?raw=true) ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_8_7.png?raw=true) |
-| 9  | VHButtonPlace\_SC\_9\_M | ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_9_1.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_9_2.png?raw=true)![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_9_3.png?raw=true) | 
+Notice
 
 ####Properties
 For each simple circle button, you can set its properties by set builder's properties. The properties are:  
@@ -206,13 +237,14 @@ For each simple circle button, you can set its properties by set builder's prope
 Notice that you don't have to set all the properties here. Check the [default properties](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButton/VHDefaults.h) that are used when you don't set them.
 
 ###Text Inside Circle Button
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/TextInsideCircleButton.png?raw=true)  
 This is a circle button with a text in it. Set button type for your BMB: ```bmb.buttonEnum = VHButtonTextInsideCircle```
 
 ####Piece Place Type
-Same in simple circle button.
+Ham button's piece-place-types are just N lines horizontally lay down. So I will not put the images here. 
 
 #### Button Place Type
-Same in simple circle button.
+Ham button's button-place-types are just N lines horizontally lay on the screen. Please check the gif at the beginning of README.
 
 ####Properties
 ```
@@ -242,6 +274,7 @@ Same in simple circle button.
 ```
 
 ###Text Outside Circle Button
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/TextOutsideCircleButton.png?raw=true)  
 Text outside circle button, as its name, is a circle button with a text outside it. Set button type for your BMB: ```bmb.buttonEnum = VHButtonTextOutsideCircle```
 
 ####Piece Place Type
@@ -280,8 +313,8 @@ Same in simple circle button. But notice that there are still some different whe
 ```
 
 ###Ham Buttom
-
-Text outside circle button, as its name, is a circle button with a text outside it. Set button type for your BMB: ```bmb.buttonEnum = VHButtonTextOutsideCircle```
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/HamButton.png?raw=true)  
+Ham button is a rectangle button which can contains image, title and sub title. Of course you can just choose what you want in ham button just like the "Cancel" button above. Set button type for your BMB: ```bmb.buttonEnum = VHButtonTextOutsideCircle```
 
 ####Piece Place Type
 Same in simple circle button.
@@ -290,6 +323,56 @@ Same in simple circle button.
 Same in simple circle button. But notice that there are still some different when the buttons are show on the screen, because text-outside-circle-button is not a circle but a rectangle.
 
 ####Properties
+```
+[bmb addHamButtonBuilderBlock:^(VHHamButtonBuilder *builder) {
+    builder.shadowOffset          = CGSizeMake(5, 5);              // Shadow offset
+    builder.shadowOpacity         = 0.5;                           // Shadow opactity
+    builder.shadowColor           = [UIColor blueColor];           // Shadow color
+    builder.imageNormal           = @"bat";                        // Image of button normally
+    builder.imagePressed          = @"bear";                       // Image of button when button is clicked
+    builder.buttonNormalColor     = UIColorFromRGB(0xD32F2F);      // Color of button normally
+    builder.buttonPressedColor    = UIColorFromRGB(0xF44336);      // Color of button when the button is clicked
+    builder.imageNormalTintColor  = UIColorFromRGB(0x0000ff);      // Tint color of image normally
+    builder.imagePressedTintColor = UIColorFromRGB(0x00ff00);      // Tint color of image when button is clicked
+    builder.imageFrame            = CGRectMake(10, 0, 60, 60);     // Frame of image
+    builder.titleFrame            = CGRectMake(120, 30, 120, 30);  // Frame of title
+    builder.subTitleFrame         = CGRectMake(120, 0, 120, 30);   // Frame of sub title
+    builder.shadowWidth           = 300;                           // Width of shadow
+    builder.shadowHeight          = 80;                            // Height of shadow
+    builder.shadowCornerRadius    = 0;                             // Corner radius of shadow
+    builder.buttonWidth           = 300;                           // Width of button
+    builder.buttonHeight          = 80;                            // Height of button
+    builder.buttonCornerRadius    = 0;                             // Corner radius of button
+    builder.titleContent          = @"Title Here";                 // Title
+    builder.titleNormalColor      = UIColorFromRGB(0x0000ff);      // Color of title normally
+    builder.titlePressedColor     = UIColorFromRGB(0x00ffff);      // Color of title when the button is pressed
+    builder.titleFont             = [UIFont systemFontOfSize:30];  // Font of title
+    builder.titleLineBreakMode    = NSLineBreakByClipping;         // Line break mode of title
+    builder.titlelines            = 0;                             // Lines of title
+    builder.titleAlignment        = NSTextAlignmentCenter;         // Text alignment of title
+    builder.subTitleContent       = @"Sub title here";             // Sub title
+    builder.subTitleNormalColor   = UIColorFromRGB(0x0000ff);      // Color of sub title normally
+    builder.subTitlePressedColor  = UIColorFromRGB(0x00ffff);      // Color of sub title when the button is pressed
+    builder.subTitleFont          = [UIFont systemFontOfSize:8];   // Font of sub title
+    builder.subTitleLineBreakMode = NSLineBreakByClipping;         // Line break mode of sub title
+    builder.subTitlelines         = 0;                             // Lines of sub title
+    builder.subTitleAlignment     = NSTextAlignmentCenter;         // Text alignment of sub title
+    builder.rotateImage           = YES;                           // Whether rotate the image
+    builder.containImage          = YES;                           // Whether contains image
+}];
+```
+Once again, you don't have to set all the properties here. Check the [default properties](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButton/VHDefaults.h) that are used when you don't set them.
+
+####Last Ham Button Margin More Top
+You can set the last button's margin-top-property larger to make it as a "Cancel" button:  
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/LastHamMarginMoreTop1.png)
+![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/LastHamMarginMoreTop2.png)
+
+Just set the below properties of BMB to toggle last-ham-button-margin-more-top or set its value:  
+```
+bmb.lastHamButtonMarginMoreTop = YES;
+bmb.lastHamButtonTopMargin     = 50;
+```
 
 
 #Versions
