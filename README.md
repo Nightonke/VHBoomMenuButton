@@ -57,7 +57,6 @@
 14. [Dimensions]()
 15. [Boom or Reboom It Programmatically]()
 16. [Delegate]()
-17. [Warnings]()
 
 [Versions]()  
 [License]()
@@ -65,7 +64,7 @@
 #Pod
 Use BMB by:  
 
-1. Pod: ```pod "VHBoomMenuButton", "~> 0.0.3"``` 
+1. Pod: ```pod "VHBoomMenuButton", "~> 1.0.0"``` 
 2. Or copy the source code of the BMB to your project.
 
 #Note
@@ -463,9 +462,86 @@ bmb.shadowRadius  = 40;
 Set the shadow of BMB by the above properties.
 
 ##Dimensions
+```
+bmb.dotRadius              = 3;   // The radius of dot on the BMB
+bmb.hamWidth               = 30;  // The width of piece-ham on the BMB
+bmb.hamHeight              = 4;   // The height of piece-ham on the BMB
+bmb.pieceHorizontalMargin  = 3;   // The horizontal margin between pieces
+bmb.pieceVerticalMargin    = 5;   // The vertical margin between pieces
+bmb.pieceInclinedMargin    = 3;   // The inclined margin between pieces
+bmb.buttonHorizontalMargin = 10;  // The horizontal margin between buttons
+bmb.buttonVerticalMargin   = 10;  // The vertical margin between buttons
+bmb.buttonInclinedMargin   = 10;  // The inclined margin between buttons
+bmb.buttonBottomMargin     = 10;  // The vertical margin between the most-bottom button and the border of screen
+bmb.buttonTopMargin        = 10;  // The vertical margin between the most-top button and the border of screen
+bmb.buttonLeftMargin       = 10;  // The horizontal margin between the most-left button and the border of screen
+bmb.buttonRightMargin      = 10;  // The horizontal margin between the most-right button and the border of screen
+```
 
+##Boom or Reboom It Programmatically
+```
+[bmb boom];
+[bmb reboom];
+```
+
+##Delegate
+Implement the delegate ```VHBoomDelegate```. The choose the method you want:  
+```
+/**
+ *  When one of the sub button was clicked.
+ *
+ *  @param index Index of the clicked sub button.
+ */
+- (void)onBoomClicked:(int)index
+{
+    
+}
+
+/**
+ *  When the background was clicked.
+ */
+- (void)onBoomBackgroundClicked
+{
+    
+}
+
+/**
+ *  The reboom animation is going to start.
+ */
+- (void)onBoomWillHide
+{
+    
+}
+
+/**
+ *  The reboom animation is finished.
+ */
+- (void)onBoomDidHide
+{
+    
+}
+
+/**
+ *  The boom animation is going to start.
+ */
+- (void)onBoomWillShow
+{
+    
+}
+
+/**
+ *  The boom animation is finished.
+ */
+- (void)onBoomDidShow
+{
+    
+}
+```
 
 #Versions
+###1.0.0
+The first version, my first iOS library.
+
 
 #License
 
