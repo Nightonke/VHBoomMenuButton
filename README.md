@@ -53,7 +53,7 @@
 10. [NoBackground](https://github.com/Nightonke/VHBoomMenuButton#nobackground)
 11. [Draggable](https://github.com/Nightonke/VHBoomMenuButton#draggable)
 12. [Rotate Degree](https://github.com/Nightonke/VHBoomMenuButton#rotate-degree)
-13. [Shadow](https://github.com/Nightonke/VHBoomMenuButton#shadow)
+13. [Shadow and Background Color](https://github.com/Nightonke/VHBoomMenuButton/blob/master/README-ZH.md#shadow-and-background-color)
 14. [Dimensions](https://github.com/Nightonke/VHBoomMenuButton#dimensions)
 15. [Boom or Reboom It Programmatically](https://github.com/Nightonke/VHBoomMenuButton#boom-or-reboom-it-programmatically)
 16. [Delegate](https://github.com/Nightonke/VHBoomMenuButton#delegate)
@@ -214,8 +214,6 @@ Click [VHButtonPlaceEnum](https://github.com/Nightonke/VHBoomMenuButton/blob/mas
 ![VHButtonPlace\_SC\_9\_2](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_9_2.png?raw=true)
 ![VHButtonPlace\_SC\_9\_3](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_9_3.png?raw=true)
 
-Notice
-
 ####Properties
 For each simple circle button, you can set its properties by set builder's properties. The properties are:  
 ```
@@ -241,10 +239,10 @@ Notice that you don't have to set all the properties here. Check the [default pr
 This is a circle button with a text in it. Set button type for your BMB: ```bmb.buttonEnum = VHButtonTextInsideCircle```
 
 ####Piece Place Type
-Ham button's piece-place-types are just N lines horizontally lay down. So I will not put the images here. 
+Same as simple circle button.
 
 #### Button Place Type
-Ham button's button-place-types are just N lines horizontally lay on the screen. Please check the gif at the beginning of README.
+Same as simple circle button.
 
 ####Properties
 ```
@@ -317,10 +315,24 @@ Same in simple circle button. But notice that there are still some different whe
 Ham button is a rectangle button which can contains image, title and sub title. Of course you can just choose what you want in ham button just like the "Cancel" button above. Set button type for your BMB: ```bmb.buttonEnum = VHButtonTextOutsideCircle```
 
 ####Piece Place Type
-Same in simple circle button.
+Ham button's piece-place-types are just N lines horizontally lay down. So I will not put the images here.      
+```
+VHPiecePlace_HAM_1
+VHPiecePlace_HAM_2
+VHPiecePlace_HAM_3
+VHPiecePlace_HAM_4
+VHPiecePlace_HAM_5
+```
 
 #### Button Place Type
-Same in simple circle button. But notice that there are still some different when the buttons are show on the screen, because text-outside-circle-button is not a circle but a rectangle.
+Ham button's button-place-types are just N lines horizontally lay on the screen. Please check the gif at the beginning of README.    
+```
+VHButtonPlace_HAM_1
+VHButtonPlace_HAM_2
+VHButtonPlace_HAM_3
+VHButtonPlace_HAM_4
+VHButtonPlace_HAM_5
+```
 
 ####Properties
 ```
@@ -389,7 +401,8 @@ Just like ```VHButtonPlace_Horizontal```:
 ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/Vertical.png)
 
 ##Button Place Alignments
-If you don't want to put your buttons on the center of screen, just like the image above, you can use [VHButtonPlaceAlignmentEnum](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButton/BoomButton/VHButtonPlaceAlignmentEnum.h) to adjust the alignment:
+If you don't want to put your buttons on the center of screen, just like the image above, you can use [VHButtonPlaceAlignmentEnum](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButton/BoomButton/VHButtonPlaceAlignmentEnum.h) to adjust the alignment:  
+```bmb.buttonPlaceAlignmentEnum = VHButtonPlaceAlignmentBottom;``` 
 
 ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/Bottom.png)
 ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/BottomLeft.png)
@@ -415,12 +428,12 @@ Check [VHBoomEnum](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHB
 ##Ease Types
 To make BMB more cute, you can use [VHEaseEnum](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButton/Animation/VHEaseEnum.h) to set the 6 properties below:  
 ```
-bmb.showMoveEaseEnum  = VHEaseOutCirc;
-bmb.showScaleEaseEnum = VHEaseOutCirc;
-bmb.showScaleEaseEnum = VHEaseOutCubic;
-bmb.hideMoveEaseEnum  = VHEaseInBack;
-bmb.hideScaleEaseEnum = VHEaseInCirc;
-bmb.hideScaleEaseEnum = VHEaseInCubic;
+bmb.showMoveEaseEnum   = VHEaseOutCirc;
+bmb.showScaleEaseEnum  = VHEaseOutCirc;
+bmb.showRotateEaseEnum = VHEaseOutCubic;
+bmb.hideMoveEaseEnum   = VHEaseInBack;
+bmb.hideScaleEaseEnum  = VHEaseInCirc;
+bmb.hideRotateEaseEnum = VHEaseInCubic;
 ```
 All ease types:  
 ![](https://github.com/Nightonke/WoWoViewPager/blob/master/Pictures/ease.png?raw=true)
@@ -454,14 +467,16 @@ Use ```bmb.draggable = YES;``` to make BMB draggable.
 ##Rotate Degree
 Use ```bmb.rotationDegree = M_PI * 10;``` to set the rotation degree of views that are able to rotate in the animations.
 
-##Shadow
+##Shadow and Background Color
 ```
-bmb.shadowOffset  = CGSizeMake(0, 10);
-bmb.shadowColor   = [UIColor redColor];
-bmb.shadowOpacity = 1;
-bmb.shadowRadius  = 40;
+bmb.shadowOffset       = CGSizeMake(0, 10);
+bmb.shadowColor        = [UIColor redColor];
+bmb.shadowOpacity      = 1;
+bmb.shadowRadius       = 40;
+bmb.buttonNormalColor  = [UIColor redColor];
+bmb.buttonPressedColor = [UIColor blueColor];
 ```
-Set the shadow of BMB by the above properties.
+Set the shadow and background color of BMB by the above properties.
 
 ##Dimensions
 ```
