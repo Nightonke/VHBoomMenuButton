@@ -53,7 +53,7 @@
 10. [NoBackground](https://github.com/Nightonke/VHBoomMenuButton#nobackground)
 11. [Draggable](https://github.com/Nightonke/VHBoomMenuButton#draggable)
 12. [Rotate Degree](https://github.com/Nightonke/VHBoomMenuButton#rotate-degree)
-13. [Shadow and Background Color](https://github.com/Nightonke/VHBoomMenuButton/blob/master/README-ZH.md#shadow-and-background-color)
+13. [Shadow and Background Color](https://github.com/Nightonke/VHBoomMenuButton#shadow-and-background-color)
 14. [Dimensions](https://github.com/Nightonke/VHBoomMenuButton#dimensions)
 15. [Boom or Reboom It Programmatically](https://github.com/Nightonke/VHBoomMenuButton#boom-or-reboom-it-programmatically)
 16. [Delegate](https://github.com/Nightonke/VHBoomMenuButton#delegate)
