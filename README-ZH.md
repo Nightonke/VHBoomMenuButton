@@ -16,7 +16,7 @@
 
 #Guide
 
-[英文文档](https://github.com/Nightonke/VHBoomMenuButton)  
+[Englist README](https://github.com/Nightonke/VHBoomMenuButton)  
 [Pod](https://github.com/Nightonke/VHBoomMenuButton/blob/master/README-ZH.md#pod)  
 [Note](https://github.com/Nightonke/VHBoomMenuButton/blob/master/README-ZH.md#note)
 
@@ -69,7 +69,7 @@
 
 #Note
 1. BMB其实早在[Android平台上开源](https://github.com/Nightonke/BoomMenu)。
-2. 我刚学iOS，如果那些地方写得不好，可以直接在issue或者e-mail中说出来（Nightonke@outlook.com）。
+2. 我刚学iOS，如果哪些地方写得不好，可以直接在issue或者e-mail中告诉我（Nightonke@outlook.com）。
 3. BMB架构：  
     ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/structure.png?raw=true)  
     BMB主要分为一个主体和三个子模块。主体负责BMB按钮的基本UI和调度三个子模块，三个子模块分别负责在BMB上的pieces、动画、在屏幕上的按钮。如果你想fork我的库并添加自己的按钮，比如说按钮A，你需要：  
