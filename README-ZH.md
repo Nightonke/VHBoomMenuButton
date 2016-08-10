@@ -380,7 +380,8 @@ VHButtonPlace_HAM_5
 ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/LastHamMarginMoreTop1.png)
 ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/LastHamMarginMoreTop2.png)
 
-只需要告诉BMB你需要调大间距，并设置一个间距即可：   
+只需要告诉BMB你需要调大间距，并设置一个间距即可： 
+
 ```
 bmb.lastHamButtonMarginMoreTop = YES;
 bmb.lastHamButtonTopMargin     = 50;
@@ -390,7 +391,7 @@ bmb.lastHamButtonTopMargin     = 50;
 
 ####VHButtonPlace_Horizontal
 
-```VHButtonPlace_Horizontal```是一个所有按钮通用的在屏幕上布局的属性，你可以用这个来将按钮布局到iPad上，因为iPad比较宽，有足够的区域放置BMB的所有按钮。
+```VHButtonPlace_Horizontal``` 是一个通用的为所有按钮在屏幕上布局的属性，你可以用这个来将按钮布局到iPad上，因为iPad比较宽，有足够的区域放置BMB的所有按钮。
 
 ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/Horizontal.png)
 
@@ -424,10 +425,11 @@ bmb.lastHamButtonTopMargin     = 50;
 ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/HorizontalThrow1.gif)
 ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/HorizontalThrow2.gif)
 
-```VHBoomStraightLine```表示直线，```VHBoomRandom```表示对每一个按钮，随机选取其他的爆炸类型。
+```VHBoomStraightLine``` 表示直线，```VHBoomRandom```表示对每一个按钮，随机选取其他的爆炸类型。
 
 ##Ease Types
 如果想让BMB更加生动，可以设置[VHEaseEnum](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButton/Animation/VHEaseEnum.h)值：  
+
 ```
 bmb.showMoveEaseEnum   = VHEaseOutCirc;
 bmb.showScaleEaseEnum  = VHEaseOutCirc;
@@ -436,6 +438,7 @@ bmb.hideMoveEaseEnum   = VHEaseInBack;
 bmb.hideScaleEaseEnum  = VHEaseInCirc;
 bmb.hideRotateEaseEnum = VHEaseInCubic;
 ```
+
 所有的ease类型运动曲线：    
 ![](https://github.com/Nightonke/WoWoViewPager/blob/master/Pictures/ease.png?raw=true)
 
@@ -504,7 +507,9 @@ bmb.buttonRightMargin      = 10;  // The horizontal margin between the most-righ
 
 ##Delegate
 实现```VHBoomDelegate```协议，然后监听和BMB相关的回调：    
+
 ```
+
 /**
  *  When one of the sub button was clicked.
  *
