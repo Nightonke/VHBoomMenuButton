@@ -14,13 +14,13 @@
 ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/Gif_2.gif?raw=true)
 ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/Gif_3.gif?raw=true)  
 
-#Guide
+# Guide
 
 [中文文档](https://github.com/Nightonke/VHBoomMenuButton/blob/master/README-ZH.md)  
 [Pod](https://github.com/Nightonke/VHBoomMenuButton#pod)  
 [Note](https://github.com/Nightonke/VHBoomMenuButton#note)
 
-###Usage
+### Usage
 1. [Basic Usage](https://github.com/Nightonke/VHBoomMenuButton#basic-usage)
 2. [Boom Buttons](https://github.com/Nightonke/VHBoomMenuButton#boom-buttons)
     1. [Simple Circle Button](https://github.com/Nightonke/VHBoomMenuButton#simple-circle-button)
@@ -61,13 +61,13 @@
 [Versions](https://github.com/Nightonke/VHBoomMenuButton#versions)  
 [License](https://github.com/Nightonke/VHBoomMenuButton#license)
 
-#Pod
+# Pod
 Use BMB by:  
 
 1. Pod: ```pod "VHBoomMenuButton", "~> 1.0.2"``` 
 2. Or copy the source code of the BMB to your project.
 
-#Note
+# Note
 1. From my [BMB in Android version](https://github.com/Nightonke/BoomMenu). 
 2. I'm a new guy in iOS, so if there is any bug or enhancement, just put it in issues or mail(Nightonke@outlook.com)
 3. Structure of BMB:  
@@ -78,8 +78,8 @@ Use BMB by:
     3. create a APiece in Piece extends [VHBoomPiece](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButton/Piece/VHBoomPiece.h)
     4. add your piece-place and button-place logic in [VHPiecePlaceManager](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButton/Piece/VHPiecePlaceManager.h) and [VHButtonPlaceManager](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButton/BoomButton/VHButtonPlaceManager.h)
 
-#Usage
-##Basic Usage
+# Usage
+## Basic Usage
 Let's check a very simple usage with just 3 buttons.  
 ```
 //
@@ -154,13 +154,13 @@ All you need to do is just select some properties then add your buttons.
 
 But, WARNING! You must keep ```the number of piecePlaceEnum```, ```the number of buttonPlaceEnum```, ```the number of builders you add``` to be the same. The name of piecePlaceEnum is VHPiecePlace_XXX_N_M, where XXX is name, N is number and M is different types. Similarly, the name of buttonPlaceEnum is VHButtonPlace_YYY_N_M. You must keep the first N equals to the second one. But you needn't keep the two M same. (Just like the code above: ```VHPiecePlace_DOT_3_1``` and ```VHButtonPlace_SC_3_3```)
 
-##Boom Buttons
+## Boom Buttons
 
-###Simple Circle Button
+### Simple Circle Button
 ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SimpleCircleButton.png?raw=true)  
 This is the most simple button type here. Set button type for your BMB: ```bmb.buttonEnum = VHButtonSimpleCircle```
 
-####Piece Place Type
+#### Piece Place Type
 Set piece-place type for your BMB: ```bmb.piecePlaceEnum = VHPiecePlace_DOT_3_1```. For number 1 to 9, BMB supports the following place type: (1 <= M <= number of images)   
 
 | Number of Button | VHPiecePlaceEnum | Images |
@@ -214,7 +214,7 @@ Click [VHButtonPlaceEnum](https://github.com/Nightonke/VHBoomMenuButton/blob/mas
 ![VHButtonPlace\_SC\_9\_2](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_9_2.png?raw=true)
 ![VHButtonPlace\_SC\_9\_3](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/SC_9_3.png?raw=true)
 
-####Properties
+#### Properties
 For each simple circle button, you can set its properties by set builder's properties. The properties are:  
 ```
 [bmb addSimpleCircleButtonBuilderBlock:^(VHSimpleCircleButtonBuilder *builder) {
@@ -234,17 +234,17 @@ For each simple circle button, you can set its properties by set builder's prope
 ```
 Notice that you don't have to set all the properties here. Check the [default properties](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButton/VHDefaults.h) that are used when you don't set them.
 
-###Text Inside Circle Button
+### Text Inside Circle Button
 ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/TextInsideCircleButton.png?raw=true)  
 This is a circle button with a text in it. Set button type for your BMB: ```bmb.buttonEnum = VHButtonTextInsideCircle```
 
-####Piece Place Type
+#### Piece Place Type
 Same as simple circle button.
 
 #### Button Place Type
 Same as simple circle button.
 
-####Properties
+#### Properties
 ```
 [bmb addTextInsideCircleButtonBuilderBlock:^(VHTextInsideCircleButtonBuilder *builder) {
     builder.shadowOffset          = CGSizeMake(5, 5);              // Shadow offset
@@ -271,17 +271,17 @@ Same as simple circle button.
 }];
 ```
 
-###Text Outside Circle Button
+### Text Outside Circle Button
 ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/TextOutsideCircleButton.png?raw=true)  
 Text outside circle button, as its name, is a circle button with a text outside it. Set button type for your BMB: ```bmb.buttonEnum = VHButtonTextOutsideCircle```
 
-####Piece Place Type
+#### Piece Place Type
 Same in simple circle button.
 
 #### Button Place Type
 Same in simple circle button. But notice that there are still some different when the buttons are show on the screen, because text-outside-circle-button is not a circle but a rectangle.
 
-####Properties
+#### Properties
 ```
 [bmb addTextOutsideCircleButtonBuilderBlock:^(VHTextOutsideCircleButtonBuilder *builder) {
     builder.shadowOffset          = CGSizeMake(5, 5);              // Shadow offset
@@ -310,11 +310,11 @@ Same in simple circle button. But notice that there are still some different whe
 }];
 ```
 
-###Ham Buttom
+### Ham Buttom
 ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/HamButton.png?raw=true)  
 Ham button is a rectangle button which can contains image, title and sub title. Of course you can just choose what you want in ham button just like the "Cancel" button above. Set button type for your BMB: ```bmb.buttonEnum = VHButtonTextOutsideCircle```
 
-####Piece Place Type
+#### Piece Place Type
 Ham button's piece-place-types are just N lines horizontally lay down. So I will not put the images here.      
 ```
 VHPiecePlace_HAM_1
@@ -334,7 +334,7 @@ VHButtonPlace_HAM_4
 VHButtonPlace_HAM_5
 ```
 
-####Properties
+#### Properties
 ```
 [bmb addHamButtonBuilderBlock:^(VHHamButtonBuilder *builder) {
     builder.shadowOffset          = CGSizeMake(5, 5);              // Shadow offset
@@ -375,7 +375,7 @@ VHButtonPlace_HAM_5
 ```
 Once again, you don't have to set all the properties here. Check the [default properties](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButton/VHDefaults.h) that are used when you don't set them.
 
-####Last Ham Button Margin More Top
+#### Last Ham Button Margin More Top
 You can set the last button's margin-top-property larger to make it as a "Cancel" button:  
 ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/LastHamMarginMoreTop1.png)
 ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/LastHamMarginMoreTop2.png)
@@ -386,21 +386,21 @@ bmb.lastHamButtonMarginMoreTop = YES;
 bmb.lastHamButtonTopMargin     = 50;
 ```
 
-###Common Button Place Types
+### Common Button Place Types
 
-####VHButtonPlace_Horizontal
+#### VHButtonPlace_Horizontal
 
 ```VHButtonPlace_Horizontal``` is a common button-place-type for any button. It just simple horizontally puts all the buttons on a horizontal-line. You can use this in iPad, because iPad is wide enough for it.
 
 ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/Horizontal.png)
 
-####VHButtonPlace_Vertical
+#### VHButtonPlace_Vertical
 
 Just like ```VHButtonPlace_Horizontal```:  
 
 ![](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButtonPictures/Vertical.png)
 
-##Button Place Alignments
+## Button Place Alignments
 If you don't want to put your buttons on the center of screen, just like the image above, you can use [VHButtonPlaceAlignmentEnum](https://github.com/Nightonke/VHBoomMenuButton/blob/master/VHBoomMenuButton/BoomButton/VHButtonPlaceAlignmentEnum.h) to adjust the alignment:  
 ```bmb.buttonPlaceAlignmentEnum = VHButtonPlaceAlignmentBottom;``` 
 
@@ -438,7 +438,7 @@ bmb.hideRotateEaseEnum = VHEaseInCubic;
 All ease types:  
 ![](https://github.com/Nightonke/WoWoViewPager/blob/master/Pictures/ease.png?raw=true)
 
-##Frames, Duration and Delay
+## Frames, Duration and Delay
 ```
 bmb.frames   = 30;
 bmb.duration = 3;
@@ -449,25 +449,25 @@ Duration means the duration of each animation of button.
 Delay means the delay between each button.  
 So, the total time of animation is (N - 1) * delay + duration, where N is the number of buttons.
 
-##Background Dim
+## Background Dim
 Use ```bmb.dimColor = [UIColor blueColor];``` to set the background color when BMB is BOOM.
 
-##Auto Hide
+## Auto Hide
 Use ```bmb.autoHide = NO;``` to set whether the BMB will reboom when one of the buttons was clicked.
 
-##Cancelable
+## Cancelable
 Use ```bmb.cancelable = NO;``` to set whether the BMB can be hided by clicking the background.
 
-##NoBackground
+## NoBackground
 Use ```bmb.noBackground = YES;``` to remove the background of BMB. Is that useful? Yep, you will not use BMB in NavigationBar with a background, right?
 
-##Draggable
+## Draggable
 Use ```bmb.draggable = YES;``` to make BMB draggable.
 
-##Rotate Degree
+## Rotate Degree
 Use ```bmb.rotationDegree = M_PI * 10;``` to set the rotation degree of views that are able to rotate in the animations.
 
-##Shadow and Background Color
+## Shadow and Background Color
 ```
 bmb.shadowOffset       = CGSizeMake(0, 10);
 bmb.shadowColor        = [UIColor redColor];
@@ -478,7 +478,7 @@ bmb.buttonPressedColor = [UIColor blueColor];
 ```
 Set the shadow and background color of BMB by the above properties.
 
-##Dimensions
+## Dimensions
 ```
 bmb.dotRadius              = 3;   // The radius of dot on the BMB
 bmb.hamWidth               = 30;  // The width of piece-ham on the BMB
@@ -495,13 +495,13 @@ bmb.buttonLeftMargin       = 10;  // The horizontal margin between the most-left
 bmb.buttonRightMargin      = 10;  // The horizontal margin between the most-right button and the border of screen
 ```
 
-##Boom or Reboom It Programmatically
+## Boom or Reboom It Programmatically
 ```
 [bmb boom];
 [bmb reboom];
 ```
 
-##Delegate
+## Delegate
 Implement the delegate ```VHBoomDelegate```. The choose the method you want:  
 ```
 /**
@@ -555,12 +555,12 @@ Implement the delegate ```VHBoomDelegate```. The choose the method you want:
 }
 ```
 
-#Versions
-###1.0.2
+# Versions
+### 1.0.2
 The first version, my first iOS library.
 
 
-#License
+# License
 
     Copyright 2016 Nightonke
 
