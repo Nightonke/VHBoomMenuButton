@@ -4,25 +4,15 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>VHBoomMenuButton.xcscheme</key>
+		<key>VHBoomMenuButtonSwiftDemo.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>VHBoomMenuButtonExample.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3794BEE61D4DEC79005B9404</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3794BF191D4DEF4A005B9404</key>
+		<key>37B863B41EA8F94D00E53322</key>
 		<dict>
 			<key>primary</key>
 			<true/>

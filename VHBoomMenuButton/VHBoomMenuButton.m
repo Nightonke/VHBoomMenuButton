@@ -14,7 +14,6 @@
 #import "VHShareLinesView.h"
 #import "VHBackgroundClickDelegate.h"
 #import "VHBackgroundView.h"
-#import "VHDefaults.h"
 #import "VHUtils.h"
 #import "VHErrorManager.h"
 #import "VHEase.h"
@@ -184,6 +183,8 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     }
     _dimColor = [VHUtils colorFromARGB:0x55000000];
     _tip = nil;
+    _tipBelowButtons = NO;
+    _tipButtonMargin = 40;
     
     _boomDelegate = nil;
     _delay = 0.05;
@@ -610,6 +611,10 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     [self createButtons];
     [self dimBackground:immediately];
     [self startShowAnimations:immediately];
+    [self.background adjustTipLabel:self.tipBelowButtons
+                withTipButtonMargin:self.tipButtonMargin
+                    withEndPosition:self.endPositions
+                   withButtonHeight:[self buttonMaxHeight]];
 }
 
 - (void)reboom
@@ -673,7 +678,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 
 - (void)startShowAnimations:(BOOL)immediately
 {
-    [self.background removeAllSubViews];
+    [self.background removeAllBoomButtons];
     [self calculateEndPositions];
     NSMutableArray<NSNumber *> *indexes;
     if (self.piecePlaceEnum == VHPiecePlaceShare)
@@ -999,6 +1004,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         {
             self.background.blurEffect = self.blurEffect;
         }
+        self.background.tip = self.tip;
         self.background.delegate = self;
         [parentView addSubview:self.background];
     }
@@ -1009,7 +1015,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     self.background.hidden = YES;
     if (force || !self.cacheOptimization || self.inList)
     {
-        [self.background removeAllSubViews];
+        [self.background removeAllBoomButtons];
         [self.background removeFromSuperview];
         self.background = nil;
     }
@@ -1474,6 +1480,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 
 - (void)addViewToBackground:(UIView *)view
 {
+    [self createBackground];
     
 }
 
@@ -1717,7 +1724,15 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 
 #pragma mark Background
 
-
+- (void)setTip:(NSString *)tip
+{
+    if ([_tip isEqualToString:tip])
+    {
+        return;
+    }
+    _tip = tip;
+    self.background.tip = tip;
+}
 
 #pragma mark Animation
 

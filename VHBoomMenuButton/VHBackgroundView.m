@@ -12,6 +12,7 @@
 @interface VHBackgroundView ()
 
 @property (nonatomic, strong) UIVisualEffectView *visualEffectView NS_AVAILABLE_IOS(8_0);
+@property (nonatomic, strong) NSMutableArray<UIView *> *goneViews;
 
 @end
 
@@ -70,25 +71,54 @@
     [VHAnimationManager addAnimation:opacityAnimation toViews:self.goneViews];
 }
 
-- (void)removeAllSubViews
+- (void)removeAllBoomButtons
 {
-    if ([UIVisualEffectView class])
+    for (UIView *view in self.subviews)
     {
-        for (UIView *view in self.subviews)
-        {
-            if (view != self.visualEffectView)
-            {
-                [view removeFromSuperview];
-            }
-        }
-    }
-    else
-    {
-        for (UIView *view in self.subviews)
+        if ([view isKindOfClass:[VHBoomButton class]])
         {
             [view removeFromSuperview];
         }
     }
+}
+
+- (void)addGoneView:(UIView *)view
+{
+    if (!self.goneViews)
+    {
+        self.goneViews = [NSMutableArray arrayWithCapacity:1];
+    }
+    [self.goneViews addObject:view];
+    [self addSubview:view];
+}
+
+- (void)adjustTipLabel:(BOOL)tipBelowButton
+   withTipButtonMargin:(CGFloat)tipButtonMargin
+       withEndPosition:(NSArray<NSValue *> * _Nullable)endPositions
+      withButtonHeight:(CGFloat)buttonHeight
+{
+    CGRect frame = self.tipLabel.frame;
+    frame.origin.x = self.bounds.size.width / 2 - frame.size.width / 2;
+    if (tipBelowButton)
+    {
+        CGFloat maxY = CGFLOAT_MIN;
+        for (NSValue *value in endPositions)
+        {
+            maxY = MAX(maxY, [value CGPointValue].y);
+        }
+        frame.origin.y = maxY + buttonHeight / 2 + tipButtonMargin;
+    }
+    else
+    {
+        CGFloat minY = CGFLOAT_MAX;
+        for (NSValue *value in endPositions)
+        {
+            minY = MIN(minY, [value CGPointValue].y);
+        }
+        frame.origin.y = minY - buttonHeight / 2 - tipButtonMargin - frame.size.height;
+    }
+    self.tipLabel.frame = frame;
+    [self bringSubviewToFront:self.tipLabel];
 }
 
 - (void)setBlurBackground:(BOOL)blurBackground
@@ -122,7 +152,30 @@
     }
 }
 
+- (void)setTip:(NSString *)tip
+{
+    _tip = tip;
+    self.tipLabel.text = tip;
+    [self.tipLabel sizeToFit];
+    CGRect frame = self.tipLabel.frame;
+    frame.origin.x = self.bounds.size.width / 2 - frame.size.width / 2;
+    self.tipLabel.frame = frame;
+}
+
 #pragma mark - Private Methods
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame])
+    {
+        _tipLabel = [[UILabel alloc] init];
+        _tipLabel.text = _tip;
+        _tipLabel.textColor = [UIColor whiteColor];
+        _tipLabel.font = [UIFont systemFontOfSize:20];
+        [self addGoneView:_tipLabel];
+    }
+    return self;
+}
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
@@ -130,16 +183,6 @@
     {
         [self.delegate onBackgroundClick];
     }
-}
-
-- (NSArray<UIView *> *)goneViews
-{
-    NSMutableArray<UIView *> *goneViews = [self.subviews mutableCopy];
-    if ([UIVisualEffectView class])
-    {
-        [goneViews removeObject:self.visualEffectView];
-    }
-    return goneViews;
 }
 
 @end

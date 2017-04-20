@@ -26,7 +26,6 @@
 		37B862D51EA8C3AB00E53322 /* VHPiecePlaceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862B01EA8C3AB00E53322 /* VHPiecePlaceManager.m */; };
 		37B862D61EA8C3AB00E53322 /* VHBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862B31EA8C3AB00E53322 /* VHBackgroundView.m */; };
 		37B862D71EA8C3AB00E53322 /* VHBoomMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862B61EA8C3AB00E53322 /* VHBoomMenuButton.m */; };
-		37B862D81EA8C3AB00E53322 /* VHDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862BC1EA8C3AB00E53322 /* VHDefaults.m */; };
 		37B862D91EA8C3AB00E53322 /* VHErrorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862BE1EA8C3AB00E53322 /* VHErrorManager.m */; };
 		37B862DA1EA8C3AB00E53322 /* VHShareLinesLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862C01EA8C3AB00E53322 /* VHShareLinesLayer.m */; };
 		37B862DB1EA8C3AB00E53322 /* VHShareLinesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862C21EA8C3AB00E53322 /* VHShareLinesView.m */; };
@@ -74,7 +73,7 @@
 
 /* Begin PBXFileReference section */
 		0C4CE23E95B67860E303B2C1 /* Pods-VHBoomMenuButton.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VHBoomMenuButton.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VHBoomMenuButton/Pods-VHBoomMenuButton.debug.xcconfig"; sourceTree = "<group>"; };
-		3794BF1A1D4DEF4A005B9404 /* VHBoomMenuButtonExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VHBoomMenuButtonExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3794BF1A1D4DEF4A005B9404 /* VHBoomMenuButtonDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VHBoomMenuButtonDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37B862841EA8C3AB00E53322 /* VHAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHAnimationManager.h; sourceTree = "<group>"; };
 		37B862851EA8C3AB00E53322 /* VHAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHAnimationManager.m; sourceTree = "<group>"; };
 		37B862861EA8C3AB00E53322 /* VHBoomEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHBoomEnum.h; sourceTree = "<group>"; };
@@ -125,11 +124,8 @@
 		37B862B51EA8C3AB00E53322 /* VHBoomMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHBoomMenuButton.h; sourceTree = "<group>"; };
 		37B862B61EA8C3AB00E53322 /* VHBoomMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHBoomMenuButton.m; sourceTree = "<group>"; };
 		37B862B71EA8C3AB00E53322 /* VHBoomStateEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHBoomStateEnum.h; sourceTree = "<group>"; };
-		37B862B81EA8C3AB00E53322 /* VHButtonClickDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHButtonClickDelegate.h; sourceTree = "<group>"; };
 		37B862B91EA8C3AB00E53322 /* VHButtonEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHButtonEnum.h; sourceTree = "<group>"; };
 		37B862BA1EA8C3AB00E53322 /* VHButtonStateEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHButtonStateEnum.h; sourceTree = "<group>"; };
-		37B862BB1EA8C3AB00E53322 /* VHDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHDefaults.h; sourceTree = "<group>"; };
-		37B862BC1EA8C3AB00E53322 /* VHDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHDefaults.m; sourceTree = "<group>"; };
 		37B862BD1EA8C3AB00E53322 /* VHErrorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHErrorManager.h; sourceTree = "<group>"; };
 		37B862BE1EA8C3AB00E53322 /* VHErrorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHErrorManager.m; sourceTree = "<group>"; };
 		37B862BF1EA8C3AB00E53322 /* VHShareLinesLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHShareLinesLayer.h; sourceTree = "<group>"; };
@@ -236,7 +232,7 @@
 		3794BEE81D4DEC79005B9404 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3794BF1A1D4DEF4A005B9404 /* VHBoomMenuButtonExample.app */,
+				3794BF1A1D4DEF4A005B9404 /* VHBoomMenuButtonDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -316,18 +312,10 @@
 				37B862831EA8C3AB00E53322 /* Animation */,
 				37B8628B1EA8C3AB00E53322 /* BoomButton */,
 				37B862AB1EA8C3AB00E53322 /* Piece */,
-				37B862B11EA8C3AB00E53322 /* VHBackgroundClickDelegate.h */,
-				37B862B21EA8C3AB00E53322 /* VHBackgroundView.h */,
-				37B862B31EA8C3AB00E53322 /* VHBackgroundView.m */,
-				37B862B41EA8C3AB00E53322 /* VHBoomDelegate.h */,
 				37B862B51EA8C3AB00E53322 /* VHBoomMenuButton.h */,
 				37B862B61EA8C3AB00E53322 /* VHBoomMenuButton.m */,
-				37B862B71EA8C3AB00E53322 /* VHBoomStateEnum.h */,
-				37B862B81EA8C3AB00E53322 /* VHButtonClickDelegate.h */,
-				37B862B91EA8C3AB00E53322 /* VHButtonEnum.h */,
-				37B862BA1EA8C3AB00E53322 /* VHButtonStateEnum.h */,
-				37B862BB1EA8C3AB00E53322 /* VHDefaults.h */,
-				37B862BC1EA8C3AB00E53322 /* VHDefaults.m */,
+				37B862B21EA8C3AB00E53322 /* VHBackgroundView.h */,
+				37B862B31EA8C3AB00E53322 /* VHBackgroundView.m */,
 				37B862BD1EA8C3AB00E53322 /* VHErrorManager.h */,
 				37B862BE1EA8C3AB00E53322 /* VHErrorManager.m */,
 				37B862BF1EA8C3AB00E53322 /* VHShareLinesLayer.h */,
@@ -336,6 +324,11 @@
 				37B862C21EA8C3AB00E53322 /* VHShareLinesView.m */,
 				37B862C31EA8C3AB00E53322 /* VHUtils.h */,
 				37B862C41EA8C3AB00E53322 /* VHUtils.m */,
+				37B862B11EA8C3AB00E53322 /* VHBackgroundClickDelegate.h */,
+				37B862B41EA8C3AB00E53322 /* VHBoomDelegate.h */,
+				37B862B71EA8C3AB00E53322 /* VHBoomStateEnum.h */,
+				37B862B91EA8C3AB00E53322 /* VHButtonEnum.h */,
+				37B862BA1EA8C3AB00E53322 /* VHButtonStateEnum.h */,
 			);
 			name = VHBoomMenuButton;
 			path = ../VHBoomMenuButton;
@@ -440,9 +433,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3794BF191D4DEF4A005B9404 /* VHBoomMenuButtonExample */ = {
+		3794BF191D4DEF4A005B9404 /* VHBoomMenuButtonDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3794BF2E1D4DEF4A005B9404 /* Build configuration list for PBXNativeTarget "VHBoomMenuButtonExample" */;
+			buildConfigurationList = 3794BF2E1D4DEF4A005B9404 /* Build configuration list for PBXNativeTarget "VHBoomMenuButtonDemo" */;
 			buildPhases = (
 				3794BF161D4DEF4A005B9404 /* Sources */,
 				3794BF171D4DEF4A005B9404 /* Frameworks */,
@@ -452,9 +445,9 @@
 			);
 			dependencies = (
 			);
-			name = VHBoomMenuButtonExample;
+			name = VHBoomMenuButtonDemo;
 			productName = VHBoomMenuButtonExample;
-			productReference = 3794BF1A1D4DEF4A005B9404 /* VHBoomMenuButtonExample.app */;
+			productReference = 3794BF1A1D4DEF4A005B9404 /* VHBoomMenuButtonDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -473,7 +466,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3794BEE21D4DEC79005B9404 /* Build configuration list for PBXProject "VHBoomMenuButton" */;
+			buildConfigurationList = 3794BEE21D4DEC79005B9404 /* Build configuration list for PBXProject "VHBoomMenuButtonDemo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -486,7 +479,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3794BF191D4DEF4A005B9404 /* VHBoomMenuButtonExample */,
+				3794BF191D4DEF4A005B9404 /* VHBoomMenuButtonDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -548,7 +541,6 @@
 				37B862CC1EA8C3AB00E53322 /* VHHamButton.m in Sources */,
 				37B862F71EA8C73700E53322 /* BoomVC.m in Sources */,
 				37B863201EA8C83400E53322 /* ListenerVC.m in Sources */,
-				37B862D81EA8C3AB00E53322 /* VHDefaults.m in Sources */,
 				37B862CA1EA8C3AB00E53322 /* VHBoomButtonWithTextBuilder.m in Sources */,
 				37B862C81EA8C3AB00E53322 /* VHBoomButtonBuilder.m in Sources */,
 				37B862EB1EA8C6E600E53322 /* NavigationBarVC.m in Sources */,
@@ -612,7 +604,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -651,7 +643,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -668,7 +660,7 @@
 				DEVELOPMENT_TEAM = H7B6S6TRXA;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nightonke.VHBoomMenuButton;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nightonke.VHBoomMenuButtonDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -683,7 +675,7 @@
 				DEVELOPMENT_TEAM = H7B6S6TRXA;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nightonke.VHBoomMenuButton;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nightonke.VHBoomMenuButtonDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -692,7 +684,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3794BEE21D4DEC79005B9404 /* Build configuration list for PBXProject "VHBoomMenuButton" */ = {
+		3794BEE21D4DEC79005B9404 /* Build configuration list for PBXProject "VHBoomMenuButtonDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3794BEFC1D4DEC79005B9404 /* Debug */,
@@ -701,7 +693,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3794BF2E1D4DEF4A005B9404 /* Build configuration list for PBXNativeTarget "VHBoomMenuButtonExample" */ = {
+		3794BF2E1D4DEF4A005B9404 /* Build configuration list for PBXNativeTarget "VHBoomMenuButtonDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3794BF2F1D4DEF4A005B9404 /* Debug */,

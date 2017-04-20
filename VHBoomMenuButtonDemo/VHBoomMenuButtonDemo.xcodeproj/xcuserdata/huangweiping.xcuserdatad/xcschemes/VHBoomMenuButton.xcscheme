@@ -17,7 +17,7 @@
                BlueprintIdentifier = "3794BEE61D4DEC79005B9404"
                BuildableName = "VHBoomMenuButton.app"
                BlueprintName = "VHBoomMenuButton"
-               ReferencedContainer = "container:VHBoomMenuButton.xcodeproj">
+               ReferencedContainer = "container:VHBoomMenuButtonDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
             BlueprintIdentifier = "3794BEE61D4DEC79005B9404"
             BuildableName = "VHBoomMenuButton.app"
             BlueprintName = "VHBoomMenuButton"
-            ReferencedContainer = "container:VHBoomMenuButton.xcodeproj">
+            ReferencedContainer = "container:VHBoomMenuButtonDemo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -58,7 +58,7 @@
             BlueprintIdentifier = "3794BEE61D4DEC79005B9404"
             BuildableName = "VHBoomMenuButton.app"
             BlueprintName = "VHBoomMenuButton"
-            ReferencedContainer = "container:VHBoomMenuButton.xcodeproj">
+            ReferencedContainer = "container:VHBoomMenuButtonDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -77,7 +77,7 @@
             BlueprintIdentifier = "3794BEE61D4DEC79005B9404"
             BuildableName = "VHBoomMenuButton.app"
             BlueprintName = "VHBoomMenuButton"
-            ReferencedContainer = "container:VHBoomMenuButton.xcodeproj">
+            ReferencedContainer = "container:VHBoomMenuButtonDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

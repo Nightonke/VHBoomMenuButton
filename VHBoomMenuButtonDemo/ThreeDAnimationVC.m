@@ -38,6 +38,7 @@
     self.bmb1.draggable = YES;
     self.bmb1.edgeInsetsInSuperView = edgeInsets;
     self.bmb1.pieceCornerRadius = 1;
+    self.bmb1.tip = @"Hello";
     for (int i = 0; i < [VHBoomMenuButton pieceNumber:self.bmb1.piecePlaceEnum]; i++)
     {
         [self.bmb1 addBuilder:[BuilderManager squaresSimpleCircleButtonBuilder]];

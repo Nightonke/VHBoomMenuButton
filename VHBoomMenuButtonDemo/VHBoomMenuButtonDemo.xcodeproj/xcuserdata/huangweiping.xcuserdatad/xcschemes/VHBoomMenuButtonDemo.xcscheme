@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3794BF191D4DEF4A005B9404"
-               BuildableName = "VHBoomMenuButtonExample.app"
-               BlueprintName = "VHBoomMenuButtonExample"
-               ReferencedContainer = "container:VHBoomMenuButton.xcodeproj">
+               BuildableName = "VHBoomMenuButtonDemo.app"
+               BlueprintName = "VHBoomMenuButtonDemo"
+               ReferencedContainer = "container:VHBoomMenuButtonDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3794BF191D4DEF4A005B9404"
-            BuildableName = "VHBoomMenuButtonExample.app"
-            BlueprintName = "VHBoomMenuButtonExample"
-            ReferencedContainer = "container:VHBoomMenuButton.xcodeproj">
+            BuildableName = "VHBoomMenuButtonDemo.app"
+            BlueprintName = "VHBoomMenuButtonDemo"
+            ReferencedContainer = "container:VHBoomMenuButtonDemo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3794BF191D4DEF4A005B9404"
-            BuildableName = "VHBoomMenuButtonExample.app"
-            BlueprintName = "VHBoomMenuButtonExample"
-            ReferencedContainer = "container:VHBoomMenuButton.xcodeproj">
+            BuildableName = "VHBoomMenuButtonDemo.app"
+            BlueprintName = "VHBoomMenuButtonDemo"
+            ReferencedContainer = "container:VHBoomMenuButtonDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3794BF191D4DEF4A005B9404"
-            BuildableName = "VHBoomMenuButtonExample.app"
-            BlueprintName = "VHBoomMenuButtonExample"
-            ReferencedContainer = "container:VHBoomMenuButton.xcodeproj">
+            BuildableName = "VHBoomMenuButtonDemo.app"
+            BlueprintName = "VHBoomMenuButtonDemo"
+            ReferencedContainer = "container:VHBoomMenuButtonDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

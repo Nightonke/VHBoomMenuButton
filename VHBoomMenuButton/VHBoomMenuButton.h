@@ -71,6 +71,8 @@ IB_DESIGNABLE
 @property (nonatomic, strong)UIBlurEffect *blurEffect NS_AVAILABLE_IOS(8_0);
 @property (nonatomic, strong)IBInspectable UIColor *dimColor;
 @property (nonatomic, strong)IBInspectable NSString *tip;
+@property (nonatomic, assign)IBInspectable BOOL tipBelowButtons;
+@property (nonatomic, assign)IBInspectable CGFloat tipButtonMargin;
 
 #pragma mark - Animation
 
