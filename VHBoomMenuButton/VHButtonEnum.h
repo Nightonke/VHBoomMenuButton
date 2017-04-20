@@ -2,8 +2,8 @@
 //  VHButtonEnum.h
 //  VHBoomMenuExample
 //
-//  Created by 黄伟平 on 16/7/28.
-//  Copyright © 2016年 黄伟平. All rights reserved.
+//  Created by Nightonke on 16/7/28.
+//  Copyright © 2016年 Nightonke. All rights reserved.
 //
 
 #ifndef VHButtonEnum_h
@@ -15,7 +15,8 @@ typedef NS_ENUM(NSUInteger, VHButtonEnum)
     VHButtonTextInsideCircle  = 1,
     VHButtonTextOutsideCircle = 2,
     VHButtonHam               = 3,
-    VHUNKNOWN                 = 100,
+    
+    VHButtonUnknown           = -1,
 };
 
 #endif /* VHButtonEnum_h */

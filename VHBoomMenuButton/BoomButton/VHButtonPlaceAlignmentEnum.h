@@ -2,8 +2,8 @@
 //  VHButtonPlaceAlignmentEnum.h
 //  VHBoomMenuButton
 //
-//  Created by 黄伟平 on 16/8/1.
-//  Copyright © 2016年 黄伟平. All rights reserved.
+//  Created by Nightonke on 16/8/1.
+//  Copyright © 2016年 Nightonke. All rights reserved.
 //
 
 #ifndef VHButtonPlaceAlignmentEnum_h

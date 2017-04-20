@@ -2,23 +2,182 @@
 //  VHEase.m
 //  VHMediaTimingFunction
 //
-//  Created by 黄伟平 on 16/7/22.
-//  Copyright © 2016年 黄伟平. All rights reserved.
+//  Created by Nightonke on 16/7/22.
+//  Copyright © 2016年 Nightonke. All rights reserved.
 //
 
 #import "VHEase.h"
 
+NSString *const VHEaseLinear = @"VHEaseLinear";
+
+NSString *const VHEaseInSine = @"VHEaseInSine";
+NSString *const VHEaseOutSine = @"VHEaseOutSine";
+NSString *const VHEaseInOutSine = @"VHEaseInOutSine";
+
+NSString *const VHEaseInQuad = @"VHEaseInQuad";
+NSString *const VHEaseOutQuad = @"VHEaseOutQuad";
+NSString *const VHEaseInOutQuad = @"VHEaseInOutQuad";
+
+NSString *const VHEaseInCubic = @"VHEaseInCubic";
+NSString *const VHEaseOutCubic = @"VHEaseOutCubic";
+NSString *const VHEaseInOutCubic = @"VHEaseInOutCubic";
+
+NSString *const VHEaseInQuart = @"VHEaseInQuart";
+NSString *const VHEaseOutQuart = @"VHEaseOutQuart";
+NSString *const VHEaseInOutQuart = @"VHEaseInOutQuart";
+
+NSString *const VHEaseInQuint = @"VHEaseInQuint";
+NSString *const VHEaseOutQuint = @"VHEaseOutQuint";
+NSString *const VHEaseInOutQuint = @"VHEaseInOutQuint";
+
+NSString *const VHEaseInCirc = @"VHEaseInCirc";
+NSString *const VHEaseOutCirc = @"VHEaseOutCirc";
+NSString *const VHEaseInOutCirc = @"VHEaseInOutCirc";
+
+NSString *const VHEaseInExpo = @"VHEaseInExpo";
+NSString *const VHEaseOutExpo = @"VHEaseOutExpo";
+NSString *const VHEaseInOutExpo = @"VHEaseInOutExpo";
+
+NSString *const VHEaseInBack = @"VHEaseInBack";
+NSString *const VHEaseOutBack = @"VHEaseOutBack";
+NSString *const VHEaseInOutBack = @"VHEaseInOutBack";
+
+NSString *const VHEaseInElastic = @"VHEaseInElastic";
+NSString *const VHEaseOutElastic = @"VHEaseOutElastic";
+NSString *const VHEaseInOutElastic = @"VHEaseInOutElastic";
+
+NSString *const VHEaseInBounce = @"VHEaseInBounce";
+NSString *const VHEaseOutBounce = @"VHEaseOutBounce";
+NSString *const VHEaseInOutBounce = @"VHEaseInOutBounce";
+
+static NSMutableDictionary<NSString *, VHEase *> *eases;
+
 @interface VHEase ()
 
-@property (nonatomic) CGPoint start;
-@property (nonatomic) CGPoint end;
-@property (nonatomic) CGPoint a;
-@property (nonatomic) CGPoint b;
-@property (nonatomic) CGPoint c;
+@property (nonatomic, assign) CGPoint start;
+@property (nonatomic, assign) CGPoint end;
+@property (nonatomic, assign) CGPoint a;
+@property (nonatomic, assign) CGPoint b;
+@property (nonatomic, assign) CGPoint c;
+@property (nonatomic, assign) BOOL ableToDefineWithControlPoints;
+@property (nonatomic, strong) NSString *name;
 
 @end
 
 @implementation VHEase
+
+#pragma mark - Public Methods
+
++ (instancetype)easeWithName:(NSString *)name
+{
+    if (!eases) eases = [NSMutableDictionary dictionary];
+    VHEase *ease = [eases objectForKey:name];
+    if (!ease)
+    {
+        ease = [VHEase innerEaseWithName:name];
+        [eases setObject:ease forKey:name];
+    }
+    return ease;
+}
+
+#pragma mark - Private Methods
+
++ (instancetype)innerEaseWithName:(NSString *)name
+{
+    if ([name isEqualToString:VHEaseLinear])
+    {
+        return [[VHEase alloc] initWithStartX:0.000 startY:0.000 endX:1.000 endY:1.000];
+    }
+    else if ([name isEqualToString:VHEaseInSine])
+    {
+        return [[VHEase alloc] initWithStartX:0.470 startY:0.000 endX:0.745 endY:0.715];
+    }
+    else if ([name isEqualToString:VHEaseOutSine])
+    {
+        return [[VHEase alloc] initWithStartX:0.390 startY:0.575 endX:0.565 endY:1.000];
+    }
+    else if ([name isEqualToString:VHEaseInOutSine])
+    {
+        return [[VHEase alloc] initWithStartX:0.445 startY:0.050 endX:0.550 endY:0.950];
+    }
+    else if ([name isEqualToString:VHEaseInOutQuad])
+    {
+        return [[VHEase alloc] initWithStartX:0.455 startY:0.030 endX:0.515 endY:0.955];
+    }
+    else if ([name isEqualToString:VHEaseInCubic])
+    {
+        return [[VHEase alloc] initWithStartX:0.550 startY:0.055 endX:0.675 endY:0.190];
+    }
+    else if ([name isEqualToString:VHEaseOutCubic])
+    {
+        return [[VHEase alloc] initWithStartX:0.215 startY:0.610 endX:0.355 endY:1.000];
+    }
+    else if ([name isEqualToString:VHEaseInOutCubic])
+    {
+        return [[VHEase alloc] initWithStartX:0.645 startY:0.045 endX:0.335 endY:1.000];
+    }
+    else if ([name isEqualToString:VHEaseInQuart])
+    {
+        return [[VHEase alloc] initWithStartX:0.895 startY:0.030 endX:0.685 endY:0.220];
+    }
+    else if ([name isEqualToString:VHEaseOutQuart])
+    {
+        return [[VHEase alloc] initWithStartX:0.165 startY:0.840 endX:0.440 endY:1.000];
+    }
+    else if ([name isEqualToString:VHEaseInOutQuart])
+    {
+        return [[VHEase alloc] initWithStartX:0.770 startY:0.000 endX:0.175 endY:1.000];
+    }
+    else if ([name isEqualToString:VHEaseInQuint])
+    {
+        return [[VHEase alloc] initWithStartX:0.755 startY:0.050 endX:0.855 endY:0.060];
+    }
+    else if ([name isEqualToString:VHEaseOutQuint])
+    {
+        return [[VHEase alloc] initWithStartX:0.230 startY:1.000 endX:0.320 endY:1.000];
+    }
+    else if ([name isEqualToString:VHEaseInOutQuint])
+    {
+        return [[VHEase alloc] initWithStartX:0.860 startY:0.000 endX:0.070 endY:1.000];
+    }
+    else if ([name isEqualToString:VHEaseInCirc])
+    {
+        return [[VHEase alloc] initWithStartX:0.600 startY:0.040 endX:0.980 endY:0.335];
+    }
+    else if ([name isEqualToString:VHEaseOutCirc])
+    {
+        return [[VHEase alloc] initWithStartX:0.075 startY:0.820 endX:0.165 endY:1.000];
+    }
+    else if ([name isEqualToString:VHEaseInOutCirc])
+    {
+        return [[VHEase alloc] initWithStartX:0.785 startY:0.135 endX:0.150 endY:0.860];
+    }
+    else if ([name isEqualToString:VHEaseInExpo])
+    {
+        return [[VHEase alloc] initWithStartX:0.950 startY:0.050 endX:0.795 endY:0.035];
+    }
+    else if ([name isEqualToString:VHEaseOutExpo])
+    {
+        return [[VHEase alloc] initWithStartX:0.190 startY:1.000 endX:0.220 endY:1.000];
+    }
+    else if ([name isEqualToString:VHEaseInOutExpo])
+    {
+        return [[VHEase alloc] initWithStartX:1.000 startY:0.000 endX:0.000 endY:1.000];
+    }
+    else if ([name isEqualToString:VHEaseInBack])
+    {
+        return [[VHEase alloc] initWithStartX:0.600 startY:-0.20 endX:0.735 endY:0.045];
+    }
+    else if ([name isEqualToString:VHEaseOutBack])
+    {
+        return [[VHEase alloc] initWithStartX:0.174 startY:0.885 endX:0.320 endY:1.275];
+    }
+    else if ([name isEqualToString:VHEaseInOutBack])
+    {
+        return [[VHEase alloc] initWithStartX:0.680 startY:-0.55 endX:0.265 endY:1.550];
+    }
+    else return [[VHEase alloc] initWithName:name];
+}
 
 - (instancetype)initWithStartX:(CGFloat)startX startY:(CGFloat)startY endX:(CGFloat)endX endY:(CGFloat)endY
 {
@@ -32,14 +191,14 @@
     return self;
 }
 
-- (instancetype)initWithEnum:(VHEaseEnum)vhEaseEnum
+- (instancetype)initWithName:(NSString *)name
 {
     self.ableToDefineWithControlPoints = NO;
-    self.vhEaseEnum = vhEaseEnum;
+    self.name = name;
     return self;
 }
 
-- (CGFloat)offset:(CGFloat)offset
+- (CGFloat)interpolation:(CGFloat)offset
 {
     if (self.ableToDefineWithControlPoints)
     {
@@ -47,35 +206,44 @@
     }
     else
     {
-        switch (self.vhEaseEnum) {
-            case VHEaseInBounce:
-                return [self easeInBounceOffset:offset];
-                break;
-            case VHEaseInElastic:
-                return [self easeInElasticOffset:offset];
-                break;
-            case VHEaseOutBounce:
-                return [self easeOutBounceOffset:offset];
-                break;
-            case VHEaseOutElastic:
-                return [self easeOutElasticOffset:offset];
-                break;
-            case VHEaseInOutBounce:
-                return [self easeInOutBounceOffset:offset];
-                break;
-            case VHEaseInOutElastic:
-                return [self easeInOutElasticOffset:offset];
-                break;
-            default:
-                NSAssert(YES, @"There are no VHEaseEnum to match the given one!");
-                return 0;
-                break;
+        if ([self.name isEqualToString:VHEaseInElastic])
+        {
+            return [self easeInElasticOffset:offset];
+        }
+        else if ([self.name isEqualToString:VHEaseInBounce])
+        {
+            return [self easeInBounceOffset:offset];
+        }
+        else if ([self.name isEqualToString:VHEaseOutElastic])
+        {
+            return [self easeOutElasticOffset:offset];
+        }
+        else if ([self.name isEqualToString:VHEaseOutBounce])
+        {
+            return [self easeOutBounceOffset:offset];
+        }
+        else if ([self.name isEqualToString:VHEaseInOutElastic])
+        {
+            return [self easeInOutElasticOffset:offset];
+        }
+        else if ([self.name isEqualToString:VHEaseInOutBounce])
+        {
+            return [self easeInOutBounceOffset:offset];
+        }
+        else
+        {
+            NSAssert(YES, @"Unknown ease name");
+            return offset;
         }
     }
 }
 
 - (CGFloat)getBezierCoordinateY:(CGFloat)time
 {
+    if (self.start.x == 0 && self.start.y == 0 && self.end.x == 1 && self.end.y == 1)
+    {
+        return time;
+    }
     self.c = CGPointMake(self.c.x, 3 * self.start.y);
     self.b = CGPointMake(self.b.x, 3 * (self.end.y - self.start.y) - self.c.y);
     self.a = CGPointMake(self.a.x, 1 - self.c.y - self.b.y);

@@ -2,47 +2,47 @@
 //  VHHamButtonBuilder.h
 //  VHBoomMenuButton
 //
-//  Created by 黄伟平 on 16/8/7.
-//  Copyright © 2016年 黄伟平. All rights reserved.
+//  Created by Nightonke on 16/8/7.
+//  Copyright © 2016年 Nightonke. All rights reserved.
 //
 
-#import "VHBoomButtonBuilder.h"
-#import "VHHamButton.h"
+#import "VHBoomButtonWithTextBuilder.h"
 
-@interface VHHamButtonBuilder : VHBoomButtonBuilder
+@interface VHHamButtonBuilder : VHBoomButtonWithTextBuilder
 
-@property (nonatomic, assign) CGFloat         shadowWidth;
-@property (nonatomic, assign) CGFloat         shadowHeight;
-@property (nonatomic, assign) CGFloat         shadowCornerRadius;
+#pragma mark - Button
 
-@property (nonatomic, assign) CGFloat         buttonWidth;
-@property (nonatomic, assign) CGFloat         buttonHeight;
-@property (nonatomic, assign) CGFloat         buttonCornerRadius;
+@property (nonatomic, assign) CGFloat width;
+@property (nonatomic, assign) CGFloat height;
 
-@property (nonatomic, strong) UIColor         *titleNormalColor;
-@property (nonatomic, strong) UIColor         *titlePressedColor;
-@property (nonatomic, strong) UIColor         *subTitleNormalColor;
-@property (nonatomic, strong) UIColor         *subTitlePressedColor;
+#pragma mark - Sub Text
 
-@property (nonatomic, assign) CGRect          titleFrame;
-@property (nonatomic, copy  ) NSString        *titleContent;
-@property (nonatomic, strong) UIFont          *titleFont;
-@property (nonatomic, assign) NSLineBreakMode titleLineBreakMode;
-@property (nonatomic, assign) int             titlelines;
-@property (nonatomic, assign) NSTextAlignment titleAlignment;
+@property (nonatomic, assign) BOOL containsSubText;
 
-@property (nonatomic, assign) CGRect          subTitleFrame;
-@property (nonatomic, copy  ) NSString        *subTitleContent;
-@property (nonatomic, strong) UIFont          *subTitleFont;
-@property (nonatomic, assign) NSLineBreakMode subTitleLineBreakMode;
-@property (nonatomic, assign) int             subTitlelines;
-@property (nonatomic, assign) NSTextAlignment subTitleAlignment;
+@property (nonatomic, copy) NSString *normalSubText;
+@property (nonatomic, copy) NSString *highlightedSubText;
+@property (nonatomic, copy) NSString *unableSubText;
 
-@property (nonatomic, assign) BOOL            rotateImage;
-@property (nonatomic, assign) BOOL            containImage;
+@property (nonatomic, copy) NSAttributedString *normalAttributedSubText;
+@property (nonatomic, copy) NSAttributedString *highlightedAttributedSubText;
+@property (nonatomic, copy) NSAttributedString *unableAttributedSubText;
 
-- (instancetype)init;
+@property (nonatomic, strong) UIColor *normalSubTextColor;
+@property (nonatomic, strong) UIColor *highlightedSubTextColor;
+@property (nonatomic, strong) UIColor *unableSubTextColor;
 
-- (VHHamButton *)createButton;
+@property (nonatomic, assign) CGRect subTextFrame;
+@property (nonatomic, strong) UIFont *subTextFont;
+@property (nonatomic, assign) NSTextAlignment subTextAlignment;
+@property (nonatomic, assign) NSLineBreakMode subTextLineBreakMode;
+@property (nonatomic, assign) int subTextLines;
+
+@property (nonatomic, strong) UIColor *subTextShadowColor;
+@property (nonatomic, assign) CGFloat subTextShadowOffsetX;
+@property (nonatomic, assign) CGFloat subTextShadowOffsetY;
+
+#pragma mark - Public Methods
+
++ (VHHamButtonBuilder *)builder;
 
 @end

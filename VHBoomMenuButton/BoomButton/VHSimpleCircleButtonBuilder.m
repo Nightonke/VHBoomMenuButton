@@ -2,49 +2,99 @@
 //  VHSimpleCircleButtonInfo.m
 //  VHBoomMenuExample
 //
-//  Created by 黄伟平 on 16/7/31.
-//  Copyright © 2016年 黄伟平. All rights reserved.
+//  Created by Nightonke on 16/7/31.
+//  Copyright © 2016年 Nightonke. All rights reserved.
 //
 
 #import "VHSimpleCircleButtonBuilder.h"
+#import "VHSimpleCircleButton.h"
+#import "VHBoomButton_protected.h"
+#import "VHBoomButtonBuilder_protected.h"
 
 @implementation VHSimpleCircleButtonBuilder
+
+#pragma mark - Private Methods
 
 - (instancetype)init
 {
     if (self = [super init])
     {
-        self.buttonNormalColor     = DEFAULT_SIMPLE_CIRCLE_BUTTON_NORMAL_COLOR;
-        self.buttonPressedColor    = DEFAULT_SIMPLE_CIRCLE_BUTTON_PRESSED_COLOR;
-        self.imageNormalTintColor  = nil;
-        self.imagePressedTintColor = nil;
-        self.imageFrame            = CGRectNull;
-        self.buttonRadius          = DEFAULT_SIMPLE_CIRCLE_BUTTON_RADIUS;
-        self.shadowRadius          = DEFAULT_SIMPLE_CIRCLE_BUTTON_RADIUS + DEFAULT_SIMPLE_CIRCLE_BUTTON_SHADOW_WIDTH;
-        self.shadowOffset          = CGSizeMake(DEFAULT_SIMPLE_CIRCLE_BUTTON_SHADOW_OFFSET_X, DEFAULT_SIMPLE_CIRCLE_BUTTON_SHADOW_OFFSET_Y);
-        self.shadowOpacity         = DEFAULT_SIMPLE_CIRCLE_BUTTON_SHADOW_OPACITY;
-        self.shadowColor           = DEFAULT_SIMPLE_CIRCLE_BUTTON_SHADOW_COLOR;
-        self.index                 = -1;
+        _radius = 40;
+        _round = YES;
+        
+        self.shadowPathRect = CGRectMake(2, 2, _radius * 2 - 4, _radius * 2 - 4);
     }
     return self;
 }
 
-- (VHSimpleCircleButton *)createButton
+#pragma mark - Public Methods
+
++ (VHSimpleCircleButtonBuilder *)builder
 {
-    return [[VHSimpleCircleButton alloc] initWithImage:self.imageNormal
-                                          pressedImage:self.imagePressed
-                                           normalColor:self.buttonNormalColor
-                                          pressedColor:self.buttonPressedColor
-                                  imageNormalTintColor:self.imageNormalTintColor
-                                 imagePressedTintColor:self.imagePressedTintColor
-                                            imageFrame:self.imageFrame
-                                          buttonRadius:self.buttonRadius
-                                          shadowRadius:self.shadowRadius
-                                          shadowOffset:self.shadowOffset
-                                         shadowOpacity:self.shadowOpacity
-                                           shadowColor:self.shadowColor
-                                          withDelegate:self.delegate
-                                                    at:self.index];
+    return [[VHSimpleCircleButtonBuilder alloc] init];
+}
+
+#pragma mark - In-BMB-Only Methods
+
+- (VHSimpleCircleButton *)innerBuild
+{
+    VHSimpleCircleButton *button = [[VHSimpleCircleButton alloc] initWithBuilder:self];
+    self.button = button;
+    return button;
+}
+
+- (VHButtonEnum)innerType
+{
+    return VHButtonSimpleCircle;
+}
+
+#pragma mark - Setters
+
+- (void)setRadius:(CGFloat)radius
+{
+    if (_radius == radius)
+    {
+        return;
+    }
+    self.button.rotateAnchorPointInitialized = NO;
+    self.button.radius = _radius = radius;
+    [self.button innerSetButtonLayer];
+    [self.button innerSetShadow];
+    if (self.button.lastStateEnum == VHButtonStateNormal)
+    {
+        [self.button innerToNormalButton];
+    }
+    else if (self.button.lastStateEnum == VHButtonStateHighlighted)
+    {
+        [self.button innerToHighlightedButton];
+    }
+    else if (self.button.lastStateEnum == VHButtonStateUnable)
+    {
+        [self.button innerToUnableButton];
+    }
+}
+
+- (void)setRound:(BOOL)round
+{
+    if (_round == round)
+    {
+        return;
+    }
+    self.button.round = _round = round;
+    [self.button innerSetButtonLayer];
+    [self.button innerSetShadow];
+    if (self.button.lastStateEnum == VHButtonStateNormal)
+    {
+        [self.button innerToNormalButton];
+    }
+    else if (self.button.lastStateEnum == VHButtonStateHighlighted)
+    {
+        [self.button innerToHighlightedButton];
+    }
+    else if (self.button.lastStateEnum == VHButtonStateUnable)
+    {
+        [self.button innerToUnableButton];
+    }
 }
 
 @end

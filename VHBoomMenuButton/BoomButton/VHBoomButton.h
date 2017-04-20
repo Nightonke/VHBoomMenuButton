@@ -2,39 +2,117 @@
 //  VHBoomButton.h
 //  VHBoomMenuExample
 //
-//  Created by 黄伟平 on 16/7/29.
-//  Copyright © 2016年 黄伟平. All rights reserved.
+//  Created by Nightonke on 16/7/29.
+//  Copyright © 2016年 Nightonke. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "VHButtonEnum.h"
-#import "VHButtonClickDelegate.h"
+
+@class VHBoomButtonBuilder;
 
 @interface VHBoomButton : UIView
 
-@property (nonatomic, assign) CGSize                shadowOffset;
-@property (nonatomic, assign) CGFloat               shadowOpacity;
-@property (nonatomic, strong) UIColor               *shadowColor;
+#pragma mark - In-BMB-Only Methods
 
-@property (nonatomic, copy  ) NSString              *imageNormal;
-@property (nonatomic, copy  ) NSString              *imagePressed;
-@property (nonatomic, strong) UIColor               *buttonNormalColor;
-@property (nonatomic, strong) UIColor               *buttonPressedColor;
-@property (nonatomic, strong) UIColor               *imageNormalTintColor;
-@property (nonatomic, strong) UIColor               *imagePressedTintColor;
+- (instancetype)initWithBuilder:(VHBoomButtonBuilder *)builder;
 
-@property (nonatomic, strong) UIImage               *imageNormalContent;
-@property (nonatomic, strong) UIImage               *imagePressedContent;
+- (void)willShow;
 
-@property (nonatomic, assign) CGRect                imageFrame;
+- (void)didShow;
 
-@property (nonatomic, assign) int                   index;
+- (void)willHide;
 
-@property (nonatomic, weak  ) id<VHButtonClickDelegate> delegate;
+- (void)didHide;
+
+- (void)clearListener;
+
+- (BOOL)innerNeedsColorAnimation;
+
+- (CAShapeLayer *)innerButtonLayer;
+
+- (UIColor *)innerPieceColor;
+
+- (UIColor *)innerButtonColor;
+
+- (void)innerStopAnimations;
+
+- (void)innerVisibleAllGoneViews;
+
+- (void)innerHiddenAllGoneViews;
+
+#pragma mark Setters
+
+- (void)innerSetImageView;
+
+- (void)innerSetLabel;
+
+- (void)innerSetSubLabel;
+
+- (void)innerSetButtonLayer;
+
+- (void)innerSetShadow;
+
+- (void)innerSetNormalImage:(VHBoomButtonBuilder *)builder;
+
+- (void)innerSetHighlightedImage:(VHBoomButtonBuilder *)builder;
+
+- (void)innerSetUnableImage:(VHBoomButtonBuilder *)builder;
+
+#pragma mark States
+
+- (void)innerToNormalButton;
+
+- (void)innerToHighlightedButton;
+
+- (void)innerToUnableButton;
+
+- (void)innerToNormalImage;
+
+- (void)innerToHighlightedImage;
+
+- (void)innerToUnableImage;
+
+- (void)innerToNormalText;
+
+- (void)innerToHighlightedText;
+
+- (void)innerToUnableText;
+
+- (void)innerToNormalSubText;
+
+- (void)innerToHighlightedSubText;
+
+- (void)innerToUnableSubText;
+
+#pragma mark - Abstract Methods
 
 - (VHButtonEnum)type;
-- (NSMutableArray<UIView *> *)goneViews;
-- (NSMutableArray<UIView *> *)rotateViews;
-- (CGPoint)rotateAnchorPoint;
+
+- (NSArray<UIView *> *)goneViews;
+
+- (NSArray<UIView *> *)rotateViews;
+
+- (CGFloat)trueWidth;
+
+- (CGFloat)trueHeight;
+
+- (CGFloat)contentWidth;
+
+- (CGFloat)contentHeight;
+
+- (void)toNormal;
+
+- (void)toHighlighted;
+
+- (void)toUnable;
+
+- (void)setRotateAnchorPoints;
+
+- (void)setSelfScaleAnchorPoint;
+
+- (void)setAnchorPointOfLayer;
+
+- (CGPoint)centerPoint;
 
 @end

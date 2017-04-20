@@ -2,20 +2,17 @@
 //  VHButtonPlaceManager.h
 //  VHBoomMenuExample
 //
-//  Created by 黄伟平 on 16/7/29.
-//  Copyright © 2016年 黄伟平. All rights reserved.
+//  Created by Nightonke on 16/7/29.
+//  Copyright © 2016年 Nightonke. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "VHButtonPlaceEnum.h"
 #import "VHButtonPlaceAlignmentEnum.h"
-#import "VHDot.h"
 
 @interface VHButtonPlaceManager : NSObject
 
-+ (instancetype)sharedManager;
-
-- (NSMutableArray<NSValue *> *)positionsWithEnum:(VHButtonPlaceEnum)placeEnum
++ (NSMutableArray<NSValue *> *)positionsWithEnum:(VHButtonPlaceEnum)placeEnum
                                    withAlignment:(VHButtonPlaceAlignmentEnum)alignmentEnum
                                  withParentFrame:(CGRect)frame
                                  withButtonWidth:(CGFloat)width
@@ -29,7 +26,7 @@
                             withButtonLeftMargin:(CGFloat)buttonLeftMargin
                            withButtonRightMargin:(CGFloat)buttonRightMargin;
 
-- (NSMutableArray<NSValue *> *)positionsWithEnum:(VHButtonPlaceEnum)placeEnum
++ (NSMutableArray<NSValue *> *)positionsWithEnum:(VHButtonPlaceEnum)placeEnum
                                    withAlignment:(VHButtonPlaceAlignmentEnum)alignmentEnum
                                  withParentFrame:(CGRect)frame
                                 withButtonRadius:(CGFloat)radius
@@ -42,7 +39,7 @@
                             withButtonLeftMargin:(CGFloat)buttonLeftMargin
                            withButtonRightMargin:(CGFloat)buttonRightMargin;
 
-- (NSMutableArray<NSValue *> *)positionsForHamWithEnum:(VHButtonPlaceEnum)placeEnum
++ (NSMutableArray<NSValue *> *)positionsForHamWithEnum:(VHButtonPlaceEnum)placeEnum
                                          withAlignment:(VHButtonPlaceAlignmentEnum)alignmentEnum
                                        withParentFrame:(CGRect)frame
                                        withButtonWidth:(CGFloat)width
@@ -57,6 +54,6 @@
                            withLastButtonMarginMoreTop:(BOOL)lastButtonMarginMoreTop
                                withLastButtonTopMargin:(CGFloat)lastButtonTopMargin;
 
-- (NSInteger)numbersWithEnum:(VHButtonPlaceEnum)placeEnum;
++ (NSInteger)buttonNumber:(VHButtonPlaceEnum)placeEnum;
 
 @end

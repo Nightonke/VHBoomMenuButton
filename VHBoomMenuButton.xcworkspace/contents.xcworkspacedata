@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:VHBoomMenuButton.xcodeproj">
+      location = "group:VHBoomMenuButtonExample/VHBoomMenuButton.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

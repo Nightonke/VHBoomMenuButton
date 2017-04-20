@@ -2,8 +2,8 @@
 //  VHErrorManager.m
 //  VHBoomMenuButton
 //
-//  Created by 黄伟平 on 16/8/2.
-//  Copyright © 2016年 黄伟平. All rights reserved.
+//  Created by Nightonke on 16/8/2.
+//  Copyright © 2016年 Nightonke. All rights reserved.
 //
 
 #import "VHErrorManager.h"
@@ -44,13 +44,13 @@
 
 - (void)errorJudgeWithPiecePlaceEnum:(VHPiecePlaceEnum)pieceEnum andButtonPlaceEnum:(VHButtonPlaceEnum)buttonEnum
 {
-    long pieceNumber = [[VHPiecePlaceManager sharedManager] numbersWithEnum:pieceEnum];
-    long buttonNumber = [[VHButtonPlaceManager sharedManager] numbersWithEnum:buttonEnum];
+    long pieceNumber = [VHPiecePlaceManager pieceNumber:pieceEnum];
+    long buttonNumber = [VHButtonPlaceManager buttonNumber:buttonEnum];
     if (buttonNumber == LONG_MAX)
     {
         return;
     }
-    if (pieceNumber != buttonNumber)
+    if (pieceEnum != VHPiecePlaceShare && pieceNumber != buttonNumber)
     {
         NSAssert(NO, @"The number of pieces(%ld) is not equal to buttons'(%ld)! Please check the @piecePlaceEnum and @buttonPlaceEnum of BMB!", pieceNumber, buttonNumber);
     }

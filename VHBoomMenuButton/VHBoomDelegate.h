@@ -2,20 +2,23 @@
 //  VHBoomClickDelegate.h
 //  VHBoomMenuExample
 //
-//  Created by 黄伟平 on 16/7/31.
-//  Copyright © 2016年 黄伟平. All rights reserved.
+//  Created by Nightonke on 16/7/31.
+//  Copyright © 2016年 Nightonke. All rights reserved.
 //
+
+#import "VHBoomButton.h"
 
 @protocol VHBoomDelegate <NSObject>
 
 @optional
 
 /**
- *  When one of the sub button was clicked.
- *
- *  @param index Index of the clicked sub button.
+ When one of the sub button was clicked.
+
+ @param boomButton The Clicked BoomButton
+ @param index Index of the clicked sub button
  */
-- (void)onBoomClicked:(int)index;
+- (void)onBoomButton:(VHBoomButton *)boomButton clickedAt:(int)index;
 
 /**
  *  When the background was clicked.

@@ -2,156 +2,146 @@
 //  VHBoomMenuButton.h
 //  VHBoomMenuExample
 //
-//  Created by 黄伟平 on 16/7/28.
-//  Copyright © 2016年 黄伟平. All rights reserved.
+//  Created by Nightonke on 16/7/28.
+//  Copyright © 2016年 Nightonke. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-#import "VHBackgroundClickDelegate.h"
-#import "VHBackgroundView.h"
-#import "VHBoomDelegate.h"
-#import "VHButtonClickDelegate.h"
 #import "VHButtonEnum.h"
-#import "VHDefaults.h"
-#import "VHUtils.h"
-#import "VHErrorManager.h"
-
-#import "VHAnimationManager.h"
-#import "VHBoomEnum.h"
-#import "VHEase.h"
-#import "VHEaseEnum.h"
-#import "VHEaseManager.h"
+#import "VHBoomDelegate.h"
 #import "VHOrderEnum.h"
-
-#import "VHButtonPlaceManager.h"
+#import "VHBoomEnum.h"
+#import "VHPiecePlaceEnum.h"
 #import "VHButtonPlaceEnum.h"
 #import "VHButtonPlaceAlignmentEnum.h"
-#import "VHBoomButton.h"
 #import "VHBoomButtonBuilder.h"
-#import "VHSimpleCircleButton.h"
 #import "VHSimpleCircleButtonBuilder.h"
-#import "VHTextInsideCircleButton.h"
 #import "VHTextInsideCircleButtonBuilder.h"
-#import "VHTextOutsideCircleButton.h"
 #import "VHTextOutsideCircleButtonBuilder.h"
-#import "VHHamButton.h"
 #import "VHHamButtonBuilder.h"
+#import "VHEase.h"
 
-#import "VHBoomPiece.h"
-#import "VHDot.h"
-#import "VHHam.h"
-#import "VHPiecePlaceEnum.h"
-#import "VHPiecePlaceManager.h"
+IB_DESIGNABLE
+@interface VHBoomMenuButton : UIView
 
-@interface VHBoomMenuButton : UIView<VHButtonClickDelegate, VHBackgroundClickDelegate>
+#pragma mark - Basic
 
-@property (nonatomic, assign) CGFloat                    shadowRadius;// BMB's shadow radius
-@property (nonatomic, assign) CGSize                     shadowOffset;// BMB's shadow offset relative to itself
-@property (nonatomic, assign) CGFloat                    shadowOpacity;// BMB's shadow opacity
-@property (nonatomic, strong) UIColor                    *shadowColor;
+@property (nonatomic, assign)IBInspectable BOOL cacheOptimization;
+@property (nonatomic, assign)IBInspectable BOOL boomInWholeScreen;
+@property (nonatomic, assign)IBInspectable BOOL inList;
 
-@property (nonatomic, strong) CAShapeLayer               *buttonCircle;
-@property (nonatomic, strong) VHBackgroundView           *background;
+#pragma mark - Shadow
 
-@property (nonatomic, assign) CGFloat                    dotRadius;
-@property (nonatomic, assign) CGFloat                    hamWidth;
-@property (nonatomic, assign) CGFloat                    hamHeight;
+@property (nonatomic, assign)IBInspectable BOOL shadowEffect;
+@property (nonatomic, assign) CGRect shadowPathRect;
+@property (nonatomic, assign)IBInspectable CGFloat shadowOffsetX;
+@property (nonatomic, assign)IBInspectable CGFloat shadowOffsetY;
+@property (nonatomic, assign)IBInspectable CGFloat shadowRadius;
+@property (nonatomic, strong)IBInspectable UIColor *shadowColor;
 
-@property (nonatomic, strong) UIColor                    *buttonNormalColor;
-@property (nonatomic, strong) UIColor                    *buttonPressedColor;
+#pragma mark - Button
 
-@property (nonatomic, strong) NSMutableArray<VHBoomPiece *> *pieces;
+@property (nonatomic, assign)VHButtonEnum buttonEnum;
+@property (nonatomic, assign)IBInspectable BOOL backgroundEffect;
+@property (nonatomic, strong)IBInspectable UIColor *normalColor;
+@property (nonatomic, strong)IBInspectable UIColor *highlightedColor;
+@property (nonatomic, strong)IBInspectable UIColor *unableColor;
+@property (nonatomic, assign) BOOL draggable;
+@property (nonatomic, assign) UIEdgeInsets edgeInsetsInSuperView;
 
-@property (nonatomic, strong) NSMutableArray<VHBoomButton *> *boomButtons;
-@property (nonatomic, strong) NSMutableArray<VHBoomButtonBuilder *> *boomButtonBuilders;
+#pragma mark - Piece
 
-@property (nonatomic, assign) VHButtonEnum               buttonEnum;
-@property (nonatomic, assign) VHPiecePlaceEnum           piecePlaceEnum;
-@property (nonatomic, assign) VHButtonPlaceEnum          buttonPlaceEnum;
+@property (nonatomic, assign)IBInspectable CGFloat dotRadius;
+@property (nonatomic, assign)IBInspectable CGFloat hamWidth;
+@property (nonatomic, assign)IBInspectable CGFloat hamHeight;
+@property (nonatomic, assign)IBInspectable CGFloat pieceCornerRadius;
+@property (nonatomic, assign)IBInspectable CGFloat pieceHorizontalMargin;
+@property (nonatomic, assign)IBInspectable CGFloat pieceVerticalMargin;
+@property (nonatomic, assign)IBInspectable CGFloat pieceInclinedMargin;
+@property (nonatomic, assign)IBInspectable CGFloat shareLineLength;
+@property (nonatomic, strong)IBInspectable UIColor *shareLine1Color;
+@property (nonatomic, strong)IBInspectable UIColor *shareLine2Color;
+@property (nonatomic, assign)IBInspectable CGFloat shareLineWidth;
+@property (nonatomic, assign) VHPiecePlaceEnum piecePlaceEnum;
+
+#pragma mark - Background
+
+@property (nonatomic, assign)IBInspectable BOOL blurBackground;
+@property (nonatomic, strong)UIBlurEffect *blurEffect NS_AVAILABLE_IOS(8_0);
+@property (nonatomic, strong)IBInspectable UIColor *dimColor;
+@property (nonatomic, strong)IBInspectable NSString *tip;
+
+#pragma mark - Animation
+
+@property (nonatomic, weak) id<VHBoomDelegate> boomDelegate;
+@property (nonatomic, assign)IBInspectable CFTimeInterval delay;
+@property (nonatomic, assign)IBInspectable CFTimeInterval duration;
+@property (nonatomic, assign)IBInspectable CFTimeInterval showDelay;
+@property (nonatomic, assign)IBInspectable CFTimeInterval showDuration;
+@property (nonatomic, assign)IBInspectable CFTimeInterval hideDelay;
+@property (nonatomic, assign)IBInspectable CFTimeInterval hideDuration;
+@property (nonatomic, assign)IBInspectable BOOL cancelable;
+@property (nonatomic, assign)IBInspectable BOOL autoHide;
+@property (nonatomic, assign) VHOrderEnum orderEnum;
+@property (nonatomic, assign)IBInspectable int frames;
+@property (nonatomic, assign) VHBoomEnum boomEnum;
+@property (nonatomic, strong) NSString *showEaseName;
+@property (nonatomic, strong) NSString *showMoveEaseName;
+@property (nonatomic, strong) NSString *showScaleEaseName;
+@property (nonatomic, strong) NSString *showRotateEaseName;
+@property (nonatomic, strong) NSString *hideEaseName;
+@property (nonatomic, strong) NSString *hideMoveEaseName;
+@property (nonatomic, strong) NSString *hideScaleEaseName;
+@property (nonatomic, strong) NSString *hideRotateEaseName;
+@property (nonatomic, assign)IBInspectable CGFloat rotateDegree;
+@property (nonatomic, assign) BOOL use3DTransformAnimation;
+
+#pragma mark - Boom Buttons
+
+@property (nonatomic, assign) VHButtonPlaceEnum buttonPlaceEnum;
 @property (nonatomic, assign) VHButtonPlaceAlignmentEnum buttonPlaceAlignmentEnum;
-@property (nonatomic, assign) VHOrderEnum                showOrderEnum;
-@property (nonatomic, assign) VHOrderEnum                hideOrderEnum;
-@property (nonatomic, assign) VHBoomEnum                 boomEnum;
+@property (nonatomic, assign)IBInspectable CGFloat buttonHorizontalMargin;
+@property (nonatomic, assign)IBInspectable CGFloat buttonVerticalMargin;
+@property (nonatomic, assign)IBInspectable CGFloat buttonInclinedMargin;
+@property (nonatomic, assign)IBInspectable CGFloat buttonBottomMargin;
+@property (nonatomic, assign)IBInspectable CGFloat buttonTopMargin;
+@property (nonatomic, assign)IBInspectable CGFloat buttonLeftMargin;
+@property (nonatomic, assign)IBInspectable CGFloat buttonRightMargin;
+@property (nonatomic, assign)IBInspectable CGFloat bottomHamButtonTopMargin;
 
-@property (nonatomic, strong) NSMutableArray<NSValue *>  *startPositions;
-@property (nonatomic, strong) NSMutableArray<NSValue *>  *endPositions;
+#pragma mark - Static Methods
 
-@property (nonatomic, assign) VHEaseEnum                 showMoveEaseEnum;
-@property (nonatomic, assign) VHEaseEnum                 showScaleEaseEnum;
-@property (nonatomic, assign) VHEaseEnum                 showRotateEaseEnum;
-@property (nonatomic, assign) VHEaseEnum                 hideMoveEaseEnum;
-@property (nonatomic, assign) VHEaseEnum                 hideScaleEaseEnum;
-@property (nonatomic, assign) VHEaseEnum                 hideRotateEaseEnum;
++ (NSInteger)pieceNumber:(VHPiecePlaceEnum)placeEnum;
 
-@property (nonatomic, strong) UIColor                    *dimColor;
-@property (nonatomic, assign) BOOL                       autoHide;
-@property (nonatomic, assign) BOOL                       cancelable;
-@property (nonatomic, assign) BOOL                       noBackground;
-@property (nonatomic, assign) BOOL                       draggable;
-@property (nonatomic, assign) int                        frames;
-@property (nonatomic, assign) float                      duration;
-@property (nonatomic, assign) float                      delay;
-@property (nonatomic, assign) float                      rotationDegree;
-@property (nonatomic, weak  ) id< VHBoomDelegate>        boomDelegate;
++ (NSInteger)buttonNumber:(VHButtonPlaceEnum)placeEnum;
 
-@property (nonatomic, assign) int                        animatingViewsNumber;
+#pragma mark - Animation
 
-@property (nonatomic, assign) CGFloat                    buttonHorizontalMargin;
-@property (nonatomic, assign) CGFloat                    buttonVerticalMargin;
-@property (nonatomic, assign) CGFloat                    buttonInclinedMargin;
-@property (nonatomic, assign) CGFloat                    buttonBottomMargin;
-@property (nonatomic, assign) CGFloat                    buttonTopMargin;
-@property (nonatomic, assign) CGFloat                    buttonLeftMargin;
-@property (nonatomic, assign) CGFloat                    buttonRightMargin;
-@property (nonatomic, assign) BOOL                       lastHamButtonMarginMoreTop;
-@property (nonatomic, assign) CGFloat                    lastHamButtonTopMargin;
+- (BOOL)isAnimating;
 
-@property (nonatomic, assign) CGFloat                    pieceHorizontalMargin;
-@property (nonatomic, assign) CGFloat                    pieceVerticalMargin;
-@property (nonatomic, assign) CGFloat                    pieceInclinedMargin;
-
-/**
- *  Boom the BMB programmatically
- */
 - (void)boom;
 
-/**
- *  Reboom the BMB programmatically
- */
+- (void)boomImmediately;
+
 - (void)reboom;
 
-/**
- *  Add a simiple circle button builder
- *
- *  @param block The block where you set the properties for the builder
- */
-- (void)addSimpleCircleButtonBuilderBlock:(void(^)(VHSimpleCircleButtonBuilder *))block;
+- (void)reboomImmediately;
 
-/**
- *  Add a text inside button builder
- *
- *  @param block The block where you set the properties for the builder
- */
-- (void)addTextInsideCircleButtonBuilderBlock:(void(^)(VHTextInsideCircleButtonBuilder *))block;
+#pragma mark - Builders
 
-/**
- *  Add a text outside button builder
- *
- *  @param block The block where you set the properties for the builder
- */
-- (void)addTextOutsideCircleButtonBuilderBlock:(void(^)(VHTextOutsideCircleButtonBuilder *))block;
+- (void)addBuilder:(VHBoomButtonBuilder *)builder;
 
-/**
- *  Add a ham button builder
- *
- *  @param block The block where you set the properties for the builder
- */
-- (void)addHamButtonBuilderBlock:(void(^)(VHHamButtonBuilder *))block;
+- (void)setBuilder:(VHBoomButtonBuilder *)builder at:(NSUInteger)index;
 
-/**
- *  Remove all builders added
- */
-- (void)removeBuilders;
+- (void)setBuilders:(NSMutableArray<VHBoomButtonBuilder *> *)builders;
+
+- (VHBoomButtonBuilder *)builder:(NSUInteger)index;
+
+- (void)removeBuilder:(VHBoomButtonBuilder *)builder;
+
+- (void)removeBuilderAtIndex:(NSUInteger)index;
+
+- (void)clearBuilders;
 
 @end

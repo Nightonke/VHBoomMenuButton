@@ -2,208 +2,451 @@
 //  VHBoomMenuButton.m
 //  VHBoomMenuExample
 //
-//  Created by 黄伟平 on 16/7/28.
-//  Copyright © 2016年 黄伟平. All rights reserved.
+//  Created by Nightonke on 16/7/28.
+//  Copyright © 2016年 Nightonke. All rights reserved.
 //
 
 #import "VHBoomMenuButton.h"
 #include <stdlib.h>
+#import "VHAnimationManager.h"
+#import "VHBoomStateEnum.h"
+#import "VHInnerOnBoomButtonClickListener.h"
+#import "VHShareLinesView.h"
+#import "VHBackgroundClickDelegate.h"
+#import "VHBackgroundView.h"
+#import "VHDefaults.h"
+#import "VHUtils.h"
+#import "VHErrorManager.h"
+#import "VHEase.h"
+#import "VHButtonPlaceManager.h"
+#import "VHBoomButton.h"
+#import "VHSimpleCircleButton.h"
+#import "VHSimpleCircleButtonBuilder.h"
+#import "VHTextInsideCircleButton.h"
+#import "VHTextInsideCircleButtonBuilder.h"
+#import "VHTextOutsideCircleButton.h"
+#import "VHTextOutsideCircleButtonBuilder.h"
+#import "VHHamButton.h"
+#import "VHHamButtonBuilder.h"
+#import "VHBoomPiece.h"
+#import "VHButtonStateEnum.h"
+#import "VHShareLinesView.h"
 
-@interface VHBoomMenuButton ()
+typedef void (^DelayBlock) (void);
 
-@property (nonatomic, strong) NSMutableArray<NSValue *> *piecePositions;
+static NSString *const kFillColorAnimation = @"kFillColorAnimation";
+
+@interface VHBoomMenuButton ()<VHInnerOnBoomButtonClickListener, VHBackgroundClickDelegate>
+
+#pragma mark - Button
+
 @property (nonatomic, assign) CGFloat startPositionX;
 @property (nonatomic, assign) CGFloat startPositionY;
-@property (nonatomic, assign) BOOL    ableToStartDragging;
-@property (nonatomic, assign) BOOL    isDragging;
+@property (nonatomic, assign) BOOL ableToStartDragging;
+@property (nonatomic, assign) BOOL isDragging;
+@property (nonatomic, strong) CAShapeLayer *buttonLayer;
+@property (nonatomic, assign) VHButtonStateEnum lastButtonState;
+
+#pragma mark - Piece
+
+@property (nonatomic, strong) NSMutableArray<VHBoomPiece *> *pieces;
+@property (nonatomic, strong) NSMutableArray<NSValue *> *piecePositions;
+@property (nonatomic, strong) VHShareLinesView *shareLinesView;
+
+#pragma mark - Animation
+
+@property (nonatomic, assign) int animatingViewsNumber;
+@property (nonatomic, strong) VHEase *showMoveEase;
+@property (nonatomic, strong) VHEase *showScaleEase;
+@property (nonatomic, strong) VHEase *showRotateEase;
+@property (nonatomic, strong) VHEase *hideMoveEase;
+@property (nonatomic, strong) VHEase *hideScaleEase;
+@property (nonatomic, strong) VHEase *hideRotateEase;
+@property (nonatomic, assign) VHBoomStateEnum boomState;
+
+#pragma mark - Background
+
+@property (nonatomic, strong) VHBackgroundView *background;
+@property (nonatomic, strong) UIVisualEffectView *visualEffectView;
+
+#pragma mark - Boom Buttons
+
+@property (nonatomic, strong) NSMutableArray<VHBoomButton *> *boomButtons;
+@property (nonatomic, strong) NSMutableArray<VHBoomButtonBuilder *> *boomButtonBuilders;
 @property (nonatomic, assign) CGFloat simpleCircleButtonRadius;
 @property (nonatomic, assign) CGFloat textInsideCircleButtonRadius;
 @property (nonatomic, assign) CGFloat textOutsideCircleButtonWidth;
 @property (nonatomic, assign) CGFloat textOutsideCircleButtonHeight;
 @property (nonatomic, assign) CGFloat hamButtonWidth;
 @property (nonatomic, assign) CGFloat hamButtonHeight;
-@property (nonatomic, assign) BOOL    needToAdjustTextOutsideCircleButtonHeightError;
+/**
+ Notice that start-positions and end-positions are the position of the layers of boom-buttons.
+ And in CAAnimation, the position's pivot is the center of the boom-button.
+ */
+@property (nonatomic, strong) NSMutableArray<NSValue *> *startPositions;
+@property (nonatomic, strong) NSMutableArray<NSValue *> *endPositions;
+@property (nonatomic, assign) BOOL needToCalculateStartPositions;
+@property (nonatomic, assign) BOOL needToCreateButtons;
+
+#pragma mark - Device Orientation
+
+@property (nonatomic, assign) UIDeviceOrientation lastDeviceOrientation;
 
 @end
 
 @implementation VHBoomMenuButton
 
-- (id)initWithFrame:(CGRect)frame
+#pragma mark - Static Methods
+
++ (NSInteger)pieceNumber:(VHPiecePlaceEnum)placeEnum
 {
-    if (self = [super initWithFrame:frame])
+    return [VHPiecePlaceManager pieceNumber:placeEnum];
+}
+
++ (NSInteger)buttonNumber:(VHButtonPlaceEnum)placeEnum
+{
+    return [VHButtonPlaceManager buttonNumber:placeEnum];
+}
+
+#pragma mark - Initialize
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder])
     {
-        self.shadowRadius               = frame.size.width / 2 + DEFAULT_BOOM_MENU_BUTTON_SHADOW_WIDTH;
-        self.shadowOffset               = CGSizeMake(DEFAULT_BOOM_MENU_BUTTON_SHADOW_OFFSET_X, DEFAULT_BOOM_MENU_BUTTON_SHADOW_OFFSET_Y);
-        self.shadowOpacity              = DEFAULT_BOOM_MENU_BUTTON_SHADOW_OPACITY;
-        self.shadowColor                = DEFAULT_BOOM_MENU_BUTTON_SHADOW_COLOR;
-
-        self.dotRadius                  = DEFAULT_BOOM_MENU_BUTTON_DOT_RADIUS;
-        self.hamWidth                   = DEFAULT_BOOM_MENU_BUTTON_HAM_WIDTH;
-        self.hamHeight                  = DEFAULT_BOOM_MENU_BUTTON_HAM_HEIGHT;
-
-        self.buttonNormalColor          = DEFAULT_BOOM_MENU_BUTTON_NORMAL_COLOR;
-        self.buttonPressedColor         = DEFAULT_BOOM_MENU_BUTTON_PRESSED_COLOR;
-
-        self.buttonPlaceAlignmentEnum   = DEFAULT_BOOM_MENU_BUTTON_PLACE_ALIGNMENT;
-        self.showOrderEnum              = DEFAULT_BOOM_MENU_BUTTON_SHOW_ORDER;
-        self.hideOrderEnum              = DEFAULT_BOOM_MENU_BUTTON_HIDE_ORDER;
-        self.boomEnum                   = DEFAULT_BOOM_MENU_BUTTON_BOOM_ENUM;
-
-        self.showMoveEaseEnum           = DEFAULT_BOOM_MENU_BUTTON_SHOW_MOVE_EASE_ENUM;
-        self.showScaleEaseEnum          = DEFAULT_BOOM_MENU_BUTTON_SHOW_SCALE_EASE_ENUM;
-        self.showRotateEaseEnum         = DEFAULT_BOOM_MENU_BUTTON_SHOW_ROTATE_EASE_ENUM;
-        self.hideMoveEaseEnum           = DEFAULT_BOOM_MENU_BUTTON_HIDE_MOVE_EASE_ENUM;
-        self.hideScaleEaseEnum          = DEFAULT_BOOM_MENU_BUTTON_HIDE_SCALE_EASE_ENUM;
-        self.hideRotateEaseEnum         = DEFAULT_BOOM_MENU_BUTTON_HIDE_ROTATE_EASE_ENUM;
-
-        self.dimColor                   = DEFAULT_BOOM_MENU_BUTTON_DIM_COLOR;
-        self.autoHide                   = DEFAULT_BOOM_MENU_BUTTON_AUTO_HIDE;
-        self.cancelable                 = DEFAULT_BOOM_MENU_BUTTON_CANCELABLE;
-        self.noBackground               = DEFAULT_BOOM_MENU_BUTTON_NO_BACKGROUND;
-        self.draggable                  = DEFAULT_BOOM_MENU_BUTTON_DRAGGABLE;
-        self.frames                     = DEFAULT_BOOM_MENU_BUTTON_FRAMES;
-        self.duration                   = DEFAULT_BOOM_MENU_BUTTON_DURATION;
-        self.delay                      = DEFAULT_BOOM_MENU_BUTTON_DELAY;
-        self.rotationDegree             = DEFAULT_BOOM_MENU_BUTTON_ROTATION_DEGREE;
-
-        self.buttonHorizontalMargin     = DEFAULT_BOOM_MENU_BUTTON_HORIZONTAL_MARGIN;
-        self.buttonVerticalMargin       = DEFAULT_BOOM_MENU_BUTTON_VERTICAL_MARGIN;
-        self.buttonInclinedMargin       = DEFAULT_BOOM_MENU_BUTTON_INCLINED_MARGIN;
-        self.buttonBottomMargin         = DEFAULT_BOOM_MENU_BUTTON_BOTTOM_MARGIN;
-        self.buttonTopMargin            = DEFAULT_BOOM_MENU_BUTTON_TOP_MARGIN;
-        self.buttonLeftMargin           = DEFAULT_BOOM_MENU_BUTTON_LEFT_MARGIN;
-        self.buttonRightMargin          = DEFAULT_BOOM_MENU_BUTTON_RIGHT_MARGIN;
-        self.pieceHorizontalMargin      = DEFAULT_BOOM_MENU_BUTTON_PIECE_HORIZONTAL_MARGIN;
-        self.pieceVerticalMargin        = DEFAULT_BOOM_MENU_BUTTON_PIECE_VERTICAL_MARGIN;
-        self.pieceInclinedMargin        = DEFAULT_BOOM_MENU_BUTTON_PIECE_INCLINED_MARGIN;
-        self.lastHamButtonMarginMoreTop = DEFAULT_BOOM_MENU_BUTTON_LAST_HAM_BUTTON_MARGIN_MORE_TOP;
-        self.lastHamButtonTopMargin     = DEFAULT_BOOM_MENU_BUTTON_LAST_HAM_BUTTOM_TOP_MARGIN;
-
-        self.boomButtonBuilders         = [NSMutableArray array];
-
-        self.backgroundColor            = [UIColor clearColor];
-
-        self.ableToStartDragging        = NO;
-        self.isDragging                 = NO;
-
-        self.animatingViewsNumber       = 0;
+        [self innerInitialize];
     }
     return self;
 }
 
-/**
- *  Draw the background, notice that we don't need to draw it if we don't even need a background
- *
- *  @param rect The rect
- */
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame])
+    {
+        [self innerInitialize];
+    }
+    return self;
+}
+
+- (instancetype)init
+{
+    if (self = [super init])
+    {
+        [self innerInitialize];
+    }
+    return self;
+}
+
+- (void)innerInitialize
+{
+    [self initializeAttributes];
+    [self initializeDeviceOrientation];
+}
+
+- (void)initializeAttributes
+{
+    _cacheOptimization = YES;
+    _boomInWholeScreen = YES;
+    _inList = NO;
+    
+    _shadowEffect = YES;
+    _shadowPathRect = CGRectMake(2, 2, self.frame.size.width - 4, self.frame.size.height - 4);
+    _shadowOffsetX = 0;
+    _shadowOffsetY = 8;
+    _shadowRadius = 4;
+    _shadowColor = [VHUtils colorFromARGB:0x44000000];
+    
+    _buttonEnum = VHButtonUnknown;
+    _backgroundEffect = YES;
+    _normalColor = [VHUtils colorFromRGB:0x30a2fb];
+    _highlightedColor = [VHUtils colorFromRGB:0x73bdf1];
+    _unableColor = [VHUtils darkerColor:_normalColor];
+    _draggable = NO;
+    _edgeInsetsInSuperView = UIEdgeInsetsMake(15, 15, 15, 15);
+    
+    _dotRadius = 3;
+    _hamWidth = 20;
+    _hamHeight = 3;
+    _pieceCornerRadius = -1;
+    _pieceHorizontalMargin = 2;
+    _pieceVerticalMargin = 2;
+    _pieceInclinedMargin = 2;
+    _shareLineLength = 18;
+    _shareLine1Color = [UIColor whiteColor];
+    _shareLine2Color = [UIColor whiteColor];
+    _shareLineWidth = 1.5;
+    _piecePlaceEnum = VHPiecePlaceUnknown;
+    
+    _blurBackground = YES;
+    if ([UIBlurEffect class])
+    {
+        _blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    }
+    _dimColor = [VHUtils colorFromARGB:0x55000000];
+    _tip = nil;
+    
+    _boomDelegate = nil;
+    _delay = 0.05;
+    _duration = 0.3;
+    _showDelay = 0.05;
+    _showDuration = 0.3;
+    _hideDelay = 0.05;
+    _hideDuration = 0.3;
+    _cancelable = YES;
+    _autoHide = YES;
+    _orderEnum = VHOrderRandom;
+    _frames = 60;
+    _boomEnum = VHBoomHorizontalThrow_2;
+    _showMoveEaseName = nil;
+    _showMoveEaseName = VHEaseOutBack;
+    _showScaleEaseName = VHEaseOutBack;
+    _showRotateEaseName = VHEaseOutBack;
+    _hideMoveEaseName = nil;
+    _hideMoveEaseName = VHEaseInBack;
+    _hideScaleEaseName = VHEaseInBack;
+    _hideRotateEaseName = VHEaseInBack;
+    _rotateDegree = M_PI * 4;
+    _use3DTransformAnimation = YES;
+    
+    _buttonPlaceEnum = VHButtonPlaceUnknown;
+    _buttonPlaceAlignmentEnum = VHButtonPlaceAlignmentCenter;
+    _buttonHorizontalMargin = 12;
+    _buttonVerticalMargin = 12;
+    _buttonInclinedMargin = 12;
+    _buttonBottomMargin = 20;
+    _buttonTopMargin = 20;
+    _buttonLeftMargin = 20;
+    _buttonRightMargin = 20;
+    _bottomHamButtonTopMargin = -1;
+    
+    _ableToStartDragging = NO;
+    _isDragging = NO;
+    _lastButtonState = VHButtonStateUnknown;
+    
+    _animatingViewsNumber = 0;
+    _showMoveEase = [VHEase easeWithName:_showMoveEaseName];
+    _showScaleEase = [VHEase easeWithName:_showScaleEaseName];
+    _showRotateEase = [VHEase easeWithName:_showRotateEaseName];
+    _hideMoveEase = [VHEase easeWithName:_hideMoveEaseName];
+    _hideScaleEase = [VHEase easeWithName:_hideScaleEaseName];
+    _hideRotateEase = [VHEase easeWithName:_hideRotateEaseName];
+    _boomState = VHBoomStateDidHide;
+    
+    _boomButtonBuilders = [NSMutableArray array];
+    
+    _needToCalculateStartPositions = YES;
+    _needToCreateButtons = YES;
+    
+    _lastDeviceOrientation = [[UIDevice currentDevice] orientation];
+}
+
+- (void)initializeDeviceOrientation
+{
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(deviceOrientationDidChange:) name: UIDeviceOrientationDidChangeNotification object: nil];
+}
+
+- (void)dealloc
+{
+    NSLog(@"%@ dealloc", self);
+    [self clearViewsAndValues:YES];
+    [[NSNotificationCenter defaultCenter] removeObserver: self];
+    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+}
+
+#pragma mark - Draw
+
 - (void)drawRect:(CGRect)rect
 {
-    if (self.noBackground == NO)
+    [super drawRect:rect];
+    if (self.backgroundEffect == YES)
     {
-        self.buttonCircle        = [CAShapeLayer layer];
-        [self.buttonCircle setPath:[[UIBezierPath bezierPathWithOvalInRect:CGRectMake(0,
-                                                                                      0,
-                                                                                      self.frame.size.width,
-                                                                                      self.frame.size.height)] CGPath]];
-        [self.buttonCircle setFillColor:self.buttonNormalColor.CGColor];
-        [[self layer] addSublayer:self.buttonCircle];
+        if (self.buttonLayer)
+        {
+            [self.buttonLayer removeFromSuperlayer];
+        }
+        else
+        {
+            self.buttonLayer = [CAShapeLayer layer];
+        }
+        [self.buttonLayer setPath:[[UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)] CGPath]];
+        [self toLastState];
+        [[self layer] addSublayer:self.buttonLayer];
 
-        CGRect shadowRect        = CGRectMake(0, 0, self.shadowRadius * 2, self.shadowRadius * 2);
-        UIBezierPath *shadowPath = [UIBezierPath bezierPathWithOvalInRect:shadowRect];
-        self.layer.masksToBounds = NO;
-        self.layer.shadowColor   = self.shadowColor.CGColor;
-        CGSize shadowOffset      = CGSizeMake(self.shadowOffset.width - (self.shadowRadius - self.frame.size.width / 2),
-                                         self.shadowOffset.height - (self.shadowRadius - self.frame.size.height / 2));
-        self.layer.shadowOffset  = shadowOffset;
-        self.layer.shadowOpacity = self.shadowOpacity;
-        self.layer.shadowPath    = shadowPath.CGPath;
+        if (self.shadowEffect)
+        {
+            self.layer.masksToBounds = NO;
+            self.layer.shadowPath = [UIBezierPath bezierPathWithOvalInRect:self.shadowPathRect].CGPath;
+            self.layer.shadowOffset = CGSizeMake(self.shadowOffsetX, self.shadowOffsetY);
+            self.layer.shadowRadius = self.shadowRadius;
+            self.layer.shadowColor = self.shadowColor.CGColor;
+            self.layer.shadowOpacity = 1;
+        }
+        else
+        {
+            self.layer.shadowOpacity = 0;
+        }
     }
     else
     {
-        [self.buttonCircle removeFromSuperlayer];
-        self.layer.shadowOpacity = 0.0f;
+        [self.buttonLayer removeFromSuperlayer];
+        self.layer.shadowOpacity = 0;
     }
 }
 
-#pragma mark - Place Dots, Bars or Blocks
+#pragma mark - Place Pieces
 
-/**
- *  Layout all the pieces.
- */
 - (void)layoutSubviews
 {
-    [self removePieces];
-
+    NSLog(@"%@ layout sub views", self);
     [super layoutSubviews];
-
-    self.piecePositions = [self calculatePiecePositons];
-
-    long pieceNumber    = [[VHPiecePlaceManager sharedManager] numbersWithEnum:self.piecePlaceEnum];
-
-    [[VHErrorManager sharedManager] errorJudgeWithPieceNumber:pieceNumber andBuilderNumber:[self.boomButtonBuilders count]];
-
-    self.pieces         = [NSMutableArray arrayWithCapacity:pieceNumber];
-
-    for (int i = 0; i < pieceNumber; i++)
-    {
-        VHBoomPiece *piece = [self getBoomPieceAt:[self.piecePositions objectAtIndex:i] withColor:[self.boomButtonBuilders objectAtIndex:i].buttonNormalColor];
-        [self.pieces addObject:piece];
-        [self addSubview:piece];
-    }
-
+    self.backgroundColor = [UIColor clearColor];
+    // Todo erroe judge
+//    [[VHErrorManager sharedManager] errorJudgeWithPieceNumber:pieceNumber andBuilderNumber:[self.boomButtonBuilders count]];
+    [self clearPieces];
+    [self createPieces];
+    [self placeShareLinesView];
+    [self placePieces];
     [self calculateStartPositions];
+    [self setShareLinesViewData];
 }
 
-/**
- *  Calculate where should the pieces lay
- *
- *  @return The positions
- */
-- (NSMutableArray<NSValue *> *)calculatePiecePositons
+- (void)clearPieces
 {
+    for (VHBoomPiece *piece in self.pieces)
+    {
+        [piece removeFromSuperview];
+    }
+    [self.pieces removeAllObjects];
+}
+
+- (void)createPieces
+{
+    [self calculatePiecePositons];
+    int pieceNumber = [self innerPieceNumber];
+    self.pieces = [NSMutableArray arrayWithCapacity:pieceNumber];
+    for (int i = 0; i < pieceNumber; i++)
+    {
+        // Todo A new create method
+        VHBoomPiece *piece = [self boomPieceAt:[self.piecePositions objectAtIndex:i]
+                                   withBuilder:[self.boomButtonBuilders objectAtIndex:i]];
+        [self.pieces addObject:piece];
+    }
+}
+
+- (void)placePieces
+{
+    NSMutableArray<NSNumber *> *indexes;
+    if (self.piecePlaceEnum == VHPiecePlaceShare)
+    {
+        indexes = [VHAnimationManager orderIndexes:VHOrderDefault inSize:self.pieces.count];
+    }
+    else
+    {
+        indexes = [VHAnimationManager orderIndexes:self.orderEnum inSize:self.pieces.count];
+    }
+    [indexes enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(NSNumber * _Nonnull indexObj, NSUInteger i, BOOL * _Nonnull stop) {
+        int index = [indexObj intValue];
+        [self addSubview:[self.pieces objectAtIndex:index]];
+        
+    }];
+    if (self.piecePlaceEnum == VHPiecePlaceShare)
+    {
+        // For share-style, the edges of overrided pieces are still visible.
+        // So we have to make them hidden.
+        __block int pieceNumbers[3] = {0, 0, 0};
+        int totalPieceNumber = [self innerPieceNumber];
+        for (int i = 0; i < totalPieceNumber; i++)
+        {
+            pieceNumbers[i % 3]++;
+        }
+        NSMutableArray<NSMutableArray<VHBoomPiece *> *> *piecesOn3Positions = [NSMutableArray arrayWithCapacity:3];
+        [piecesOn3Positions addObject:[NSMutableArray arrayWithCapacity:3]];
+        [piecesOn3Positions addObject:[NSMutableArray arrayWithCapacity:3]];
+        [piecesOn3Positions addObject:[NSMutableArray arrayWithCapacity:3]];
+        
+        int currentPosition = 0;
+        for (VHBoomPiece *piece in self.pieces)
+        {
+            [[piecesOn3Positions objectAtIndex:currentPosition] addObject:piece];
+            if ([piecesOn3Positions objectAtIndex:currentPosition].count >= pieceNumbers[currentPosition])
+            {
+                currentPosition++;
+            }
+        }
+        
+        [[piecesOn3Positions objectAtIndex:0] firstObject].isTop = YES;
+        [[piecesOn3Positions objectAtIndex:1] firstObject].isTop = YES;
+        [[piecesOn3Positions objectAtIndex:2] firstObject].isTop = YES;
+        
+        for (NSMutableArray<VHBoomPiece *> *piecesOnSamePosition in piecesOn3Positions)
+        {
+            [piecesOnSamePosition enumerateObjectsUsingBlock:^(VHBoomPiece * _Nonnull piece, NSUInteger idx, BOOL * _Nonnull stop) {
+                if (idx + 1 < piecesOnSamePosition.count)
+                {
+                    piece.pieceBelow = [piecesOnSamePosition objectAtIndex:idx + 1];
+                }
+            }];
+        }
+        
+        [self.pieces enumerateObjectsUsingBlock:^(VHBoomPiece * _Nonnull piece, NSUInteger idx, BOOL * _Nonnull stop) {
+            piece.hidden = !piece.isTop;
+        }];
+    }
+}
+
+- (void)calculatePiecePositons
+{
+    if (self.piecePlaceEnum == VHPiecePlaceUnknown)
+    {
+        return;
+    }
     switch (self.buttonEnum) {
         case VHButtonSimpleCircle:
         case VHButtonTextInsideCircle:
         case VHButtonTextOutsideCircle:
-            return [[VHPiecePlaceManager sharedManager] positionsWithEnum:self.piecePlaceEnum
-                                                          withParentFrame:self.bounds
-                                                            withDotRadius:self.dotRadius
-                                                     withHorizontalMargin:self.pieceHorizontalMargin
-                                                       withVerticalMargin:self.pieceVerticalMargin
-                                                       withInclinedMargin:self.pieceInclinedMargin];
+        {
+            if (self.piecePlaceEnum == VHPiecePlaceShare)
+            {
+                self.piecePositions = [VHPiecePlaceManager positionsForShareStyleWithParentFrame:self.bounds
+                                                                                   withDotRadius:self.dotRadius
+                                                                                   withDotNumber:self.boomButtonBuilders.count
+                                                                             withShareLineLength:self.shareLineLength];
+            }
+            else
+            {
+                self.piecePositions = [VHPiecePlaceManager positionsWithEnum:self.piecePlaceEnum
+                                                             withParentFrame:self.bounds
+                                                               withDotRadius:self.dotRadius
+                                                        withHorizontalMargin:self.pieceHorizontalMargin
+                                                          withVerticalMargin:self.pieceVerticalMargin
+                                                          withInclinedMargin:self.pieceInclinedMargin];
+            }
             break;
+        }
         case VHButtonHam:
-            return [[VHPiecePlaceManager sharedManager] positionsWithEnum:self.piecePlaceEnum
-                                                          withParentFrame:self.bounds
-                                                             withHamWidth:self.hamWidth
-                                                            withHamHeight:self.hamHeight
-                                                     withHorizontalMargin:self.pieceHorizontalMargin
-                                                       withVerticalMargin:self.pieceInclinedMargin];
+            self.piecePositions = [VHPiecePlaceManager positionsWithEnum:self.piecePlaceEnum
+                                                         withParentFrame:self.bounds
+                                                            withHamWidth:self.hamWidth
+                                                           withHamHeight:self.hamHeight
+                                                    withHorizontalMargin:self.pieceHorizontalMargin
+                                                      withVerticalMargin:self.pieceInclinedMargin];
             break;
         default:
             break;
     }
-    return [NSMutableArray arrayWithCapacity:0];
 }
 
-/**
- *  Initialise the a piece
- *
- *  @param position The position of the piece
- *  @param color    THe color of the piece
- *
- *  @return The piece
- */
-- (VHBoomPiece *)getBoomPieceAt:(NSValue *)position withColor:(UIColor *)color
+- (VHBoomPiece *)boomPieceAt:(NSValue *)position withBuilder:(VHBoomButtonBuilder *)builder
 {
     switch (self.buttonEnum) {
         case VHButtonSimpleCircle:
         case VHButtonTextInsideCircle:
         case VHButtonTextOutsideCircle:
-            return [[VHDot alloc] initWithFrame:[position CGRectValue] withColor:color];
-            break;
         case VHButtonHam:
-            return [[VHHam alloc] initWithFrame:[position CGRectValue] withColor:color];
+            return [[VHBoomPiece alloc] initWithFrame:[position CGRectValue]
+                                          withBuilder:builder
+                                     withCornerRadius:self.pieceCornerRadius];
             break;
         default:
             break;
@@ -213,20 +456,13 @@
 
 #pragma mark - Touch Action
 
-/**
- *  Touch begin
- *
- *  @param touches <#touches description#>
- *  @param event   <#event description#>
- */
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    UITouch *anyTouch        = [touches anyObject];
-    CGPoint touchLocation    = [anyTouch locationInView:self];
-    CGRect selfRect          = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    if (CGRectContainsPoint(selfRect, touchLocation))
+    UITouch *anyTouch = [touches anyObject];
+    CGPoint touchLocation = [anyTouch locationInView:self];
+    if (CGRectContainsPoint(self.bounds, touchLocation))
     {
-        [self.buttonCircle setFillColor:self.buttonPressedColor.CGColor];
+        [self toHighlighted];
         if (self.draggable)
         {
             self.startPositionX      = touchLocation.x;
@@ -236,516 +472,642 @@
     }
 }
 
-/**
- *  Touch moved
- *
- *  @param touches <#touches description#>
- *  @param event   <#event description#>
- */
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
+    UITouch *anyTouch = [touches anyObject];
     if (self.draggable && self.ableToStartDragging)
     {
         self.isDragging = YES;
-        UITouch *anyTouch = [touches anyObject];
         CGPoint touchLocationInParent = [anyTouch locationInView:self.superview];
         self.frame = CGRectMake(touchLocationInParent.x - self.startPositionX, touchLocationInParent.y - self.startPositionY, self.frame.size.width, self.frame.size.height);
     }
+    else
+    {
+        CGPoint touchLocation = [anyTouch locationInView:self];
+        if (!CGRectContainsPoint(self.bounds, touchLocation))
+        {
+            [self toNormal];
+        }
+    }
 }
 
-/**
- *  Touch end
- *
- *  @param touches <#touches description#>
- *  @param event   <#event description#>
- */
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [self.buttonCircle setFillColor:self.buttonNormalColor.CGColor];
-    
     if (self.isDragging)
     {
         self.ableToStartDragging = NO;
         self.isDragging = NO;
-        [self calculateStartPositions];
-        return;
+        self.needToCalculateStartPositions = YES;
+        [self preventDragOutside];
+    }
+    else
+    {
+        UITouch *anyTouch = [touches anyObject];
+        CGPoint touchLocation = [anyTouch locationInView:self];
+        if (CGRectContainsPoint(self.bounds, touchLocation))
+        {
+            NSLog(@"touchesEnded");
+            [self boom];
+        }        
     }
     
-    UITouch *anyTouch = [touches anyObject];
-    CGPoint touchLocation = [anyTouch locationInView:self];
-    CGRect selfRect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    if (CGRectContainsPoint(selfRect, touchLocation))
-    {
-        [self boom];
-    }
+    [self toNormal];
 }
 
-/**
- *  Touch cancel
- *
- *  @param touches <#touches description#>
- *  @param event   <#event description#>
- */
 - (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [self.buttonCircle setFillColor:self.buttonNormalColor.CGColor];
+    [self toNormal];
     
     if (self.isDragging)
     {
         self.ableToStartDragging = NO;
         self.isDragging = NO;
-        [self calculateStartPositions];
+        self.needToCalculateStartPositions = YES;
+        [self preventDragOutside];
         return;
     }
 }
 
-#pragma mark Animation
-
-/**
- *  Boom the BMB
- */
-- (void)boom
+- (void)toUnable
 {
-    if (self.animatingViewsNumber != 0)
+    if (self.lastButtonState == VHButtonStateUnable)
     {
         return;
     }
-    if ([self.boomDelegate respondsToSelector:@selector(onBoomWillShow)])
+    self.lastButtonState = VHButtonStateUnable;
+    [self.buttonLayer setFillColor:self.unableColor.CGColor];
+}
+
+- (void)toHighlighted
+{
+    if (self.lastButtonState == VHButtonStateHighlighted)
+    {
+        return;
+    }
+    self.lastButtonState = VHButtonStateHighlighted;
+    [self.buttonLayer setFillColor:self.highlightedColor.CGColor];
+}
+
+- (void)toNormal
+{
+    if (self.lastButtonState == VHButtonStateNormal)
+    {
+        return;
+    }
+    self.lastButtonState = VHButtonStateNormal;
+    [self.buttonLayer setFillColor:self.normalColor.CGColor];
+}
+
+- (void)toLastState
+{
+    switch (self.lastButtonState)
+    {
+        case VHButtonStateHighlighted:
+            [self.buttonLayer setFillColor:self.highlightedColor.CGColor];
+            break;
+        case VHButtonStateUnable:
+            [self.buttonLayer setFillColor:self.unableColor.CGColor];
+        case VHButtonStateNormal:
+        case VHButtonStateUnknown:
+            [self.buttonLayer setFillColor:self.normalColor.CGColor];
+    }
+}
+
+#pragma mark - Animation
+
+- (BOOL)isAnimating
+{
+    return self.animatingViewsNumber != 0;
+}
+
+- (void)boom
+{
+    [self innerBoom:NO];
+}
+
+- (void)boomImmediately
+{
+    [self innerBoom:YES];
+}
+
+- (void)innerBoom:(BOOL)immediately
+{
+    if ([self uninitializedBoomButtons])
+    {
+        return;
+    }
+    // Todo ExceptionManager
+    if ([self isAnimating] || self.boomState != VHBoomStateDidHide)
+    {
+        return;
+    }
+    self.boomState = VHBoomStateWillShow;
+    if (self.boomDelegate && [self.boomDelegate respondsToSelector:@selector(onBoomWillShow)])
     {
         [self.boomDelegate onBoomWillShow];
     }
+    [self calculateStartPositions];
     [self createButtons];
-    [self dimBackground];
-    [self startShowAnimations];
+    [self dimBackground:immediately];
+    [self startShowAnimations:immediately];
 }
 
-/**
- *  Re boom the BMB
- */
 - (void)reboom
 {
-    if (self.animatingViewsNumber != 0)
+    [self innerReboom:NO];
+}
+
+- (void)reboomImmediately
+{
+    [self innerReboom:YES];
+}
+
+- (void)innerReboom:(BOOL)immediately
+{
+    if ([self isAnimating] || self.boomState != VHBoomStateDidShow)
     {
         return;
     }
-    if ([self.boomDelegate respondsToSelector:@selector(onBoomWillHide)])
+    self.boomState = VHBoomStateWillHide;
+    if (self.boomDelegate && [self.boomDelegate respondsToSelector:@selector(onBoomWillHide)])
     {
         [self.boomDelegate onBoomWillHide];
     }
-    [self lightBackground];
-    [self startHideAnimations];
+    [self lightBackground:immediately];
+    [self startHideAnimation:immediately];
 }
 
-/**
- *  Dim the background when the buttons show up
- */
-- (void)dimBackground
+- (void)dimBackground:(BOOL)immediately
 {
     [self createBackground];
-    self.background.backgroundColor = [UIColor clearColor];
-    [UIView animateWithDuration:self.duration + (self.pieces.count - 1) * self.delay animations:^
-    {
-        self.background.backgroundColor = self.dimColor;
-    }
-                     completion:^(BOOL finished)
-    {
-        if ([self.boomDelegate respondsToSelector:@selector(onBoomDidShow)])
+    CFTimeInterval duration = immediately ? 0.001 : self.showDuration + (self.pieces.count - 1) * self.showDelay;
+    [self.background dim:duration completion:^(BOOL finished) {
+        self.boomState = VHBoomStateDidShow;
+        if (self.boomDelegate && [self.boomDelegate respondsToSelector:@selector(onBoomDidShow)])
         {
             [self.boomDelegate onBoomDidShow];
         }
     }];
 }
 
-/**
- *  Light the background when the buttons hide
- */
-- (void)lightBackground
+- (void)lightBackground:(BOOL)immediately
 {
     [self createBackground];
-    self.background.backgroundColor = self.dimColor;
-    [UIView animateWithDuration:self.duration + (self.pieces.count - 1) * self.delay animations:^
-     {
-         self.background.backgroundColor = [UIColor clearColor];
-     }
-                     completion:^(BOOL finished)
-     {
-         if ([self.boomDelegate respondsToSelector:@selector(onBoomDidHide)])
-         {
-             [self.boomDelegate onBoomDidHide];
-         }
-     }];
+    CFTimeInterval duration = immediately ? 0.001 : self.hideDuration + (self.pieces.count - 1) * self.hideDelay;
+    [self.background light:duration completion:nil];
 }
 
-/**
- *  Start all show animations
- */
-- (void)startShowAnimations
+- (void)finishHideAnimations
 {
-    if (nil != self.background)
+    if ([self isAnimating])
     {
-        [self removeAllSubViews:self.background];
+        return;
     }
-    
-    if (self.buttonEnum == VHButtonTextOutsideCircle)
+    self.boomState = VHBoomStateDidHide;
+    if (self.boomDelegate && [self.boomDelegate respondsToSelector:@selector(onBoomDidHide)])
     {
-        [self adjustErrorForTextOutSideCircleButtonForStartYPosition];
+        [self.boomDelegate onBoomDidHide];
     }
-    
+    [self clearViewsAndValues:NO];
+}
+
+- (void)startShowAnimations:(BOOL)immediately
+{
+    [self.background removeAllSubViews];
     [self calculateEndPositions];
-    
-    NSMutableArray<NSNumber *> *indexs = [self getOrderIndex:self.showOrderEnum inSize:(int)self.pieces.count];
-    for (int i = 0; i < indexs.count; i++)
+    NSMutableArray<NSNumber *> *indexes;
+    if (self.piecePlaceEnum == VHPiecePlaceShare)
     {
-        int index = [[indexs objectAtIndex:i] intValue];
-        VHBoomButton *button = [self putSubButtonInBackground:[self.boomButtons objectAtIndex:index] withPosition:[[self.startPositions objectAtIndex:index] CGPointValue]];
-        
-        CGPoint startPosition = CGPointMake([[self.startPositions objectAtIndex:index] CGPointValue].x, [[self.startPositions objectAtIndex:index] CGPointValue].y);
-        CGPoint endPosition = CGPointMake([[self.endPositions objectAtIndex:index] CGPointValue].x, [[self.endPositions objectAtIndex:index] CGPointValue].y);
-        
-        // [[self.endPositions objectAtIndex:i] CGPointValue] != endPosition ????
-        
-        [self setShowAnimationForEverySubButton:[self.pieces objectAtIndex:index]
-                                         button:button
-                                  startPosition:startPosition
-                                    endPosition:endPosition
-                                          index:index
-                                    delayFactor:i];
+        indexes = [VHAnimationManager orderIndexes:VHOrderDefault inSize:self.pieces.count];
     }
+    else
+    {
+        indexes = [VHAnimationManager orderIndexes:self.orderEnum inSize:self.pieces.count];
+    }
+    [indexes enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(NSNumber * _Nonnull indexObj, NSUInteger i, BOOL * _Nonnull stop) {
+        int index = [indexObj intValue];
+        VHBoomButton *boomButton = [self.boomButtons objectAtIndex:index];
+        CGPoint startPosition = [[self.startPositions objectAtIndex:index] CGPointValue];
+        CGPoint startPositionOfBoomButton = CGPointMake(startPosition.x, startPosition.y);
+        [self putBoomButtonInBackground:boomButton withPosition:startPositionOfBoomButton];
+        [self startEachShowAnimation:[self.pieces objectAtIndex:index]
+                              button:boomButton
+                       startPosition:startPositionOfBoomButton
+                         endPosition:[[self.endPositions objectAtIndex:index] CGPointValue]
+                         delayFactor:i
+                         immediately:immediately];
+    }];
 }
 
-/**
- *  Set animation for each button and piece
- *
- *  @param piece         The piece
- *  @param button        The button
- *  @param startPosition Start position
- *  @param endPosition   End position
- *  @param index         The index of button
- *  @param delayFactor   Delay factor
- */
-- (void)setShowAnimationForEverySubButton:(VHBoomPiece *)piece
-                                   button:(VHBoomButton *)button
-                            startPosition:(CGPoint)startPosition
-                              endPosition:(CGPoint)endPosition
-                                    index:(int)index
-                              delayFactor:(int)delayFactor
+- (void)startHideAnimation:(BOOL)immediately
+{
+    NSMutableArray<NSNumber *> *indexes;
+    if (self.piecePlaceEnum == VHPiecePlaceShare)
+    {
+        indexes = [VHAnimationManager orderIndexes:VHOrderReverse inSize:self.pieces.count];
+    }
+    else
+    {
+        indexes = [VHAnimationManager orderIndexes:self.orderEnum inSize:self.pieces.count];
+    }
+    for (NSNumber *number in indexes)
+    {
+        [self.background bringSubviewToFront:[self.boomButtons objectAtIndex:[number integerValue]]];
+    }
+    [indexes enumerateObjectsUsingBlock:^(NSNumber * _Nonnull indexObj, NSUInteger i, BOOL * _Nonnull stop) {
+        int index = [indexObj intValue];
+        VHBoomButton *boomButton = [self.boomButtons objectAtIndex:index];
+        CGPoint startPosition = [[self.startPositions objectAtIndex:index] CGPointValue];
+        CGPoint startPositionOfBoomButton = CGPointMake(startPosition.x, startPosition.y);
+        [self startEachHideAnimation:[self.pieces objectAtIndex:index]
+                              button:boomButton
+                       startPosition:[[self.endPositions objectAtIndex:index] CGPointValue]
+                         endPosition:startPositionOfBoomButton
+                         delayFactor:i
+                         immediately:immediately];
+    }];
+}
+
+- (void)startEachShowAnimation:(VHBoomPiece *)piece
+                        button:(VHBoomButton *)boomButton
+                 startPosition:(CGPoint)startPosition
+                   endPosition:(CGPoint)endPosition
+                   delayFactor:(NSUInteger)delayFactor
+                   immediately:(BOOL)immediately
 {
     self.animatingViewsNumber++;
-    
-    [[button superview] bringSubviewToFront:button];
-    
-    NSMutableArray *xs = [NSMutableArray arrayWithCapacity:self.frames];
-    NSMutableArray *ys = [NSMutableArray arrayWithCapacity:self.frames];
-    [[VHAnimationManager sharedManager] calculateShowXY:self.boomEnum
-                                                   ease:self.showMoveEaseEnum
-                                                 frames:self.frames
-                                          startPosition:startPosition
-                                            endPosition:endPosition
-                                                xValues:xs
-                                                yValues:ys];
-    
-    for (UIView *goneView in button.goneViews)
+    NSMutableArray *xs = [NSMutableArray arrayWithCapacity:self.frames + 1];
+    NSMutableArray *ys = [NSMutableArray arrayWithCapacity:self.frames + 1];
+    CGFloat scaleX = piece.frame.size.width / boomButton.contentWidth;
+    CGFloat scaleY = piece.frame.size.height / boomButton.contentHeight;
+    CFTimeInterval delay = immediately ? 0 : self.showDelay * delayFactor;
+    CFTimeInterval duration = immediately ? 0.001 : self.showDuration;
+    [boomButton setSelfScaleAnchorPoint];
+    [boomButton setRotateAnchorPoints];
+    [boomButton setAnchorPointOfLayer];
+    [boomButton innerHiddenAllGoneViews];
+    if (self.use3DTransformAnimation)
     {
-        goneView.alpha = 0;
+        CGFloat buttonMaxHeight = [self buttonMaxHeight];
+        CATransform3D transfrom3d = CATransform3DIdentity;
+        transfrom3d.m34 = 1.0f / 500;
+        boomButton.layer.transform = transfrom3d;
+        boomButton.layer.zPosition = buttonMaxHeight * 10 - delayFactor * buttonMaxHeight;
     }
+    boomButton.userInteractionEnabled = NO;
+    [VHAnimationManager calculateShowXY:self.boomEnum
+                             parentSize:self.background.bounds.size
+                                   ease:self.showMoveEase
+                                 frames:self.frames
+                          startPosition:startPosition
+                            endPosition:endPosition
+                                xValues:xs
+                                yValues:ys];
     
-    [CATransaction begin];
-    [CATransaction setCompletionBlock:^(void)
-     {
-         piece.hidden = YES;
-         button.hidden = NO;
-         
-         [CATransaction begin];
-         [CATransaction setCompletionBlock:^(void)
-          {
-              self.animatingViewsNumber--;
-          }];
-         
-         CAAnimationGroup *group = [CAAnimationGroup animation];
-         group.duration = self.duration;
-         group.removedOnCompletion = YES;
-         group.fillMode = kCAFillModeForwards;
-         
-         
-         CAKeyframeAnimation *xAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position.x"];
-         xAnimation.values = xs;
-         
-         CAKeyframeAnimation *yAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position.y"];
-         yAnimation.values = ys;
-         
-         CAKeyframeAnimation *scaleAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
-         scaleAnimation.values = [[VHAnimationManager sharedManager] calculateScale:self.showScaleEaseEnum
-                                                                             frames:self.frames
-                                                                         startScale:piece.frame.size.width / button.frame.size.width
-                                                                           endScale:1];
-         
-         CAKeyframeAnimation *opacityAnimation = [CAKeyframeAnimation animationWithKeyPath:@"opacity"];
-         opacityAnimation.values = @[@0, @1];
-         opacityAnimation.duration = self.duration;
-         opacityAnimation.removedOnCompletion = NO;
-         opacityAnimation.fillMode = kCAFillModeForwards;
-         for (UIView *goneView in button.goneViews)
-         {
-             [goneView.layer addAnimation:opacityAnimation forKey:nil];
-         }
-         
-         CAKeyframeAnimation *rotateAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation.z"];
-         rotateAnimation.values = [[VHAnimationManager sharedManager] calculateRotate:self.showRotateEaseEnum frames:self.frames startRotate:0 endRotate:self.rotationDegree];
-         rotateAnimation.duration = self.duration;
-         rotateAnimation.removedOnCompletion = NO;
-         rotateAnimation.fillMode = kCAFillModeForwards;
-         for (UIView *rotateView in button.rotateViews)
-         {
-             // http://joeshang.github.io/2014/12/19/understand-anchorpoint-position-frame/
-             if (rotateView.frame.size.width == 0 || rotateView.frame.size.height == 0) continue;
-             CGFloat anchorPointX = (button.rotateAnchorPoint.x - (rotateView.frame.origin.x + rotateView.frame.size.width / 2)) / rotateView.frame.size.width + 0.5;
-             CGFloat anchorPointY = (button.rotateAnchorPoint.y - (rotateView.frame.origin.y + rotateView.frame.size.height / 2)) / rotateView.frame.size.height + 0.5;
-             CGRect originalFrame = rotateView.layer.frame;
-             [rotateView.layer setAnchorPoint:CGPointMake(anchorPointX, anchorPointY)];
-             rotateView.layer.frame = originalFrame;
-             [rotateView.layer addAnimation:rotateAnimation forKey:nil];
-         }
-         
-         button.frame = CGRectMake(endPosition.x - button.frame.size.width / 2, endPosition.y - button.frame.size.height / 2, button.frame.size.width, button.frame.size.height);
-         button.layer.frame = button.frame;
-         
-         [group setAnimations:@[xAnimation, yAnimation, scaleAnimation]];
-         [button.layer addAnimation:group forKey:[NSString stringWithFormat:@"%d", index]];
-         [CATransaction commit];
-
-     }];
-    
-    CAKeyframeAnimation *scaleAnimationAtFirst = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
-    scaleAnimationAtFirst.values = @[@(piece.frame.size.width / button.frame.size.width)];
-    scaleAnimationAtFirst.duration = delayFactor * self.delay;
-    scaleAnimationAtFirst.removedOnCompletion = NO;
-    scaleAnimationAtFirst.fillMode = kCAFillModeForwards;
-    [button.layer addAnimation:scaleAnimationAtFirst forKey:[NSString stringWithFormat:@"%d", index]];
-    
-    [CATransaction commit];
-}
-
-/**
- *  Start all hide animations
- */
-- (void)startHideAnimations
-{
-    NSMutableArray<NSNumber *> *indexs = [self getOrderIndex:self.hideOrderEnum inSize:(int)self.pieces.count];
-    for (int i = 0; i < indexs.count; i++)
-    {
-        int index = [[indexs objectAtIndex:i] intValue];
-
-        CGPoint startPosition = CGPointMake([[self.startPositions objectAtIndex:index] CGPointValue].x, [[self.startPositions objectAtIndex:index] CGPointValue].y);
-        CGPoint endPosition = CGPointMake([[self.endPositions objectAtIndex:index] CGPointValue].x, [[self.endPositions objectAtIndex:index] CGPointValue].y);
+    DelayBlock block = ^{
+        // onAnimationStart
+        piece.hidden = YES;
+        boomButton.hidden = NO;
+        [boomButton willShow];
+        if (self.piecePlaceEnum == VHPiecePlaceShare)
+        {
+            [self.shareLinesView pieceStartShowAnimation:delayFactor withDuration:immediately ? 0.001 : self.showDelay];
+            piece.pieceBelow.hidden = NO;
+        }
         
-        [self setHideAnimationForEverySubButton:[self.pieces objectAtIndex:index]
-                                         button:[self.boomButtons objectAtIndex:index]
-                                  startPosition:endPosition
-                                    endPosition:startPosition
-                                          index:index
-                                    delayFactor:i];
-    }
+        [CATransaction begin];
+        [CATransaction setCompletionBlock:^(void)
+         {
+             // onAnimationEnd
+             boomButton.userInteractionEnabled = YES;
+             [boomButton didShow];
+             self.animatingViewsNumber--;
+         }];
+        
+        if ([boomButton innerNeedsColorAnimation])
+        {
+            CABasicAnimation *fillColorAnimation = [VHAnimationManager showColorAnimateKeyPath:@"fillColor"
+                                                                                         delay:0
+                                                                                      duration:duration
+                                                                                         start:[boomButton innerPieceColor]
+                                                                                           end:[boomButton innerButtonColor]];
+            [[boomButton innerButtonLayer] addAnimation:fillColorAnimation forKey:kFillColorAnimation];
+        }
+        else
+        {
+            [[boomButton innerButtonLayer] removeAnimationForKey:kFillColorAnimation];
+        }
+        
+        CAKeyframeAnimation *xPositionAnimation = [VHAnimationManager animateKeyPath:@"position.x"
+                                                                               delay:0
+                                                                            duration:duration
+                                                                              values:xs];
+        xPositionAnimation.removedOnCompletion = YES;
+        CAKeyframeAnimation *yPositionAnimation = [VHAnimationManager animateKeyPath:@"position.y"
+                                                                               delay:0
+                                                                            duration:duration
+                                                                              values:ys];
+        yPositionAnimation.removedOnCompletion = YES;
+        CAKeyframeAnimation *rotateAnimation = [VHAnimationManager animateKeyPath:@"transform.rotation.z"
+                                                                            delay:0
+                                                                         duration:duration
+                                                                             ease:self.showRotateEase
+                                                                           frames:self.frames
+                                                                            start:0
+                                                                              end:self.rotateDegree];
+        CAKeyframeAnimation *opacityAnimation = [VHAnimationManager animateKeyPath:@"opacity"
+                                                                             delay:0
+                                                                          duration:duration
+                                                                            values:@[@(0), @(1)]];
+        CAKeyframeAnimation *xScaleAnimation = [VHAnimationManager animateKeyPath:@"transform.scale.x"
+                                                                            delay:0
+                                                                         duration:duration
+                                                                             ease:self.showScaleEase
+                                                                           frames:self.frames
+                                                                            start:scaleX
+                                                                              end:1];
+        CAKeyframeAnimation *yScaleAnimation = [VHAnimationManager animateKeyPath:@"transform.scale.y"
+                                                                            delay:0
+                                                                         duration:duration
+                                                                             ease:self.showScaleEase
+                                                                           frames:self.frames
+                                                                            start:scaleY
+                                                                              end:1];
+        [VHAnimationManager addAnimations:boomButton, xPositionAnimation, yPositionAnimation, xScaleAnimation, yScaleAnimation, nil];
+        [VHAnimationManager addAnimation:rotateAnimation toViews:boomButton.rotateViews];
+        [VHAnimationManager addAnimation:opacityAnimation toViews:boomButton.goneViews];
+        
+        if (self.use3DTransformAnimation)
+        {
+//            CAKeyframeAnimation *rotateXAnimation = [VHAnimationManager rotateXAnimationFromFrames:self.frames startY:startPosition.y endY:endPosition.y delay:0 duration:duration];
+//            CAKeyframeAnimation *rotateYAnimation = [VHAnimationManager rotateYAnimationFromFrames:self.frames startX:startPosition.x endX:endPosition.x delay:0 duration:duration];
+            CAKeyframeAnimation *rotateXAnimation = [VHAnimationManager rotateXAnimationFromVelocity:ys delay:0 duration:duration];
+            CAKeyframeAnimation *rotateYAnimation = [VHAnimationManager rotateYAnimationFromVelocity:xs delay:0 duration:duration];
+            [VHAnimationManager addAnimations:boomButton, rotateXAnimation, rotateYAnimation, nil];
+        }
+        
+        boomButton.frame = CGRectMake(endPosition.x - boomButton.centerPoint.x,
+                                      endPosition.y - boomButton.centerPoint.y,
+                                      boomButton.frame.size.width,
+                                      boomButton.frame.size.height);
+        
+        NSLog(@"commit %zd", delayFactor);
+        [CATransaction commit];
+    };
+    [self delay:delay toBlock:block];
 }
 
-/**
- *  Set hide animation for each button and piece
- *
- *  @param piece         The piece
- *  @param button        The button
- *  @param startPosition Start position
- *  @param endPosition   End position
- *  @param index         Index of button
- *  @param delayFactor   Delay factor
- */
-- (void)setHideAnimationForEverySubButton:(VHBoomPiece *)piece
-                                   button:(VHBoomButton *)button
-                            startPosition:(CGPoint)startPosition
-                              endPosition:(CGPoint)endPosition
-                                    index:(int)index
-                              delayFactor:(int)delayFactor
+- (void)startEachHideAnimation:(VHBoomPiece *)piece
+                        button:(VHBoomButton *)boomButton
+                 startPosition:(CGPoint)startPosition
+                   endPosition:(CGPoint)endPosition
+                   delayFactor:(NSUInteger)delayFactor
+                   immediately:(BOOL)immediately
 {
     self.animatingViewsNumber++;
+    NSMutableArray *xs = [NSMutableArray arrayWithCapacity:self.frames + 1];
+    NSMutableArray *ys = [NSMutableArray arrayWithCapacity:self.frames + 1];
+    CGFloat scaleX = piece.frame.size.width / boomButton.contentWidth;
+    CGFloat scaleY = piece.frame.size.height / boomButton.contentHeight;
+    CFTimeInterval delay = immediately ? 0 : self.hideDelay * delayFactor;
+    CFTimeInterval duration = immediately ? 0.001 : self.hideDuration;
+    [boomButton setSelfScaleAnchorPoint];
+    [boomButton setRotateAnchorPoints];
+    [boomButton setAnchorPointOfLayer];
+    if (self.use3DTransformAnimation)
+    {
+        CATransform3D transfrom3d = CATransform3DIdentity;
+        transfrom3d.m34 = 1.0f / 500;
+        boomButton.layer.transform = transfrom3d;
+    }
+    boomButton.userInteractionEnabled = NO;
+    [VHAnimationManager calculateHideXY:self.boomEnum
+                             parentSize:self.background.bounds.size
+                                   ease:self.hideMoveEase
+                                 frames:self.frames
+                          startPosition:startPosition
+                            endPosition:endPosition
+                                xValues:xs
+                                yValues:ys];
     
-    NSMutableArray *xs = [NSMutableArray arrayWithCapacity:self.frames];
-    NSMutableArray *ys = [NSMutableArray arrayWithCapacity:self.frames];
-    [[VHAnimationManager sharedManager] calculateHideXY:self.boomEnum
-                                                   ease:self.hideMoveEaseEnum
-                                                 frames:self.frames
-                                          startPosition:startPosition
-                                            endPosition:endPosition
-                                                xValues:xs
-                                                yValues:ys];
-    
-    [CATransaction begin];
-    [CATransaction setCompletionBlock:^(void)
-     {
-         piece.hidden = NO;
-         button.hidden = YES;
-         self.animatingViewsNumber--;
-         if (self.animatingViewsNumber == 0)
+    DelayBlock block = ^{
+        // onAnimationStart
+        [boomButton willHide];
+        
+        [CATransaction begin];
+        [CATransaction setCompletionBlock:^(void)
          {
-             [self.background removeFromSuperview];
-         }
-     }];
+             // onAnimationEnd
+             piece.hidden = NO;
+             boomButton.hidden = YES;
+             [boomButton didHide];
+             [boomButton clearListener];
+             self.animatingViewsNumber--;
+             [self finishHideAnimations];
+             
+             if (self.piecePlaceEnum == VHPiecePlaceShare)
+             {
+                 [self.shareLinesView pieceFinishHideAnimation:[self innerPieceNumber] - delayFactor - 1 withDuration:immediately ? 0.001 : self.hideDelay];
+                 piece.pieceBelow.hidden = YES;
+             }
+         }];
+        
+        if ([boomButton innerNeedsColorAnimation])
+        {
+            CABasicAnimation *fillColorAnimation = [VHAnimationManager hideColorAnimateKeyPath:@"fillColor"
+                                                                                         delay:0
+                                                                                      duration:duration
+                                                                                         start:[boomButton innerButtonColor]
+                                                                                           end:[boomButton innerPieceColor]];
+            [[boomButton innerButtonLayer] addAnimation:fillColorAnimation forKey:kFillColorAnimation];
+        }
+        else
+        {
+            [[boomButton innerButtonLayer] removeAnimationForKey:kFillColorAnimation];
+        }
+        
+        CAKeyframeAnimation *xPositionAnimation = [VHAnimationManager animateKeyPath:@"position.x"
+                                                                               delay:0
+                                                                            duration:duration
+                                                                              values:xs];
+        xPositionAnimation.removedOnCompletion = YES;
+        CAKeyframeAnimation *yPositionAnimation = [VHAnimationManager animateKeyPath:@"position.y"
+                                                                               delay:0
+                                                                            duration:duration
+                                                                              values:ys];
+        yPositionAnimation.removedOnCompletion = YES;
+        CAKeyframeAnimation *rotateAnimation = [VHAnimationManager animateKeyPath:@"transform.rotation.z"
+                                                                            delay:0
+                                                                         duration:duration
+                                                                             ease:self.hideRotateEase
+                                                                           frames:self.frames
+                                                                            start:0
+                                                                              end:-self.rotateDegree];
+        CAKeyframeAnimation *opacityAnimation = [VHAnimationManager animateKeyPath:@"opacity"
+                                                                             delay:0
+                                                                          duration:duration
+                                                                            values:@[@(1), @(0)]];
+        CAKeyframeAnimation *xScaleAnimation = [VHAnimationManager animateKeyPath:@"transform.scale.x"
+                                                                            delay:0
+                                                                         duration:duration
+                                                                             ease:self.hideScaleEase
+                                                                           frames:self.frames
+                                                                            start:1
+                                                                              end:scaleX];
+        CAKeyframeAnimation *yScaleAnimation = [VHAnimationManager animateKeyPath:@"transform.scale.y"
+                                                                            delay:0
+                                                                         duration:duration
+                                                                             ease:self.hideScaleEase
+                                                                           frames:self.frames
+                                                                            start:1
+                                                                              end:scaleY];
+        [VHAnimationManager addAnimations:boomButton, xPositionAnimation, yPositionAnimation, xScaleAnimation, yScaleAnimation, nil];
+        [VHAnimationManager addAnimation:rotateAnimation toViews:boomButton.rotateViews];
+        [VHAnimationManager addAnimation:opacityAnimation toViews:boomButton.goneViews];
+        
+        if (self.use3DTransformAnimation)
+        {
+//            CAKeyframeAnimation *rotateXAnimation = [VHAnimationManager rotateXAnimationFromFrames:self.frames startY:startPosition.y endY:endPosition.y delay:0 duration:duration];
+//            CAKeyframeAnimation *rotateYAnimation = [VHAnimationManager rotateYAnimationFromFrames:self.frames startX:startPosition.x endX:endPosition.x delay:0 duration:duration];
+            CAKeyframeAnimation *rotateXAnimation = [VHAnimationManager rotateXAnimationFromVelocity:ys delay:0 duration:duration];
+            CAKeyframeAnimation *rotateYAnimation = [VHAnimationManager rotateYAnimationFromVelocity:xs delay:0 duration:duration];
+            [VHAnimationManager addAnimations:boomButton, rotateXAnimation, rotateYAnimation, nil];
+        }
+        
+        boomButton.frame = CGRectMake(endPosition.x - boomButton.centerPoint.x,
+                                      endPosition.y - boomButton.centerPoint.y,
+                                      boomButton.frame.size.width,
+                                      boomButton.frame.size.height);
+        
+        [CATransaction commit];
+    };
     
-    CAAnimationGroup *group = [CAAnimationGroup animation];
-    group.duration = self.duration;
-    group.removedOnCompletion = NO;
-    group.fillMode = kCAFillModeForwards;
-    group.beginTime = [button.layer convertTime:CACurrentMediaTime() fromLayer:nil] + delayFactor * self.delay;
-    
-    CAKeyframeAnimation *xAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position.x"];
-    xAnimation.values = xs;
-    
-    CAKeyframeAnimation *yAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position.y"];
-    yAnimation.values = ys;
-    
-    CAKeyframeAnimation *scaleAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
-    scaleAnimation.values = [[VHAnimationManager sharedManager] calculateScale:self.hideScaleEaseEnum
-                                                                        frames:self.frames
-                                                                    startScale:1
-                                                                      endScale:piece.frame.size.width / button.frame.size.width];
-    
-    CAKeyframeAnimation *opacityAnimation = [CAKeyframeAnimation animationWithKeyPath:@"opacity"];
-    opacityAnimation.values = @[@1, @0];
-    opacityAnimation.duration = self.duration;
-    opacityAnimation.removedOnCompletion = NO;
-    opacityAnimation.fillMode = kCAFillModeForwards;
-    opacityAnimation.beginTime = [button.layer convertTime:CACurrentMediaTime() fromLayer:nil] + delayFactor * self.delay;
-    for (UIView *goneView in button.goneViews)
-    {
-        [goneView.layer addAnimation:opacityAnimation forKey:nil];
-    }
-    
-    CAKeyframeAnimation *rotateAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation.z"];
-    rotateAnimation.values = [[VHAnimationManager sharedManager] calculateRotate:self.hideRotateEaseEnum frames:self.frames startRotate:self.rotationDegree endRotate:0];
-    rotateAnimation.duration = self.duration;
-    rotateAnimation.removedOnCompletion = NO;
-    rotateAnimation.fillMode = kCAFillModeForwards;
-    rotateAnimation.beginTime = [button.layer convertTime:CACurrentMediaTime() fromLayer:nil] + delayFactor * self.delay;
-    for (UIView *rotateView in button.rotateViews)
-    {
-        [rotateView.layer addAnimation:rotateAnimation forKey:nil];
-    }
-    
-    [group setAnimations:@[xAnimation, yAnimation, scaleAnimation]];
-    [button.layer addAnimation:group forKey:[NSString stringWithFormat:@"%d", index]];
-    [CATransaction commit];
+    [self delay:delay toBlock:block];
 }
 
-#pragma mark Other Methods
+#pragma mark - Support Methods
 
-/**
- *  Create a background if it does not exist
- */
 - (void)createBackground
 {
-    if (nil == self.background)
+    if (!self.background)
     {
-        self.background = [[VHBackgroundView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+        UIView *parentView = [self parentView];
+        self.background = [[VHBackgroundView alloc] initWithFrame:CGRectMake(0, 0, parentView.bounds.size.width, parentView.bounds.size.height)];
+        self.background.dimColor = self.dimColor;
+        self.background.blurBackground = self.blurBackground;
+        if ([UIBlurEffect class])
+        {
+            self.background.blurEffect = self.blurEffect;
+        }
         self.background.delegate = self;
+        [parentView addSubview:self.background];
     }
-    [[[[UIApplication sharedApplication] delegate] window] addSubview:self.background];
 }
 
-/**
- *  Create buttons from button-builders
- */
+- (void)clearBackground:(BOOL)force
+{
+    self.background.hidden = YES;
+    if (force || !self.cacheOptimization || self.inList)
+    {
+        [self.background removeAllSubViews];
+        [self.background removeFromSuperview];
+        self.background = nil;
+    }
+}
+
 - (void)createButtons
 {
+    if (!self.needToCreateButtons)
+    {
+        return;
+    }
+    self.needToCreateButtons = NO;
     [[VHErrorManager sharedManager] errorJudgeWithPiecePlaceEnum:self.piecePlaceEnum andButtonPlaceEnum:self.buttonPlaceEnum];
     
     self.boomButtons = [NSMutableArray arrayWithCapacity:self.pieces.count];
-    int buttonNumber = (int)self.pieces.count;
     
     switch (self.buttonEnum)
     {
         case VHButtonSimpleCircle:
-            for (int i = 0; i < buttonNumber; i++)
-            {
-                VHSimpleCircleButtonBuilder *builder = (VHSimpleCircleButtonBuilder *)[self.boomButtonBuilders objectAtIndex:i];
-                builder.delegate = self;
-                builder.index = i;
-                VHSimpleCircleButton *simpleCircleButton = [builder createButton];
-                [self.boomButtons setObject:simpleCircleButton atIndexedSubscript:i];
-                
-                self.simpleCircleButtonRadius = builder.buttonRadius;
-            }
+        {
+            [self.boomButtonBuilders enumerateObjectsUsingBlock:^(VHBoomButtonBuilder * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                VHSimpleCircleButtonBuilder *builder = (VHSimpleCircleButtonBuilder *)obj;
+                builder.innerIndex = idx;
+                builder.innerListener = self;
+                [self.boomButtons setObject:[builder innerBuild] atIndexedSubscript:idx];
+                self.simpleCircleButtonRadius = builder.radius;
+            }];
             break;
+        }
         case VHButtonTextInsideCircle:
-            for (int i = 0; i < buttonNumber; i++)
-            {
-                VHTextInsideCircleButtonBuilder *builder = (VHTextInsideCircleButtonBuilder *)[self.boomButtonBuilders objectAtIndex:i];
-                builder.delegate = self;
-                builder.index = i;
-                VHTextInsideCircleButton *textInsideCircleButton = [builder createButton];
-                [self.boomButtons setObject:textInsideCircleButton atIndexedSubscript:i];
-                
-                self.textInsideCircleButtonRadius = builder.buttonRadius;
-            }
+        {
+            [self.boomButtonBuilders enumerateObjectsUsingBlock:^(VHBoomButtonBuilder * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                VHTextInsideCircleButtonBuilder *builder = (VHTextInsideCircleButtonBuilder *)obj;
+                builder.innerIndex = idx;
+                builder.innerListener = self;
+                [self.boomButtons setObject:[builder innerBuild] atIndexedSubscript:idx];
+                self.textInsideCircleButtonRadius = builder.radius;
+            }];
             break;
+        }
         case VHButtonTextOutsideCircle:
-            for (int i = 0; i < buttonNumber; i++)
-            {
-                VHTextOutsideCircleButtonBuilder *builder = (VHTextOutsideCircleButtonBuilder *)[self.boomButtonBuilders objectAtIndex:i];
-                builder.delegate = self;
-                builder.index = i;
-                VHTextOutsideCircleButton *textOutsideCircleButton = [builder createButton];
-                [self.boomButtons setObject:textOutsideCircleButton atIndexedSubscript:i];
-                
-                self.textOutsideCircleButtonWidth = builder.buttonWidth;
-                self.textOutsideCircleButtonHeight = builder.buttonHeight;
-            }
+        {
+            [self.boomButtonBuilders enumerateObjectsUsingBlock:^(VHBoomButtonBuilder * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                VHTextOutsideCircleButtonBuilder *builder = (VHTextOutsideCircleButtonBuilder *)obj;
+                builder.innerIndex = idx;
+                builder.innerListener = self;
+                [self.boomButtons setObject:[builder innerBuild] atIndexedSubscript:idx];
+                self.textOutsideCircleButtonWidth = builder.width;
+                self.textOutsideCircleButtonHeight = builder.height;
+            }];
             break;
+        }
         case VHButtonHam:
-            for (int i = 0; i < buttonNumber; i++)
-            {
-                VHHamButtonBuilder *builder = (VHHamButtonBuilder *)[self.boomButtonBuilders objectAtIndex:i];
-                builder.delegate = self;
-                builder.index = i;
-                VHHamButton *hamButton = [builder createButton];
-                [self.boomButtons setObject:hamButton atIndexedSubscript:i];
-                
-                self.hamButtonWidth = builder.buttonWidth;
-                self.hamButtonHeight = builder.buttonHeight;
-            }
+        {
+            [self.boomButtonBuilders enumerateObjectsUsingBlock:^(VHBoomButtonBuilder * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                VHHamButtonBuilder *builder = (VHHamButtonBuilder *)obj;
+                builder.innerIndex = idx;
+                builder.innerListener = self;
+                [self.boomButtons setObject:[builder innerBuild] atIndexedSubscript:idx];
+                self.hamButtonWidth = builder.width;
+                self.hamButtonHeight = builder.height;
+            }];
             break;
+        }
         default:
             break;
     }
 }
 
-/**
- *  Remove all sub views in the parent view
- *
- *  @param parentView The parent view
- */
-- (void)removeAllSubViews:(UIView *)parentView
+- (UIView *)parentView
 {
-    for (UIView *subViews in parentView.subviews)
+    if (self.boomInWholeScreen)
     {
-        [subViews removeFromSuperview];
+        return [[[UIApplication sharedApplication] delegate] window];
+    }
+    else
+    {
+        return [self superview];
     }
 }
 
-/**
- *  Calculate out the start positionss
- */
 - (void)calculateStartPositions
 {
-    self.needToAdjustTextOutsideCircleButtonHeightError = YES;
+    if (!self.needToCalculateStartPositions && !self.inList) return;
+    self.needToCalculateStartPositions = NO;
     
-    long pieceNumber = [[VHPiecePlaceManager sharedManager] numbersWithEnum:self.piecePlaceEnum];
+    long pieceNumber = [self innerPieceNumber];
     self.startPositions = [NSMutableArray arrayWithCapacity:pieceNumber];
-    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+    UIView *parentView = [self parentView];
     
-    for (int i = 0; i < pieceNumber; i++)
-    {
-        VHBoomPiece *piece = [self getBoomPieceAt:[self.piecePositions objectAtIndex:i] withColor:[self.boomButtonBuilders objectAtIndex:i].buttonNormalColor];
-        CGPoint centerPointOfPieceInWindow = [self convertPoint:piece.frame.origin toView:window];
-        centerPointOfPieceInWindow = CGPointMake(centerPointOfPieceInWindow.x + piece.frame.size.width / 2, centerPointOfPieceInWindow.y + piece.frame.size.height / 2);
-        [self.startPositions addObject:[NSValue valueWithCGPoint:centerPointOfPieceInWindow]];
-    }
+    [self.pieces enumerateObjectsUsingBlock:^(VHBoomPiece * _Nonnull piece, NSUInteger idx, BOOL * _Nonnull stop) {
+        CGPoint bmbPosition = [self convertPoint:CGPointZero toView:parentView];
+        CGPoint piecePositionInBmb = [[self.piecePositions objectAtIndex:idx] CGRectValue].origin;
+        CGFloat pieceCenterInParentViewX = bmbPosition.x + piecePositionInBmb.x + piece.frame.size.width / 2;
+        CGFloat pieceCenterInParentViewY = bmbPosition.y + piecePositionInBmb.y + piece.frame.size.height / 2;
+        CGPoint pieceCenterInParentView = CGPointMake(pieceCenterInParentViewX, pieceCenterInParentViewY);
+        [self.startPositions addObject:[NSValue valueWithCGPoint:pieceCenterInParentView]];
+    }];
 }
 
 /**
@@ -755,63 +1117,63 @@
 {
     switch (self.buttonEnum) {
         case VHButtonSimpleCircle:
-            self.endPositions = [[VHButtonPlaceManager sharedManager] positionsWithEnum:self.buttonPlaceEnum
-                                                                          withAlignment:self.buttonPlaceAlignmentEnum
-                                                                        withParentFrame:[UIScreen mainScreen].bounds
-                                                                       withButtonRadius:self.simpleCircleButtonRadius
-                                                                       withButtonNumber:self.boomButtonBuilders.count
-                                                             withButtonHorizontalMargin:self.buttonHorizontalMargin
-                                                               withButtonInclinedMargin:self.buttonVerticalMargin
-                                                               withButtonVerticalMargin:self.buttonInclinedMargin
-                                                                    withButtonTopMargin:self.buttonTopMargin
-                                                                 withButtonBottomMargin:self.buttonBottomMargin
-                                                                   withButtonLeftMargin:self.buttonLeftMargin
-                                                                  withButtonRightMargin:self.buttonRightMargin];
+            self.endPositions = [VHButtonPlaceManager positionsWithEnum:self.buttonPlaceEnum
+                                                          withAlignment:self.buttonPlaceAlignmentEnum
+                                                        withParentFrame:[self parentView].bounds
+                                                       withButtonRadius:self.simpleCircleButtonRadius
+                                                       withButtonNumber:self.boomButtonBuilders.count
+                                             withButtonHorizontalMargin:self.buttonHorizontalMargin
+                                               withButtonInclinedMargin:self.buttonInclinedMargin
+                                               withButtonVerticalMargin:self.buttonVerticalMargin
+                                                    withButtonTopMargin:self.buttonTopMargin
+                                                 withButtonBottomMargin:self.buttonBottomMargin
+                                                   withButtonLeftMargin:self.buttonLeftMargin
+                                                  withButtonRightMargin:self.buttonRightMargin];
             break;
         case VHButtonTextInsideCircle:
-            self.endPositions = [[VHButtonPlaceManager sharedManager] positionsWithEnum:self.buttonPlaceEnum
-                                                                          withAlignment:self.buttonPlaceAlignmentEnum
-                                                                        withParentFrame:[UIScreen mainScreen].bounds
-                                                                       withButtonRadius:self.textInsideCircleButtonRadius
-                                                                       withButtonNumber:self.boomButtonBuilders.count
-                                                             withButtonHorizontalMargin:self.buttonHorizontalMargin
-                                                               withButtonInclinedMargin:self.buttonVerticalMargin
-                                                               withButtonVerticalMargin:self.buttonInclinedMargin
-                                                                    withButtonTopMargin:self.buttonTopMargin
-                                                                 withButtonBottomMargin:self.buttonBottomMargin
-                                                                   withButtonLeftMargin:self.buttonLeftMargin
-                                                                  withButtonRightMargin:self.buttonRightMargin];
+            self.endPositions = [VHButtonPlaceManager positionsWithEnum:self.buttonPlaceEnum
+                                                          withAlignment:self.buttonPlaceAlignmentEnum
+                                                        withParentFrame:[self parentView].bounds
+                                                       withButtonRadius:self.textInsideCircleButtonRadius
+                                                       withButtonNumber:self.boomButtonBuilders.count
+                                             withButtonHorizontalMargin:self.buttonHorizontalMargin
+                                               withButtonInclinedMargin:self.buttonInclinedMargin
+                                               withButtonVerticalMargin:self.buttonVerticalMargin
+                                                    withButtonTopMargin:self.buttonTopMargin
+                                                 withButtonBottomMargin:self.buttonBottomMargin
+                                                   withButtonLeftMargin:self.buttonLeftMargin
+                                                  withButtonRightMargin:self.buttonRightMargin];
             break;
         case VHButtonTextOutsideCircle:
-            self.endPositions = [[VHButtonPlaceManager sharedManager] positionsWithEnum:self.buttonPlaceEnum
-                                                                          withAlignment:self.buttonPlaceAlignmentEnum
-                                                                        withParentFrame:[UIScreen mainScreen].bounds
-                                                                        withButtonWidth:self.textOutsideCircleButtonWidth
-                                                                       withButtonHeight:self.textOutsideCircleButtonHeight
-                                                                       withButtonNumber:self.boomButtonBuilders.count
-                                                             withButtonHorizontalMargin:self.buttonHorizontalMargin
-                                                               withButtonInclinedMargin:self.buttonVerticalMargin
-                                                               withButtonVerticalMargin:self.buttonInclinedMargin
-                                                                    withButtonTopMargin:self.buttonTopMargin
-                                                                 withButtonBottomMargin:self.buttonBottomMargin
-                                                                   withButtonLeftMargin:self.buttonLeftMargin
-                                                                  withButtonRightMargin:self.buttonRightMargin];
+            self.endPositions = [VHButtonPlaceManager positionsWithEnum:self.buttonPlaceEnum
+                                                          withAlignment:self.buttonPlaceAlignmentEnum
+                                                        withParentFrame:[self parentView].bounds
+                                                        withButtonWidth:self.textOutsideCircleButtonWidth
+                                                       withButtonHeight:self.textOutsideCircleButtonHeight
+                                                       withButtonNumber:self.boomButtonBuilders.count
+                                             withButtonHorizontalMargin:self.buttonHorizontalMargin
+                                               withButtonInclinedMargin:self.buttonInclinedMargin
+                                               withButtonVerticalMargin:self.buttonVerticalMargin
+                                                    withButtonTopMargin:self.buttonTopMargin
+                                                 withButtonBottomMargin:self.buttonBottomMargin
+                                                   withButtonLeftMargin:self.buttonLeftMargin
+                                                  withButtonRightMargin:self.buttonRightMargin];
             break;
         case VHButtonHam:
-            self.endPositions = [[VHButtonPlaceManager sharedManager] positionsForHamWithEnum:self.buttonPlaceEnum
-                                                                                withAlignment:self.buttonPlaceAlignmentEnum
-                                                                              withParentFrame:[UIScreen mainScreen].bounds
-                                                                              withButtonWidth:self.hamButtonWidth
-                                                                             withButtonHeight:self.hamButtonHeight
-                                                                             withButtonNumber:self.boomButtonBuilders.count
-                                                                   withButtonHorizontalMargin:self.buttonHorizontalMargin
-                                                                     withButtonVerticalMargin:self.buttonVerticalMargin
-                                                                          withButtonTopMargin:self.buttonTopMargin
-                                                                       withButtonBottomMargin:self.buttonBottomMargin
-                                                                         withButtonLeftMargin:self.buttonLeftMargin
-                                                                        withButtonRightMargin:self.buttonRightMargin
-                                                                  withLastButtonMarginMoreTop:self.lastHamButtonMarginMoreTop
-                                                                      withLastButtonTopMargin:self.lastHamButtonTopMargin];
+            self.endPositions = [VHButtonPlaceManager positionsForHamWithEnum:self.buttonPlaceEnum
+                                                                withAlignment:self.buttonPlaceAlignmentEnum
+                                                              withParentFrame:[self parentView].bounds
+                                                              withButtonWidth:self.hamButtonWidth
+                                                             withButtonHeight:self.hamButtonHeight
+                                                             withButtonNumber:self.boomButtonBuilders.count
+                                                   withButtonHorizontalMargin:self.buttonHorizontalMargin
+                                                     withButtonVerticalMargin:self.buttonVerticalMargin
+                                                          withButtonTopMargin:self.buttonTopMargin
+                                                       withButtonBottomMargin:self.buttonBottomMargin
+                                                         withButtonLeftMargin:self.buttonLeftMargin
+                                                        withButtonRightMargin:self.buttonRightMargin
+                                                  withLastButtonMarginMoreTop:self.bottomHamButtonTopMargin != -1
+                                                      withLastButtonTopMargin:self.bottomHamButtonTopMargin];
             break;
         default:
             break;
@@ -819,89 +1181,270 @@
     
 }
 
-/**
- *  Add the sub button in the background
- *
- *  @param button   The button
- *  @param position The position on the background
- *
- *  @return The added button
- */
-- (VHBoomButton *)putSubButtonInBackground:(VHBoomButton *)button withPosition:(CGPoint)position
+- (VHBoomButton *)putBoomButtonInBackground:(VHBoomButton *)button withPosition:(CGPoint)position
 {
     [self createBackground];
-    button.frame = CGRectMake(position.x - button.frame.size.width / 2, position.y - button.frame.size.height / 2, button.frame.size.width, button.frame.size.height);
+    button.frame = CGRectMake(position.x,
+                              position.y,
+                              button.frame.size.width,
+                              button.frame.size.height);
+    button.hidden = YES;
     [self.background addSubview:button];
     return button;
 }
 
-/**
- *  Get current button index in different order
- *
- *  @param orderEnum Order
- *  @param size      The number of buttons
- *
- *  @return The order for showing or hiding buttons
- */
-- (NSMutableArray<NSNumber *> *)getOrderIndex:(VHOrderEnum)orderEnum inSize:(int)size
+- (void)clearViewsAndValues:(BOOL)force
 {
-    NSMutableArray<NSNumber *> *indexs = [NSMutableArray arrayWithCapacity:size];
-    
-    switch (orderEnum)
+    [self clearBackground:force];
+    if (force || !self.cacheOptimization || self.inList)
     {
-        case VHOrderDefault:
-            for (int i = 0; i < size; i++)
-            {
-                [indexs addObject:[NSNumber numberWithInteger:i]];
-            }
-            break;
-        case VHOrderReverse:
-            for (int i = 0; i < size; i++)
-            {
-                [indexs addObject:[NSNumber numberWithInteger:size - i - 1]];
-            }
-            break;
-        case VHOrderRandom:
-            {
-                BOOL used[size];
-                for (int i = 0; i < size; i++)
-                {
-                    used[i] = NO;
-                }
-                int count = 0;
-                while (YES)
-                {
-                    int r = arc4random() % size;
-                    if (used[r] == NO)
-                    {
-                        used[r] = YES;
-                        [indexs addObject:[NSNumber numberWithInteger:r]];
-                        count++;
-                        
-                        if (count == size)
-                        {
-                            break;
-                        }
-                    }
-                }
-            }
-            break;
+        [self clearButtons];
     }
-    return indexs;
+}
+
+- (int)innerPieceNumber
+{
+    if (self.piecePlaceEnum == VHPiecePlaceUnknown)
+    {
+        return 0;
+    }
+    else if (self.piecePlaceEnum == VHPiecePlaceShare)
+    {
+        return self.boomButtonBuilders.count;
+    }
+    else
+    {
+        return [VHPiecePlaceManager pieceNumber:self.piecePlaceEnum];
+    }
+}
+
+- (void)placeShareLinesView
+{
+    if (self.piecePlaceEnum != VHPiecePlaceShare)
+    {
+        return;
+    }
+    if (self.shareLinesView)
+    {
+        [self.shareLinesView removeFromSuperview];
+    }
+    self.shareLinesView = [[VHShareLinesView alloc] initWithFrame:self.bounds];
+    self.shareLinesView.backgroundColor = [UIColor clearColor];
+    self.shareLinesView.line1Color = self.shareLine1Color;
+    self.shareLinesView.line2Color = self.shareLine2Color;
+    self.shareLinesView.lineWidth = self.shareLineWidth;
+    [self addSubview:self.shareLinesView];
+}
+
+- (void)setShareLinesViewData
+{
+    if (self.piecePlaceEnum != VHPiecePlaceShare)
+    {
+        return;
+    }
+    [self.shareLinesView setPiecePositions:self.piecePositions
+                                 dotRadius:self.dotRadius
+                                 showDelay:self.showDelay
+                              showDuration:self.showDuration
+                                 hideDelay:self.hideDelay
+                              hideDuration:self.hideDuration];
+}
+
+- (BOOL)uninitializedBoomButtons
+{
+    return self.buttonEnum == VHButtonUnknown || self.piecePlaceEnum == VHPiecePlaceUnknown || self.buttonPlaceEnum == VHButtonPlaceUnknown;
+}
+
+- (void)delay:(CFTimeInterval)delay toBlock:(DelayBlock)block
+{
+    if (delay == 0)
+    {
+        block();
+    }
+    else
+    {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            block();
+        });
+    }
+}
+
+- (BOOL)needToDrawShadow
+{
+    return _backgroundEffect && _shadowEffect;
+}
+
+- (void)clearButtons
+{
+    self.needToCreateButtons = YES;
+    for (VHBoomButton *button in self.boomButtons)
+    {
+        [button removeFromSuperview];
+    }
+    [self.boomButtons removeAllObjects];
+}
+
+- (CGFloat)buttonMaxHeight
+{
+    switch (self.buttonEnum)
+    {
+        case VHButtonSimpleCircle: return self.simpleCircleButtonRadius * 2;
+        case VHButtonTextInsideCircle: return self.textInsideCircleButtonRadius * 2;
+        case VHButtonTextOutsideCircle: return self.textOutsideCircleButtonHeight;
+        case VHButtonHam: return self.hamButtonHeight;
+        case VHButtonUnknown: return 0;
+    }
+    return 0;
+}
+
+- (void)preventDragOutside
+{
+    BOOL needToAdjustFrame = NO;
+    CGRect newFrame = self.frame;
+    
+    if (newFrame.origin.x < self.edgeInsetsInSuperView.left)
+    {
+        newFrame.origin.x = self.edgeInsetsInSuperView.left;
+        needToAdjustFrame = YES;
+    }
+    
+    if (newFrame.origin.y < self.edgeInsetsInSuperView.top)
+    {
+        newFrame.origin.y = self.edgeInsetsInSuperView.top;
+        needToAdjustFrame = YES;
+    }
+    
+    if (newFrame.origin.x + newFrame.size.width > self.superview.frame.size.width - self.edgeInsetsInSuperView.right)
+    {
+        newFrame.origin.x = self.superview.frame.size.width - newFrame.size.width - self.edgeInsetsInSuperView.right;
+        needToAdjustFrame = YES;
+    }
+    
+    if (newFrame.origin.y + newFrame.size.height > self.superview.frame.size.height - self.edgeInsetsInSuperView.bottom)
+    {
+        newFrame.origin.y = self.superview.frame.size.height - newFrame.size.height - self.edgeInsetsInSuperView.bottom;
+        needToAdjustFrame = YES;
+    }
+    
+    if (needToAdjustFrame)
+    {
+        [UIView animateWithDuration:0.3
+                              delay:0
+             usingSpringWithDamping:0.6
+              initialSpringVelocity:0.5
+                            options:UIViewAnimationOptionLayoutSubviews
+                         animations:^{
+                             [self setFrame:newFrame];
+                         } completion:nil];
+    }
+}
+
+#pragma mark - Device Orientation
+
+- (void)deviceOrientationDidChange:(NSNotification *)notification
+{
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    NSLog(@"%@ %d", notification, orientation);
+    if (orientation != self.lastDeviceOrientation)
+    {
+        self.background.frame = [self parentView].bounds;
+        self.needToCalculateStartPositions = YES;
+        [self calculateStartPositions];
+        [self calculateEndPositions];
+        switch (self.boomState)
+        {
+            case VHBoomStateDidHide:
+                
+                break;
+            case VHBoomStateDidShow:
+                [self placeButtons];
+                break;
+            case VHBoomStateWillShow:
+            case VHBoomStateWillHide:
+                [self stopAllAnimations:self.boomState == VHBoomStateWillShow];
+                [self placeButtons];
+                break;
+        }
+    }
+    self.lastDeviceOrientation = orientation;
+}
+
+- (void)placeButtons
+{
+    [self.boomButtons enumerateObjectsUsingBlock:^(VHBoomButton * _Nonnull button, NSUInteger idx, BOOL * _Nonnull stop) {
+        CGPoint endPosition = [[self.endPositions objectAtIndex:idx] CGPointValue];
+        button.frame = CGRectMake(endPosition.x - button.centerPoint.x,
+                                  endPosition.y - button.centerPoint.y,
+                                  button.frame.size.width,
+                                  button.frame.size.height);
+    }];
+}
+
+- (void)stopAllAnimations:(BOOL)isShowAnimation
+{
+    [self.background.layer removeAllAnimations];
+    [self.boomButtons enumerateObjectsUsingBlock:^(VHBoomButton * _Nonnull button, NSUInteger idx, BOOL * _Nonnull stop) {
+        [button innerStopAnimations];
+        if (isShowAnimation)
+        {
+            [button innerVisibleAllGoneViews];
+        }
+        else
+        {
+            [button innerHiddenAllGoneViews];
+        }
+    }];
+}
+
+#pragma mark - Builders
+
+- (void)addBuilder:(VHBoomButtonBuilder *)builder
+{
+    [self.boomButtonBuilders addObject:builder];
+    [self setNeedsLayout];
+}
+
+- (void)setBuilder:(VHBoomButtonBuilder *)builder at:(NSUInteger)index
+{
+    [self.boomButtonBuilders setObject:builder atIndexedSubscript:index];
+    [self setNeedsLayout];
+}
+
+- (void)setBuilders:(NSMutableArray<VHBoomButtonBuilder *> *)builders
+{
+    self.boomButtonBuilders = builders;
+    [self setNeedsLayout];
+}
+
+- (VHBoomButtonBuilder *)builder:(NSUInteger)index
+{
+    return [self.boomButtonBuilders objectAtIndex:index];
+}
+
+- (void)removeBuilder:(VHBoomButtonBuilder *)builder
+{
+    [self.boomButtonBuilders removeObject:builder];
+    [self setNeedsLayout];
+}
+
+- (void)removeBuilderAtIndex:(NSUInteger)index
+{
+    [self.boomButtonBuilders removeObjectAtIndex:index];
+    [self setNeedsLayout];
+}
+
+- (void)clearBuilders
+{
+    [self.boomButtonBuilders removeAllObjects];
 }
 
 #pragma mark - On Button Clicked
 
-/**
- *  Delegate - When a button was clicked
- *
- *  @param index The index of button
- */
-- (void)onButtonClick:(int)index
+- (void)onButton:(VHBoomButton *)boomButton clickedAt:(int)index
 {
-    if ([self.boomDelegate respondsToSelector:@selector(onBoomClicked:)])
+    if ([self.boomDelegate respondsToSelector:@selector(onBoomButton:clickedAt:)])
     {
-        [self.boomDelegate onBoomClicked:index];
+        [self.boomDelegate onBoomButton:boomButton clickedAt:index];
     }
     if (self.autoHide)
     {
@@ -911,9 +1454,6 @@
 
 #pragma mark - On Background Clicked
 
-/**
- *  Delegate - When the background was clicked
- */
 - (void)onBackgroundClick
 {
     if (self.animatingViewsNumber != 0)
@@ -930,99 +1470,401 @@
     }
 }
 
-#pragma mark - Builders
+#pragma mark - Add Views toBackground
 
-/**
- *  Add a simiple circle button builder
- *
- *  @param block The block where you set the properties for the builder
- */
-- (void)addSimpleCircleButtonBuilderBlock:(void (^)(VHSimpleCircleButtonBuilder *))block
+- (void)addViewToBackground:(UIView *)view
 {
-    VHSimpleCircleButtonBuilder *builder = [[VHSimpleCircleButtonBuilder alloc] init];
-    block(builder);
-    [self.boomButtonBuilders addObject:builder];
+    
 }
 
-/**
- *  Add a text inside button builder
- *
- *  @param block The block where you set the properties for the builder
- */
-- (void)addTextInsideCircleButtonBuilderBlock:(void (^)(VHTextInsideCircleButtonBuilder *))block
-{
-    VHTextInsideCircleButtonBuilder *builder = [[VHTextInsideCircleButtonBuilder alloc] init];
-    block(builder);
-    [self.boomButtonBuilders addObject:builder];
-}
+#pragma mark - Setters // Todo
 
-/**
- *  Add a text outside button builder
- *
- *  @param block The block where you set the properties for the builder
- */
-- (void)addTextOutsideCircleButtonBuilderBlock:(void (^)(VHTextOutsideCircleButtonBuilder *))block
-{
-    VHTextOutsideCircleButtonBuilder *builder = [[VHTextOutsideCircleButtonBuilder alloc] init];
-    block(builder);
-    [self.boomButtonBuilders addObject:builder];
-}
+#pragma mark Basic
 
-/**
- *  Add a ham button builder
- *
- *  @param block The block where you set the properties for the builder
- */
-- (void)addHamButtonBuilderBlock:(void(^)(VHHamButtonBuilder *))block
-{
-    VHHamButtonBuilder *builder = [[VHHamButtonBuilder alloc] init];
-    block(builder);
-    [self.boomButtonBuilders addObject:builder];
-}
+#pragma mark Shadow
 
-/**
- *  Remove all builders added
- */
-- (void)removeBuilders
+- (void)setShadowEffect:(BOOL)shadowEffect
 {
-    [self.boomButtonBuilders removeAllObjects];
-    [self removePieces];
-}
-
-/**
- *  Remove pieces
- */
-- (void)removePieces
-{
-    if (self.pieces != nil)
-    {
-        for (VHBoomPiece *piece in self.pieces)
-        {
-            [piece removeFromSuperview];
-        }
-    }
-}
-
-/**
- *  Adjust error
- */
-- (void)adjustErrorForTextOutSideCircleButtonForStartYPosition
-{
-    if (self.needToAdjustTextOutsideCircleButtonHeightError == NO)
+    if (_shadowEffect == shadowEffect)
     {
         return;
     }
-    
-    CGFloat dotWidth = 2 * self.dotRadius;
-    CGFloat dotHeight = dotWidth * self.textOutsideCircleButtonHeight / self.textOutsideCircleButtonWidth;
-    CGFloat yOffset = (dotHeight - dotWidth) / 2;
-    for (int i = 0; i < self.startPositions.count; i++)
+    _shadowEffect = shadowEffect;
+    if (_backgroundEffect)
     {
-        CGPoint startPosition = [[self.startPositions objectAtIndex:i] CGPointValue];
-        [self.startPositions setObject:[NSValue valueWithCGPoint:CGPointMake(startPosition.x, startPosition.y + yOffset)] atIndexedSubscript:i];
+        [self setNeedsDisplay];
     }
-    
-    self.needToAdjustTextOutsideCircleButtonHeightError = NO;
+}
+
+- (void)setShadowPathRect:(CGRect)shadowPathRect
+{
+    if (CGRectEqualToRect(_shadowPathRect, shadowPathRect))
+    {
+        return;
+    }
+    _shadowPathRect = shadowPathRect;
+    if ([self needToDrawShadow])
+    {
+        [self setNeedsDisplay];
+    }
+}
+
+- (void)setShadowOffsetX:(CGFloat)shadowOffsetX
+{
+    if (_shadowOffsetX == shadowOffsetX)
+    {
+        return;
+    }
+    _shadowOffsetX = shadowOffsetX;
+    if ([self needToDrawShadow])
+    {
+        [self setNeedsDisplay];
+    }
+}
+
+- (void)setShadowOffsetY:(CGFloat)shadowOffsetY
+{
+    if (_shadowOffsetY == shadowOffsetY)
+    {
+        return;
+    }
+    _shadowOffsetY = shadowOffsetY;
+    if ([self needToDrawShadow])
+    {
+        [self setNeedsDisplay];
+    }
+}
+
+- (void)setShadowRadius:(CGFloat)shadowRadius
+{
+    if (_shadowRadius == shadowRadius)
+    {
+        return;
+    }
+    _shadowRadius = shadowRadius;
+    if ([self needToDrawShadow])
+    {
+        [self setNeedsDisplay];
+    }
+}
+
+- (void)setShadowColor:(UIColor *)shadowColor
+{
+    if ([VHUtils sameColor:_shadowColor asColor:shadowColor])
+    {
+        return;
+    }
+    _shadowColor = shadowColor;
+    if ([self needToDrawShadow])
+    {
+        [self setNeedsDisplay];
+    }
+}
+
+#pragma mark Button
+
+- (void)setButtonEnum:(VHButtonEnum)buttonEnum
+{
+    if (_buttonEnum == buttonEnum)
+    {
+        return;
+    }
+    _buttonEnum = buttonEnum;
+    [self clearPieces];
+    [self clearButtons];
+    [self clearBuilders];
+    [self setNeedsLayout];
+    [self setNeedsDisplay];
+}
+
+- (void)setBackgroundEffect:(BOOL)backgroundEffect
+{
+    if (_backgroundEffect == backgroundEffect)
+    {
+        return;
+    }
+    _backgroundEffect = backgroundEffect;
+    [self setNeedsDisplay];
+}
+
+- (void)setNormalColor:(UIColor *)normalColor
+{
+    if ([VHUtils sameColor:_normalColor asColor:normalColor])
+    {
+        return;
+    }
+    _normalColor = normalColor;
+    if (_backgroundEffect)
+    {
+        [self setNeedsDisplay];
+    }
+}
+
+- (void)setHighlightedColor:(UIColor *)highlightedColor
+{
+    if ([VHUtils sameColor:_highlightedColor asColor:highlightedColor])
+    {
+        return;
+    }
+    _highlightedColor = highlightedColor;
+    if (_backgroundEffect)
+    {
+        [self setNeedsDisplay];
+    }
+}
+
+- (void)setUnableColor:(UIColor *)unableColor
+{
+    if ([VHUtils sameColor:_unableColor asColor:unableColor])
+    {
+        return;
+    }
+    _unableColor = unableColor;
+    if (_backgroundEffect)
+    {
+        [self setNeedsDisplay];
+    }
+}
+
+#pragma mark Piece
+
+- (void)setDotRadius:(CGFloat)dotRadius
+{
+    if (_dotRadius == dotRadius)
+    {
+        return;
+    }
+    _dotRadius = dotRadius;
+    self.needToCalculateStartPositions = YES;
+    [self setNeedsLayout];
+}
+
+- (void)setHamWidth:(CGFloat)hamWidth
+{
+    if (_hamWidth == hamWidth)
+    {
+        return;
+    }
+    _hamWidth = hamWidth;
+    self.needToCalculateStartPositions = YES;
+    [self setNeedsLayout];
+}
+
+- (void)setHamHeight:(CGFloat)hamHeight
+{
+    if (_hamHeight == hamHeight)
+    {
+        return;
+    }
+    _hamHeight = hamHeight;
+    self.needToCalculateStartPositions = YES;
+    [self setNeedsLayout];
+}
+
+- (void)setPieceCornerRadius:(CGFloat)pieceCornerRadius
+{
+    if (_pieceCornerRadius == pieceCornerRadius)
+    {
+        return;
+    }
+    _pieceCornerRadius = pieceCornerRadius;
+    [self setNeedsLayout];
+}
+
+- (void)setPieceHorizontalMargin:(CGFloat)pieceHorizontalMargin
+{
+    if (_pieceHorizontalMargin == pieceHorizontalMargin)
+    {
+        return;
+    }
+    _pieceHorizontalMargin = pieceHorizontalMargin;
+    self.needToCalculateStartPositions = YES;
+    [self setNeedsLayout];
+}
+
+- (void)setPieceVerticalMargin:(CGFloat)pieceVerticalMargin
+{
+    if (_pieceVerticalMargin == pieceVerticalMargin)
+    {
+        return;
+    }
+    _pieceVerticalMargin = pieceVerticalMargin;
+    self.needToCalculateStartPositions = YES;
+    [self setNeedsLayout];
+}
+
+- (void)setPieceInclinedMargin:(CGFloat)pieceInclinedMargin
+{
+    if (_pieceInclinedMargin == _pieceInclinedMargin)
+    {
+        return;
+    }
+    _pieceInclinedMargin = pieceInclinedMargin;
+    [self setNeedsLayout];
+}
+
+- (void)setPiecePlaceEnum:(VHPiecePlaceEnum)piecePlaceEnum
+{
+    if (_piecePlaceEnum == piecePlaceEnum)
+    {
+        return;
+    }
+    _piecePlaceEnum = piecePlaceEnum;
+    [self clearPieces];
+    self.needToCalculateStartPositions = YES;
+    [self setNeedsLayout];
+}
+
+#pragma mark Background
+
+
+
+#pragma mark Animation
+
+- (void)setDelay:(CFTimeInterval)delay
+{
+    if (_delay == delay)
+    {
+        return;
+    }
+    _delay = delay;
+    [self setShowDelay:delay];
+    [self setHideDelay:delay];
+}
+
+- (void)setDuration:(CFTimeInterval)duration
+{
+    if (_duration == duration)
+    {
+        return;
+    }
+    _duration = duration;
+    [self setShowDuration:duration];
+    [self setHideDuration:duration];
+}
+
+- (void)setShowDuration:(CFTimeInterval)showDuration
+{
+    if (_showDuration == showDuration)
+    {
+        return;
+    }
+    _showDuration = showDuration;
+    if (_showDuration <= 0)
+    {
+        _showDuration = 0.001;
+    }
+}
+
+- (void)setHideDuration:(CFTimeInterval)hideDuration
+{
+    if (_hideDuration == hideDuration)
+    {
+        return;
+    }
+    _hideDuration = hideDuration;
+    if (_hideDuration <= 0)
+    {
+        _hideDuration = 0.001;
+    }
+}
+
+- (void)setShowEaseName:(NSString *)showEaseName
+{
+    if ([_showEaseName isEqualToString:showEaseName])
+    {
+        return;
+    }
+    _showEaseName = showEaseName;
+    [self setShowMoveEaseName:showEaseName];
+    [self setShowRotateEaseName:showEaseName];
+    [self setShowScaleEaseName:showEaseName];
+}
+
+- (void)setShowMoveEaseName:(NSString *)showMoveEaseName
+{
+    if ([_showMoveEaseName isEqualToString:showMoveEaseName])
+    {
+        return;
+    }
+    _showMoveEaseName = showMoveEaseName;
+    self.showMoveEase = [VHEase easeWithName:_showMoveEaseName];
+}
+
+- (void)setShowRotateEaseName:(NSString *)showRotateEaseName
+{
+    if ([_showRotateEaseName isEqualToString:showRotateEaseName])
+    {
+        return;
+    }
+    _showRotateEaseName = showRotateEaseName;
+    self.showRotateEase = [VHEase easeWithName:_showRotateEaseName];
+}
+
+- (void)setShowScaleEaseName:(NSString *)showScaleEaseName
+{
+    if ([_showScaleEaseName isEqualToString:showScaleEaseName])
+    {
+        return;
+    }
+    _showScaleEaseName = showScaleEaseName;
+    self.showScaleEase = [VHEase easeWithName:showScaleEaseName];
+}
+
+- (void)setHideEaseName:(NSString *)hideEaseName
+{
+    if ([_hideEaseName isEqualToString:hideEaseName])
+    {
+        return;
+    }
+    _hideEaseName = hideEaseName;
+    [self setHideMoveEaseName:_hideEaseName];
+    [self setHideRotateEaseName:_hideEaseName];
+    [self setHideScaleEaseName:_hideEaseName];
+}
+
+- (void)setHideMoveEaseName:(NSString *)hideMoveEaseName
+{
+    if ([_hideMoveEaseName isEqualToString:hideMoveEaseName])
+    {
+        return;
+    }
+    _hideMoveEaseName = hideMoveEaseName;
+    self.hideMoveEase = [VHEase easeWithName:_hideMoveEaseName];
+}
+
+- (void)setHideRotateEaseName:(NSString *)hideRotateEaseName
+{
+    if ([_hideRotateEaseName isEqualToString:hideRotateEaseName])
+    {
+        return;
+    }
+    _hideRotateEaseName = hideRotateEaseName;
+    self.hideRotateEase = [VHEase easeWithName:_hideRotateEaseName];
+}
+
+- (void)setHideScaleEaseName:(NSString *)hideScaleEaseName
+{
+    if ([_hideScaleEaseName isEqualToString:hideScaleEaseName])
+    {
+        return;
+    }
+    _hideScaleEaseName = hideScaleEaseName;
+    self.hideScaleEase = [VHEase easeWithName:_hideScaleEaseName];
+}
+
+#pragma mark Boom Buttons
+
+- (void)setButtonPlaceEnum:(VHButtonPlaceEnum)buttonPlaceEnum
+{
+    if (_buttonPlaceEnum == buttonPlaceEnum)
+    {
+        return;
+    }
+    _buttonPlaceEnum = buttonPlaceEnum;
+    [self clearButtons];
+    self.needToCalculateStartPositions = YES;
+    [self setNeedsLayout];
 }
 
 @end

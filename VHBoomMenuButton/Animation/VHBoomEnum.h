@@ -2,8 +2,8 @@
 //  VHBoomEnum.h
 //  VHBoomMenuExample
 //
-//  Created by 黄伟平 on 16/7/28.
-//  Copyright © 2016年 黄伟平. All rights reserved.
+//  Created by Nightonke on 16/7/28.
+//  Copyright © 2016年 Nightonke. All rights reserved.
 //
 
 #ifndef VHBoomEnum_h
@@ -11,14 +11,16 @@
 
 typedef NS_ENUM(NSUInteger, VHBoomEnum)
 {
-    VHBoomStraightLine      = 0,
-    VHBoomParabola_1        = 1,
-    VHBoomParabola_2        = 2,
-    VHBoomParabola_3        = 3,
-    VHBoomParabola_4        = 4,
-    VHBoomHorizontalThrow_1 = 5,
-    VHBoomHorizontalThrow_2 = 6,
-    VHBoomRandom            = 7,
+    VHBoomStraightLine = 0,
+    VHBoomParabola_1,
+    VHBoomParabola_2,
+    VHBoomParabola_3,
+    VHBoomParabola_4,
+    VHBoomHorizontalThrow_1,
+    VHBoomHorizontalThrow_2,
+    VHBoomRandom,
+    
+    VHBoomEnumCount,
 };
 
 #endif /* VHBoomEnum_h */

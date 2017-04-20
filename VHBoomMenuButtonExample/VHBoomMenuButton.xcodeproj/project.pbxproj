@@ -1,0 +1,716 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		37B862C51EA8C3AB00E53322 /* VHAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862851EA8C3AB00E53322 /* VHAnimationManager.m */; };
+		37B862C61EA8C3AB00E53322 /* VHEase.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862881EA8C3AB00E53322 /* VHEase.m */; };
+		37B862C71EA8C3AB00E53322 /* VHBoomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B8628D1EA8C3AB00E53322 /* VHBoomButton.m */; };
+		37B862C81EA8C3AB00E53322 /* VHBoomButtonBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862901EA8C3AB00E53322 /* VHBoomButtonBuilder.m */; };
+		37B862C91EA8C3AB00E53322 /* VHBoomButtonWithText.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862931EA8C3AB00E53322 /* VHBoomButtonWithText.m */; };
+		37B862CA1EA8C3AB00E53322 /* VHBoomButtonWithTextBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862951EA8C3AB00E53322 /* VHBoomButtonWithTextBuilder.m */; };
+		37B862CB1EA8C3AB00E53322 /* VHButtonPlaceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862991EA8C3AB00E53322 /* VHButtonPlaceManager.m */; };
+		37B862CC1EA8C3AB00E53322 /* VHHamButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B8629B1EA8C3AB00E53322 /* VHHamButton.m */; };
+		37B862CD1EA8C3AB00E53322 /* VHHamButtonBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B8629D1EA8C3AB00E53322 /* VHHamButtonBuilder.m */; };
+		37B862CE1EA8C3AB00E53322 /* VHSimpleCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862A01EA8C3AB00E53322 /* VHSimpleCircleButton.m */; };
+		37B862CF1EA8C3AB00E53322 /* VHSimpleCircleButtonBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862A21EA8C3AB00E53322 /* VHSimpleCircleButtonBuilder.m */; };
+		37B862D01EA8C3AB00E53322 /* VHTextInsideCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862A41EA8C3AB00E53322 /* VHTextInsideCircleButton.m */; };
+		37B862D11EA8C3AB00E53322 /* VHTextInsideCircleButtonBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862A61EA8C3AB00E53322 /* VHTextInsideCircleButtonBuilder.m */; };
+		37B862D21EA8C3AB00E53322 /* VHTextOutsideCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862A81EA8C3AB00E53322 /* VHTextOutsideCircleButton.m */; };
+		37B862D31EA8C3AB00E53322 /* VHTextOutsideCircleButtonBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862AA1EA8C3AB00E53322 /* VHTextOutsideCircleButtonBuilder.m */; };
+		37B862D41EA8C3AB00E53322 /* VHBoomPiece.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862AD1EA8C3AB00E53322 /* VHBoomPiece.m */; };
+		37B862D51EA8C3AB00E53322 /* VHPiecePlaceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862B01EA8C3AB00E53322 /* VHPiecePlaceManager.m */; };
+		37B862D61EA8C3AB00E53322 /* VHBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862B31EA8C3AB00E53322 /* VHBackgroundView.m */; };
+		37B862D71EA8C3AB00E53322 /* VHBoomMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862B61EA8C3AB00E53322 /* VHBoomMenuButton.m */; };
+		37B862D81EA8C3AB00E53322 /* VHDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862BC1EA8C3AB00E53322 /* VHDefaults.m */; };
+		37B862D91EA8C3AB00E53322 /* VHErrorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862BE1EA8C3AB00E53322 /* VHErrorManager.m */; };
+		37B862DA1EA8C3AB00E53322 /* VHShareLinesLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862C01EA8C3AB00E53322 /* VHShareLinesLayer.m */; };
+		37B862DB1EA8C3AB00E53322 /* VHShareLinesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862C21EA8C3AB00E53322 /* VHShareLinesView.m */; };
+		37B862DC1EA8C3AB00E53322 /* VHUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862C41EA8C3AB00E53322 /* VHUtils.m */; };
+		37B862DF1EA8C5FA00E53322 /* BMBTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862DE1EA8C5FA00E53322 /* BMBTableViewCell.m */; };
+		37B862E51EA8C6B600E53322 /* ShareVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862E41EA8C6B600E53322 /* ShareVC.m */; };
+		37B862E81EA8C6CF00E53322 /* ControlVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862E71EA8C6CF00E53322 /* ControlVC.m */; };
+		37B862EB1EA8C6E600E53322 /* NavigationBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862E91EA8C6E600E53322 /* NavigationBarVC.m */; };
+		37B862EE1EA8C6FF00E53322 /* ChangeBoomButtonVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862ED1EA8C6FF00E53322 /* ChangeBoomButtonVC.m */; };
+		37B862F11EA8C71300E53322 /* ButtonPlaceAlignmentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862F01EA8C71300E53322 /* ButtonPlaceAlignmentVC.m */; };
+		37B862F41EA8C72600E53322 /* OrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862F31EA8C72600E53322 /* OrderVC.m */; };
+		37B862F71EA8C73700E53322 /* BoomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862F61EA8C73700E53322 /* BoomVC.m */; };
+		37B862FA1EA8C74A00E53322 /* TableViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862F91EA8C74A00E53322 /* TableViewVC.m */; };
+		37B862FD1EA8C75D00E53322 /* BoomMenuButtonVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862FC1EA8C75D00E53322 /* BoomMenuButtonVC.m */; };
+		37B863061EA8C77E00E53322 /* HamButtonVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862FF1EA8C77E00E53322 /* HamButtonVC.m */; };
+		37B863071EA8C77E00E53322 /* SimpleCircleButtonVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B863011EA8C77E00E53322 /* SimpleCircleButtonVC.m */; };
+		37B863081EA8C77E00E53322 /* TextInsideCircleButtonVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B863031EA8C77E00E53322 /* TextInsideCircleButtonVC.m */; };
+		37B863091EA8C77E00E53322 /* TextOutsideCircleButtonVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B863051EA8C77E00E53322 /* TextOutsideCircleButtonVC.m */; };
+		37B8630C1EA8C79B00E53322 /* EaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B8630B1EA8C79B00E53322 /* EaseVC.m */; };
+		37B8630F1EA8C7AD00E53322 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B8630E1EA8C7AD00E53322 /* AppDelegate.m */; };
+		37B863121EA8C7C400E53322 /* BuilderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B863111EA8C7C400E53322 /* BuilderManager.m */; };
+		37B863151EA8C7D800E53322 /* DraggableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B863131EA8C7D800E53322 /* DraggableVC.m */; };
+		37B863181EA8C7ED00E53322 /* ThreeDAnimationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B863171EA8C7ED00E53322 /* ThreeDAnimationVC.m */; };
+		37B8631B1EA8C7FF00E53322 /* SquareAndPieceCornerRadiusVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B8631A1EA8C7FF00E53322 /* SquareAndPieceCornerRadiusVC.m */; };
+		37B8631D1EA8C81C00E53322 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B8631C1EA8C81C00E53322 /* main.m */; };
+		37B863201EA8C83400E53322 /* ListenerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B8631F1EA8C83400E53322 /* ListenerVC.m */; };
+		37B863331EA8C88500E53322 /* bat.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B863221EA8C88500E53322 /* bat.png */; };
+		37B863341EA8C88500E53322 /* bear.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B863231EA8C88500E53322 /* bear.png */; };
+		37B863351EA8C88500E53322 /* bee.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B863241EA8C88500E53322 /* bee.png */; };
+		37B863361EA8C88500E53322 /* butterfly.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B863251EA8C88500E53322 /* butterfly.png */; };
+		37B863371EA8C88500E53322 /* cat.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B863261EA8C88500E53322 /* cat.png */; };
+		37B863381EA8C88500E53322 /* deer.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B863271EA8C88500E53322 /* deer.png */; };
+		37B863391EA8C88500E53322 /* dolphin.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B863281EA8C88500E53322 /* dolphin.png */; };
+		37B8633A1EA8C88500E53322 /* eagle.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B863291EA8C88500E53322 /* eagle.png */; };
+		37B8633B1EA8C88500E53322 /* horse.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B8632A1EA8C88500E53322 /* horse.png */; };
+		37B8633D1EA8C88500E53322 /* jellyFish.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B8632C1EA8C88500E53322 /* jellyFish.png */; };
+		37B8633E1EA8C88500E53322 /* owl.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B8632D1EA8C88500E53322 /* owl.png */; };
+		37B8633F1EA8C88500E53322 /* peacock.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B8632E1EA8C88500E53322 /* peacock.png */; };
+		37B863401EA8C88500E53322 /* pig.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B8632F1EA8C88500E53322 /* pig.png */; };
+		37B863411EA8C88500E53322 /* rat.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B863301EA8C88500E53322 /* rat.png */; };
+		37B863421EA8C88500E53322 /* snake.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B863311EA8C88500E53322 /* snake.png */; };
+		37B863431EA8C88500E53322 /* squirrel.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B863321EA8C88500E53322 /* squirrel.png */; };
+		37B863451EA8C8E500E53322 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37B863441EA8C8E500E53322 /* Main.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0C4CE23E95B67860E303B2C1 /* Pods-VHBoomMenuButton.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VHBoomMenuButton.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VHBoomMenuButton/Pods-VHBoomMenuButton.debug.xcconfig"; sourceTree = "<group>"; };
+		3794BF1A1D4DEF4A005B9404 /* VHBoomMenuButtonExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VHBoomMenuButtonExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		37B862841EA8C3AB00E53322 /* VHAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHAnimationManager.h; sourceTree = "<group>"; };
+		37B862851EA8C3AB00E53322 /* VHAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHAnimationManager.m; sourceTree = "<group>"; };
+		37B862861EA8C3AB00E53322 /* VHBoomEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHBoomEnum.h; sourceTree = "<group>"; };
+		37B862871EA8C3AB00E53322 /* VHEase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHEase.h; sourceTree = "<group>"; };
+		37B862881EA8C3AB00E53322 /* VHEase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHEase.m; sourceTree = "<group>"; };
+		37B862891EA8C3AB00E53322 /* VHOrderEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHOrderEnum.h; sourceTree = "<group>"; };
+		37B8628A1EA8C3AB00E53322 /* VHTimeInterpolator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHTimeInterpolator.h; sourceTree = "<group>"; };
+		37B8628C1EA8C3AB00E53322 /* VHBoomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHBoomButton.h; sourceTree = "<group>"; };
+		37B8628D1EA8C3AB00E53322 /* VHBoomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHBoomButton.m; sourceTree = "<group>"; };
+		37B8628E1EA8C3AB00E53322 /* VHBoomButton_protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHBoomButton_protected.h; sourceTree = "<group>"; };
+		37B8628F1EA8C3AB00E53322 /* VHBoomButtonBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHBoomButtonBuilder.h; sourceTree = "<group>"; };
+		37B862901EA8C3AB00E53322 /* VHBoomButtonBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHBoomButtonBuilder.m; sourceTree = "<group>"; };
+		37B862911EA8C3AB00E53322 /* VHBoomButtonBuilder_protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHBoomButtonBuilder_protected.h; sourceTree = "<group>"; };
+		37B862921EA8C3AB00E53322 /* VHBoomButtonWithText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHBoomButtonWithText.h; sourceTree = "<group>"; };
+		37B862931EA8C3AB00E53322 /* VHBoomButtonWithText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHBoomButtonWithText.m; sourceTree = "<group>"; };
+		37B862941EA8C3AB00E53322 /* VHBoomButtonWithTextBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHBoomButtonWithTextBuilder.h; sourceTree = "<group>"; };
+		37B862951EA8C3AB00E53322 /* VHBoomButtonWithTextBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHBoomButtonWithTextBuilder.m; sourceTree = "<group>"; };
+		37B862961EA8C3AB00E53322 /* VHButtonPlaceAlignmentEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHButtonPlaceAlignmentEnum.h; sourceTree = "<group>"; };
+		37B862971EA8C3AB00E53322 /* VHButtonPlaceEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHButtonPlaceEnum.h; sourceTree = "<group>"; };
+		37B862981EA8C3AB00E53322 /* VHButtonPlaceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHButtonPlaceManager.h; sourceTree = "<group>"; };
+		37B862991EA8C3AB00E53322 /* VHButtonPlaceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHButtonPlaceManager.m; sourceTree = "<group>"; };
+		37B8629A1EA8C3AB00E53322 /* VHHamButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHHamButton.h; sourceTree = "<group>"; };
+		37B8629B1EA8C3AB00E53322 /* VHHamButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHHamButton.m; sourceTree = "<group>"; };
+		37B8629C1EA8C3AB00E53322 /* VHHamButtonBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHHamButtonBuilder.h; sourceTree = "<group>"; };
+		37B8629D1EA8C3AB00E53322 /* VHHamButtonBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHHamButtonBuilder.m; sourceTree = "<group>"; };
+		37B8629E1EA8C3AB00E53322 /* VHInnerOnBoomButtonClickListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHInnerOnBoomButtonClickListener.h; sourceTree = "<group>"; };
+		37B8629F1EA8C3AB00E53322 /* VHSimpleCircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHSimpleCircleButton.h; sourceTree = "<group>"; };
+		37B862A01EA8C3AB00E53322 /* VHSimpleCircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHSimpleCircleButton.m; sourceTree = "<group>"; };
+		37B862A11EA8C3AB00E53322 /* VHSimpleCircleButtonBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHSimpleCircleButtonBuilder.h; sourceTree = "<group>"; };
+		37B862A21EA8C3AB00E53322 /* VHSimpleCircleButtonBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHSimpleCircleButtonBuilder.m; sourceTree = "<group>"; };
+		37B862A31EA8C3AB00E53322 /* VHTextInsideCircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHTextInsideCircleButton.h; sourceTree = "<group>"; };
+		37B862A41EA8C3AB00E53322 /* VHTextInsideCircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHTextInsideCircleButton.m; sourceTree = "<group>"; };
+		37B862A51EA8C3AB00E53322 /* VHTextInsideCircleButtonBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHTextInsideCircleButtonBuilder.h; sourceTree = "<group>"; };
+		37B862A61EA8C3AB00E53322 /* VHTextInsideCircleButtonBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHTextInsideCircleButtonBuilder.m; sourceTree = "<group>"; };
+		37B862A71EA8C3AB00E53322 /* VHTextOutsideCircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHTextOutsideCircleButton.h; sourceTree = "<group>"; };
+		37B862A81EA8C3AB00E53322 /* VHTextOutsideCircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHTextOutsideCircleButton.m; sourceTree = "<group>"; };
+		37B862A91EA8C3AB00E53322 /* VHTextOutsideCircleButtonBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHTextOutsideCircleButtonBuilder.h; sourceTree = "<group>"; };
+		37B862AA1EA8C3AB00E53322 /* VHTextOutsideCircleButtonBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHTextOutsideCircleButtonBuilder.m; sourceTree = "<group>"; };
+		37B862AC1EA8C3AB00E53322 /* VHBoomPiece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHBoomPiece.h; sourceTree = "<group>"; };
+		37B862AD1EA8C3AB00E53322 /* VHBoomPiece.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHBoomPiece.m; sourceTree = "<group>"; };
+		37B862AE1EA8C3AB00E53322 /* VHPiecePlaceEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHPiecePlaceEnum.h; sourceTree = "<group>"; };
+		37B862AF1EA8C3AB00E53322 /* VHPiecePlaceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHPiecePlaceManager.h; sourceTree = "<group>"; };
+		37B862B01EA8C3AB00E53322 /* VHPiecePlaceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHPiecePlaceManager.m; sourceTree = "<group>"; };
+		37B862B11EA8C3AB00E53322 /* VHBackgroundClickDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHBackgroundClickDelegate.h; sourceTree = "<group>"; };
+		37B862B21EA8C3AB00E53322 /* VHBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHBackgroundView.h; sourceTree = "<group>"; };
+		37B862B31EA8C3AB00E53322 /* VHBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHBackgroundView.m; sourceTree = "<group>"; };
+		37B862B41EA8C3AB00E53322 /* VHBoomDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHBoomDelegate.h; sourceTree = "<group>"; };
+		37B862B51EA8C3AB00E53322 /* VHBoomMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHBoomMenuButton.h; sourceTree = "<group>"; };
+		37B862B61EA8C3AB00E53322 /* VHBoomMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHBoomMenuButton.m; sourceTree = "<group>"; };
+		37B862B71EA8C3AB00E53322 /* VHBoomStateEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHBoomStateEnum.h; sourceTree = "<group>"; };
+		37B862B81EA8C3AB00E53322 /* VHButtonClickDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHButtonClickDelegate.h; sourceTree = "<group>"; };
+		37B862B91EA8C3AB00E53322 /* VHButtonEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHButtonEnum.h; sourceTree = "<group>"; };
+		37B862BA1EA8C3AB00E53322 /* VHButtonStateEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHButtonStateEnum.h; sourceTree = "<group>"; };
+		37B862BB1EA8C3AB00E53322 /* VHDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHDefaults.h; sourceTree = "<group>"; };
+		37B862BC1EA8C3AB00E53322 /* VHDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHDefaults.m; sourceTree = "<group>"; };
+		37B862BD1EA8C3AB00E53322 /* VHErrorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHErrorManager.h; sourceTree = "<group>"; };
+		37B862BE1EA8C3AB00E53322 /* VHErrorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHErrorManager.m; sourceTree = "<group>"; };
+		37B862BF1EA8C3AB00E53322 /* VHShareLinesLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHShareLinesLayer.h; sourceTree = "<group>"; };
+		37B862C01EA8C3AB00E53322 /* VHShareLinesLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHShareLinesLayer.m; sourceTree = "<group>"; };
+		37B862C11EA8C3AB00E53322 /* VHShareLinesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHShareLinesView.h; sourceTree = "<group>"; };
+		37B862C21EA8C3AB00E53322 /* VHShareLinesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHShareLinesView.m; sourceTree = "<group>"; };
+		37B862C31EA8C3AB00E53322 /* VHUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHUtils.h; sourceTree = "<group>"; };
+		37B862C41EA8C3AB00E53322 /* VHUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHUtils.m; sourceTree = "<group>"; };
+		37B862DD1EA8C5FA00E53322 /* BMBTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMBTableViewCell.h; sourceTree = SOURCE_ROOT; };
+		37B862DE1EA8C5FA00E53322 /* BMBTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMBTableViewCell.m; sourceTree = SOURCE_ROOT; };
+		37B862E31EA8C6B600E53322 /* ShareVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareVC.h; sourceTree = SOURCE_ROOT; };
+		37B862E41EA8C6B600E53322 /* ShareVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareVC.m; sourceTree = SOURCE_ROOT; };
+		37B862E61EA8C6CF00E53322 /* ControlVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlVC.h; sourceTree = SOURCE_ROOT; };
+		37B862E71EA8C6CF00E53322 /* ControlVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlVC.m; sourceTree = SOURCE_ROOT; };
+		37B862E91EA8C6E600E53322 /* NavigationBarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationBarVC.m; sourceTree = SOURCE_ROOT; };
+		37B862EA1EA8C6E600E53322 /* NavigationBarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationBarVC.h; sourceTree = SOURCE_ROOT; };
+		37B862EC1EA8C6FF00E53322 /* ChangeBoomButtonVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeBoomButtonVC.h; sourceTree = SOURCE_ROOT; };
+		37B862ED1EA8C6FF00E53322 /* ChangeBoomButtonVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeBoomButtonVC.m; sourceTree = SOURCE_ROOT; };
+		37B862EF1EA8C71300E53322 /* ButtonPlaceAlignmentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonPlaceAlignmentVC.h; sourceTree = SOURCE_ROOT; };
+		37B862F01EA8C71300E53322 /* ButtonPlaceAlignmentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonPlaceAlignmentVC.m; sourceTree = SOURCE_ROOT; };
+		37B862F21EA8C72600E53322 /* OrderVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderVC.h; sourceTree = SOURCE_ROOT; };
+		37B862F31EA8C72600E53322 /* OrderVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderVC.m; sourceTree = SOURCE_ROOT; };
+		37B862F51EA8C73700E53322 /* BoomVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoomVC.h; sourceTree = SOURCE_ROOT; };
+		37B862F61EA8C73700E53322 /* BoomVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoomVC.m; sourceTree = SOURCE_ROOT; };
+		37B862F81EA8C74A00E53322 /* TableViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewVC.h; sourceTree = SOURCE_ROOT; };
+		37B862F91EA8C74A00E53322 /* TableViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewVC.m; sourceTree = SOURCE_ROOT; };
+		37B862FB1EA8C75D00E53322 /* BoomMenuButtonVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoomMenuButtonVC.h; sourceTree = SOURCE_ROOT; };
+		37B862FC1EA8C75D00E53322 /* BoomMenuButtonVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoomMenuButtonVC.m; sourceTree = SOURCE_ROOT; };
+		37B862FE1EA8C77E00E53322 /* HamButtonVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HamButtonVC.h; sourceTree = SOURCE_ROOT; };
+		37B862FF1EA8C77E00E53322 /* HamButtonVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HamButtonVC.m; sourceTree = SOURCE_ROOT; };
+		37B863001EA8C77E00E53322 /* SimpleCircleButtonVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleCircleButtonVC.h; sourceTree = SOURCE_ROOT; };
+		37B863011EA8C77E00E53322 /* SimpleCircleButtonVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleCircleButtonVC.m; sourceTree = SOURCE_ROOT; };
+		37B863021EA8C77E00E53322 /* TextInsideCircleButtonVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextInsideCircleButtonVC.h; sourceTree = SOURCE_ROOT; };
+		37B863031EA8C77E00E53322 /* TextInsideCircleButtonVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextInsideCircleButtonVC.m; sourceTree = SOURCE_ROOT; };
+		37B863041EA8C77E00E53322 /* TextOutsideCircleButtonVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextOutsideCircleButtonVC.h; sourceTree = SOURCE_ROOT; };
+		37B863051EA8C77E00E53322 /* TextOutsideCircleButtonVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextOutsideCircleButtonVC.m; sourceTree = SOURCE_ROOT; };
+		37B8630A1EA8C79B00E53322 /* EaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseVC.h; sourceTree = SOURCE_ROOT; };
+		37B8630B1EA8C79B00E53322 /* EaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseVC.m; sourceTree = SOURCE_ROOT; };
+		37B8630D1EA8C7AD00E53322 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		37B8630E1EA8C7AD00E53322 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		37B863101EA8C7C400E53322 /* BuilderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuilderManager.h; sourceTree = SOURCE_ROOT; };
+		37B863111EA8C7C400E53322 /* BuilderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuilderManager.m; sourceTree = SOURCE_ROOT; };
+		37B863131EA8C7D800E53322 /* DraggableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraggableVC.m; sourceTree = SOURCE_ROOT; };
+		37B863141EA8C7D800E53322 /* DraggableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraggableVC.h; sourceTree = SOURCE_ROOT; };
+		37B863161EA8C7ED00E53322 /* ThreeDAnimationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreeDAnimationVC.h; sourceTree = SOURCE_ROOT; };
+		37B863171EA8C7ED00E53322 /* ThreeDAnimationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreeDAnimationVC.m; sourceTree = SOURCE_ROOT; };
+		37B863191EA8C7FF00E53322 /* SquareAndPieceCornerRadiusVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareAndPieceCornerRadiusVC.h; sourceTree = SOURCE_ROOT; };
+		37B8631A1EA8C7FF00E53322 /* SquareAndPieceCornerRadiusVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SquareAndPieceCornerRadiusVC.m; sourceTree = SOURCE_ROOT; };
+		37B8631C1EA8C81C00E53322 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
+		37B8631E1EA8C83400E53322 /* ListenerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListenerVC.h; sourceTree = SOURCE_ROOT; };
+		37B8631F1EA8C83400E53322 /* ListenerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListenerVC.m; sourceTree = SOURCE_ROOT; };
+		37B863221EA8C88500E53322 /* bat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bat.png; sourceTree = "<group>"; };
+		37B863231EA8C88500E53322 /* bear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bear.png; sourceTree = "<group>"; };
+		37B863241EA8C88500E53322 /* bee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bee.png; sourceTree = "<group>"; };
+		37B863251EA8C88500E53322 /* butterfly.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = butterfly.png; sourceTree = "<group>"; };
+		37B863261EA8C88500E53322 /* cat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cat.png; sourceTree = "<group>"; };
+		37B863271EA8C88500E53322 /* deer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deer.png; sourceTree = "<group>"; };
+		37B863281EA8C88500E53322 /* dolphin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dolphin.png; sourceTree = "<group>"; };
+		37B863291EA8C88500E53322 /* eagle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eagle.png; sourceTree = "<group>"; };
+		37B8632A1EA8C88500E53322 /* horse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horse.png; sourceTree = "<group>"; };
+		37B8632C1EA8C88500E53322 /* jellyFish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jellyFish.png; sourceTree = "<group>"; };
+		37B8632D1EA8C88500E53322 /* owl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = owl.png; sourceTree = "<group>"; };
+		37B8632E1EA8C88500E53322 /* peacock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peacock.png; sourceTree = "<group>"; };
+		37B8632F1EA8C88500E53322 /* pig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pig.png; sourceTree = "<group>"; };
+		37B863301EA8C88500E53322 /* rat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rat.png; sourceTree = "<group>"; };
+		37B863311EA8C88500E53322 /* snake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snake.png; sourceTree = "<group>"; };
+		37B863321EA8C88500E53322 /* squirrel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = squirrel.png; sourceTree = "<group>"; };
+		37B863441EA8C8E500E53322 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = SOURCE_ROOT; };
+		37B863481EA8C97600E53322 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
+		A4D62918773E38E3E2CFDAB1 /* Pods-VHBoomMenuButton.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VHBoomMenuButton.release.xcconfig"; path = "Pods/Target Support Files/Pods-VHBoomMenuButton/Pods-VHBoomMenuButton.release.xcconfig"; sourceTree = "<group>"; };
+		AA778F4B5F879FB7833B8621 /* libPods-VHBoomMenuButton.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VHBoomMenuButton.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3794BF171D4DEF4A005B9404 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1ADD1CD4806937C3A05DF5D4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AA778F4B5F879FB7833B8621 /* libPods-VHBoomMenuButton.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3794BEDE1D4DEC79005B9404 = {
+			isa = PBXGroup;
+			children = (
+				37B862821EA8C3AB00E53322 /* VHBoomMenuButton */,
+				3794BF1B1D4DEF4A005B9404 /* VHBoomMenuButtonExample */,
+				3794BEE81D4DEC79005B9404 /* Products */,
+				A430A301A328C2CEA673B68A /* Pods */,
+				1ADD1CD4806937C3A05DF5D4 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3794BEE81D4DEC79005B9404 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3794BF1A1D4DEF4A005B9404 /* VHBoomMenuButtonExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3794BF1B1D4DEF4A005B9404 /* VHBoomMenuButtonExample */ = {
+			isa = PBXGroup;
+			children = (
+				37B863211EA8C88500E53322 /* Imgs */,
+				3794BF6D1D4DF565005B9404 /* Base.lproj */,
+				37B8630D1EA8C7AD00E53322 /* AppDelegate.h */,
+				37B8630E1EA8C7AD00E53322 /* AppDelegate.m */,
+				37B863101EA8C7C400E53322 /* BuilderManager.h */,
+				37B863111EA8C7C400E53322 /* BuilderManager.m */,
+				37B862FB1EA8C75D00E53322 /* BoomMenuButtonVC.h */,
+				37B862FC1EA8C75D00E53322 /* BoomMenuButtonVC.m */,
+				37B863001EA8C77E00E53322 /* SimpleCircleButtonVC.h */,
+				37B863011EA8C77E00E53322 /* SimpleCircleButtonVC.m */,
+				37B863021EA8C77E00E53322 /* TextInsideCircleButtonVC.h */,
+				37B863031EA8C77E00E53322 /* TextInsideCircleButtonVC.m */,
+				37B863041EA8C77E00E53322 /* TextOutsideCircleButtonVC.h */,
+				37B863051EA8C77E00E53322 /* TextOutsideCircleButtonVC.m */,
+				37B862FE1EA8C77E00E53322 /* HamButtonVC.h */,
+				37B862FF1EA8C77E00E53322 /* HamButtonVC.m */,
+				37B863191EA8C7FF00E53322 /* SquareAndPieceCornerRadiusVC.h */,
+				37B8631A1EA8C7FF00E53322 /* SquareAndPieceCornerRadiusVC.m */,
+				37B862F51EA8C73700E53322 /* BoomVC.h */,
+				37B862F61EA8C73700E53322 /* BoomVC.m */,
+				37B862EF1EA8C71300E53322 /* ButtonPlaceAlignmentVC.h */,
+				37B862F01EA8C71300E53322 /* ButtonPlaceAlignmentVC.m */,
+				37B862F21EA8C72600E53322 /* OrderVC.h */,
+				37B862F31EA8C72600E53322 /* OrderVC.m */,
+				37B862EA1EA8C6E600E53322 /* NavigationBarVC.h */,
+				37B862E91EA8C6E600E53322 /* NavigationBarVC.m */,
+				37B863141EA8C7D800E53322 /* DraggableVC.h */,
+				37B863131EA8C7D800E53322 /* DraggableVC.m */,
+				37B8630A1EA8C79B00E53322 /* EaseVC.h */,
+				37B8630B1EA8C79B00E53322 /* EaseVC.m */,
+				37B8631E1EA8C83400E53322 /* ListenerVC.h */,
+				37B8631F1EA8C83400E53322 /* ListenerVC.m */,
+				37B862E61EA8C6CF00E53322 /* ControlVC.h */,
+				37B862E71EA8C6CF00E53322 /* ControlVC.m */,
+				37B862E31EA8C6B600E53322 /* ShareVC.h */,
+				37B862E41EA8C6B600E53322 /* ShareVC.m */,
+				37B862F81EA8C74A00E53322 /* TableViewVC.h */,
+				37B862F91EA8C74A00E53322 /* TableViewVC.m */,
+				37B862DD1EA8C5FA00E53322 /* BMBTableViewCell.h */,
+				37B862DE1EA8C5FA00E53322 /* BMBTableViewCell.m */,
+				37B862EC1EA8C6FF00E53322 /* ChangeBoomButtonVC.h */,
+				37B862ED1EA8C6FF00E53322 /* ChangeBoomButtonVC.m */,
+				37B863161EA8C7ED00E53322 /* ThreeDAnimationVC.h */,
+				37B863171EA8C7ED00E53322 /* ThreeDAnimationVC.m */,
+				37B863481EA8C97600E53322 /* Info.plist */,
+				37B863441EA8C8E500E53322 /* Main.storyboard */,
+				3794BF1C1D4DEF4A005B9404 /* Supporting Files */,
+			);
+			path = VHBoomMenuButtonExample;
+			sourceTree = "<group>";
+		};
+		3794BF1C1D4DEF4A005B9404 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				37B8631C1EA8C81C00E53322 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3794BF6D1D4DF565005B9404 /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Base.lproj;
+			sourceTree = "<group>";
+		};
+		37B862821EA8C3AB00E53322 /* VHBoomMenuButton */ = {
+			isa = PBXGroup;
+			children = (
+				37B862831EA8C3AB00E53322 /* Animation */,
+				37B8628B1EA8C3AB00E53322 /* BoomButton */,
+				37B862AB1EA8C3AB00E53322 /* Piece */,
+				37B862B11EA8C3AB00E53322 /* VHBackgroundClickDelegate.h */,
+				37B862B21EA8C3AB00E53322 /* VHBackgroundView.h */,
+				37B862B31EA8C3AB00E53322 /* VHBackgroundView.m */,
+				37B862B41EA8C3AB00E53322 /* VHBoomDelegate.h */,
+				37B862B51EA8C3AB00E53322 /* VHBoomMenuButton.h */,
+				37B862B61EA8C3AB00E53322 /* VHBoomMenuButton.m */,
+				37B862B71EA8C3AB00E53322 /* VHBoomStateEnum.h */,
+				37B862B81EA8C3AB00E53322 /* VHButtonClickDelegate.h */,
+				37B862B91EA8C3AB00E53322 /* VHButtonEnum.h */,
+				37B862BA1EA8C3AB00E53322 /* VHButtonStateEnum.h */,
+				37B862BB1EA8C3AB00E53322 /* VHDefaults.h */,
+				37B862BC1EA8C3AB00E53322 /* VHDefaults.m */,
+				37B862BD1EA8C3AB00E53322 /* VHErrorManager.h */,
+				37B862BE1EA8C3AB00E53322 /* VHErrorManager.m */,
+				37B862BF1EA8C3AB00E53322 /* VHShareLinesLayer.h */,
+				37B862C01EA8C3AB00E53322 /* VHShareLinesLayer.m */,
+				37B862C11EA8C3AB00E53322 /* VHShareLinesView.h */,
+				37B862C21EA8C3AB00E53322 /* VHShareLinesView.m */,
+				37B862C31EA8C3AB00E53322 /* VHUtils.h */,
+				37B862C41EA8C3AB00E53322 /* VHUtils.m */,
+			);
+			name = VHBoomMenuButton;
+			path = ../VHBoomMenuButton;
+			sourceTree = "<group>";
+		};
+		37B862831EA8C3AB00E53322 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				37B862841EA8C3AB00E53322 /* VHAnimationManager.h */,
+				37B862851EA8C3AB00E53322 /* VHAnimationManager.m */,
+				37B862861EA8C3AB00E53322 /* VHBoomEnum.h */,
+				37B862871EA8C3AB00E53322 /* VHEase.h */,
+				37B862881EA8C3AB00E53322 /* VHEase.m */,
+				37B862891EA8C3AB00E53322 /* VHOrderEnum.h */,
+				37B8628A1EA8C3AB00E53322 /* VHTimeInterpolator.h */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		37B8628B1EA8C3AB00E53322 /* BoomButton */ = {
+			isa = PBXGroup;
+			children = (
+				37B8628C1EA8C3AB00E53322 /* VHBoomButton.h */,
+				37B8628D1EA8C3AB00E53322 /* VHBoomButton.m */,
+				37B8628E1EA8C3AB00E53322 /* VHBoomButton_protected.h */,
+				37B8628F1EA8C3AB00E53322 /* VHBoomButtonBuilder.h */,
+				37B862901EA8C3AB00E53322 /* VHBoomButtonBuilder.m */,
+				37B862911EA8C3AB00E53322 /* VHBoomButtonBuilder_protected.h */,
+				37B862921EA8C3AB00E53322 /* VHBoomButtonWithText.h */,
+				37B862931EA8C3AB00E53322 /* VHBoomButtonWithText.m */,
+				37B862941EA8C3AB00E53322 /* VHBoomButtonWithTextBuilder.h */,
+				37B862951EA8C3AB00E53322 /* VHBoomButtonWithTextBuilder.m */,
+				37B862961EA8C3AB00E53322 /* VHButtonPlaceAlignmentEnum.h */,
+				37B862971EA8C3AB00E53322 /* VHButtonPlaceEnum.h */,
+				37B862981EA8C3AB00E53322 /* VHButtonPlaceManager.h */,
+				37B862991EA8C3AB00E53322 /* VHButtonPlaceManager.m */,
+				37B8629A1EA8C3AB00E53322 /* VHHamButton.h */,
+				37B8629B1EA8C3AB00E53322 /* VHHamButton.m */,
+				37B8629C1EA8C3AB00E53322 /* VHHamButtonBuilder.h */,
+				37B8629D1EA8C3AB00E53322 /* VHHamButtonBuilder.m */,
+				37B8629E1EA8C3AB00E53322 /* VHInnerOnBoomButtonClickListener.h */,
+				37B8629F1EA8C3AB00E53322 /* VHSimpleCircleButton.h */,
+				37B862A01EA8C3AB00E53322 /* VHSimpleCircleButton.m */,
+				37B862A11EA8C3AB00E53322 /* VHSimpleCircleButtonBuilder.h */,
+				37B862A21EA8C3AB00E53322 /* VHSimpleCircleButtonBuilder.m */,
+				37B862A31EA8C3AB00E53322 /* VHTextInsideCircleButton.h */,
+				37B862A41EA8C3AB00E53322 /* VHTextInsideCircleButton.m */,
+				37B862A51EA8C3AB00E53322 /* VHTextInsideCircleButtonBuilder.h */,
+				37B862A61EA8C3AB00E53322 /* VHTextInsideCircleButtonBuilder.m */,
+				37B862A71EA8C3AB00E53322 /* VHTextOutsideCircleButton.h */,
+				37B862A81EA8C3AB00E53322 /* VHTextOutsideCircleButton.m */,
+				37B862A91EA8C3AB00E53322 /* VHTextOutsideCircleButtonBuilder.h */,
+				37B862AA1EA8C3AB00E53322 /* VHTextOutsideCircleButtonBuilder.m */,
+			);
+			path = BoomButton;
+			sourceTree = "<group>";
+		};
+		37B862AB1EA8C3AB00E53322 /* Piece */ = {
+			isa = PBXGroup;
+			children = (
+				37B862AC1EA8C3AB00E53322 /* VHBoomPiece.h */,
+				37B862AD1EA8C3AB00E53322 /* VHBoomPiece.m */,
+				37B862AE1EA8C3AB00E53322 /* VHPiecePlaceEnum.h */,
+				37B862AF1EA8C3AB00E53322 /* VHPiecePlaceManager.h */,
+				37B862B01EA8C3AB00E53322 /* VHPiecePlaceManager.m */,
+			);
+			path = Piece;
+			sourceTree = "<group>";
+		};
+		37B863211EA8C88500E53322 /* Imgs */ = {
+			isa = PBXGroup;
+			children = (
+				37B863221EA8C88500E53322 /* bat.png */,
+				37B863231EA8C88500E53322 /* bear.png */,
+				37B863241EA8C88500E53322 /* bee.png */,
+				37B863251EA8C88500E53322 /* butterfly.png */,
+				37B863261EA8C88500E53322 /* cat.png */,
+				37B863271EA8C88500E53322 /* deer.png */,
+				37B863281EA8C88500E53322 /* dolphin.png */,
+				37B863291EA8C88500E53322 /* eagle.png */,
+				37B8632A1EA8C88500E53322 /* horse.png */,
+				37B8632C1EA8C88500E53322 /* jellyFish.png */,
+				37B8632D1EA8C88500E53322 /* owl.png */,
+				37B8632E1EA8C88500E53322 /* peacock.png */,
+				37B8632F1EA8C88500E53322 /* pig.png */,
+				37B863301EA8C88500E53322 /* rat.png */,
+				37B863311EA8C88500E53322 /* snake.png */,
+				37B863321EA8C88500E53322 /* squirrel.png */,
+			);
+			path = Imgs;
+			sourceTree = SOURCE_ROOT;
+		};
+		A430A301A328C2CEA673B68A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0C4CE23E95B67860E303B2C1 /* Pods-VHBoomMenuButton.debug.xcconfig */,
+				A4D62918773E38E3E2CFDAB1 /* Pods-VHBoomMenuButton.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3794BF191D4DEF4A005B9404 /* VHBoomMenuButtonExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3794BF2E1D4DEF4A005B9404 /* Build configuration list for PBXNativeTarget "VHBoomMenuButtonExample" */;
+			buildPhases = (
+				3794BF161D4DEF4A005B9404 /* Sources */,
+				3794BF171D4DEF4A005B9404 /* Frameworks */,
+				3794BF181D4DEF4A005B9404 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VHBoomMenuButtonExample;
+			productName = VHBoomMenuButtonExample;
+			productReference = 3794BF1A1D4DEF4A005B9404 /* VHBoomMenuButtonExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3794BEDF1D4DEC79005B9404 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = "";
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = Nightonke;
+				TargetAttributes = {
+					3794BF191D4DEF4A005B9404 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = H7B6S6TRXA;
+					};
+				};
+			};
+			buildConfigurationList = 3794BEE21D4DEC79005B9404 /* Build configuration list for PBXProject "VHBoomMenuButton" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3794BEDE1D4DEC79005B9404;
+			productRefGroup = 3794BEE81D4DEC79005B9404 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3794BF191D4DEF4A005B9404 /* VHBoomMenuButtonExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3794BF181D4DEF4A005B9404 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37B863401EA8C88500E53322 /* pig.png in Resources */,
+				37B863411EA8C88500E53322 /* rat.png in Resources */,
+				37B863431EA8C88500E53322 /* squirrel.png in Resources */,
+				37B863371EA8C88500E53322 /* cat.png in Resources */,
+				37B8633E1EA8C88500E53322 /* owl.png in Resources */,
+				37B8633D1EA8C88500E53322 /* jellyFish.png in Resources */,
+				37B863451EA8C8E500E53322 /* Main.storyboard in Resources */,
+				37B863381EA8C88500E53322 /* deer.png in Resources */,
+				37B863361EA8C88500E53322 /* butterfly.png in Resources */,
+				37B863391EA8C88500E53322 /* dolphin.png in Resources */,
+				37B8633A1EA8C88500E53322 /* eagle.png in Resources */,
+				37B863421EA8C88500E53322 /* snake.png in Resources */,
+				37B863331EA8C88500E53322 /* bat.png in Resources */,
+				37B8633B1EA8C88500E53322 /* horse.png in Resources */,
+				37B863351EA8C88500E53322 /* bee.png in Resources */,
+				37B8633F1EA8C88500E53322 /* peacock.png in Resources */,
+				37B863341EA8C88500E53322 /* bear.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3794BF161D4DEF4A005B9404 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37B8630F1EA8C7AD00E53322 /* AppDelegate.m in Sources */,
+				37B862F41EA8C72600E53322 /* OrderVC.m in Sources */,
+				37B862DC1EA8C3AB00E53322 /* VHUtils.m in Sources */,
+				37B862DF1EA8C5FA00E53322 /* BMBTableViewCell.m in Sources */,
+				37B862C71EA8C3AB00E53322 /* VHBoomButton.m in Sources */,
+				37B862D11EA8C3AB00E53322 /* VHTextInsideCircleButtonBuilder.m in Sources */,
+				37B862C51EA8C3AB00E53322 /* VHAnimationManager.m in Sources */,
+				37B8631B1EA8C7FF00E53322 /* SquareAndPieceCornerRadiusVC.m in Sources */,
+				37B862D01EA8C3AB00E53322 /* VHTextInsideCircleButton.m in Sources */,
+				37B862D91EA8C3AB00E53322 /* VHErrorManager.m in Sources */,
+				37B8631D1EA8C81C00E53322 /* main.m in Sources */,
+				37B862EE1EA8C6FF00E53322 /* ChangeBoomButtonVC.m in Sources */,
+				37B862E51EA8C6B600E53322 /* ShareVC.m in Sources */,
+				37B863061EA8C77E00E53322 /* HamButtonVC.m in Sources */,
+				37B862D71EA8C3AB00E53322 /* VHBoomMenuButton.m in Sources */,
+				37B862CB1EA8C3AB00E53322 /* VHButtonPlaceManager.m in Sources */,
+				37B862D21EA8C3AB00E53322 /* VHTextOutsideCircleButton.m in Sources */,
+				37B862DB1EA8C3AB00E53322 /* VHShareLinesView.m in Sources */,
+				37B863081EA8C77E00E53322 /* TextInsideCircleButtonVC.m in Sources */,
+				37B862E81EA8C6CF00E53322 /* ControlVC.m in Sources */,
+				37B862C91EA8C3AB00E53322 /* VHBoomButtonWithText.m in Sources */,
+				37B863091EA8C77E00E53322 /* TextOutsideCircleButtonVC.m in Sources */,
+				37B862CC1EA8C3AB00E53322 /* VHHamButton.m in Sources */,
+				37B862F71EA8C73700E53322 /* BoomVC.m in Sources */,
+				37B863201EA8C83400E53322 /* ListenerVC.m in Sources */,
+				37B862D81EA8C3AB00E53322 /* VHDefaults.m in Sources */,
+				37B862CA1EA8C3AB00E53322 /* VHBoomButtonWithTextBuilder.m in Sources */,
+				37B862C81EA8C3AB00E53322 /* VHBoomButtonBuilder.m in Sources */,
+				37B862EB1EA8C6E600E53322 /* NavigationBarVC.m in Sources */,
+				37B862DA1EA8C3AB00E53322 /* VHShareLinesLayer.m in Sources */,
+				37B862D31EA8C3AB00E53322 /* VHTextOutsideCircleButtonBuilder.m in Sources */,
+				37B862FD1EA8C75D00E53322 /* BoomMenuButtonVC.m in Sources */,
+				37B862F11EA8C71300E53322 /* ButtonPlaceAlignmentVC.m in Sources */,
+				37B862FA1EA8C74A00E53322 /* TableViewVC.m in Sources */,
+				37B863121EA8C7C400E53322 /* BuilderManager.m in Sources */,
+				37B862CD1EA8C3AB00E53322 /* VHHamButtonBuilder.m in Sources */,
+				37B862CF1EA8C3AB00E53322 /* VHSimpleCircleButtonBuilder.m in Sources */,
+				37B862D41EA8C3AB00E53322 /* VHBoomPiece.m in Sources */,
+				37B862D61EA8C3AB00E53322 /* VHBackgroundView.m in Sources */,
+				37B862C61EA8C3AB00E53322 /* VHEase.m in Sources */,
+				37B863071EA8C77E00E53322 /* SimpleCircleButtonVC.m in Sources */,
+				37B8630C1EA8C79B00E53322 /* EaseVC.m in Sources */,
+				37B863151EA8C7D800E53322 /* DraggableVC.m in Sources */,
+				37B862D51EA8C3AB00E53322 /* VHPiecePlaceManager.m in Sources */,
+				37B863181EA8C7ED00E53322 /* ThreeDAnimationVC.m in Sources */,
+				37B862CE1EA8C3AB00E53322 /* VHSimpleCircleButton.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3794BEFC1D4DEC79005B9404 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3794BEFD1D4DEC79005B9404 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3794BF2F1D4DEF4A005B9404 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = H7B6S6TRXA;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nightonke.VHBoomMenuButton;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		3794BF301D4DEF4A005B9404 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = H7B6S6TRXA;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nightonke.VHBoomMenuButton;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3794BEE21D4DEC79005B9404 /* Build configuration list for PBXProject "VHBoomMenuButton" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3794BEFC1D4DEC79005B9404 /* Debug */,
+				3794BEFD1D4DEC79005B9404 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3794BF2E1D4DEF4A005B9404 /* Build configuration list for PBXNativeTarget "VHBoomMenuButtonExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3794BF2F1D4DEF4A005B9404 /* Debug */,
+				3794BF301D4DEF4A005B9404 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3794BEDF1D4DEC79005B9404 /* Project object */;
+}
