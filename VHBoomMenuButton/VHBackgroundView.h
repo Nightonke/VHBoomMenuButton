@@ -14,7 +14,7 @@
 
 @property (nonatomic, strong) UIColor * _Nonnull dimColor;
 @property (nonatomic, assign) BOOL blurBackground;
-@property (nonatomic, strong) UIBlurEffect * _Nullable blurEffect NS_AVAILABLE_IOS(8_0);
+@property (nonatomic, strong) UIBlurEffect * _Nullable blurEffect;
 @property (nonatomic, strong) NSString * _Nullable tip;
 @property (nonatomic, weak) id<VHBackgroundClickDelegate> _Nullable delegate;
 
@@ -27,6 +27,8 @@
    completion:(void (^ __nullable)(BOOL finished))completion;
 
 - (void)removeAllBoomButtons;
+
+- (void)removeAllAnimations;
 
 - (void)addGoneView:(UIView *_Nonnull)view;
 

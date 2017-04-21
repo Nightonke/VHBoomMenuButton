@@ -48,7 +48,7 @@
     self.bmb.piecePlaceEnum = [[self.piecesAndButtons objectAtIndex:indexPath.row] CGPointValue].x;
     self.bmb.buttonPlaceEnum = [[self.piecesAndButtons objectAtIndex:indexPath.row] CGPointValue].y;
     [self.bmb clearBuilders];
-    for (int i = 0; i < [VHBoomMenuButton pieceNumber:self.bmb.piecePlaceEnum]; i++)
+    for (int i = 0; i < self.bmb.pieceNumber; i++)
     {
         [self.bmb addBuilder:[BuilderManager simpleCircleButtonBuilder]];
     }

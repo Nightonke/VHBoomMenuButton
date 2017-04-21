@@ -23,8 +23,8 @@
     [super viewDidLoad];
     
     self.bmb.buttonEnum = VHButtonHam;
-    self.bmb.piecePlaceEnum = VHPiecePlace_HAM_5;
-    self.bmb.buttonPlaceEnum = VHButtonPlace_HAM_5;
+    self.bmb.piecePlaceEnum = VHPiecePlaceHAM_5;
+    self.bmb.buttonPlaceEnum = VHButtonPlaceHAM_5;
     self.bmb.boomDelegate = self;
     self.bmb.autoHide = NO;
     

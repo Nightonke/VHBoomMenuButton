@@ -168,6 +168,13 @@
                                                     <segue destination="b1i-Ue-CPY" kind="show" id="Te5-cx-SwQ"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zzD-l2-ZKo">
+                                                <rect key="frame" x="0.0" y="654" width="375" height="30"/>
+                                                <state key="normal" title="Blur Background &amp; Tip Example"/>
+                                                <connections>
+                                                    <segue destination="Yg8-PO-rVG" kind="show" id="IuS-PE-6Pg"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -194,6 +201,7 @@
                                             <constraint firstAttribute="trailing" secondItem="nvH-be-XBw" secondAttribute="trailing" id="YGc-PT-j4w"/>
                                             <constraint firstItem="e3E-2d-J38" firstAttribute="centerX" secondItem="d5r-2O-HKb" secondAttribute="centerX" id="YYH-gU-DhR"/>
                                             <constraint firstItem="S4D-59-bDL" firstAttribute="top" secondItem="3Zh-yB-sYd" secondAttribute="bottom" constant="8" id="Zlm-rf-nU1"/>
+                                            <constraint firstItem="zzD-l2-ZKo" firstAttribute="centerX" secondItem="poE-b4-Acs" secondAttribute="centerX" id="Zxb-7b-h8X"/>
                                             <constraint firstItem="d5r-2O-HKb" firstAttribute="top" secondItem="9IW-7V-hgb" secondAttribute="bottom" constant="8" id="axv-xI-XVT"/>
                                             <constraint firstItem="95U-Dy-igK" firstAttribute="top" secondItem="gQv-NE-rYy" secondAttribute="bottom" constant="8" id="cEZ-va-CeZ"/>
                                             <constraint firstItem="2iU-uk-lWB" firstAttribute="top" secondItem="IBt-rS-k3D" secondAttribute="bottom" constant="8" id="dRw-f8-eUG"/>
@@ -204,6 +212,7 @@
                                             <constraint firstItem="rdS-8N-sOG" firstAttribute="centerX" secondItem="2iU-uk-lWB" secondAttribute="centerX" id="fO6-FU-MyY"/>
                                             <constraint firstItem="HHR-fr-AUk" firstAttribute="top" secondItem="clO-tR-1iI" secondAttribute="bottom" constant="8" id="fbn-uV-sxg"/>
                                             <constraint firstItem="2iU-uk-lWB" firstAttribute="width" secondItem="IBt-rS-k3D" secondAttribute="width" id="fv9-88-XCN"/>
+                                            <constraint firstItem="zzD-l2-ZKo" firstAttribute="width" secondItem="S4D-59-bDL" secondAttribute="width" id="fwO-8s-v8U"/>
                                             <constraint firstItem="e3E-2d-J38" firstAttribute="top" secondItem="d5r-2O-HKb" secondAttribute="bottom" constant="8" id="gDm-Vm-hTj"/>
                                             <constraint firstItem="d5r-2O-HKb" firstAttribute="width" secondItem="9IW-7V-hgb" secondAttribute="width" id="gp8-Rb-Lz1"/>
                                             <constraint firstItem="gQv-NE-rYy" firstAttribute="width" secondItem="rdS-8N-sOG" secondAttribute="width" id="hJj-eI-11o"/>
@@ -211,6 +220,7 @@
                                             <constraint firstItem="d5r-2O-HKb" firstAttribute="centerX" secondItem="9IW-7V-hgb" secondAttribute="centerX" id="hup-5n-MW1"/>
                                             <constraint firstItem="2iU-uk-lWB" firstAttribute="centerX" secondItem="IBt-rS-k3D" secondAttribute="centerX" id="hzG-7g-dOn"/>
                                             <constraint firstItem="clO-tR-1iI" firstAttribute="top" secondItem="qK8-P4-guo" secondAttribute="bottom" constant="8" id="i5D-HD-zOk"/>
+                                            <constraint firstItem="zzD-l2-ZKo" firstAttribute="top" secondItem="S4D-59-bDL" secondAttribute="bottom" constant="8" id="ion-tW-a5v"/>
                                             <constraint firstItem="nvH-be-XBw" firstAttribute="top" secondItem="poE-b4-Acs" secondAttribute="top" constant="8" id="jwk-T3-h1s"/>
                                             <constraint firstItem="IBt-rS-k3D" firstAttribute="centerX" secondItem="e3E-2d-J38" secondAttribute="centerX" id="kPU-zS-beK"/>
                                             <constraint firstItem="gQv-NE-rYy" firstAttribute="top" secondItem="rdS-8N-sOG" secondAttribute="bottom" constant="8" id="ktv-zF-5tQ"/>
@@ -808,6 +818,87 @@
             </objects>
             <point key="canvasLocation" x="452" y="3688.1559220389809"/>
         </scene>
+        <!--Blur Background & Tip-->
+        <scene sceneID="qcf-7j-oIk">
+            <objects>
+                <viewController title="Blur Background &amp; Tip" id="Yg8-PO-rVG" customClass="BlurBackgroundAndTipVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OxE-hV-eah"/>
+                        <viewControllerLayoutGuide type="bottom" id="wrC-CW-4bx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dv0-4u-J9V">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fNf-MM-HCs" customClass="VHBoomMenuButton">
+                                <rect key="frame" x="16" y="720" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="5bo-fr-ekq"/>
+                                    <constraint firstAttribute="width" constant="60" id="pHa-zh-iP4"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
+                                        <color key="value" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bho-Bs-Fzh" customClass="VHBoomMenuButton">
+                                <rect key="frame" x="157" y="720" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="6nd-s6-rVy"/>
+                                    <constraint firstAttribute="height" constant="60" id="Yfc-zs-4nP"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
+                                        <color key="value" red="1" green="0.8022460938" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
+                                        <color key="value" red="1" green="0.98508029509999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ygS-CM-nsk" customClass="VHBoomMenuButton">
+                                <rect key="frame" x="299" y="720" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="APL-JJ-rSD"/>
+                                    <constraint firstAttribute="width" constant="60" id="Chx-ai-7k1"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wrC-CW-4bx" firstAttribute="top" secondItem="bho-Bs-Fzh" secondAttribute="bottom" constant="20" id="2GD-uy-xXq"/>
+                            <constraint firstItem="bho-Bs-Fzh" firstAttribute="centerX" secondItem="dv0-4u-J9V" secondAttribute="centerX" id="5A3-5L-BIE"/>
+                            <constraint firstItem="wrC-CW-4bx" firstAttribute="top" secondItem="ygS-CM-nsk" secondAttribute="bottom" constant="20" id="V4p-sI-9vB"/>
+                            <constraint firstItem="wrC-CW-4bx" firstAttribute="top" secondItem="fNf-MM-HCs" secondAttribute="bottom" constant="20" id="bax-KK-cZh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ygS-CM-nsk" secondAttribute="trailing" id="rmM-0L-NaP"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="fNf-MM-HCs" secondAttribute="leading" id="xj6-PG-zFM"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bmb1" destination="fNf-MM-HCs" id="Rb4-qq-bcU"/>
+                        <outlet property="bmb2" destination="bho-Bs-Fzh" id="YVd-Nh-D3l"/>
+                        <outlet property="bmb3" destination="ygS-CM-nsk" id="qsh-T9-9Ud"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8is-6W-xWj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1142" y="3688"/>
+        </scene>
         <!--Share-->
         <scene sceneID="rhJ-lf-f93">
             <objects>
@@ -841,9 +932,6 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
                                         <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetX">
-                                        <real key="value" value="-4"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
                                         <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1003,7 +1091,7 @@
                                                         <constraint firstAttribute="width" constant="60" id="kcd-eG-79o"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="inList" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="inList" value="NO"/>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="backgroundEffect" value="NO"/>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="shareLine1Color">
                                                             <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1021,7 +1109,7 @@
                                                         <constraint firstAttribute="width" constant="60" id="cpy-7l-K63"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="inList" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="inList" value="NO"/>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="backgroundEffect" value="NO"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -1033,7 +1121,7 @@
                                                         <constraint firstAttribute="width" constant="60" id="hlg-si-0QF"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="inList" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="inList" value="NO"/>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="backgroundEffect" value="NO"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>

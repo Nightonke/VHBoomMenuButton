@@ -7,53 +7,66 @@
 //
 
 #import "VHErrorManager.h"
+#import "VHPiecePlaceManager.h"
+
+@class VHBoomMenuButton;
 
 @implementation VHErrorManager
 
-+ (instancetype)sharedManager
++ (void)judge:(VHBoomMenuButton *)bmb withBuilders:(NSMutableArray<VHBoomButtonBuilder *> *)builders
 {
-    static VHErrorManager *sharedMyManager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedMyManager = [[self alloc] init];
-    });
-    return sharedMyManager;
+    NSAssert(bmb.buttonEnum != VHButtonUnknown, @"[BMB] Unknown button enum!");
+    NSAssert(bmb.piecePlaceEnum < VHPiecePlaceEnumCount, @"[BMB] Unknown piece-place-enum!");
+    NSAssert(bmb.buttonPlaceEnum < VHButtonPlaceEnumCount, @"[BMB] Unknown button-place-enum!");
+    NSAssert(bmb.boomEnum < VHBoomEnumCount, @"[BMB] Unknown boom-enum!");
+    NSAssert(builders.count, @"[BMB] Empty builders!");
+    
+    int pieceNumber = bmb.pieceNumber;
+    int buttonNumber = bmb.buttonNumber;
+    int builderNumber = builders.count;
+    
+    if (pieceNumber == -1)
+    {
+        if (bmb.piecePlaceEnum == VHPiecePlaceShare)
+        {
+            int minPieceNumber = [VHPiecePlaceManager minPieceNumber:bmb.piecePlaceEnum];
+            int maxPieceNumber = [VHPiecePlaceManager maxPieceNumber:bmb.piecePlaceEnum];
+            if (buttonNumber < minPieceNumber)
+            {
+                NSAssert(NO, @"[BMB] In share style, button-place-enum(%d) must have %d buttons at least!", bmb.buttonPlaceEnum, minPieceNumber);
+            }
+            else if (buttonNumber > maxPieceNumber)
+            {
+                NSAssert(NO, @"[BMB] In share style, button-place-enum(%d) can only have %d buttons at most", bmb.buttonPlaceEnum, maxPieceNumber);
+            }
+            else if (builderNumber < minPieceNumber)
+            {
+                NSAssert(NO, @"[BMB] In share style, BMB must have %d builders at least!", minPieceNumber);
+            }
+            else if (builderNumber > maxPieceNumber)
+            {
+                NSAssert(NO, @"[BMB] In share style, BMB can only have %d buttons at most", maxPieceNumber);
+            }
+            else if (bmb.buttonEnum == VHButtonHam)
+            {
+                NSAssert(NO, @"[BMB] BMB in share style does NOT support ham-boom-buttons", maxPieceNumber);
+            }
+        }
+    }
+    
+    if (pieceNumber != buttonNumber
+        && bmb.buttonPlaceEnum != VHButtonPlaceHorizontal
+        && bmb.buttonPlaceEnum != VHButtonPlaceVertical
+        && bmb.piecePlaceEnum != VHPiecePlaceShare)
+    {
+        NSAssert(NO, @"[BMB] Number of pieces(%d) is not equal to buttons'(%d)!", pieceNumber, buttonNumber);
+    }
+    
+    if (pieceNumber != builderNumber && bmb.piecePlaceEnum != VHPiecePlaceShare)
+    {
+        NSAssert(NO, @"[BMB] Number of pieces(%d) is not equal to builders'(%d)!", pieceNumber, builderNumber);
+    }
 }
 
-- (id)init
-{
-    if (self = [super init])
-    {
-        
-    }
-    return self;
-}
-
-- (void)dealloc
-{
-    // Should never be called, but just here for clarity really.
-}
-
-- (void)errorJudgeWithPieceNumber:(long)pieceNumber andBuilderNumber:(long)builderNumber
-{
-    if (pieceNumber != builderNumber)
-    {
-        NSAssert(NO, @"The number of pieces(%ld) is not equal to button-builders'(%ld)! Please check the @piecePlaceEnum and size of @boomButtonBuilders of BMB!", pieceNumber, builderNumber);
-    }
-}
-
-- (void)errorJudgeWithPiecePlaceEnum:(VHPiecePlaceEnum)pieceEnum andButtonPlaceEnum:(VHButtonPlaceEnum)buttonEnum
-{
-    long pieceNumber = [VHPiecePlaceManager pieceNumber:pieceEnum];
-    long buttonNumber = [VHButtonPlaceManager buttonNumber:buttonEnum];
-    if (buttonNumber == LONG_MAX)
-    {
-        return;
-    }
-    if (pieceEnum != VHPiecePlaceShare && pieceNumber != buttonNumber)
-    {
-        NSAssert(NO, @"The number of pieces(%ld) is not equal to buttons'(%ld)! Please check the @piecePlaceEnum and @buttonPlaceEnum of BMB!", pieceNumber, buttonNumber);
-    }
-}
 
 @end

@@ -79,9 +79,9 @@
 - (void)initializeBMB:(VHBoomMenuButton *)bmb
 {
     bmb.buttonEnum = VHButtonSimpleCircle;
-    bmb.piecePlaceEnum = VHPiecePlace_DOT_9_1;
-    bmb.buttonPlaceEnum = VHButtonPlace_SC_9_1;
-    for (int i = 0; i < [VHBoomMenuButton pieceNumber:bmb.piecePlaceEnum]; i++)
+    bmb.piecePlaceEnum = VHPiecePlaceDOT_9_1;
+    bmb.buttonPlaceEnum = VHButtonPlaceSC_9_1;
+    for (int i = 0; i < bmb.pieceNumber; i++)
     {
         [bmb addBuilder:[BuilderManager simpleCircleButtonBuilder]];
     }

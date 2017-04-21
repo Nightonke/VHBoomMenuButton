@@ -11,7 +11,7 @@
 
 @interface VHBackgroundView ()
 
-@property (nonatomic, strong) UIVisualEffectView *visualEffectView NS_AVAILABLE_IOS(8_0);
+@property (nonatomic, strong) UIVisualEffectView *visualEffectView;
 @property (nonatomic, strong) NSMutableArray<UIView *> *goneViews;
 
 @end
@@ -79,6 +79,18 @@
         {
             [view removeFromSuperview];
         }
+    }
+}
+
+- (void)removeAllAnimations
+{
+    if ([UIVisualEffectView class])
+    {
+        [self.visualEffectView.layer removeAllAnimations];
+    }
+    for (UIView *view in self.goneViews)
+    {
+        [view.layer removeAllAnimations];
     }
 }
 
@@ -160,6 +172,14 @@
     CGRect frame = self.tipLabel.frame;
     frame.origin.x = self.bounds.size.width / 2 - frame.size.width / 2;
     self.tipLabel.frame = frame;
+}
+
+- (void)setTipLabel:(UILabel *)tipLabel
+{
+    [_tipLabel removeFromSuperview];
+    [self.goneViews removeObject:_tipLabel];
+    _tipLabel = tipLabel;
+    [self addGoneView:_tipLabel];
 }
 
 #pragma mark - Private Methods

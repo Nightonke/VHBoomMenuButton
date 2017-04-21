@@ -26,10 +26,10 @@
     [super viewDidLoad];
     
     self.bmb.buttonEnum = VHButtonSimpleCircle;
-    self.bmb.piecePlaceEnum = VHPiecePlace_DOT_6_3;
-    self.bmb.buttonPlaceEnum = VHButtonPlace_SC_6_3;
+    self.bmb.piecePlaceEnum = VHPiecePlaceDOT_6_3;
+    self.bmb.buttonPlaceEnum = VHButtonPlaceSC_6_3;
     self.bmb.boomDelegate = self;
-    for (int i = 0; i < [VHBoomMenuButton pieceNumber:self.bmb.piecePlaceEnum]; i++)
+    for (int i = 0; i < self.bmb.pieceNumber; i++)
     {
         [self addBuilder];
     }

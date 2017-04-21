@@ -55,11 +55,11 @@
 {
     bmb.buttonEnum = VHButtonTextInsideCircle;
     bmb.piecePlaceEnum = VHPiecePlaceShare;
-    bmb.buttonPlaceEnum = VHButtonPlace_SC_9_1;
+    bmb.buttonPlaceEnum = VHButtonPlaceSC_9_1;
     // Notice that you should use 'buttonNumber' as a loop number.
     // Because [VHBoomMenuButton pieceNumber] could NOT know the number of the pieces
     // when the piece-place-enum is Share.
-    for (int i = 0; i < [VHBoomMenuButton buttonNumber:bmb.buttonPlaceEnum]; i++)
+    for (int i = 0; i < bmb.buttonNumber; i++)
     {
         if (differentPieceColor)
         {

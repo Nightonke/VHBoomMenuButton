@@ -31,10 +31,10 @@
     edgeInsets.top += 66;
     
     self.bmb.buttonEnum = VHButtonSimpleCircle;
-    self.bmb.piecePlaceEnum = VHPiecePlace_DOT_9_1;
-    self.bmb.buttonPlaceEnum = VHButtonPlace_SC_9_1;
+    self.bmb.piecePlaceEnum = VHPiecePlaceDOT_9_1;
+    self.bmb.buttonPlaceEnum = VHButtonPlaceSC_9_1;
     self.bmb.edgeInsetsInSuperView = edgeInsets;
-    for (int i = 0; i < [VHBoomMenuButton pieceNumber:self.bmb.piecePlaceEnum]; i++)
+    for (int i = 0; i < self.bmb.pieceNumber; i++)
     {
         [self.bmb addBuilder:[BuilderManager simpleCircleButtonBuilder]];
     }

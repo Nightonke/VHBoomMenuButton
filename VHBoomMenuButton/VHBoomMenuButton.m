@@ -17,6 +17,7 @@
 #import "VHUtils.h"
 #import "VHErrorManager.h"
 #import "VHEase.h"
+#import "VHPiecePlaceManager.h"
 #import "VHButtonPlaceManager.h"
 #import "VHBoomButton.h"
 #import "VHSimpleCircleButton.h"
@@ -66,7 +67,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 #pragma mark - Background
 
 @property (nonatomic, strong) VHBackgroundView *background;
-@property (nonatomic, strong) UIVisualEffectView *visualEffectView;
+@property (nonatomic, strong) UILabel *tipLabel;
 
 #pragma mark - Boom Buttons
 
@@ -95,7 +96,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 
 @implementation VHBoomMenuButton
 
-#pragma mark - Static Methods
+#pragma mark - Convenience Methods
 
 + (NSInteger)pieceNumber:(VHPiecePlaceEnum)placeEnum
 {
@@ -105,6 +106,16 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 + (NSInteger)buttonNumber:(VHButtonPlaceEnum)placeEnum
 {
     return [VHButtonPlaceManager buttonNumber:placeEnum];
+}
+
+- (NSInteger)pieceNumber
+{
+    return [VHPiecePlaceManager pieceNumber:self.piecePlaceEnum];
+}
+
+- (NSInteger)buttonNumber
+{
+    return [VHButtonPlaceManager buttonNumber:self.buttonPlaceEnum];
 }
 
 #pragma mark - Initialize
@@ -159,7 +170,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     _backgroundEffect = YES;
     _normalColor = [VHUtils colorFromRGB:0x30a2fb];
     _highlightedColor = [VHUtils colorFromRGB:0x73bdf1];
-    _unableColor = [VHUtils darkerColor:_normalColor];
+    _unableColor = [VHUtils colorFromRGB:0x30a2fb];
     _draggable = NO;
     _edgeInsetsInSuperView = UIEdgeInsetsMake(15, 15, 15, 15);
     
@@ -176,7 +187,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     _shareLineWidth = 1.5;
     _piecePlaceEnum = VHPiecePlaceUnknown;
     
-    _blurBackground = YES;
+    _blurBackground = NO;
     if ([UIBlurEffect class])
     {
         _blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
@@ -198,16 +209,18 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     _orderEnum = VHOrderRandom;
     _frames = 60;
     _boomEnum = VHBoomHorizontalThrow_2;
-    _showMoveEaseName = nil;
+    _showMoveEaseName = VHEaseOutBack;
     _showMoveEaseName = VHEaseOutBack;
     _showScaleEaseName = VHEaseOutBack;
     _showRotateEaseName = VHEaseOutBack;
-    _hideMoveEaseName = nil;
+    _hideMoveEaseName = VHEaseInBack;
     _hideMoveEaseName = VHEaseInBack;
     _hideScaleEaseName = VHEaseInBack;
     _hideRotateEaseName = VHEaseInBack;
     _rotateDegree = M_PI * 4;
     _use3DTransformAnimation = YES;
+    _autoBoom = NO;
+    _autoBoomImmediately = NO;
     
     _buttonPlaceEnum = VHButtonPlaceUnknown;
     _buttonPlaceAlignmentEnum = VHButtonPlaceAlignmentCenter;
@@ -249,8 +262,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 
 - (void)dealloc
 {
-    NSLog(@"%@ dealloc", self);
-    [self clearViewsAndValues:YES];
+    [self clearViews:YES];
     [[NSNotificationCenter defaultCenter] removeObserver: self];
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
 }
@@ -293,6 +305,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         [self.buttonLayer removeFromSuperlayer];
         self.layer.shadowOpacity = 0;
     }
+    [self checkAutoBoom];
 }
 
 #pragma mark - Place Pieces
@@ -302,8 +315,6 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     NSLog(@"%@ layout sub views", self);
     [super layoutSubviews];
     self.backgroundColor = [UIColor clearColor];
-    // Todo erroe judge
-//    [[VHErrorManager sharedManager] errorJudgeWithPieceNumber:pieceNumber andBuilderNumber:[self.boomButtonBuilders count]];
     [self clearPieces];
     [self createPieces];
     [self placeShareLinesView];
@@ -328,9 +339,9 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     self.pieces = [NSMutableArray arrayWithCapacity:pieceNumber];
     for (int i = 0; i < pieceNumber; i++)
     {
-        // Todo A new create method
-        VHBoomPiece *piece = [self boomPieceAt:[self.piecePositions objectAtIndex:i]
-                                   withBuilder:[self.boomButtonBuilders objectAtIndex:i]];
+        VHBoomPiece *piece = [[VHBoomPiece alloc] initWithFrame:[[self.piecePositions objectAtIndex:i] CGRectValue]
+                                                    withBuilder:[self.boomButtonBuilders objectAtIndex:i]
+                                               withCornerRadius:self.pieceCornerRadius];
         [self.pieces addObject:piece];
     }
 }
@@ -438,30 +449,13 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     }
 }
 
-- (VHBoomPiece *)boomPieceAt:(NSValue *)position withBuilder:(VHBoomButtonBuilder *)builder
-{
-    switch (self.buttonEnum) {
-        case VHButtonSimpleCircle:
-        case VHButtonTextInsideCircle:
-        case VHButtonTextOutsideCircle:
-        case VHButtonHam:
-            return [[VHBoomPiece alloc] initWithFrame:[position CGRectValue]
-                                          withBuilder:builder
-                                     withCornerRadius:self.pieceCornerRadius];
-            break;
-        default:
-            break;
-    }
-    return nil;
-}
-
 #pragma mark - Touch Action
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     UITouch *anyTouch = [touches anyObject];
     CGPoint touchLocation = [anyTouch locationInView:self];
-    if (CGRectContainsPoint(self.bounds, touchLocation))
+    if (CGRectContainsPoint(self.bounds, touchLocation) && self.userInteractionEnabled)
     {
         [self toHighlighted];
         if (self.draggable)
@@ -568,9 +562,11 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
             break;
         case VHButtonStateUnable:
             [self.buttonLayer setFillColor:self.unableColor.CGColor];
+            break;
         case VHButtonStateNormal:
         case VHButtonStateUnknown:
             [self.buttonLayer setFillColor:self.normalColor.CGColor];
+            break;
     }
 }
 
@@ -597,7 +593,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     {
         return;
     }
-    // Todo ExceptionManager
+    [VHErrorManager judge:self withBuilders:self.boomButtonBuilders];
     if ([self isAnimating] || self.boomState != VHBoomStateDidHide)
     {
         return;
@@ -611,10 +607,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     [self createButtons];
     [self dimBackground:immediately];
     [self startShowAnimations:immediately];
-    [self.background adjustTipLabel:self.tipBelowButtons
-                withTipButtonMargin:self.tipButtonMargin
-                    withEndPosition:self.endPositions
-                   withButtonHeight:[self buttonMaxHeight]];
+    [self adjustTipLabel];
 }
 
 - (void)reboom
@@ -673,7 +666,8 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     {
         [self.boomDelegate onBoomDidHide];
     }
-    [self clearViewsAndValues:NO];
+    self.background.hidden = YES;
+    [self clearViews:NO];
 }
 
 - (void)startShowAnimations:(BOOL)immediately
@@ -1004,20 +998,18 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         {
             self.background.blurEffect = self.blurEffect;
         }
-        self.background.tip = self.tip;
         self.background.delegate = self;
+        if (self.tipLabel)
+        {
+            // tip-label has been set by developer
+            self.background.tipLabel = self.tipLabel;
+        }
+        else
+        {
+            self.tipLabel = self.background.tipLabel;
+        }
+        self.background.tip = self.tip;
         [parentView addSubview:self.background];
-    }
-}
-
-- (void)clearBackground:(BOOL)force
-{
-    self.background.hidden = YES;
-    if (force || !self.cacheOptimization || self.inList)
-    {
-        [self.background removeAllBoomButtons];
-        [self.background removeFromSuperview];
-        self.background = nil;
     }
 }
 
@@ -1028,10 +1020,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         return;
     }
     self.needToCreateButtons = NO;
-    [[VHErrorManager sharedManager] errorJudgeWithPiecePlaceEnum:self.piecePlaceEnum andButtonPlaceEnum:self.buttonPlaceEnum];
-    
     self.boomButtons = [NSMutableArray arrayWithCapacity:self.pieces.count];
-    
     switch (self.buttonEnum)
     {
         case VHButtonSimpleCircle:
@@ -1116,9 +1105,6 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     }];
 }
 
-/**
- *  Calculate out the end position
- */
 - (void)calculateEndPositions
 {
     switch (self.buttonEnum) {
@@ -1178,7 +1164,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
                                                        withButtonBottomMargin:self.buttonBottomMargin
                                                          withButtonLeftMargin:self.buttonLeftMargin
                                                         withButtonRightMargin:self.buttonRightMargin
-                                                  withLastButtonMarginMoreTop:self.bottomHamButtonTopMargin != -1
+                                                  withLastButtonMarginMoreTop:self.bottomHamButtonTopMargin > 0
                                                       withLastButtonTopMargin:self.bottomHamButtonTopMargin];
             break;
         default:
@@ -1199,11 +1185,13 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     return button;
 }
 
-- (void)clearViewsAndValues:(BOOL)force
+- (void)clearViews:(BOOL)force
 {
-    [self clearBackground:force];
     if (force || !self.cacheOptimization || self.inList)
     {
+        [self.background removeAllBoomButtons];
+        [self.background removeFromSuperview];
+        self.background = nil;
         [self clearButtons];
     }
 }
@@ -1345,6 +1333,28 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     }
 }
 
+- (void)adjustTipLabel
+{
+    [self.background adjustTipLabel:self.tipBelowButtons
+                withTipButtonMargin:self.tipButtonMargin
+                    withEndPosition:self.endPositions
+                   withButtonHeight:[self buttonMaxHeight]];
+}
+
+- (void)checkAutoBoom
+{
+    if (self.autoBoomImmediately)
+    {
+        [self boomImmediately];
+    }
+    else if (self.autoBoom)
+    {
+        [self boom];
+    }
+    self.autoBoom = NO;
+    self.autoBoomImmediately = NO;
+}
+
 #pragma mark - Device Orientation
 
 - (void)deviceOrientationDidChange:(NSNotification *)notification
@@ -1364,11 +1374,13 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
                 break;
             case VHBoomStateDidShow:
                 [self placeButtons];
+                [self adjustTipLabel];
                 break;
             case VHBoomStateWillShow:
             case VHBoomStateWillHide:
                 [self stopAllAnimations:self.boomState == VHBoomStateWillShow];
                 [self placeButtons];
+                [self adjustTipLabel];
                 break;
         }
     }
@@ -1388,7 +1400,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 
 - (void)stopAllAnimations:(BOOL)isShowAnimation
 {
-    [self.background.layer removeAllAnimations];
+    [self.background removeAllAnimations];
     [self.boomButtons enumerateObjectsUsingBlock:^(VHBoomButton * _Nonnull button, NSUInteger idx, BOOL * _Nonnull stop) {
         [button innerStopAnimations];
         if (isShowAnimation)
@@ -1481,10 +1493,19 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 - (void)addViewToBackground:(UIView *)view
 {
     [self createBackground];
-    
+    [self.background addGoneView:view];
 }
 
-#pragma mark - Setters // Todo
+- (UILabel *)tipLabel
+{
+    if (!self.background.tipLabel)
+    {
+        _tipLabel = [UILabel new];
+    }
+    return _tipLabel;
+}
+
+#pragma mark - Setters
 
 #pragma mark Basic
 
@@ -1578,9 +1599,9 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     }
     _buttonEnum = buttonEnum;
     [self clearPieces];
-    [self clearButtons];
     [self clearBuilders];
-    [self setNeedsLayout];
+    [self clearButtons];
+//    [self setNeedsLayout];
     [self setNeedsDisplay];
 }
 
@@ -1631,6 +1652,29 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     {
         [self setNeedsDisplay];
     }
+}
+
+- (void)setUserInteractionEnabled:(BOOL)userInteractionEnabled
+{
+    [super setUserInteractionEnabled:userInteractionEnabled];
+    if (!userInteractionEnabled)
+    {
+        [self toUnable];
+    }
+    else
+    {
+        [self toNormal];
+    }
+}
+
+- (void)setEdgeInsetsInSuperView:(UIEdgeInsets)edgeInsetsInSuperView
+{
+    if (UIEdgeInsetsEqualToEdgeInsets(_edgeInsetsInSuperView, edgeInsetsInSuperView))
+    {
+        return;
+    }
+    _edgeInsetsInSuperView = edgeInsetsInSuperView;
+    [self preventDragOutside];
 }
 
 #pragma mark Piece
@@ -1719,10 +1763,51 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     _piecePlaceEnum = piecePlaceEnum;
     [self clearPieces];
     self.needToCalculateStartPositions = YES;
-    [self setNeedsLayout];
+//    [self setNeedsLayout];
 }
 
 #pragma mark Background
+
+- (void)setBlurBackground:(BOOL)blurBackground
+{
+    if (_blurBackground == blurBackground)
+    {
+        return;
+    }
+    if (blurBackground)
+    {
+        if ([UIVisualEffectView class])
+        {
+            self.background.blurBackground = _blurBackground = blurBackground;
+        }
+    }
+    else
+    {
+        self.background.blurBackground = _blurBackground = blurBackground;
+    }
+}
+
+- (void)setBlurEffect:(UIBlurEffect *)blurEffect NS_AVAILABLE_IOS(8_0)
+{
+    if ([_blurEffect isEqual:blurEffect])
+    {
+        return;
+    }
+    self.background.blurEffect = _blurEffect = blurEffect;
+}
+
+- (void)setDimColor:(UIColor *)dimColor
+{
+    if ([VHUtils sameColor:_dimColor asColor:dimColor])
+    {
+        return;
+    }
+    _dimColor = dimColor;
+    if (self.boomState == VHBoomStateDidShow)
+    {
+        self.background.backgroundColor = dimColor;
+    }
+}
 
 - (void)setTip:(NSString *)tip
 {
@@ -1730,8 +1815,27 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     {
         return;
     }
-    _tip = tip;
-    self.background.tip = tip;
+    self.background.tip = _tip = tip;
+}
+
+- (void)setTipBelowButtons:(BOOL)tipBelowButtons
+{
+    if (_tipBelowButtons == tipBelowButtons)
+    {
+        return;
+    }
+    _tipBelowButtons = tipBelowButtons;
+    [self adjustTipLabel];
+}
+
+- (void)setTipButtonMargin:(CGFloat)tipButtonMargin
+{
+    if (_tipButtonMargin == tipButtonMargin)
+    {
+        return;
+    }
+    _tipButtonMargin = tipButtonMargin;
+    [self adjustTipLabel];
 }
 
 #pragma mark Animation
@@ -1879,7 +1983,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     _buttonPlaceEnum = buttonPlaceEnum;
     [self clearButtons];
     self.needToCalculateStartPositions = YES;
-    [self setNeedsLayout];
+//    [self setNeedsLayout];
 }
 
 @end
