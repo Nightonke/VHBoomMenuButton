@@ -9,9 +9,21 @@
 #ifndef VHDotPlaceEnum_h
 #define VHDotPlaceEnum_h
 
+/**
+ VHPiecePlaceEnum tells BMB how the pieces should be placed.
+ 
+ All the piece-place-enums are in the following form:
+ 
+ 1. VHPiecePlaceDOT_M_A: M means the number of pieces in a dot or a small square shape. A means different type of placing.
+ 
+ 2. VHPiecePlaceHAM_M: M means the number of pieces in a ham shape.
+ 
+ 3. VHPiecePlaceShare: Share style.
+ 
+ Check https://github.com/Nightonke/VHBoomMenuButton/wiki for more information.
+ */
 typedef NS_ENUM(NSUInteger, VHPiecePlaceEnum)
 {
-    
     // Dots
     VHPiecePlaceDOT_1 = 0,
     VHPiecePlaceDOT_2_1,
@@ -49,6 +61,7 @@ typedef NS_ENUM(NSUInteger, VHPiecePlaceEnum)
     VHPiecePlaceDOT_9_2,
     VHPiecePlaceDOT_9_3,
 
+    // Hams
     VHPiecePlaceHAM_1,
     VHPiecePlaceHAM_2,
     VHPiecePlaceHAM_3,

@@ -9,9 +9,23 @@
 #ifndef VHButtonPlaceEnum_h
 #define VHButtonPlaceEnum_h
 
+/**
+ VHButtonPlaceEnum tells BMB how the boom-buttons should be placed.
+ 
+ All the button-place-enums are in the following form:
+ 
+ 1. VHButtonPlaceSC_M_A: M means the number of boom-buttons in a circle or a square shape. A means different type of placing.
+ 
+ 2. VHButtonPlaceHAM_M: M means the number of boom-buttons in a ham shape.
+ 
+ 3. VHButtonPlaceHorizontal: All the boom-buttons are placed horizontally.
+ 
+ 4. VHButtonPlaceVertical: All the boom-buttons are place vertically.
+ 
+ Check https://github.com/Nightonke/VHBoomMenuButton/wiki for more information.
+ */
 typedef NS_ENUM(NSUInteger, VHButtonPlaceEnum)
 {
-    
     // Simple Circles, Text Inside Dots and Text Outside Dots.
     VHButtonPlaceSC_1 = 0,
     VHButtonPlaceSC_2_1,
@@ -49,6 +63,7 @@ typedef NS_ENUM(NSUInteger, VHButtonPlaceEnum)
     VHButtonPlaceSC_9_2,
     VHButtonPlaceSC_9_3,
 
+    // Hams.
     VHButtonPlaceHAM_1,
     VHButtonPlaceHAM_2,
     VHButtonPlaceHAM_3,

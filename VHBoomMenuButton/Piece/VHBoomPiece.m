@@ -55,9 +55,4 @@
 
 #pragma mark - Private Methods
 
-- (void)dealloc
-{
-    NSLog(@"%@ dealloc", self);
-}
-
 @end

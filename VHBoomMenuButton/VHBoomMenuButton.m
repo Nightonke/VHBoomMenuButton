@@ -312,7 +312,6 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 
 - (void)layoutSubviews
 {
-    NSLog(@"%@ layout sub views", self);
     [super layoutSubviews];
     self.backgroundColor = [UIColor clearColor];
     [self clearPieces];
@@ -501,7 +500,6 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         CGPoint touchLocation = [anyTouch locationInView:self];
         if (CGRectContainsPoint(self.bounds, touchLocation))
         {
-            NSLog(@"touchesEnded");
             [self boom];
         }        
     }
@@ -850,7 +848,6 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
                                       boomButton.frame.size.width,
                                       boomButton.frame.size.height);
         
-        NSLog(@"commit %zd", delayFactor);
         [CATransaction commit];
     };
     [self delay:delay toBlock:block];

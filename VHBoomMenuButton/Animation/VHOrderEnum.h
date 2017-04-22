@@ -9,6 +9,13 @@
 #ifndef VHOrderEnum_h
 #define VHOrderEnum_h
 
+/**
+ The order of boom-buttons when booming or rebooming.
+
+ - VHOrderDefault: In-order.
+ - VHOrderReverse: Reverse.
+ - VHOrderRandom: Random.
+ */
 typedef NS_ENUM(NSUInteger, VHOrderEnum)
 {
     VHOrderDefault = 0,

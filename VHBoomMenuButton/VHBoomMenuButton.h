@@ -242,7 +242,7 @@ IB_DESIGNABLE
  
  Check VHPiecePlaceEnum.h file to check all piece-place-enums.
  
- Notice that VHButtonEnum must correspond with VHPiecePlaceEnum and VHButtonPlaceEnum.
+ Notice that VHPiecePlaceEnum must correspond with VHButtonEnum and VHButtonPlaceEnum.
  
  Check https://github.com/Nightonke/VHBoomMenuButton/wiki for more information.
  */
@@ -460,21 +460,101 @@ IB_DESIGNABLE
  */
 @property (nonatomic, assign)IBInspectable CGFloat rotateDegree;
 
+/**
+ Whether use a 3D transform animation when booming or rebooming.
+ 
+ The default value is @b YES .
+ */
 @property (nonatomic, assign)IBInspectable BOOL use3DTransformAnimation;
+
+/**
+ Whether BMB will boom automatically with animations when its drawRect method is called. This property can be useful if the BMB is supposed to boom when its view-controller appears.
+ 
+ The defalut value is @b NO .
+ */
 @property (nonatomic, assign)IBInspectable BOOL autoBoom;
+
+/**
+ Whether BMB will boom automatically without animations when its drawRect method is called. This property can be useful if the BMB is supposed to boom when its view-controller appears.
+ 
+ The defalut value is @b NO .
+ */
 @property (nonatomic, assign)IBInspectable BOOL autoBoomImmediately;
 
 #pragma mark - Boom Buttons
 
+/**
+ VHButtonPlaceEnum tells BMB how the boom-buttons should be placed on the background when booming.
+ 
+ Check VHButtonPlaceEnum.h file to check all button-place-enums.
+ 
+ Notice that VHButtonPlaceEnum must correspond with VHButtonEnum and VHPiecePlaceEnum.
+ 
+ Check https://github.com/Nightonke/VHBoomMenuButton/wiki for more information.
+ */
 @property (nonatomic, assign) VHButtonPlaceEnum buttonPlaceEnum;
+
+/**
+ VHButtonPlaceAlignmentEnum tells BMB the boom-buttons' alignment position. For instance, you can put all the boom-buttons align-bottom with VHButtonPlaceAlignmentBottom.
+ 
+ The default value is @b VHButtonPlaceAlignmentCenter .
+ */
 @property (nonatomic, assign) VHButtonPlaceAlignmentEnum buttonPlaceAlignmentEnum;
+
+/**
+ The horizontal margin (in points) among boom-buttons.
+ 
+ The default value is @b 12 .
+ */
 @property (nonatomic, assign)IBInspectable CGFloat buttonHorizontalMargin;
+
+/**
+ The vertical margin (in points) among boom-buttons.
+ 
+ The default value is @b 12 .
+ */
 @property (nonatomic, assign)IBInspectable CGFloat buttonVerticalMargin;
+
+/**
+ The inclined margin (in points) among boom-buttons.
+ 
+ The default value is @b 12 .
+ */
 @property (nonatomic, assign)IBInspectable CGFloat buttonInclinedMargin;
+
+/**
+ The margin (in points) between boom-buttons and the bottom of screen when booming. Notice that this property only works when buttonPlaceAlignmentEnum is VHButtonPlaceAlignmentBottom, VHButtonPlaceAlignmentBL or VHButtonPlaceAlignmentBR.
+ 
+ The default value is @b 20 .
+ */
 @property (nonatomic, assign)IBInspectable CGFloat buttonBottomMargin;
+
+/**
+ The margin (in points) between boom-buttons and the top of screen when booming. Notice that this property only works when buttonPlaceAlignmentEnum is VHButtonPlaceAlignmentTop, VHButtonPlaceAlignmentTL and VHButtonPlaceAlignmentTR.
+ 
+ The default value is @b 20 .
+ */
 @property (nonatomic, assign)IBInspectable CGFloat buttonTopMargin;
+
+/**
+ The margin (in points) between boom-buttons and the left of screen when booming. Notice that this property only works when buttonPlaceAlignmentEnum is VHButtonPlaceAlignmentLeft, VHButtonPlaceAlignmentTL or VHButtonPlaceAlignmentBL.
+ 
+ The default value is @b 20 .
+ */
 @property (nonatomic, assign)IBInspectable CGFloat buttonLeftMargin;
+
+/**
+ The margin (in points) between boom-buttons and the right of screen when booming. Notice that this property only works when buttonPlaceAlignmentEnum is VHButtonPlaceAlignmentRight, VHButtonPlaceAlignmentTR or VHButtonPlaceAlignmentBR.
+ 
+ The default value is @b 20 .
+ */
 @property (nonatomic, assign)IBInspectable CGFloat buttonRightMargin;
+
+/**
+ The margin (in points) between the last boom-button and the last but one. This property is useful when the last boom-button is used as a 'Cancel' choice. Notice that this property only works when buttonEnum is VHButtonHam and its value must be positive.
+ 
+ The default value is @b -1 .
+ */
 @property (nonatomic, assign)IBInspectable CGFloat bottomHamButtonTopMargin;
 
 #pragma mark - Convenience Methods

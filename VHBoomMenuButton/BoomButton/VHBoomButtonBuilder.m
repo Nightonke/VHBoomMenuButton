@@ -98,6 +98,15 @@
 
 #pragma mark Basic
 
+- (void)setClickedBlock:(OnBoomButtonClickedBlock)clickedBlock
+{
+    if (_clickedBlock == clickedBlock)
+    {
+        return;
+    }
+    self.button.clickedBlock = _clickedBlock = clickedBlock;
+}
+
 - (void)setUnable:(BOOL)unable
 {
     if (_unable == unable)
