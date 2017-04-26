@@ -1201,11 +1201,11 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     }
     else if (self.piecePlaceEnum == VHPiecePlaceShare)
     {
-        return self.boomButtonBuilders.count;
+        return (int)self.boomButtonBuilders.count;
     }
     else
     {
-        return [VHPiecePlaceManager pieceNumber:self.piecePlaceEnum];
+        return (int)[VHPiecePlaceManager pieceNumber:self.piecePlaceEnum];
     }
 }
 
@@ -1357,7 +1357,6 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 - (void)deviceOrientationDidChange:(NSNotification *)notification
 {
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-    NSLog(@"%@ %d", notification, orientation);
     if (orientation != self.lastDeviceOrientation)
     {
         self.background.frame = [self parentView].bounds;

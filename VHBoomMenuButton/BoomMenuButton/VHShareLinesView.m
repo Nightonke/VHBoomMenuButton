@@ -69,7 +69,7 @@
     self.piecePositions = offsetedPiecePositions;
     
     int pieceNumbers[3] = {0, 0, 0};
-    int pieceNumber = piecePositions.count;
+    int pieceNumber = (int)piecePositions.count;
     for (int i = 0; i < pieceNumber; i++)
     {
         pieceNumbers[i % 3]++;

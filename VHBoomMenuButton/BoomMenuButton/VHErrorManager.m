@@ -21,16 +21,16 @@
     NSAssert(bmb.boomEnum < VHBoomEnumCount, @"[BMB] Unknown boom-enum!");
     NSAssert(builders.count, @"[BMB] Empty builders!");
     
-    int pieceNumber = bmb.pieceNumber;
-    int buttonNumber = bmb.buttonNumber;
-    int builderNumber = builders.count;
+    int pieceNumber = (int)bmb.pieceNumber;
+    int buttonNumber = (int)bmb.buttonNumber;
+    int builderNumber = (int)builders.count;
     
     if (pieceNumber == -1)
     {
         if (bmb.piecePlaceEnum == VHPiecePlaceShare)
         {
-            int minPieceNumber = [VHPiecePlaceManager minPieceNumber:bmb.piecePlaceEnum];
-            int maxPieceNumber = [VHPiecePlaceManager maxPieceNumber:bmb.piecePlaceEnum];
+            int minPieceNumber = (int)[VHPiecePlaceManager minPieceNumber:bmb.piecePlaceEnum];
+            int maxPieceNumber = (int)[VHPiecePlaceManager maxPieceNumber:bmb.piecePlaceEnum];
             if (buttonNumber < minPieceNumber)
             {
                 NSAssert(NO, @"[BMB] In share style, button-place-enum(%d) must have %d buttons at least!", bmb.buttonPlaceEnum, minPieceNumber);

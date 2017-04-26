@@ -30,7 +30,7 @@ typedef void (^OnBoomButtonClickedBlock)(int index);
 /**
  This property is @b only used in BMB package! @b DON'T modify it!
  */
-@property (nonatomic, assign) int innerIndex;
+@property (nonatomic, assign) NSUInteger innerIndex;
 
 /**
  This property is @b only used in BMB package! @b DON'T modify it!
