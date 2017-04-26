@@ -8,7 +8,7 @@
 
 #import "ButtonPlaceAlignmentVC.h"
 #import "BuilderManager.h"
-#import "VHBoomMenuButton.h"
+#import <BoomMenuButton/BoomMenuButton.h>
 
 @interface ButtonPlaceAlignmentVC ()
 

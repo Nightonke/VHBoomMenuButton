@@ -12,6 +12,11 @@ Pod::Spec.new do |s|
   s.platform         = :ios, '7.0'
   s.requires_arc     = true
   
-  s.source_files     = 'VHBoomMenuButton/**/*.{h,m}' 
-  s.frameworks        = 'UIKit'
+  s.default_subspec = 'ObjC'
+  
+  s.subspec 'ObjC' do |ss|
+    ss.ios.deployment_target = '7.0'
+    ss.source_files = 'BoomMenuButton/**/*.{h,m}' 
+  end
+  
 end

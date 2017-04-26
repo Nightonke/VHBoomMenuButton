@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "VHBoomMenuButton.h"
+#import <BoomMenuButton/BoomMenuButton.h>
 
 @interface BMBTableViewCell : UITableViewCell
 

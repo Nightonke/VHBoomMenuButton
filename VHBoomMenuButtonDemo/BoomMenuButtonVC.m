@@ -7,8 +7,7 @@
 //
 
 #import "BoomMenuButtonVC.h"
-#import "VHUtils.h"
-#import "VHBoomMenuButton.h"
+#import <BoomMenuButton/BoomMenuButton.h>
 
 @interface BoomMenuButtonVC ()<VHBoomDelegate>
 
@@ -34,7 +33,7 @@
                                         130,
                                         app.statusBarFrame.size.height);
     self.overlapWindow.hidden = NO;
-    self.overlapWindow.backgroundColor = [VHUtils colorFromRGB:0x30a2fb];
+    self.overlapWindow.backgroundColor = [self colorFromRGB:0x30a2fb];
     [self.overlapWindow makeKeyAndVisible];
     
     self.animateView = [UIView new];
@@ -56,14 +55,14 @@
 - (void)dimBMBLogoAnimation
 {
     [UIView animateWithDuration:1.4 animations:^{
-        self.animateView.backgroundColor = [VHUtils colorFromARGB:0x55000000];
+        self.animateView.backgroundColor = [self colorFromARGB:0x55000000];
     }];
 }
 
 - (void)lightBMBLogoAnimation
 {
     [UIView animateWithDuration:1.4 animations:^{
-        self.animateView.backgroundColor = [VHUtils colorFromARGB:0x00000000];
+        self.animateView.backgroundColor = [self colorFromARGB:0x00000000];
     }];
 }
 
@@ -75,6 +74,16 @@
 - (void)onBoomWillHide
 {
     [self lightBMBLogoAnimation];
+}
+
+- (UIColor *)colorFromARGB:(int)color
+{
+    return [UIColor colorWithRed:((float)((color & 0x00FF0000) >> 16)) / 255.0 green:((float)((color & 0x0000FF00) >> 8)) / 255.0 blue:((float)(color & 0x000000FF)) / 255.0 alpha:((float)((color & 0xFF000000) >> 24)) / 255.0];
+}
+
+- (UIColor *)colorFromRGB:(int)color
+{
+    return [UIColor colorWithRed:((float)((color & 0xFF0000) >> 16)) / 255.0 green:((float)((color & 0xFF00) >> 8)) / 255.0 blue:((float)(color & 0xFF)) / 255.0 alpha:1.0];
 }
 
 @end

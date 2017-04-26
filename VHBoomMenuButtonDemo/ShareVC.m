@@ -8,7 +8,7 @@
 
 #import "ShareVC.h"
 #import "BuilderManager.h"
-#import "VHBoomMenuButton.h"
+#import <BoomMenuButton/BoomMenuButton.h>
 
 @interface ShareVC ()
 

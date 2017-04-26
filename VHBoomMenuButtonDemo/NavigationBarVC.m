@@ -8,7 +8,7 @@
 
 #import "NavigationBarVC.h"
 #import "BuilderManager.h"
-#import "VHBoomMenuButton.h"
+#import <BoomMenuButton/BoomMenuButton.h>
 
 @interface NavigationBarVC ()
 

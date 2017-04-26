@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VHBoomMenuButton.h"
+#import <BoomMenuButton/BoomMenuButton.h>
 
 @interface BuilderManager : NSObject
 
