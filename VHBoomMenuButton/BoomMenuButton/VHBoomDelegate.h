@@ -6,7 +6,10 @@
 //  Copyright © 2016年 Nightonke. All rights reserved.
 //
 
-#import "VHBoomButton.h"
+#import "VHBoomButtonBuilder.h"
+#import "VHBoomMenuButton.h"
+
+@class VHBoomMenuButton;
 
 @protocol VHBoomDelegate <NSObject>
 
@@ -15,34 +18,45 @@
 /**
  When one of the sub button was clicked.
 
- @param boomButton The Clicked BoomButton
+ @param bmb The BMB
+ @param builder The builder of the clicked BoomButton
  @param index Index of the clicked sub button
  */
-- (void)onBoomButton:(VHBoomButton *)boomButton clickedAt:(int)index;
+- (void)boomMenuButton:(VHBoomMenuButton *)bmb didClickBoomButtonOfBuilder:(VHBoomButtonBuilder *)builder at:(int)index;
 
 /**
- *  When the background was clicked.
+ When the background was clicked.
+
+ @param bmb The BMB
  */
-- (void)onBoomBackgroundClicked;
+- (void)boomMenuButtonDidClickBackground:(VHBoomMenuButton *)bmb;
 
 /**
- *  The reboom animation is going to start.
+ The reboom animation is going to start.
+
+ @param bmb The BMB
  */
-- (void)onBoomWillHide;
+- (void)boomMenuButtonWillReboom:(VHBoomMenuButton *)bmb;
 
 /**
- *  The reboom animation is finished.
+ The reboom animation is finished.
+
+ @param bmb The BMB
  */
-- (void)onBoomDidHide;
+- (void)boomMenuButtonDidReboom:(VHBoomMenuButton *)bmb;
 
 /**
- *  The boom animation is going to start.
+ The boom animation is going to start.
+
+ @param bmb The BMB
  */
-- (void)onBoomWillShow;
+- (void)boomMenuButtonWillBoom:(VHBoomMenuButton *)bmb;
 
 /**
- *  The boom animation is finished.
+ The boom animation is finished.
+
+ @param bmb The BMB
  */
-- (void)onBoomDidShow;
+- (void)boomMenuButtonDidBoom:(VHBoomMenuButton *)bmb;
 
 @end

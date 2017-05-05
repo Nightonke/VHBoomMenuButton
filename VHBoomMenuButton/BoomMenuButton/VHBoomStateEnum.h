@@ -11,10 +11,10 @@
 
 typedef NS_ENUM(NSUInteger, VHBoomStateEnum)
 {
-    VHBoomStateDidShow,
-    VHBoomStateWillShow,
-    VHBoomStateDidHide,
-    VHBoomStateWillHide,
+    VHBoomStateDidBoom,
+    VHBoomStateWillBoom,
+    VHBoomStateDidReboom,
+    VHBoomStateWillReboom,
 };
 
 #endif /* VHBoomStateEnum_h */

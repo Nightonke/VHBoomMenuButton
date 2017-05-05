@@ -32,11 +32,11 @@
         [self.bmb addBuilder:[BuilderManager simpleCircleButtonBuilder]];
     }
     
-    self.orderEnums = @[@(VHOrderDefault),
+    self.orderEnums = @[@(VHOrderInOrder),
                         @(VHOrderReverse),
                         @(VHOrderRandom)];
     
-    self.orderEnumNames = @[@"Default",
+    self.orderEnumNames = @[@"InOrder",
                             @"Reverse",
                             @"Random"];
     

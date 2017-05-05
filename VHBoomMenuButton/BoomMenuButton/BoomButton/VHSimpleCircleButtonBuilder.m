@@ -21,8 +21,7 @@
     {
         _radius = 40;
         _round = YES;
-        
-        self.shadowPathRect = CGRectMake(2, 2, _radius * 2 - 4, _radius * 2 - 4);
+        self.shadowPathRect = CGRectMake(2, 2, _radius + _radius - 4, _radius + _radius - 4);
     }
     return self;
 }
@@ -56,7 +55,6 @@
     {
         return;
     }
-    self.button.rotateAnchorPointInitialized = NO;
     self.button.radius = _radius = radius;
     [self.button innerSetButtonLayer];
     [self.button innerSetShadow];
@@ -72,6 +70,8 @@
     {
         [self.button innerToUnableButton];
     }
+    self.button.rotateAnchorPointInitialized = NO;
+    [self.button setRotateAnchorPoints];
 }
 
 - (void)setRound:(BOOL)round

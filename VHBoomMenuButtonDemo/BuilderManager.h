@@ -19,7 +19,7 @@ extern NSString * const VHButtonPlaceEnumStrings[];
 
 + (VHSimpleCircleButtonBuilder *)simpleCircleButtonBuilder;
 
-+ (VHSimpleCircleButtonBuilder *)squaresSimpleCircleButtonBuilder;
++ (VHSimpleCircleButtonBuilder *)squareSimpleCircleButtonBuilder;
 
 + (VHTextInsideCircleButtonBuilder *)textInsideCircleButtonBuilder;
 

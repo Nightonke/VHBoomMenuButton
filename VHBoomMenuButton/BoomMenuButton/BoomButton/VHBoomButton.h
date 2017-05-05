@@ -17,13 +17,13 @@
 
 - (instancetype)initWithBuilder:(VHBoomButtonBuilder *)builder;
 
-- (void)willShow;
+- (void)willBoom;
 
-- (void)didShow;
+- (void)didBoom;
 
-- (void)willHide;
+- (void)willReboom;
 
-- (void)didHide;
+- (void)didReboom;
 
 - (void)clearListener;
 
@@ -37,9 +37,9 @@
 
 - (void)innerStopAnimations;
 
-- (void)innerVisibleAllGoneViews;
+- (void)innerShowAllGoneViews;
 
-- (void)innerHiddenAllGoneViews;
+- (void)innerHideAllGoneViews;
 
 #pragma mark Setters
 
@@ -93,13 +93,9 @@
 
 - (NSArray<UIView *> *)rotateViews;
 
-- (CGFloat)trueWidth;
+- (CGFloat)buttonWidth;
 
-- (CGFloat)trueHeight;
-
-- (CGFloat)contentWidth;
-
-- (CGFloat)contentHeight;
+- (CGFloat)buttonHeight;
 
 - (void)toNormal;
 
@@ -108,8 +104,6 @@
 - (void)toUnable;
 
 - (void)setRotateAnchorPoints;
-
-- (void)setSelfScaleAnchorPoint;
 
 - (void)setAnchorPointOfLayer;
 

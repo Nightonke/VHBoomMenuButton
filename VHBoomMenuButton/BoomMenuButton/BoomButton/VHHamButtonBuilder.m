@@ -45,7 +45,7 @@
         
         _subTextShadowColor = nil;
         _subTextShadowOffsetX = 0;
-        _subTextShadowOffsetY = -1;
+        _subTextShadowOffsetY = 0;
         
         self.imageFrame = CGRectMake(0, 0, 60, 60);
         
@@ -102,6 +102,8 @@
     {
         [self.button innerToUnableButton];
     }
+    self.button.rotateAnchorPointInitialized = NO;
+    [self.button setRotateAnchorPoints];
 }
 
 - (void)setHeight:(CGFloat)height
@@ -125,6 +127,8 @@
     {
         [self.button innerToUnableButton];
     }
+    self.button.rotateAnchorPointInitialized = NO;
+    [self.button setRotateAnchorPoints];
 }
 
 #pragma mark Sub Text

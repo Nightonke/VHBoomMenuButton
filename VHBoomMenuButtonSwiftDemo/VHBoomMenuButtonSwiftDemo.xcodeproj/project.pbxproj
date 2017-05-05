@@ -7,19 +7,123 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37A7FA261EB2D9C7004638C8 /* BoomMenuButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3748A9E61EB0DB5A008F7C5E /* BoomMenuButton.framework */; };
+		37A7FA271EB2D9C7004638C8 /* BoomMenuButton.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3748A9E61EB0DB5A008F7C5E /* BoomMenuButton.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		37AC4D501EB781BC005FB4D7 /* bat.png in Resources */ = {isa = PBXBuildFile; fileRef = 37AC4D401EB781BC005FB4D7 /* bat.png */; };
+		37AC4D511EB781BC005FB4D7 /* bear.png in Resources */ = {isa = PBXBuildFile; fileRef = 37AC4D411EB781BC005FB4D7 /* bear.png */; };
+		37AC4D521EB781BC005FB4D7 /* bee.png in Resources */ = {isa = PBXBuildFile; fileRef = 37AC4D421EB781BC005FB4D7 /* bee.png */; };
+		37AC4D531EB781BC005FB4D7 /* butterfly.png in Resources */ = {isa = PBXBuildFile; fileRef = 37AC4D431EB781BC005FB4D7 /* butterfly.png */; };
+		37AC4D541EB781BC005FB4D7 /* cat.png in Resources */ = {isa = PBXBuildFile; fileRef = 37AC4D441EB781BC005FB4D7 /* cat.png */; };
+		37AC4D551EB781BC005FB4D7 /* deer.png in Resources */ = {isa = PBXBuildFile; fileRef = 37AC4D451EB781BC005FB4D7 /* deer.png */; };
+		37AC4D561EB781BC005FB4D7 /* dolphin.png in Resources */ = {isa = PBXBuildFile; fileRef = 37AC4D461EB781BC005FB4D7 /* dolphin.png */; };
+		37AC4D571EB781BC005FB4D7 /* eagle.png in Resources */ = {isa = PBXBuildFile; fileRef = 37AC4D471EB781BC005FB4D7 /* eagle.png */; };
+		37AC4D581EB781BC005FB4D7 /* horse.png in Resources */ = {isa = PBXBuildFile; fileRef = 37AC4D481EB781BC005FB4D7 /* horse.png */; };
+		37AC4D591EB781BC005FB4D7 /* jellyFish.png in Resources */ = {isa = PBXBuildFile; fileRef = 37AC4D491EB781BC005FB4D7 /* jellyFish.png */; };
+		37AC4D5A1EB781BC005FB4D7 /* owl.png in Resources */ = {isa = PBXBuildFile; fileRef = 37AC4D4A1EB781BC005FB4D7 /* owl.png */; };
+		37AC4D5B1EB781BC005FB4D7 /* peacock.png in Resources */ = {isa = PBXBuildFile; fileRef = 37AC4D4B1EB781BC005FB4D7 /* peacock.png */; };
+		37AC4D5C1EB781BC005FB4D7 /* pig.png in Resources */ = {isa = PBXBuildFile; fileRef = 37AC4D4C1EB781BC005FB4D7 /* pig.png */; };
+		37AC4D5D1EB781BC005FB4D7 /* rat.png in Resources */ = {isa = PBXBuildFile; fileRef = 37AC4D4D1EB781BC005FB4D7 /* rat.png */; };
+		37AC4D5E1EB781BC005FB4D7 /* snake.png in Resources */ = {isa = PBXBuildFile; fileRef = 37AC4D4E1EB781BC005FB4D7 /* snake.png */; };
+		37AC4D5F1EB781BC005FB4D7 /* squirrel.png in Resources */ = {isa = PBXBuildFile; fileRef = 37AC4D4F1EB781BC005FB4D7 /* squirrel.png */; };
+		37AC4D661EB8AC68005FB4D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37AC4D651EB8AC68005FB4D7 /* Main.storyboard */; };
+		37AC4D6A1EB8AD93005FB4D7 /* BoomMenuButtonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D691EB8AD93005FB4D7 /* BoomMenuButtonVC.swift */; };
+		37AC4D6C1EB8AE52005FB4D7 /* BuilderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D6B1EB8AE52005FB4D7 /* BuilderManager.swift */; };
+		37AC4D701EB8B343005FB4D7 /* SimpleCircleButtonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D6F1EB8B343005FB4D7 /* SimpleCircleButtonVC.swift */; };
+		37AC4D7A1EB97ECC005FB4D7 /* TextInsideCircleButtonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D791EB97ECC005FB4D7 /* TextInsideCircleButtonVC.swift */; };
+		37AC4D801EBA27FC005FB4D7 /* TextOutsideCircleButtonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D7F1EBA27FC005FB4D7 /* TextOutsideCircleButtonVC.swift */; };
+		37AC4D861EBAD9D4005FB4D7 /* HamButtonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D851EBAD9D4005FB4D7 /* HamButtonVC.swift */; };
+		37AC4D881EBAF5E6005FB4D7 /* SquareAndPieceCornerRadiusVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D871EBAF5E6005FB4D7 /* SquareAndPieceCornerRadiusVC.swift */; };
+		37AC4D8A1EBAFB1B005FB4D7 /* BoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D891EBAFB1B005FB4D7 /* BoomVC.swift */; };
+		37AC4D8C1EBB0243005FB4D7 /* ButtonPlaceAlignmentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D8B1EBB0243005FB4D7 /* ButtonPlaceAlignmentVC.swift */; };
+		37AC4D8E1EBB55CC005FB4D7 /* OrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D8D1EBB55CC005FB4D7 /* OrderVC.swift */; };
+		37AC4D901EBB579E005FB4D7 /* NavigationBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D8F1EBB579E005FB4D7 /* NavigationBarVC.swift */; };
+		37AC4D921EBB6D19005FB4D7 /* DraggableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D911EBB6D19005FB4D7 /* DraggableVC.swift */; };
+		37AC4D941EBB7E4E005FB4D7 /* EaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D931EBB7E4E005FB4D7 /* EaseVC.swift */; };
+		37AC4D961EBB93ED005FB4D7 /* ListenerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D951EBB93ED005FB4D7 /* ListenerVC.swift */; };
+		37AC4D981EBB9C69005FB4D7 /* ControlVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D971EBB9C69005FB4D7 /* ControlVC.swift */; };
+		37AC4D9A1EBC3CD2005FB4D7 /* ShareVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D991EBC3CD2005FB4D7 /* ShareVC.swift */; };
+		37AC4D9C1EBC7A1E005FB4D7 /* TableViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D9B1EBC7A1E005FB4D7 /* TableViewVC.swift */; };
+		37AC4D9E1EBC7A3F005FB4D7 /* BMBTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D9D1EBC7A3F005FB4D7 /* BMBTableViewCell.swift */; };
+		37AC4DA01EBCB352005FB4D7 /* ChangeBoomButtonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D9F1EBCB352005FB4D7 /* ChangeBoomButtonVC.swift */; };
+		37AC4DA21EBCB980005FB4D7 /* ThreeDAnimationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4DA11EBCB980005FB4D7 /* ThreeDAnimationVC.swift */; };
+		37AC4DA41EBCBF05005FB4D7 /* BlurBackgroundAndTipVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4DA31EBCBF05005FB4D7 /* BlurBackgroundAndTipVC.swift */; };
 		37B863CC1EA8F9C300E53322 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B863CA1EA8F9C300E53322 /* AppDelegate.swift */; };
-		37B863CD1EA8F9C300E53322 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B863CB1EA8F9C300E53322 /* ViewController.swift */; };
-		37B863D31EA8F9CF00E53322 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37B863CF1EA8F9CF00E53322 /* LaunchScreen.storyboard */; };
-		37B863D41EA8F9CF00E53322 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37B863D11EA8F9CF00E53322 /* Main.storyboard */; };
 		37B863D61EA8F9F800E53322 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37B863D51EA8F9F800E53322 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		3748A9E51EB0DB5A008F7C5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3748A9E11EB0DB5A008F7C5E /* BoomMenuButton.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3748A9D61EB0DB3D008F7C5E;
+			remoteInfo = BoomMenuButton;
+		};
+		37A7FA281EB2D9C7004638C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3748A9E11EB0DB5A008F7C5E /* BoomMenuButton.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 3748A9D51EB0DB3D008F7C5E;
+			remoteInfo = BoomMenuButton;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		37A7FA2A1EB2D9C7004638C8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				37A7FA271EB2D9C7004638C8 /* BoomMenuButton.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		3748A9E11EB0DB5A008F7C5E /* BoomMenuButton.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BoomMenuButton.xcodeproj; path = ../VHBoomMenuButtonSwift/BoomMenuButton.xcodeproj; sourceTree = "<group>"; };
+		37AC4D401EB781BC005FB4D7 /* bat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bat.png; sourceTree = "<group>"; };
+		37AC4D411EB781BC005FB4D7 /* bear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bear.png; sourceTree = "<group>"; };
+		37AC4D421EB781BC005FB4D7 /* bee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bee.png; sourceTree = "<group>"; };
+		37AC4D431EB781BC005FB4D7 /* butterfly.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = butterfly.png; sourceTree = "<group>"; };
+		37AC4D441EB781BC005FB4D7 /* cat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cat.png; sourceTree = "<group>"; };
+		37AC4D451EB781BC005FB4D7 /* deer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deer.png; sourceTree = "<group>"; };
+		37AC4D461EB781BC005FB4D7 /* dolphin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dolphin.png; sourceTree = "<group>"; };
+		37AC4D471EB781BC005FB4D7 /* eagle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eagle.png; sourceTree = "<group>"; };
+		37AC4D481EB781BC005FB4D7 /* horse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horse.png; sourceTree = "<group>"; };
+		37AC4D491EB781BC005FB4D7 /* jellyFish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jellyFish.png; sourceTree = "<group>"; };
+		37AC4D4A1EB781BC005FB4D7 /* owl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = owl.png; sourceTree = "<group>"; };
+		37AC4D4B1EB781BC005FB4D7 /* peacock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peacock.png; sourceTree = "<group>"; };
+		37AC4D4C1EB781BC005FB4D7 /* pig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pig.png; sourceTree = "<group>"; };
+		37AC4D4D1EB781BC005FB4D7 /* rat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rat.png; sourceTree = "<group>"; };
+		37AC4D4E1EB781BC005FB4D7 /* snake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snake.png; sourceTree = "<group>"; };
+		37AC4D4F1EB781BC005FB4D7 /* squirrel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = squirrel.png; sourceTree = "<group>"; };
+		37AC4D651EB8AC68005FB4D7 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = SOURCE_ROOT; };
+		37AC4D691EB8AD93005FB4D7 /* BoomMenuButtonVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoomMenuButtonVC.swift; sourceTree = SOURCE_ROOT; };
+		37AC4D6B1EB8AE52005FB4D7 /* BuilderManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuilderManager.swift; sourceTree = SOURCE_ROOT; };
+		37AC4D6F1EB8B343005FB4D7 /* SimpleCircleButtonVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleCircleButtonVC.swift; sourceTree = SOURCE_ROOT; };
+		37AC4D791EB97ECC005FB4D7 /* TextInsideCircleButtonVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInsideCircleButtonVC.swift; sourceTree = SOURCE_ROOT; };
+		37AC4D7F1EBA27FC005FB4D7 /* TextOutsideCircleButtonVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextOutsideCircleButtonVC.swift; sourceTree = SOURCE_ROOT; };
+		37AC4D851EBAD9D4005FB4D7 /* HamButtonVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamButtonVC.swift; sourceTree = SOURCE_ROOT; };
+		37AC4D871EBAF5E6005FB4D7 /* SquareAndPieceCornerRadiusVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareAndPieceCornerRadiusVC.swift; sourceTree = SOURCE_ROOT; };
+		37AC4D891EBAFB1B005FB4D7 /* BoomVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoomVC.swift; sourceTree = SOURCE_ROOT; };
+		37AC4D8B1EBB0243005FB4D7 /* ButtonPlaceAlignmentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonPlaceAlignmentVC.swift; sourceTree = SOURCE_ROOT; };
+		37AC4D8D1EBB55CC005FB4D7 /* OrderVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderVC.swift; sourceTree = SOURCE_ROOT; };
+		37AC4D8F1EBB579E005FB4D7 /* NavigationBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarVC.swift; sourceTree = SOURCE_ROOT; };
+		37AC4D911EBB6D19005FB4D7 /* DraggableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableVC.swift; sourceTree = SOURCE_ROOT; };
+		37AC4D931EBB7E4E005FB4D7 /* EaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EaseVC.swift; sourceTree = SOURCE_ROOT; };
+		37AC4D951EBB93ED005FB4D7 /* ListenerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListenerVC.swift; sourceTree = SOURCE_ROOT; };
+		37AC4D971EBB9C69005FB4D7 /* ControlVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlVC.swift; sourceTree = SOURCE_ROOT; };
+		37AC4D991EBC3CD2005FB4D7 /* ShareVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareVC.swift; sourceTree = SOURCE_ROOT; };
+		37AC4D9B1EBC7A1E005FB4D7 /* TableViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewVC.swift; sourceTree = SOURCE_ROOT; };
+		37AC4D9D1EBC7A3F005FB4D7 /* BMBTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMBTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		37AC4D9F1EBCB352005FB4D7 /* ChangeBoomButtonVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeBoomButtonVC.swift; sourceTree = SOURCE_ROOT; };
+		37AC4DA11EBCB980005FB4D7 /* ThreeDAnimationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeDAnimationVC.swift; sourceTree = SOURCE_ROOT; };
+		37AC4DA31EBCBF05005FB4D7 /* BlurBackgroundAndTipVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurBackgroundAndTipVC.swift; sourceTree = SOURCE_ROOT; };
 		37B863B51EA8F94D00E53322 /* VHBoomMenuButtonSwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VHBoomMenuButtonSwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37B863CA1EA8F9C300E53322 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = SOURCE_ROOT; };
-		37B863CB1EA8F9C300E53322 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = SOURCE_ROOT; };
-		37B863D01EA8F9CF00E53322 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		37B863D21EA8F9CF00E53322 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		37B863D51EA8F9F800E53322 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		37B863D91EA8FA4400E53322 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -29,16 +133,48 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37A7FA261EB2D9C7004638C8 /* BoomMenuButton.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3748A9E21EB0DB5A008F7C5E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3748A9E61EB0DB5A008F7C5E /* BoomMenuButton.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		37AC4D3F1EB781BC005FB4D7 /* Imgs */ = {
+			isa = PBXGroup;
+			children = (
+				37AC4D401EB781BC005FB4D7 /* bat.png */,
+				37AC4D411EB781BC005FB4D7 /* bear.png */,
+				37AC4D421EB781BC005FB4D7 /* bee.png */,
+				37AC4D431EB781BC005FB4D7 /* butterfly.png */,
+				37AC4D441EB781BC005FB4D7 /* cat.png */,
+				37AC4D451EB781BC005FB4D7 /* deer.png */,
+				37AC4D461EB781BC005FB4D7 /* dolphin.png */,
+				37AC4D471EB781BC005FB4D7 /* eagle.png */,
+				37AC4D481EB781BC005FB4D7 /* horse.png */,
+				37AC4D491EB781BC005FB4D7 /* jellyFish.png */,
+				37AC4D4A1EB781BC005FB4D7 /* owl.png */,
+				37AC4D4B1EB781BC005FB4D7 /* peacock.png */,
+				37AC4D4C1EB781BC005FB4D7 /* pig.png */,
+				37AC4D4D1EB781BC005FB4D7 /* rat.png */,
+				37AC4D4E1EB781BC005FB4D7 /* snake.png */,
+				37AC4D4F1EB781BC005FB4D7 /* squirrel.png */,
+			);
+			path = Imgs;
+			sourceTree = SOURCE_ROOT;
+		};
 		37B863AC1EA8F94D00E53322 = {
 			isa = PBXGroup;
 			children = (
-				37B863CE1EA8F9CF00E53322 /* Base.lproj */,
+				3748A9E11EB0DB5A008F7C5E /* BoomMenuButton.xcodeproj */,
 				37B863B71EA8F94D00E53322 /* VHBoomMenuButtonSwiftDemo */,
 				37B863B61EA8F94D00E53322 /* Products */,
 			);
@@ -55,21 +191,34 @@
 		37B863B71EA8F94D00E53322 /* VHBoomMenuButtonSwiftDemo */ = {
 			isa = PBXGroup;
 			children = (
-				37B863D91EA8FA4400E53322 /* Info.plist */,
+				37AC4D3F1EB781BC005FB4D7 /* Imgs */,
 				37B863D51EA8F9F800E53322 /* Assets.xcassets */,
 				37B863CA1EA8F9C300E53322 /* AppDelegate.swift */,
-				37B863CB1EA8F9C300E53322 /* ViewController.swift */,
+				37AC4D6B1EB8AE52005FB4D7 /* BuilderManager.swift */,
+				37AC4D691EB8AD93005FB4D7 /* BoomMenuButtonVC.swift */,
+				37AC4D6F1EB8B343005FB4D7 /* SimpleCircleButtonVC.swift */,
+				37AC4D791EB97ECC005FB4D7 /* TextInsideCircleButtonVC.swift */,
+				37AC4D7F1EBA27FC005FB4D7 /* TextOutsideCircleButtonVC.swift */,
+				37AC4D851EBAD9D4005FB4D7 /* HamButtonVC.swift */,
+				37AC4D871EBAF5E6005FB4D7 /* SquareAndPieceCornerRadiusVC.swift */,
+				37AC4D891EBAFB1B005FB4D7 /* BoomVC.swift */,
+				37AC4D8B1EBB0243005FB4D7 /* ButtonPlaceAlignmentVC.swift */,
+				37AC4D8D1EBB55CC005FB4D7 /* OrderVC.swift */,
+				37AC4D8F1EBB579E005FB4D7 /* NavigationBarVC.swift */,
+				37AC4D911EBB6D19005FB4D7 /* DraggableVC.swift */,
+				37AC4D931EBB7E4E005FB4D7 /* EaseVC.swift */,
+				37AC4D951EBB93ED005FB4D7 /* ListenerVC.swift */,
+				37AC4D971EBB9C69005FB4D7 /* ControlVC.swift */,
+				37AC4D991EBC3CD2005FB4D7 /* ShareVC.swift */,
+				37AC4D9B1EBC7A1E005FB4D7 /* TableViewVC.swift */,
+				37AC4D9D1EBC7A3F005FB4D7 /* BMBTableViewCell.swift */,
+				37AC4D9F1EBCB352005FB4D7 /* ChangeBoomButtonVC.swift */,
+				37AC4DA11EBCB980005FB4D7 /* ThreeDAnimationVC.swift */,
+				37AC4DA31EBCBF05005FB4D7 /* BlurBackgroundAndTipVC.swift */,
+				37B863D91EA8FA4400E53322 /* Info.plist */,
+				37AC4D651EB8AC68005FB4D7 /* Main.storyboard */,
 			);
 			path = VHBoomMenuButtonSwiftDemo;
-			sourceTree = "<group>";
-		};
-		37B863CE1EA8F9CF00E53322 /* Base.lproj */ = {
-			isa = PBXGroup;
-			children = (
-				37B863CF1EA8F9CF00E53322 /* LaunchScreen.storyboard */,
-				37B863D11EA8F9CF00E53322 /* Main.storyboard */,
-			);
-			path = Base.lproj;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -82,10 +231,12 @@
 				37B863B11EA8F94D00E53322 /* Sources */,
 				37B863B21EA8F94D00E53322 /* Frameworks */,
 				37B863B31EA8F94D00E53322 /* Resources */,
+				37A7FA2A1EB2D9C7004638C8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				37A7FA291EB2D9C7004638C8 /* PBXTargetDependency */,
 			);
 			name = VHBoomMenuButtonSwiftDemo;
 			productName = VHBoomMenuButtonSwiftDemo;
@@ -100,7 +251,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0830;
-				ORGANIZATIONNAME = "黄伟平";
+				ORGANIZATIONNAME = Nightonke;
 				TargetAttributes = {
 					37B863B41EA8F94D00E53322 = {
 						CreatedOnToolsVersion = 8.3.1;
@@ -121,6 +272,12 @@
 			mainGroup = 37B863AC1EA8F94D00E53322;
 			productRefGroup = 37B863B61EA8F94D00E53322 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3748A9E21EB0DB5A008F7C5E /* Products */;
+					ProjectRef = 3748A9E11EB0DB5A008F7C5E /* BoomMenuButton.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				37B863B41EA8F94D00E53322 /* VHBoomMenuButtonSwiftDemo */,
@@ -128,14 +285,39 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		3748A9E61EB0DB5A008F7C5E /* BoomMenuButton.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BoomMenuButton.framework;
+			remoteRef = 3748A9E51EB0DB5A008F7C5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		37B863B31EA8F94D00E53322 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37B863D41EA8F9CF00E53322 /* Main.storyboard in Resources */,
+				37AC4D591EB781BC005FB4D7 /* jellyFish.png in Resources */,
+				37AC4D521EB781BC005FB4D7 /* bee.png in Resources */,
+				37AC4D5A1EB781BC005FB4D7 /* owl.png in Resources */,
+				37AC4D5B1EB781BC005FB4D7 /* peacock.png in Resources */,
+				37AC4D581EB781BC005FB4D7 /* horse.png in Resources */,
+				37AC4D551EB781BC005FB4D7 /* deer.png in Resources */,
+				37AC4D541EB781BC005FB4D7 /* cat.png in Resources */,
+				37AC4D511EB781BC005FB4D7 /* bear.png in Resources */,
+				37AC4D5D1EB781BC005FB4D7 /* rat.png in Resources */,
+				37AC4D5E1EB781BC005FB4D7 /* snake.png in Resources */,
+				37AC4D531EB781BC005FB4D7 /* butterfly.png in Resources */,
+				37AC4D5C1EB781BC005FB4D7 /* pig.png in Resources */,
+				37AC4D561EB781BC005FB4D7 /* dolphin.png in Resources */,
+				37AC4D571EB781BC005FB4D7 /* eagle.png in Resources */,
+				37AC4D501EB781BC005FB4D7 /* bat.png in Resources */,
+				37AC4D5F1EB781BC005FB4D7 /* squirrel.png in Resources */,
+				37AC4D661EB8AC68005FB4D7 /* Main.storyboard in Resources */,
 				37B863D61EA8F9F800E53322 /* Assets.xcassets in Resources */,
-				37B863D31EA8F9CF00E53322 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,31 +328,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37B863CD1EA8F9C300E53322 /* ViewController.swift in Sources */,
+				37AC4D861EBAD9D4005FB4D7 /* HamButtonVC.swift in Sources */,
+				37AC4D6C1EB8AE52005FB4D7 /* BuilderManager.swift in Sources */,
+				37AC4D921EBB6D19005FB4D7 /* DraggableVC.swift in Sources */,
+				37AC4D801EBA27FC005FB4D7 /* TextOutsideCircleButtonVC.swift in Sources */,
+				37AC4D981EBB9C69005FB4D7 /* ControlVC.swift in Sources */,
+				37AC4D7A1EB97ECC005FB4D7 /* TextInsideCircleButtonVC.swift in Sources */,
+				37AC4D9C1EBC7A1E005FB4D7 /* TableViewVC.swift in Sources */,
+				37AC4DA01EBCB352005FB4D7 /* ChangeBoomButtonVC.swift in Sources */,
+				37AC4D961EBB93ED005FB4D7 /* ListenerVC.swift in Sources */,
+				37AC4D8C1EBB0243005FB4D7 /* ButtonPlaceAlignmentVC.swift in Sources */,
+				37AC4D941EBB7E4E005FB4D7 /* EaseVC.swift in Sources */,
+				37AC4D6A1EB8AD93005FB4D7 /* BoomMenuButtonVC.swift in Sources */,
+				37AC4D901EBB579E005FB4D7 /* NavigationBarVC.swift in Sources */,
+				37AC4D9A1EBC3CD2005FB4D7 /* ShareVC.swift in Sources */,
+				37AC4D881EBAF5E6005FB4D7 /* SquareAndPieceCornerRadiusVC.swift in Sources */,
+				37AC4D701EB8B343005FB4D7 /* SimpleCircleButtonVC.swift in Sources */,
+				37AC4D9E1EBC7A3F005FB4D7 /* BMBTableViewCell.swift in Sources */,
+				37AC4D8E1EBB55CC005FB4D7 /* OrderVC.swift in Sources */,
 				37B863CC1EA8F9C300E53322 /* AppDelegate.swift in Sources */,
+				37AC4DA41EBCBF05005FB4D7 /* BlurBackgroundAndTipVC.swift in Sources */,
+				37AC4D8A1EBAFB1B005FB4D7 /* BoomVC.swift in Sources */,
+				37AC4DA21EBCB980005FB4D7 /* ThreeDAnimationVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		37B863CF1EA8F9CF00E53322 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				37B863D01EA8F9CF00E53322 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
+/* Begin PBXTargetDependency section */
+		37A7FA291EB2D9C7004638C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BoomMenuButton;
+			targetProxy = 37A7FA281EB2D9C7004638C8 /* PBXContainerItemProxy */;
 		};
-		37B863D11EA8F9CF00E53322 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				37B863D21EA8F9CF00E53322 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		37B863C51EA8F94D00E53322 /* Debug */ = {
@@ -214,7 +405,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -259,7 +450,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -271,10 +462,12 @@
 		37B863C81EA8F94D00E53322 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = H7B6S6TRXA;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nightonke.VHBoomMenuButtonSwiftDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -286,10 +479,12 @@
 		37B863C91EA8F94D00E53322 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = H7B6S6TRXA;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nightonke.VHBoomMenuButtonSwiftDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -7,16 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "VHBackgroundClickDelegate.h"
+#import "VHBackgroundDelegate.h"
 #import "VHBoomButton.h"
 
 @interface VHBackgroundView : UIView
 
 @property (nonatomic, strong) UIColor * _Nonnull dimColor;
-@property (nonatomic, assign) BOOL blurBackground;
+@property (nonatomic, assign) BOOL backgroundBlurred;
 @property (nonatomic, strong) UIBlurEffect * _Nullable blurEffect;
 @property (nonatomic, strong) NSString * _Nullable tip;
-@property (nonatomic, weak) id<VHBackgroundClickDelegate> _Nullable delegate;
+@property (nonatomic, weak) id<VHBackgroundDelegate> _Nullable delegate;
 
 @property (nonatomic, strong) UILabel * _Nullable tipLabel;
 

@@ -62,7 +62,7 @@ static NSMutableArray *usedColors;
     return [UIColor colorWithRed:((float)((color & 0xFF0000) >> 16)) / 255.0 green:((float)((color & 0xFF00) >> 8)) / 255.0 blue:((float)(color & 0xFF)) / 255.0 alpha:1.0];
 }
 
-+ (UIColor *)colorFromARGB:(int)color
++ (UIColor *)colorFromARGB:(int64_t)color
 {
     return [UIColor colorWithRed:((float)((color & 0x00FF0000) >> 16)) / 255.0 green:((float)((color & 0x0000FF00) >> 8)) / 255.0 blue:((float)(color & 0x000000FF)) / 255.0 alpha:((float)((color & 0xFF000000) >> 24)) / 255.0];
 }
@@ -91,7 +91,7 @@ static NSMutableArray *usedColors;
         if (CGColorSpaceGetModel(CGColorGetColorSpace(color.CGColor)) == kCGColorSpaceModelMonochrome) {
             const CGFloat *oldComponents = CGColorGetComponents(color.CGColor);
             CGFloat components[4] = {oldComponents[0], oldComponents[0], oldComponents[0], oldComponents[1]};
-            CGColorRef colorRef = CGColorCreate( colorSpaceRGB, components );
+            CGColorRef colorRef = CGColorCreate(colorSpaceRGB, components);
             
             UIColor *color = [UIColor colorWithCGColor:colorRef];
             CGColorRelease(colorRef);

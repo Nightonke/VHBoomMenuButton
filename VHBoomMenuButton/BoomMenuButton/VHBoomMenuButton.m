@@ -10,9 +10,9 @@
 #include <stdlib.h>
 #import "VHAnimationManager.h"
 #import "VHBoomStateEnum.h"
-#import "VHInnerOnBoomButtonClickListener.h"
+#import "VHBoomButtonDelegate.h"
 #import "VHShareLinesView.h"
-#import "VHBackgroundClickDelegate.h"
+#import "VHBackgroundDelegate.h"
 #import "VHBackgroundView.h"
 #import "VHUtils.h"
 #import "VHErrorManager.h"
@@ -36,7 +36,7 @@ typedef void (^DelayBlock) (void);
 
 static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 
-@interface VHBoomMenuButton ()<VHInnerOnBoomButtonClickListener, VHBackgroundClickDelegate>
+@interface VHBoomMenuButton ()<VHBoomButtonDelegate, VHBackgroundDelegate>
 
 #pragma mark - Button
 
@@ -56,12 +56,12 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 #pragma mark - Animation
 
 @property (nonatomic, assign) int animatingViewsNumber;
-@property (nonatomic, strong) VHEase *showMoveEase;
-@property (nonatomic, strong) VHEase *showScaleEase;
-@property (nonatomic, strong) VHEase *showRotateEase;
-@property (nonatomic, strong) VHEase *hideMoveEase;
-@property (nonatomic, strong) VHEase *hideScaleEase;
-@property (nonatomic, strong) VHEase *hideRotateEase;
+@property (nonatomic, strong) VHEase *boomMoveEase;
+@property (nonatomic, strong) VHEase *boomScaleEase;
+@property (nonatomic, strong) VHEase *boomRotateEase;
+@property (nonatomic, strong) VHEase *reboomMoveEase;
+@property (nonatomic, strong) VHEase *reboomScaleEase;
+@property (nonatomic, strong) VHEase *reboomRotateEase;
 @property (nonatomic, assign) VHBoomStateEnum boomState;
 
 #pragma mark - Background
@@ -155,11 +155,11 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 
 - (void)initializeAttributes
 {
-    _cacheOptimization = YES;
-    _boomInWholeScreen = YES;
-    _inList = NO;
+    _cacheOptimized = YES;
+    _isBoomInWholeScreen = YES;
+    _isInList = NO;
     
-    _shadowEffect = YES;
+    _hasShadow = YES;
     _shadowPathRect = CGRectMake(2, 2, self.frame.size.width - 4, self.frame.size.height - 4);
     _shadowOffsetX = 0;
     _shadowOffsetY = 8;
@@ -167,7 +167,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     _shadowColor = [VHUtils colorFromARGB:0x44000000];
     
     _buttonEnum = VHButtonUnknown;
-    _backgroundEffect = YES;
+    _hasBackground = YES;
     _normalColor = [VHUtils colorFromRGB:0x30a2fb];
     _highlightedColor = [VHUtils colorFromRGB:0x73bdf1];
     _unableColor = [VHUtils colorFromRGB:0x30a2fb];
@@ -187,7 +187,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     _shareLineWidth = 1.5;
     _piecePlaceEnum = VHPiecePlaceUnknown;
     
-    _blurBackground = NO;
+    _backgroundBlurred = NO;
     if ([UIBlurEffect class])
     {
         _blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
@@ -200,23 +200,23 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     _boomDelegate = nil;
     _delay = 0.05;
     _duration = 0.3;
-    _showDelay = 0.05;
-    _showDuration = 0.3;
-    _hideDelay = 0.05;
-    _hideDuration = 0.3;
+    _boomDelay = 0.05;
+    _boomDuration = 0.3;
+    _reboomDelay = 0.05;
+    _reboomDuration = 0.3;
     _cancelable = YES;
     _autoHide = YES;
     _orderEnum = VHOrderRandom;
     _frames = 60;
-    _boomEnum = VHBoomHorizontalThrow_2;
-    _showMoveEaseName = VHEaseOutBack;
-    _showMoveEaseName = VHEaseOutBack;
-    _showScaleEaseName = VHEaseOutBack;
-    _showRotateEaseName = VHEaseOutBack;
-    _hideMoveEaseName = VHEaseInBack;
-    _hideMoveEaseName = VHEaseInBack;
-    _hideScaleEaseName = VHEaseInBack;
-    _hideRotateEaseName = VHEaseInBack;
+    _boomEnum = VHBoomHorizontalThrow2;
+    _boomEaseName = VHEaseOutBack;
+    _boomMoveEaseName = VHEaseOutBack;
+    _boomScaleEaseName = VHEaseOutBack;
+    _boomRotateEaseName = VHEaseOutBack;
+    _reboomEaseName = VHEaseInBack;
+    _reboomMoveEaseName = VHEaseInBack;
+    _reboomScaleEaseName = VHEaseInBack;
+    _reboomRotateEaseName = VHEaseInBack;
     _rotateDegree = M_PI * 4;
     _use3DTransformAnimation = YES;
     _autoBoom = NO;
@@ -238,13 +238,13 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     _lastButtonState = VHButtonStateUnknown;
     
     _animatingViewsNumber = 0;
-    _showMoveEase = [VHEase easeWithName:_showMoveEaseName];
-    _showScaleEase = [VHEase easeWithName:_showScaleEaseName];
-    _showRotateEase = [VHEase easeWithName:_showRotateEaseName];
-    _hideMoveEase = [VHEase easeWithName:_hideMoveEaseName];
-    _hideScaleEase = [VHEase easeWithName:_hideScaleEaseName];
-    _hideRotateEase = [VHEase easeWithName:_hideRotateEaseName];
-    _boomState = VHBoomStateDidHide;
+    _boomMoveEase = [VHEase easeWithName:_boomMoveEaseName];
+    _boomScaleEase = [VHEase easeWithName:_boomScaleEaseName];
+    _boomRotateEase = [VHEase easeWithName:_boomRotateEaseName];
+    _reboomMoveEase = [VHEase easeWithName:_reboomMoveEaseName];
+    _reboomScaleEase = [VHEase easeWithName:_reboomScaleEaseName];
+    _reboomRotateEase = [VHEase easeWithName:_reboomRotateEaseName];
+    _boomState = VHBoomStateDidReboom;
     
     _boomButtonBuilders = [NSMutableArray array];
     
@@ -272,7 +272,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
-    if (self.backgroundEffect == YES)
+    if (self.hasBackground == YES && !self.isInList)
     {
         if (self.buttonLayer)
         {
@@ -286,7 +286,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         [self toLastState];
         [[self layer] addSublayer:self.buttonLayer];
 
-        if (self.shadowEffect)
+        if (self.hasShadow)
         {
             self.layer.masksToBounds = NO;
             self.layer.shadowPath = [UIBezierPath bezierPathWithOvalInRect:self.shadowPathRect].CGPath;
@@ -318,7 +318,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     [self createPieces];
     [self placeShareLinesView];
     [self placePieces];
-    [self calculateStartPositions];
+    [self calculateStartPositions:NO];
     [self setShareLinesViewData];
 }
 
@@ -350,7 +350,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     NSMutableArray<NSNumber *> *indexes;
     if (self.piecePlaceEnum == VHPiecePlaceShare)
     {
-        indexes = [VHAnimationManager orderIndexes:VHOrderDefault inSize:self.pieces.count];
+        indexes = [VHAnimationManager orderIndexes:VHOrderInOrder inSize:self.pieces.count];
     }
     else
     {
@@ -473,7 +473,10 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     {
         self.isDragging = YES;
         CGPoint touchLocationInParent = [anyTouch locationInView:self.superview];
-        self.frame = CGRectMake(touchLocationInParent.x - self.startPositionX, touchLocationInParent.y - self.startPositionY, self.frame.size.width, self.frame.size.height);
+        self.frame = CGRectMake(touchLocationInParent.x - self.startPositionX,
+                                touchLocationInParent.y - self.startPositionY,
+                                self.frame.size.width,
+                                self.frame.size.height);
     }
     else
     {
@@ -517,7 +520,6 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         self.isDragging = NO;
         self.needToCalculateStartPositions = YES;
         [self preventDragOutside];
-        return;
     }
 }
 
@@ -587,24 +589,20 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 
 - (void)innerBoom:(BOOL)immediately
 {
-    if ([self uninitializedBoomButtons])
+    if ([self uninitializedBoomButtons] || [self isAnimating] || self.boomState != VHBoomStateDidReboom)
     {
         return;
     }
     [VHErrorManager judge:self withBuilders:self.boomButtonBuilders];
-    if ([self isAnimating] || self.boomState != VHBoomStateDidHide)
+    self.boomState = VHBoomStateWillBoom;
+    if (self.boomDelegate && [self.boomDelegate respondsToSelector:@selector(boomMenuButtonWillBoom:)])
     {
-        return;
+        [self.boomDelegate boomMenuButtonWillBoom:self];
     }
-    self.boomState = VHBoomStateWillShow;
-    if (self.boomDelegate && [self.boomDelegate respondsToSelector:@selector(onBoomWillShow)])
-    {
-        [self.boomDelegate onBoomWillShow];
-    }
-    [self calculateStartPositions];
+    [self calculateStartPositions:NO];
     [self createButtons];
     [self dimBackground:immediately];
-    [self startShowAnimations:immediately];
+    [self startBoomAnimations:immediately];
     [self adjustTipLabel];
 }
 
@@ -620,28 +618,28 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 
 - (void)innerReboom:(BOOL)immediately
 {
-    if ([self isAnimating] || self.boomState != VHBoomStateDidShow)
+    if ([self isAnimating] || self.boomState != VHBoomStateDidBoom)
     {
         return;
     }
-    self.boomState = VHBoomStateWillHide;
-    if (self.boomDelegate && [self.boomDelegate respondsToSelector:@selector(onBoomWillHide)])
+    self.boomState = VHBoomStateWillReboom;
+    if (self.boomDelegate && [self.boomDelegate respondsToSelector:@selector(boomMenuButtonWillReboom:)])
     {
-        [self.boomDelegate onBoomWillHide];
+        [self.boomDelegate boomMenuButtonWillReboom:self];
     }
     [self lightBackground:immediately];
-    [self startHideAnimation:immediately];
+    [self startReboomAnimation:immediately];
 }
 
 - (void)dimBackground:(BOOL)immediately
 {
     [self createBackground];
-    CFTimeInterval duration = immediately ? 0.001 : self.showDuration + (self.pieces.count - 1) * self.showDelay;
+    CFTimeInterval duration = immediately ? 0.001 : self.boomDuration + (self.pieces.count - 1) * self.boomDelay;
     [self.background dim:duration completion:^(BOOL finished) {
-        self.boomState = VHBoomStateDidShow;
-        if (self.boomDelegate && [self.boomDelegate respondsToSelector:@selector(onBoomDidShow)])
+        self.boomState = VHBoomStateDidBoom;
+        if (self.boomDelegate && [self.boomDelegate respondsToSelector:@selector(boomMenuButtonDidBoom:)])
         {
-            [self.boomDelegate onBoomDidShow];
+            [self.boomDelegate boomMenuButtonDidBoom:self];
         }
     }];
 }
@@ -649,33 +647,33 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 - (void)lightBackground:(BOOL)immediately
 {
     [self createBackground];
-    CFTimeInterval duration = immediately ? 0.001 : self.hideDuration + (self.pieces.count - 1) * self.hideDelay;
+    CFTimeInterval duration = immediately ? 0.001 : self.reboomDuration + (self.pieces.count - 1) * self.reboomDelay;
     [self.background light:duration completion:nil];
 }
 
-- (void)finishHideAnimations
+- (void)finishReboomAnimations
 {
     if ([self isAnimating])
     {
         return;
     }
-    self.boomState = VHBoomStateDidHide;
-    if (self.boomDelegate && [self.boomDelegate respondsToSelector:@selector(onBoomDidHide)])
+    self.boomState = VHBoomStateDidReboom;
+    if (self.boomDelegate && [self.boomDelegate respondsToSelector:@selector(boomMenuButtonDidReboom:)])
     {
-        [self.boomDelegate onBoomDidHide];
+        [self.boomDelegate boomMenuButtonDidReboom:self];
     }
     self.background.hidden = YES;
     [self clearViews:NO];
 }
 
-- (void)startShowAnimations:(BOOL)immediately
+- (void)startBoomAnimations:(BOOL)immediately
 {
     [self.background removeAllBoomButtons];
     [self calculateEndPositions];
     NSMutableArray<NSNumber *> *indexes;
     if (self.piecePlaceEnum == VHPiecePlaceShare)
     {
-        indexes = [VHAnimationManager orderIndexes:VHOrderDefault inSize:self.pieces.count];
+        indexes = [VHAnimationManager orderIndexes:VHOrderInOrder inSize:self.pieces.count];
     }
     else
     {
@@ -686,8 +684,8 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         VHBoomButton *boomButton = [self.boomButtons objectAtIndex:index];
         CGPoint startPosition = [[self.startPositions objectAtIndex:index] CGPointValue];
         CGPoint startPositionOfBoomButton = CGPointMake(startPosition.x, startPosition.y);
-        [self putBoomButtonInBackground:boomButton withPosition:startPositionOfBoomButton];
-        [self startEachShowAnimation:[self.pieces objectAtIndex:index]
+        [self placeBoomButtonInBackground:boomButton withPosition:startPositionOfBoomButton];
+        [self startEachBoomAnimation:[self.pieces objectAtIndex:index]
                               button:boomButton
                        startPosition:startPositionOfBoomButton
                          endPosition:[[self.endPositions objectAtIndex:index] CGPointValue]
@@ -696,7 +694,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     }];
 }
 
-- (void)startHideAnimation:(BOOL)immediately
+- (void)startReboomAnimation:(BOOL)immediately
 {
     NSMutableArray<NSNumber *> *indexes;
     if (self.piecePlaceEnum == VHPiecePlaceShare)
@@ -707,25 +705,21 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     {
         indexes = [VHAnimationManager orderIndexes:self.orderEnum inSize:self.pieces.count];
     }
-    for (NSNumber *number in indexes)
-    {
-        [self.background bringSubviewToFront:[self.boomButtons objectAtIndex:[number integerValue]]];
-    }
     [indexes enumerateObjectsUsingBlock:^(NSNumber * _Nonnull indexObj, NSUInteger i, BOOL * _Nonnull stop) {
         int index = [indexObj intValue];
         VHBoomButton *boomButton = [self.boomButtons objectAtIndex:index];
         CGPoint startPosition = [[self.startPositions objectAtIndex:index] CGPointValue];
         CGPoint startPositionOfBoomButton = CGPointMake(startPosition.x, startPosition.y);
-        [self startEachHideAnimation:[self.pieces objectAtIndex:index]
-                              button:boomButton
-                       startPosition:[[self.endPositions objectAtIndex:index] CGPointValue]
-                         endPosition:startPositionOfBoomButton
-                         delayFactor:i
-                         immediately:immediately];
+        [self startEachReboomAnimation:[self.pieces objectAtIndex:index]
+                                button:boomButton
+                         startPosition:[[self.endPositions objectAtIndex:index] CGPointValue]
+                           endPosition:startPositionOfBoomButton
+                           delayFactor:i
+                           immediately:immediately];
     }];
 }
 
-- (void)startEachShowAnimation:(VHBoomPiece *)piece
+- (void)startEachBoomAnimation:(VHBoomPiece *)piece
                         button:(VHBoomButton *)boomButton
                  startPosition:(CGPoint)startPosition
                    endPosition:(CGPoint)endPosition
@@ -735,26 +729,25 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     self.animatingViewsNumber++;
     NSMutableArray *xs = [NSMutableArray arrayWithCapacity:self.frames + 1];
     NSMutableArray *ys = [NSMutableArray arrayWithCapacity:self.frames + 1];
-    CGFloat scaleX = piece.frame.size.width / boomButton.contentWidth;
-    CGFloat scaleY = piece.frame.size.height / boomButton.contentHeight;
-    CFTimeInterval delay = immediately ? 0 : self.showDelay * delayFactor;
-    CFTimeInterval duration = immediately ? 0.001 : self.showDuration;
-    [boomButton setSelfScaleAnchorPoint];
+    CGFloat scaleX = piece.frame.size.width / boomButton.buttonWidth;
+    CGFloat scaleY = piece.frame.size.height / boomButton.buttonHeight;
+    CFTimeInterval delay = immediately ? 0 : self.boomDelay * delayFactor;
+    CFTimeInterval duration = immediately ? 0.001 : self.boomDuration;
     [boomButton setRotateAnchorPoints];
     [boomButton setAnchorPointOfLayer];
-    [boomButton innerHiddenAllGoneViews];
+    [boomButton innerHideAllGoneViews];
+    boomButton.userInteractionEnabled = NO;
+    CGFloat buttonMaxHeight = [self buttonMaxHeight];
+    boomButton.layer.zPosition = buttonMaxHeight * (self.boomButtons.count + 1) - delayFactor * buttonMaxHeight;
     if (self.use3DTransformAnimation)
     {
-        CGFloat buttonMaxHeight = [self buttonMaxHeight];
-        CATransform3D transfrom3d = CATransform3DIdentity;
-        transfrom3d.m34 = 1.0f / 500;
-        boomButton.layer.transform = transfrom3d;
-        boomButton.layer.zPosition = buttonMaxHeight * 10 - delayFactor * buttonMaxHeight;
+        CATransform3D transform3d = CATransform3DIdentity;
+        transform3d.m34 = 1.0f / 500;
+        boomButton.layer.transform = transform3d;
     }
-    boomButton.userInteractionEnabled = NO;
-    [VHAnimationManager calculateShowXY:self.boomEnum
+    [VHAnimationManager calculateBoomXY:self.boomEnum
                              parentSize:self.background.bounds.size
-                                   ease:self.showMoveEase
+                                   ease:self.boomMoveEase
                                  frames:self.frames
                           startPosition:startPosition
                             endPosition:endPosition
@@ -765,10 +758,10 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         // onAnimationStart
         piece.hidden = YES;
         boomButton.hidden = NO;
-        [boomButton willShow];
+        [boomButton willBoom];
         if (self.piecePlaceEnum == VHPiecePlaceShare)
         {
-            [self.shareLinesView pieceStartShowAnimation:delayFactor withDuration:immediately ? 0.001 : self.showDelay];
+            [self.shareLinesView pieceStartShowAnimation:delayFactor withDuration:immediately ? 0.001 : self.boomDelay];
             piece.pieceBelow.hidden = NO;
         }
         
@@ -777,13 +770,13 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
          {
              // onAnimationEnd
              boomButton.userInteractionEnabled = YES;
-             [boomButton didShow];
+             [boomButton didBoom];
              self.animatingViewsNumber--;
          }];
         
         if ([boomButton innerNeedsColorAnimation])
         {
-            CABasicAnimation *fillColorAnimation = [VHAnimationManager showColorAnimateKeyPath:@"fillColor"
+            CABasicAnimation *fillColorAnimation = [VHAnimationManager boomColorAnimateKeyPath:@"fillColor"
                                                                                          delay:0
                                                                                       duration:duration
                                                                                          start:[boomButton innerPieceColor]
@@ -808,7 +801,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         CAKeyframeAnimation *rotateAnimation = [VHAnimationManager animateKeyPath:@"transform.rotation.z"
                                                                             delay:0
                                                                          duration:duration
-                                                                             ease:self.showRotateEase
+                                                                             ease:self.boomRotateEase
                                                                            frames:self.frames
                                                                             start:0
                                                                               end:self.rotateDegree];
@@ -819,14 +812,14 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         CAKeyframeAnimation *xScaleAnimation = [VHAnimationManager animateKeyPath:@"transform.scale.x"
                                                                             delay:0
                                                                          duration:duration
-                                                                             ease:self.showScaleEase
+                                                                             ease:self.boomScaleEase
                                                                            frames:self.frames
                                                                             start:scaleX
                                                                               end:1];
         CAKeyframeAnimation *yScaleAnimation = [VHAnimationManager animateKeyPath:@"transform.scale.y"
                                                                             delay:0
                                                                          duration:duration
-                                                                             ease:self.showScaleEase
+                                                                             ease:self.boomScaleEase
                                                                            frames:self.frames
                                                                             start:scaleY
                                                                               end:1];
@@ -853,42 +846,43 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     [self delay:delay toBlock:block];
 }
 
-- (void)startEachHideAnimation:(VHBoomPiece *)piece
-                        button:(VHBoomButton *)boomButton
-                 startPosition:(CGPoint)startPosition
-                   endPosition:(CGPoint)endPosition
-                   delayFactor:(NSUInteger)delayFactor
-                   immediately:(BOOL)immediately
+- (void)startEachReboomAnimation:(VHBoomPiece *)piece
+                          button:(VHBoomButton *)boomButton
+                   startPosition:(CGPoint)startPosition
+                     endPosition:(CGPoint)endPosition
+                     delayFactor:(NSUInteger)delayFactor
+                     immediately:(BOOL)immediately
 {
     self.animatingViewsNumber++;
     NSMutableArray *xs = [NSMutableArray arrayWithCapacity:self.frames + 1];
     NSMutableArray *ys = [NSMutableArray arrayWithCapacity:self.frames + 1];
-    CGFloat scaleX = piece.frame.size.width / boomButton.contentWidth;
-    CGFloat scaleY = piece.frame.size.height / boomButton.contentHeight;
-    CFTimeInterval delay = immediately ? 0 : self.hideDelay * delayFactor;
-    CFTimeInterval duration = immediately ? 0.001 : self.hideDuration;
-    [boomButton setSelfScaleAnchorPoint];
+    CGFloat scaleX = piece.frame.size.width / boomButton.buttonWidth;
+    CGFloat scaleY = piece.frame.size.height / boomButton.buttonHeight;
+    CFTimeInterval delay = immediately ? 0 : self.reboomDelay * delayFactor;
+    CFTimeInterval duration = immediately ? 0.001 : self.reboomDuration;
     [boomButton setRotateAnchorPoints];
     [boomButton setAnchorPointOfLayer];
+    boomButton.userInteractionEnabled = NO;
+    CGFloat buttonMaxHeight = [self buttonMaxHeight];
+    boomButton.layer.zPosition = (delayFactor + 1) * buttonMaxHeight;
     if (self.use3DTransformAnimation)
     {
-        CATransform3D transfrom3d = CATransform3DIdentity;
-        transfrom3d.m34 = 1.0f / 500;
-        boomButton.layer.transform = transfrom3d;
+        CATransform3D transform3d = CATransform3DIdentity;
+        transform3d.m34 = 1.0f / 500;
+        boomButton.layer.transform = transform3d;
     }
-    boomButton.userInteractionEnabled = NO;
-    [VHAnimationManager calculateHideXY:self.boomEnum
-                             parentSize:self.background.bounds.size
-                                   ease:self.hideMoveEase
-                                 frames:self.frames
-                          startPosition:startPosition
-                            endPosition:endPosition
-                                xValues:xs
-                                yValues:ys];
+    [VHAnimationManager calculateReboomXY:self.boomEnum
+                               parentSize:self.background.bounds.size
+                                     ease:self.reboomMoveEase
+                                   frames:self.frames
+                            startPosition:startPosition
+                              endPosition:endPosition
+                                  xValues:xs
+                                  yValues:ys];
     
     DelayBlock block = ^{
         // onAnimationStart
-        [boomButton willHide];
+        [boomButton willReboom];
         
         [CATransaction begin];
         [CATransaction setCompletionBlock:^(void)
@@ -896,25 +890,26 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
              // onAnimationEnd
              piece.hidden = NO;
              boomButton.hidden = YES;
-             [boomButton didHide];
+             [boomButton didReboom];
              [boomButton clearListener];
              self.animatingViewsNumber--;
-             [self finishHideAnimations];
+             [self finishReboomAnimations];
              
              if (self.piecePlaceEnum == VHPiecePlaceShare)
              {
-                 [self.shareLinesView pieceFinishHideAnimation:[self innerPieceNumber] - delayFactor - 1 withDuration:immediately ? 0.001 : self.hideDelay];
+                 [self.shareLinesView pieceFinishHideAnimation:[self innerPieceNumber] - delayFactor - 1
+                                                  withDuration:immediately ? 0.001 : self.reboomDelay];
                  piece.pieceBelow.hidden = YES;
              }
          }];
         
         if ([boomButton innerNeedsColorAnimation])
         {
-            CABasicAnimation *fillColorAnimation = [VHAnimationManager hideColorAnimateKeyPath:@"fillColor"
-                                                                                         delay:0
-                                                                                      duration:duration
-                                                                                         start:[boomButton innerButtonColor]
-                                                                                           end:[boomButton innerPieceColor]];
+            CABasicAnimation *fillColorAnimation = [VHAnimationManager reboomColorAnimateKeyPath:@"fillColor"
+                                                                                           delay:0
+                                                                                        duration:duration
+                                                                                           start:[boomButton innerButtonColor]
+                                                                                             end:[boomButton innerPieceColor]];
             [[boomButton innerButtonLayer] addAnimation:fillColorAnimation forKey:kFillColorAnimation];
         }
         else
@@ -935,7 +930,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         CAKeyframeAnimation *rotateAnimation = [VHAnimationManager animateKeyPath:@"transform.rotation.z"
                                                                             delay:0
                                                                          duration:duration
-                                                                             ease:self.hideRotateEase
+                                                                             ease:self.reboomRotateEase
                                                                            frames:self.frames
                                                                             start:0
                                                                               end:-self.rotateDegree];
@@ -946,14 +941,14 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         CAKeyframeAnimation *xScaleAnimation = [VHAnimationManager animateKeyPath:@"transform.scale.x"
                                                                             delay:0
                                                                          duration:duration
-                                                                             ease:self.hideScaleEase
+                                                                             ease:self.reboomScaleEase
                                                                            frames:self.frames
                                                                             start:1
                                                                               end:scaleX];
         CAKeyframeAnimation *yScaleAnimation = [VHAnimationManager animateKeyPath:@"transform.scale.y"
                                                                             delay:0
                                                                          duration:duration
-                                                                             ease:self.hideScaleEase
+                                                                             ease:self.reboomScaleEase
                                                                            frames:self.frames
                                                                             start:1
                                                                               end:scaleY];
@@ -990,7 +985,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         UIView *parentView = [self parentView];
         self.background = [[VHBackgroundView alloc] initWithFrame:CGRectMake(0, 0, parentView.bounds.size.width, parentView.bounds.size.height)];
         self.background.dimColor = self.dimColor;
-        self.background.blurBackground = self.blurBackground;
+        self.background.backgroundBlurred = self.backgroundBlurred;
         if ([UIBlurEffect class])
         {
             self.background.blurEffect = self.blurEffect;
@@ -1024,7 +1019,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         {
             [self.boomButtonBuilders enumerateObjectsUsingBlock:^(VHBoomButtonBuilder * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 VHSimpleCircleButtonBuilder *builder = (VHSimpleCircleButtonBuilder *)obj;
-                builder.innerIndex = idx;
+                builder.innerIndex = (int)idx;
                 builder.innerListener = self;
                 [self.boomButtons setObject:[builder innerBuild] atIndexedSubscript:idx];
                 self.simpleCircleButtonRadius = builder.radius;
@@ -1035,7 +1030,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         {
             [self.boomButtonBuilders enumerateObjectsUsingBlock:^(VHBoomButtonBuilder * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 VHTextInsideCircleButtonBuilder *builder = (VHTextInsideCircleButtonBuilder *)obj;
-                builder.innerIndex = idx;
+                builder.innerIndex = (int)idx;
                 builder.innerListener = self;
                 [self.boomButtons setObject:[builder innerBuild] atIndexedSubscript:idx];
                 self.textInsideCircleButtonRadius = builder.radius;
@@ -1046,7 +1041,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         {
             [self.boomButtonBuilders enumerateObjectsUsingBlock:^(VHBoomButtonBuilder * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 VHTextOutsideCircleButtonBuilder *builder = (VHTextOutsideCircleButtonBuilder *)obj;
-                builder.innerIndex = idx;
+                builder.innerIndex = (int)idx;
                 builder.innerListener = self;
                 [self.boomButtons setObject:[builder innerBuild] atIndexedSubscript:idx];
                 self.textOutsideCircleButtonWidth = builder.width;
@@ -1058,7 +1053,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         {
             [self.boomButtonBuilders enumerateObjectsUsingBlock:^(VHBoomButtonBuilder * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 VHHamButtonBuilder *builder = (VHHamButtonBuilder *)obj;
-                builder.innerIndex = idx;
+                builder.innerIndex = (int)idx;
                 builder.innerListener = self;
                 [self.boomButtons setObject:[builder innerBuild] atIndexedSubscript:idx];
                 self.hamButtonWidth = builder.width;
@@ -1073,7 +1068,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 
 - (UIView *)parentView
 {
-    if (self.boomInWholeScreen)
+    if (self.isBoomInWholeScreen)
     {
         return [[[UIApplication sharedApplication] delegate] window];
     }
@@ -1083,10 +1078,13 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     }
 }
 
-- (void)calculateStartPositions
+- (void)calculateStartPositions:(BOOL)force
 {
-    if (!self.needToCalculateStartPositions && !self.inList) return;
-    self.needToCalculateStartPositions = NO;
+    if (!force && !self.needToCalculateStartPositions && !self.isInList) return;
+    if (!force)
+    {
+        self.needToCalculateStartPositions = NO;
+    }
     
     long pieceNumber = [self innerPieceNumber];
     self.startPositions = [NSMutableArray arrayWithCapacity:pieceNumber];
@@ -1170,7 +1168,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     
 }
 
-- (VHBoomButton *)putBoomButtonInBackground:(VHBoomButton *)button withPosition:(CGPoint)position
+- (VHBoomButton *)placeBoomButtonInBackground:(VHBoomButton *)button withPosition:(CGPoint)position
 {
     [self createBackground];
     button.frame = CGRectMake(position.x,
@@ -1184,7 +1182,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 
 - (void)clearViews:(BOOL)force
 {
-    if (force || !self.cacheOptimization || self.inList)
+    if (force || !self.cacheOptimized || self.isInList)
     {
         [self.background removeAllBoomButtons];
         [self.background removeFromSuperview];
@@ -1233,12 +1231,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     {
         return;
     }
-    [self.shareLinesView setPiecePositions:self.piecePositions
-                                 dotRadius:self.dotRadius
-                                 showDelay:self.showDelay
-                              showDuration:self.showDuration
-                                 hideDelay:self.hideDelay
-                              hideDuration:self.hideDuration];
+    [self.shareLinesView setPiecePositions:self.piecePositions dotRadius:self.dotRadius];
 }
 
 - (BOOL)uninitializedBoomButtons
@@ -1262,7 +1255,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 
 - (BOOL)needToDrawShadow
 {
-    return _backgroundEffect && _shadowEffect;
+    return self.hasBackground && self.hasShadow;
 }
 
 - (void)clearButtons
@@ -1305,15 +1298,15 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         needToAdjustFrame = YES;
     }
     
-    if (newFrame.origin.x + newFrame.size.width > self.superview.frame.size.width - self.edgeInsetsInSuperView.right)
+    if (newFrame.origin.x + newFrame.size.width > self.superview.bounds.size.width - self.edgeInsetsInSuperView.right)
     {
-        newFrame.origin.x = self.superview.frame.size.width - newFrame.size.width - self.edgeInsetsInSuperView.right;
+        newFrame.origin.x = self.superview.bounds.size.width - newFrame.size.width - self.edgeInsetsInSuperView.right;
         needToAdjustFrame = YES;
     }
     
-    if (newFrame.origin.y + newFrame.size.height > self.superview.frame.size.height - self.edgeInsetsInSuperView.bottom)
+    if (newFrame.origin.y + newFrame.size.height > self.superview.bounds.size.height - self.edgeInsetsInSuperView.bottom)
     {
-        newFrame.origin.y = self.superview.frame.size.height - newFrame.size.height - self.edgeInsetsInSuperView.bottom;
+        newFrame.origin.y = self.superview.bounds.size.height - newFrame.size.height - self.edgeInsetsInSuperView.bottom;
         needToAdjustFrame = YES;
     }
     
@@ -1360,21 +1353,19 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     if (orientation != self.lastDeviceOrientation)
     {
         self.background.frame = [self parentView].bounds;
-        self.needToCalculateStartPositions = YES;
-        [self calculateStartPositions];
+        [self calculateStartPositions:YES];
         [self calculateEndPositions];
         switch (self.boomState)
         {
-            case VHBoomStateDidHide:
-                
+            case VHBoomStateDidReboom:
                 break;
-            case VHBoomStateDidShow:
+            case VHBoomStateDidBoom:
                 [self placeButtons];
                 [self adjustTipLabel];
                 break;
-            case VHBoomStateWillShow:
-            case VHBoomStateWillHide:
-                [self stopAllAnimations:self.boomState == VHBoomStateWillShow];
+            case VHBoomStateWillBoom:
+            case VHBoomStateWillReboom:
+                [self stopAllAnimations:self.boomState == VHBoomStateWillBoom];
                 [self placeButtons];
                 [self adjustTipLabel];
                 break;
@@ -1394,18 +1385,18 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     }];
 }
 
-- (void)stopAllAnimations:(BOOL)isShowAnimation
+- (void)stopAllAnimations:(BOOL)isBoomAnimation
 {
     [self.background removeAllAnimations];
     [self.boomButtons enumerateObjectsUsingBlock:^(VHBoomButton * _Nonnull button, NSUInteger idx, BOOL * _Nonnull stop) {
         [button innerStopAnimations];
-        if (isShowAnimation)
+        if (isBoomAnimation)
         {
-            [button innerVisibleAllGoneViews];
+            [button innerShowAllGoneViews];
         }
         else
         {
-            [button innerHiddenAllGoneViews];
+            [button innerHideAllGoneViews];
         }
     }];
 }
@@ -1456,9 +1447,9 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 
 - (void)onButton:(VHBoomButton *)boomButton clickedAt:(int)index
 {
-    if ([self.boomDelegate respondsToSelector:@selector(onBoomButton:clickedAt:)])
+    if ([self.boomDelegate respondsToSelector:@selector(boomMenuButton:didClickBoomButtonOfBuilder:at:)])
     {
-        [self.boomDelegate onBoomButton:boomButton clickedAt:index];
+        [self.boomDelegate boomMenuButton:self didClickBoomButtonOfBuilder:[self.boomButtonBuilders objectAtIndex:index] at:index];
     }
     if (self.autoHide)
     {
@@ -1468,15 +1459,15 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 
 #pragma mark - On Background Clicked
 
-- (void)onBackgroundClick
+- (void)backgroundDidClick
 {
-    if (self.animatingViewsNumber != 0)
+    if (self.isAnimating)
     {
         return;
     }
-    if ([self.boomDelegate respondsToSelector:@selector(onBoomBackgroundClicked)])
+    if ([self.boomDelegate respondsToSelector:@selector(boomMenuButtonDidClickBackground:)])
     {
-        [self.boomDelegate onBoomBackgroundClicked];
+        [self.boomDelegate boomMenuButtonDidClickBackground:self];
     }
     if (self.cancelable)
     {
@@ -1507,14 +1498,14 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 
 #pragma mark Shadow
 
-- (void)setShadowEffect:(BOOL)shadowEffect
+- (void)setHasShadow:(BOOL)hasShadow
 {
-    if (_shadowEffect == shadowEffect)
+    if (_hasShadow == hasShadow)
     {
         return;
     }
-    _shadowEffect = shadowEffect;
-    if (_backgroundEffect)
+    _hasShadow = hasShadow;
+    if (_hasBackground)
     {
         [self setNeedsDisplay];
     }
@@ -1601,13 +1592,13 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     [self setNeedsDisplay];
 }
 
-- (void)setBackgroundEffect:(BOOL)backgroundEffect
+- (void)setHasBackground:(BOOL)hasBackground
 {
-    if (_backgroundEffect == backgroundEffect)
+    if (_hasBackground == hasBackground)
     {
         return;
     }
-    _backgroundEffect = backgroundEffect;
+    _hasBackground = hasBackground;
     [self setNeedsDisplay];
 }
 
@@ -1618,7 +1609,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         return;
     }
     _normalColor = normalColor;
-    if (_backgroundEffect)
+    if (_hasBackground)
     {
         [self setNeedsDisplay];
     }
@@ -1631,7 +1622,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         return;
     }
     _highlightedColor = highlightedColor;
-    if (_backgroundEffect)
+    if (_hasBackground)
     {
         [self setNeedsDisplay];
     }
@@ -1644,7 +1635,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         return;
     }
     _unableColor = unableColor;
-    if (_backgroundEffect)
+    if (_hasBackground)
     {
         [self setNeedsDisplay];
     }
@@ -1742,7 +1733,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 
 - (void)setPieceInclinedMargin:(CGFloat)pieceInclinedMargin
 {
-    if (_pieceInclinedMargin == _pieceInclinedMargin)
+    if (_pieceInclinedMargin == pieceInclinedMargin)
     {
         return;
     }
@@ -1750,36 +1741,72 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     [self setNeedsLayout];
 }
 
-- (void)setPiecePlaceEnum:(VHPiecePlaceEnum)piecePlaceEnum
+- (void)setShareLineLength:(CGFloat)shareLineLength
 {
-    if (_piecePlaceEnum == piecePlaceEnum)
+    if (_shareLineLength == shareLineLength)
     {
         return;
     }
+    _shareLineLength = shareLineLength;
+    [self setNeedsLayout];
+}
+
+- (void)setShareLine1Color:(UIColor *)shareLine1Color
+{
+    if ([VHUtils sameColor:_shareLine1Color asColor:shareLine1Color])
+    {
+        return;
+    }
+    _shareLine1Color = shareLine1Color;
+    [self setNeedsLayout];
+}
+
+- (void)setShareLine2Color:(UIColor *)shareLine2Color
+{
+    if ([VHUtils sameColor:_shareLine2Color asColor:shareLine2Color])
+    {
+        return;
+    }
+    _shareLine2Color = shareLine2Color;
+    [self setNeedsLayout];
+}
+
+- (void)setShareLineWidth:(CGFloat)shareLineWidth
+{
+    if (_shareLineWidth == shareLineWidth)
+    {
+        return;
+    }
+    _shareLineWidth = shareLineWidth;
+    [self setNeedsLayout];
+}
+
+- (void)setPiecePlaceEnum:(VHPiecePlaceEnum)piecePlaceEnum
+{
+    // We have to clear pieces because the pieces may be changed even though the piece-place-enum is still the same
     _piecePlaceEnum = piecePlaceEnum;
     [self clearPieces];
     self.needToCalculateStartPositions = YES;
-//    [self setNeedsLayout];
 }
 
 #pragma mark Background
 
-- (void)setBlurBackground:(BOOL)blurBackground
+- (void)setBackgroundBlurred:(BOOL)backgroundBlurred
 {
-    if (_blurBackground == blurBackground)
+    if (_backgroundBlurred == backgroundBlurred)
     {
         return;
     }
-    if (blurBackground)
+    if (backgroundBlurred)
     {
         if ([UIVisualEffectView class])
         {
-            self.background.blurBackground = _blurBackground = blurBackground;
+            self.background.backgroundBlurred = _backgroundBlurred = backgroundBlurred;
         }
     }
     else
     {
-        self.background.blurBackground = _blurBackground = blurBackground;
+        self.background.backgroundBlurred = _backgroundBlurred = backgroundBlurred;
     }
 }
 
@@ -1799,7 +1826,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         return;
     }
     _dimColor = dimColor;
-    if (self.boomState == VHBoomStateDidShow)
+    if (self.boomState == VHBoomStateDidBoom)
     {
         self.background.backgroundColor = dimColor;
     }
@@ -1843,8 +1870,8 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         return;
     }
     _delay = delay;
-    [self setShowDelay:delay];
-    [self setHideDelay:delay];
+    [self setBoomDelay:delay];
+    [self setReboomDelay:delay];
 }
 
 - (void)setDuration:(CFTimeInterval)duration
@@ -1854,132 +1881,128 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         return;
     }
     _duration = duration;
-    [self setShowDuration:duration];
-    [self setHideDuration:duration];
+    [self setBoomDuration:duration];
+    [self setReboomDuration:duration];
 }
 
-- (void)setShowDuration:(CFTimeInterval)showDuration
+- (void)setBoomDuration:(CFTimeInterval)boomDuration
 {
-    if (_showDuration == showDuration)
+    if (_boomDuration == boomDuration)
     {
         return;
     }
-    _showDuration = showDuration;
-    if (_showDuration <= 0)
+    _boomDuration = boomDuration;
+    if (_boomDuration <= 0)
     {
-        _showDuration = 0.001;
+        _boomDuration = 0.001;
     }
 }
 
-- (void)setHideDuration:(CFTimeInterval)hideDuration
+- (void)setReboomDuration:(CFTimeInterval)reboomDuration
 {
-    if (_hideDuration == hideDuration)
+    if (_reboomDuration == reboomDuration)
     {
         return;
     }
-    _hideDuration = hideDuration;
-    if (_hideDuration <= 0)
+    _reboomDuration = reboomDuration;
+    if (_reboomDuration <= 0)
     {
-        _hideDuration = 0.001;
+        _reboomDuration = 0.001;
     }
 }
 
-- (void)setShowEaseName:(NSString *)showEaseName
+- (void)setBoomEaseName:(NSString *)boomEaseName
 {
-    if ([_showEaseName isEqualToString:showEaseName])
+    if ([_boomEaseName isEqualToString:boomEaseName])
     {
         return;
     }
-    _showEaseName = showEaseName;
-    [self setShowMoveEaseName:showEaseName];
-    [self setShowRotateEaseName:showEaseName];
-    [self setShowScaleEaseName:showEaseName];
+    _boomEaseName = boomEaseName;
+    [self setBoomMoveEaseName:boomEaseName];
+    [self setBoomRotateEaseName:boomEaseName];
+    [self setBoomScaleEaseName:boomEaseName];
 }
 
-- (void)setShowMoveEaseName:(NSString *)showMoveEaseName
+- (void)setBoomMoveEaseName:(NSString *)boomMoveEaseName
 {
-    if ([_showMoveEaseName isEqualToString:showMoveEaseName])
+    if ([_boomMoveEaseName isEqualToString:boomMoveEaseName])
     {
         return;
     }
-    _showMoveEaseName = showMoveEaseName;
-    self.showMoveEase = [VHEase easeWithName:_showMoveEaseName];
+    _boomMoveEaseName = boomMoveEaseName;
+    self.boomMoveEase = [VHEase easeWithName:_boomMoveEaseName];
 }
 
-- (void)setShowRotateEaseName:(NSString *)showRotateEaseName
+- (void)setBoomRotateEaseName:(NSString *)boomRotateEaseName
 {
-    if ([_showRotateEaseName isEqualToString:showRotateEaseName])
+    if ([_boomRotateEaseName isEqualToString:boomRotateEaseName])
     {
         return;
     }
-    _showRotateEaseName = showRotateEaseName;
-    self.showRotateEase = [VHEase easeWithName:_showRotateEaseName];
+    _boomRotateEaseName = boomRotateEaseName;
+    self.boomRotateEase = [VHEase easeWithName:_boomRotateEaseName];
 }
 
-- (void)setShowScaleEaseName:(NSString *)showScaleEaseName
+- (void)setBoomScaleEaseName:(NSString *)boomScaleEaseName
 {
-    if ([_showScaleEaseName isEqualToString:showScaleEaseName])
+    if ([_boomScaleEaseName isEqualToString:boomScaleEaseName])
     {
         return;
     }
-    _showScaleEaseName = showScaleEaseName;
-    self.showScaleEase = [VHEase easeWithName:showScaleEaseName];
+    _boomScaleEaseName = boomScaleEaseName;
+    self.boomScaleEase = [VHEase easeWithName:boomScaleEaseName];
 }
 
-- (void)setHideEaseName:(NSString *)hideEaseName
+- (void)setReboomEaseName:(NSString *)reboomEaseName
 {
-    if ([_hideEaseName isEqualToString:hideEaseName])
+    if ([_reboomEaseName isEqualToString:reboomEaseName])
     {
         return;
     }
-    _hideEaseName = hideEaseName;
-    [self setHideMoveEaseName:_hideEaseName];
-    [self setHideRotateEaseName:_hideEaseName];
-    [self setHideScaleEaseName:_hideEaseName];
+    _reboomEaseName = reboomEaseName;
+    [self setReboomMoveEaseName:_reboomEaseName];
+    [self setReboomRotateEaseName:_reboomEaseName];
+    [self setReboomScaleEaseName:_reboomEaseName];
 }
 
-- (void)setHideMoveEaseName:(NSString *)hideMoveEaseName
+- (void)setReboomMoveEaseName:(NSString *)reboomMoveEaseName
 {
-    if ([_hideMoveEaseName isEqualToString:hideMoveEaseName])
+    if ([_reboomMoveEaseName isEqualToString:reboomMoveEaseName])
     {
         return;
     }
-    _hideMoveEaseName = hideMoveEaseName;
-    self.hideMoveEase = [VHEase easeWithName:_hideMoveEaseName];
+    _reboomMoveEaseName = reboomMoveEaseName;
+    self.reboomMoveEase = [VHEase easeWithName:_reboomMoveEaseName];
 }
 
-- (void)setHideRotateEaseName:(NSString *)hideRotateEaseName
+- (void)setReboomRotateEaseName:(NSString *)reboomRotateEaseName
 {
-    if ([_hideRotateEaseName isEqualToString:hideRotateEaseName])
+    if ([_reboomRotateEaseName isEqualToString:reboomRotateEaseName])
     {
         return;
     }
-    _hideRotateEaseName = hideRotateEaseName;
-    self.hideRotateEase = [VHEase easeWithName:_hideRotateEaseName];
+    _reboomRotateEaseName = reboomRotateEaseName;
+    self.reboomRotateEase = [VHEase easeWithName:_reboomRotateEaseName];
 }
 
-- (void)setHideScaleEaseName:(NSString *)hideScaleEaseName
+- (void)setReboomScaleEaseName:(NSString *)reboomScaleEaseName
 {
-    if ([_hideScaleEaseName isEqualToString:hideScaleEaseName])
+    if ([_reboomScaleEaseName isEqualToString:reboomScaleEaseName])
     {
         return;
     }
-    _hideScaleEaseName = hideScaleEaseName;
-    self.hideScaleEase = [VHEase easeWithName:_hideScaleEaseName];
+    _reboomScaleEaseName = reboomScaleEaseName;
+    self.reboomScaleEase = [VHEase easeWithName:_reboomScaleEaseName];
 }
 
 #pragma mark Boom Buttons
 
 - (void)setButtonPlaceEnum:(VHButtonPlaceEnum)buttonPlaceEnum
 {
-    if (_buttonPlaceEnum == buttonPlaceEnum)
-    {
-        return;
-    }
+    // We have to clear pieces because the buttons may be changed even though the button-place-enum is still the same
     _buttonPlaceEnum = buttonPlaceEnum;
     [self clearButtons];
     self.needToCalculateStartPositions = YES;
-//    [self setNeedsLayout];
 }
 
 @end

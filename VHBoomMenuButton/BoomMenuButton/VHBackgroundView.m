@@ -24,7 +24,7 @@
  completion:(void (^ __nullable)(BOOL finished))completion
 {
     self.hidden = NO;
-    if (self.blurBackground && [UIVisualEffectView class])
+    if (self.backgroundBlurred && [UIVisualEffectView class])
     {
         self.visualEffectView.effect = nil;
         [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
@@ -49,7 +49,7 @@
 - (void)light:(CFTimeInterval)duration
    completion:(void (^ __nullable)(BOOL finished))completion
 {
-    if (self.blurBackground && [UIVisualEffectView class])
+    if (self.backgroundBlurred && [UIVisualEffectView class])
     {
         self.visualEffectView.effect = self.blurEffect;
         [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
@@ -133,12 +133,12 @@
     [self bringSubviewToFront:self.tipLabel];
 }
 
-- (void)setBlurBackground:(BOOL)blurBackground
+- (void)setBackgroundBlurred:(BOOL)backgroundBlurred
 {
-    _blurBackground = blurBackground;
+    _backgroundBlurred = backgroundBlurred;
     if ([UIVisualEffectView class])
     {
-        if (blurBackground)
+        if (backgroundBlurred)
         {
             if (!self.visualEffectView)
             {
@@ -199,9 +199,14 @@
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    if ([self.delegate respondsToSelector:@selector(onBackgroundClick)])
+    UITouch *anyTouch = [touches anyObject];
+    CGPoint touchLocation = [anyTouch locationInView:self];
+    if (CGRectContainsPoint(self.bounds, touchLocation))
     {
-        [self.delegate onBackgroundClick];
+        if ([self.delegate respondsToSelector:@selector(backgroundDidClick)])
+        {
+            [self.delegate backgroundDidClick];
+        }
     }
 }
 

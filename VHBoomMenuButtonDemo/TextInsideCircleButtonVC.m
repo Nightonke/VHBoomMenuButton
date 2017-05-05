@@ -27,12 +27,6 @@
     
     self.bmb.buttonEnum = VHButtonTextInsideCircle;
     
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        VHTextInsideCircleButtonBuilder *builder = (VHTextInsideCircleButtonBuilder *)[self.bmb builder:0];
-        builder.normalText = @"Changed!";
-    });
-    
     [self initializeDatas];
     [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
 }

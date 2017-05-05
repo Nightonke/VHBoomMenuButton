@@ -28,7 +28,7 @@
         
         self.pieceColor = builder.pieceColor;
         
-        self.shadowEffect = builder.shadowEffect;
+        self.hasShadow = builder.hasShadow;
         self.shadowRadius = builder.shadowRadius;
         self.shadowOffsetX = builder.shadowOffsetX;
         self.shadowOffsetY = builder.shadowOffsetY;
@@ -60,22 +60,22 @@
     return self;
 }
 
-- (void)willShow
+- (void)willBoom
 {
     
 }
 
-- (void)didShow
+- (void)didBoom
 {
     [_buttonLayer removeAllAnimations];
 }
 
-- (void)willHide
+- (void)willReboom
 {
     
 }
 
-- (void)didHide
+- (void)didReboom
 {
     [_buttonLayer removeAllAnimations];
 }
@@ -102,7 +102,6 @@
             return ![VHUtils sameColor:self.pieceColor asColor:self.normalColor];
         }
     }
-    return ![VHUtils sameColor:_pieceColor asColor:[self pieceColor]];
 }
 
 - (CAShapeLayer *)innerButtonLayer
@@ -136,7 +135,7 @@
     [self.subLabel.layer removeAllAnimations];
 }
 
-- (void)innerVisibleAllGoneViews
+- (void)innerShowAllGoneViews
 {
     for (UIView *view in self.goneViews)
     {
@@ -144,7 +143,7 @@
     }
 }
 
-- (void)innerHiddenAllGoneViews
+- (void)innerHideAllGoneViews
 {
     for (UIView *view in self.goneViews)
     {
@@ -208,10 +207,7 @@
 
 - (void)innerSetButtonLayer
 {
-    if (self.buttonLayer)
-    {
-        [self.buttonLayer removeFromSuperlayer];
-    }
+    [self.buttonLayer removeFromSuperlayer];
     self.buttonLayer = [CAShapeLayer layer];
     switch ([self type])
     {
@@ -256,7 +252,7 @@
 
 - (void)innerSetShadow
 {
-    if (self.shadowEffect)
+    if (self.hasShadow)
     {
         UIBezierPath *shadowPath;
         if (self.round)
@@ -284,16 +280,16 @@
 - (void)innerSetNormalImage:(VHBoomButtonBuilder *)builder
 {
     self.normalImage = builder.normalImage;
+    self.normalImageName = builder.normalImageName;
     if (!self.normalImage)
     {
-        self.normalImageName = builder.normalImageName;
         if (self.normalImageName)
         {
             self.normalImage = [UIImage imageNamed:self.normalImageName];
         }
     }
     self.normalImage = [VHUtils imageWithImage:self.normalImage scaledToSize:self.imageSize];
-    if (self.normalImageTintColor)
+    if (self.normalImageTintColor || self.highlightedImageTintColor || self.unableImageTintColor)
     {
         self.normalImage = [self.normalImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
@@ -302,16 +298,16 @@
 - (void)innerSetHighlightedImage:(VHBoomButtonBuilder *)builder
 {
     self.highlightedImage = builder.highlightedImage;
+    self.highlightedImageName = builder.highlightedImageName;
     if (!self.highlightedImage)
     {
-        self.highlightedImageName = builder.highlightedImageName;
         if (self.highlightedImageName)
         {
             self.highlightedImage = [UIImage imageNamed:self.highlightedImageName];
         }
     }
     self.highlightedImage = [VHUtils imageWithImage:self.highlightedImage scaledToSize:self.imageSize];
-    if (self.highlightedImageTintColor)
+    if (self.normalImageTintColor || self.highlightedImageTintColor || self.unableImageTintColor)
     {
         self.highlightedImage = [self.highlightedImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
@@ -320,16 +316,16 @@
 - (void)innerSetUnableImage:(VHBoomButtonBuilder *)builder
 {
     self.unableImage = builder.unableImage;
+    self.unableImageName = builder.unableImageName;
     if (!self.unableImage)
     {
-        self.unableImageName = builder.unableImageName;
         if (self.unableImageName)
         {
             self.unableImage = [UIImage imageNamed:self.unableImageName];
         }
     }
     self.unableImage = [VHUtils imageWithImage:self.unableImage scaledToSize:self.imageSize];
-    if (self.unableImageTintColor)
+    if (self.normalImageTintColor || self.highlightedImageTintColor || self.unableImageTintColor)
     {
         self.unableImage = [self.unableImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
@@ -357,10 +353,7 @@
 
 - (void)innerToNormalImage
 {
-    if (self.normalImageTintColor)
-    {
-        [self.imageView setTintColor:self.normalImageTintColor];
-    }
+    [self.imageView setTintColor:self.normalImageTintColor];
     if (self.normalImage)
     {
         self.imageView.image = self.normalImage;
@@ -369,10 +362,7 @@
 
 - (void)innerToHighlightedImage
 {
-    if (self.highlightedImageTintColor)
-    {
-        [self.imageView setTintColor:self.highlightedImageTintColor];
-    }
+    [self.imageView setTintColor:self.highlightedImageTintColor];
     if (self.highlightedImage)
     {
         self.imageView.image = self.highlightedImage;
@@ -381,10 +371,7 @@
 
 - (void)innerToUnableImage
 {
-    if (self.unableImageTintColor != nil)
-    {
-        [self.imageView setTintColor:self.unableImageTintColor];
-    }
+    [self.imageView setTintColor:self.unableImageTintColor];
     if (self.unableImage)
     {
         self.imageView.image = self.unableImage;
@@ -578,25 +565,13 @@
     return nil;
 }
 
-- (CGFloat)trueWidth
+- (CGFloat)buttonWidth
 {
-    NSAssert(NO, @"Method trueWidth should be overrided in child class");
+    NSAssert(NO, @"Method width should be overrided in child class");
     return 0;
 }
 
-- (CGFloat)trueHeight
-{
-    NSAssert(NO, @"Method trueHeight should be overrided in child class");
-    return 0;
-}
-
-- (CGFloat)contentWidth
-{
-    NSAssert(NO, @"Method contentWidth should be overrided in child class");
-    return 0;
-}
-
-- (CGFloat)contentHeight
+- (CGFloat)buttonHeight
 {
     NSAssert(NO, @"Method contentHeight should be overrided in child class");
     return 0;
@@ -631,11 +606,6 @@
         CGFloat anchorPointY = (y - view.frame.origin.y) / view.frame.size.height;
         [VHUtils setAnchorPoint:CGPointMake(anchorPointX, anchorPointY) ofLayer:view.layer];
     }
-}
-
-- (void)setSelfScaleAnchorPoint
-{
-    NSAssert(NO, @"Method setSelfScaleAnchorPoint should be overrided in child class");
 }
 
 - (CGPoint)rotateAnchorPoint

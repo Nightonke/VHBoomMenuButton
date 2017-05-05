@@ -33,11 +33,11 @@
             int maxPieceNumber = (int)[VHPiecePlaceManager maxPieceNumber:bmb.piecePlaceEnum];
             if (buttonNumber < minPieceNumber)
             {
-                NSAssert(NO, @"[BMB] In share style, button-place-enum(%d) must have %d buttons at least!", bmb.buttonPlaceEnum, minPieceNumber);
+                NSAssert(NO, @"[BMB] In share style, button-place-enum(%zd) must have %d buttons at least!", bmb.buttonPlaceEnum, minPieceNumber);
             }
             else if (buttonNumber > maxPieceNumber)
             {
-                NSAssert(NO, @"[BMB] In share style, button-place-enum(%d) can only have %d buttons at most", bmb.buttonPlaceEnum, maxPieceNumber);
+                NSAssert(NO, @"[BMB] In share style, button-place-enum(%zd) can only have %d buttons at most", bmb.buttonPlaceEnum, maxPieceNumber);
             }
             else if (builderNumber < minPieceNumber)
             {

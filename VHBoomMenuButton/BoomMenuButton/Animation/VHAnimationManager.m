@@ -46,7 +46,7 @@ static CAMediaTimingFunction *hideColorAnimationFunction;
                                                                      end:end]];
 }
 
-+ (CABasicAnimation *)showColorAnimateKeyPath:(NSString *)keyPath
++ (CABasicAnimation *)boomColorAnimateKeyPath:(NSString *)keyPath
                                         delay:(CFTimeInterval)delay
                                      duration:(CFTimeInterval)duration
                                         start:(UIColor *)start
@@ -63,11 +63,11 @@ static CAMediaTimingFunction *hideColorAnimationFunction;
     return colorAnimation;
 }
 
-+ (CABasicAnimation *)hideColorAnimateKeyPath:(NSString *)keyPath
-                                        delay:(CFTimeInterval)delay
-                                     duration:(CFTimeInterval)duration
-                                        start:(UIColor *)start
-                                          end:(UIColor *)end
++ (CABasicAnimation *)reboomColorAnimateKeyPath:(NSString *)keyPath
+                                          delay:(CFTimeInterval)delay
+                                       duration:(CFTimeInterval)duration
+                                          start:(UIColor *)start
+                                            end:(UIColor *)end
 {
     CABasicAnimation *colorAnimation = [CABasicAnimation animationWithKeyPath:keyPath];
     colorAnimation.beginTime = CACurrentMediaTime() + delay;
@@ -102,7 +102,7 @@ static CAMediaTimingFunction *hideColorAnimationFunction;
     }
 }
 
-+ (void)calculateShowXY:(VHBoomEnum)boomEnum
++ (void)calculateBoomXY:(VHBoomEnum)boomEnum
              parentSize:(CGSize)parentSize
                    ease:(VHEase *)ease
                  frames:(int)frames
@@ -138,7 +138,7 @@ static CAMediaTimingFunction *hideColorAnimationFunction;
             }
             break;
         }
-        case VHBoomParabola_1:
+        case VHBoomParabola1:
         {
             x3 = (x1 + x2) / 2;
             y3 = MIN(y1, y2) * 3 / 4;
@@ -153,7 +153,7 @@ static CAMediaTimingFunction *hideColorAnimationFunction;
             }
             break;
         }
-        case VHBoomParabola_2:
+        case VHBoomParabola2:
         {
             x3 = (x1 + x2) / 2;
             y3 = (parentSize.height + MAX(y1, y2)) / 2;
@@ -168,7 +168,7 @@ static CAMediaTimingFunction *hideColorAnimationFunction;
             }
             break;
         }
-        case VHBoomParabola_3:
+        case VHBoomParabola3:
         {
             y3 = (y1 + y2) / 2;
             x3 = MIN(x1, x2) / 2;
@@ -183,7 +183,7 @@ static CAMediaTimingFunction *hideColorAnimationFunction;
             }
             break;
         }
-        case VHBoomParabola_4:
+        case VHBoomParabola4:
         {
             y3 = (y1 + y2) / 2;
             x3 = (parentSize.width + MAX(x1, x2)) / 2;
@@ -198,7 +198,7 @@ static CAMediaTimingFunction *hideColorAnimationFunction;
             }
             break;
         }
-        case VHBoomHorizontalThrow_1:
+        case VHBoomHorizontalThrow1:
         {
             x3 = x2 * 2 - x1;
             y3 = y1;
@@ -213,7 +213,7 @@ static CAMediaTimingFunction *hideColorAnimationFunction;
             }
             break;
         }
-        case VHBoomHorizontalThrow_2:
+        case VHBoomHorizontalThrow2:
         {
             x2 = startPosition.x;
             y2 = startPosition.y;
@@ -235,7 +235,7 @@ static CAMediaTimingFunction *hideColorAnimationFunction;
         case VHBoomRandom:
         {
             int r = arc4random() % VHBoomRandom;
-            [self calculateShowXY:r parentSize:parentSize ease:ease frames:frames startPosition:startPosition endPosition:endPosition xValues:xs yValues:ys];
+            [self calculateBoomXY:r parentSize:parentSize ease:ease frames:frames startPosition:startPosition endPosition:endPosition xValues:xs yValues:ys];
             break;
         }
         case VHBoomEnumCount:
@@ -243,14 +243,14 @@ static CAMediaTimingFunction *hideColorAnimationFunction;
     }
 }
 
-+ (void)calculateHideXY:(VHBoomEnum)boomEnum
-             parentSize:(CGSize)parentSize
-                   ease:(VHEase *)ease
-                 frames:(int)frames
-          startPosition:(CGPoint)startPosition
-            endPosition:(CGPoint)endPosition
-                xValues:(NSMutableArray *)xs
-                yValues:(NSMutableArray *)ys
++ (void)calculateReboomXY:(VHBoomEnum)boomEnum
+               parentSize:(CGSize)parentSize
+                     ease:(VHEase *)ease
+                   frames:(int)frames
+            startPosition:(CGPoint)startPosition
+              endPosition:(CGPoint)endPosition
+                  xValues:(NSMutableArray *)xs
+                  yValues:(NSMutableArray *)ys
 {
     if (startPosition.x == endPosition.x)
     {
@@ -269,16 +269,16 @@ static CAMediaTimingFunction *hideColorAnimationFunction;
     switch (boomEnum)
     {
         case VHBoomStraightLine:
-        case VHBoomParabola_1:
-        case VHBoomParabola_2:
-        case VHBoomParabola_3:
-        case VHBoomParabola_4:
+        case VHBoomParabola1:
+        case VHBoomParabola2:
+        case VHBoomParabola3:
+        case VHBoomParabola4:
         case VHBoomRandom:
         {
-            [self calculateShowXY:boomEnum parentSize:parentSize ease:ease frames:frames startPosition:startPosition endPosition:endPosition xValues:xs yValues:ys];
+            [self calculateBoomXY:boomEnum parentSize:parentSize ease:ease frames:frames startPosition:startPosition endPosition:endPosition xValues:xs yValues:ys];
             break;
         }
-        case VHBoomHorizontalThrow_1:
+        case VHBoomHorizontalThrow1:
         {
             x2 = startPosition.x;
             y2 = startPosition.y;
@@ -297,7 +297,7 @@ static CAMediaTimingFunction *hideColorAnimationFunction;
             }
             break;
         }
-        case VHBoomHorizontalThrow_2:
+        case VHBoomHorizontalThrow2:
         {
             x3 = x2 * 2 - x1;
             y3 = y1;
@@ -319,20 +319,20 @@ static CAMediaTimingFunction *hideColorAnimationFunction;
 
 + (NSMutableArray<NSNumber *> *)orderIndexes:(VHOrderEnum)orderEnum inSize:(NSUInteger)size
 {
-    NSMutableArray<NSNumber *> *indexs = [NSMutableArray arrayWithCapacity:size];
+    NSMutableArray<NSNumber *> *indexes = [NSMutableArray arrayWithCapacity:size];
     
     switch (orderEnum)
     {
-        case VHOrderDefault:
+        case VHOrderInOrder:
             for (int i = 0; i < size; i++)
             {
-                [indexs addObject:[NSNumber numberWithInteger:i]];
+                [indexes addObject:[NSNumber numberWithInteger:i]];
             }
             break;
         case VHOrderReverse:
             for (int i = 0; i < size; i++)
             {
-                [indexs addObject:[NSNumber numberWithInteger:size - i - 1]];
+                [indexes addObject:[NSNumber numberWithInteger:size - i - 1]];
             }
             break;
         case VHOrderRandom:
@@ -349,14 +349,14 @@ static CAMediaTimingFunction *hideColorAnimationFunction;
                 if (used[r] == NO)
                 {
                     used[r] = YES;
-                    [indexs addObject:[NSNumber numberWithInteger:r]];
+                    [indexes addObject:[NSNumber numberWithInteger:r]];
                     count++;
                 }
             }
         }
             break;
     }
-    return indexs;
+    return indexes;
 }
 
 + (NSMutableArray<NSNumber *> *)values:(VHEase *)ease
@@ -365,73 +365,16 @@ static CAMediaTimingFunction *hideColorAnimationFunction;
                                    end:(float)end
 {
     NSMutableArray<NSNumber *> *values = [NSMutableArray arrayWithCapacity:frames + 1];
-    CGFloat p                          = 1.0f / frames;
-    CGFloat scaleOffset                = end - start;
+    CGFloat p = 1.0f / frames;
+    CGFloat totalOffset = end - start;
+    CGFloat offset = 0;
     for (int i = 0; i <= frames; i++)
     {
-        CGFloat offset       = i * p;
         CGFloat offsetInFact = [ease interpolation:offset];
-        [values addObject:[NSNumber numberWithFloat:start + offsetInFact * scaleOffset]];
+        [values addObject:[NSNumber numberWithFloat:start + offsetInFact * totalOffset]];
+        offset += p;
     }
     return values;
-}
-
-+ (NSMutableArray<NSNumber *> *)calculateScale:(VHEase *)ease
-                                        frames:(int)frames
-                                    startScale:(float)startScale
-                                      endScale:(float)endScale
-{
-    NSMutableArray<NSNumber *> *values = [NSMutableArray arrayWithCapacity:frames + 1];
-    CGFloat p                          = 1.0f / frames;
-    CGFloat scaleOffset                = endScale - startScale;
-    for (int i = 0; i <= frames; i++)
-    {
-        CGFloat offset       = i * p;
-        CGFloat offsetInFact = [ease interpolation:offset];
-        [values addObject:[NSNumber numberWithFloat:startScale + offsetInFact * scaleOffset]];
-    }
-    return values;
-}
-
-- (NSMutableArray<NSNumber *> *)calculateRotate:(VHEase *)ease
-                                         frames:(int)frames
-                                    startRotate:(float)startRotate
-                                      endRotate:(float)endRotate
-{
-    NSMutableArray<NSNumber *> *values = [NSMutableArray arrayWithCapacity:frames + 1];
-    CGFloat p                          = 1.0f / frames;
-    CGFloat scaleOffset                = endRotate - startRotate;
-    for (int i = 0; i <= frames; i++)
-    {
-        CGFloat offset       = i * p;
-        CGFloat offsetInFact = [ease interpolation:offset];
-        [values addObject:[NSNumber numberWithFloat:startRotate + offsetInFact * scaleOffset]];
-    }
-    return values;
-}
-
-- (void)calculateXYInSameX:(VHBoomEnum)boomEnum
-                      ease:(VHEase *)ease
-                    frames:(int)frames
-             startPosition:(CGPoint)startPosition
-               endPosition:(CGPoint)endPosition
-                   xValues:(NSMutableArray<NSNumber *> *)xs
-                   yValues:(NSMutableArray<NSNumber *> *)ys
-{
-    CGFloat x1      = startPosition.x;
-    CGFloat y1      = startPosition.y;
-    CGFloat x2      = endPosition.x;
-    CGFloat y2      = endPosition.y;
-    CGFloat p       = 1.0f / frames;
-    CGFloat xOffset = x2 - x1;
-    CGFloat yOffset = y2 - y1;
-    for (int i = 0; i <= frames; i++)
-    {
-        CGFloat offset       = i * p;
-        CGFloat offsetInFact = [ease interpolation:offset];
-        [xs setObject:[NSNumber numberWithFloat:x1 + offsetInFact * xOffset] atIndexedSubscript:i];
-        [ys setObject:[NSNumber numberWithFloat:y1 + offsetInFact * yOffset] atIndexedSubscript:i];
-    }
 }
 
 + (CAKeyframeAnimation *)rotateXAnimationFromFrames:(int)frames startY:(CGFloat)startY endY:(CGFloat)endY delay:(CFTimeInterval)delay duration:(CFTimeInterval)duration
@@ -439,12 +382,12 @@ static CAMediaTimingFunction *hideColorAnimationFunction;
     NSMutableArray<NSNumber *> *values = [VHAnimationManager values:[VHEase easeWithName:VHEaseInOutCubic] frames:frames start:startY end:endY];
     NSMutableArray *rotateXs = [NSMutableArray arrayWithCapacity:frames];
     __block CGFloat previousY = startY;
-    CGFloat maxRotate = M_PI_4;
+    CGFloat maxDegree = M_PI_4;
     [values enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (idx != 0)
         {
             CGFloat velocity = [obj floatValue] - previousY;
-            [rotateXs addObject:@([VHAnimationManager clamp:-velocity / 12 between:-maxRotate and:maxRotate])];
+            [rotateXs addObject:@([VHAnimationManager clamp:-velocity / 12 between:-maxDegree and:maxDegree])];
         }
         previousY = [obj floatValue];
     }];
@@ -457,12 +400,12 @@ static CAMediaTimingFunction *hideColorAnimationFunction;
     NSMutableArray<NSNumber *> *values = [VHAnimationManager values:[VHEase easeWithName:VHEaseInOutCubic] frames:frames start:startX end:endX];
     NSMutableArray *rotateYs = [NSMutableArray arrayWithCapacity:frames];
     __block CGFloat previousX = startX;
-    CGFloat maxRotate = M_PI_4;
+    CGFloat maxDegree = M_PI_4;
     [values enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (idx != 0)
         {
             CGFloat velocity = [obj floatValue] - previousX;
-            [rotateYs addObject:@([VHAnimationManager clamp:velocity / 12 between:-maxRotate and:maxRotate])];
+            [rotateYs addObject:@([VHAnimationManager clamp:velocity / 12 between:-maxDegree and:maxDegree])];
         }
         previousX = [obj floatValue];
     }];

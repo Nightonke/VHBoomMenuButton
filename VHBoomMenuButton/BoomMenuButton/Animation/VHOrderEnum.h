@@ -12,13 +12,13 @@
 /**
  The order of boom-buttons when booming or rebooming.
 
- - VHOrderDefault: In-order.
+ - VHOrderInOrder: In-order.
  - VHOrderReverse: Reverse.
  - VHOrderRandom: Random.
  */
 typedef NS_ENUM(NSUInteger, VHOrderEnum)
 {
-    VHOrderDefault = 0,
+    VHOrderInOrder = 0,
     VHOrderReverse = 1,
     VHOrderRandom  = 2,
 };

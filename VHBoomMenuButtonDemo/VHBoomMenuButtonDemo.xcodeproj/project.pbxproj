@@ -10,6 +10,7 @@
 		3748A9921EB0B39A008F7C5E /* BoomMenuButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3748A9911EB0B38E008F7C5E /* BoomMenuButton.framework */; };
 		3748A9931EB0B39A008F7C5E /* BoomMenuButton.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3748A9911EB0B38E008F7C5E /* BoomMenuButton.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3771DD651EA9CAA200DCCE02 /* BlurBackgroundAndTipVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3771DD641EA9CAA100DCCE02 /* BlurBackgroundAndTipVC.m */; };
+		37AC4D681EB8AD48005FB4D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37AC4D671EB8AD48005FB4D7 /* Assets.xcassets */; };
 		37B862DF1EA8C5FA00E53322 /* BMBTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862DE1EA8C5FA00E53322 /* BMBTableViewCell.m */; };
 		37B862E51EA8C6B600E53322 /* ShareVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862E41EA8C6B600E53322 /* ShareVC.m */; };
 		37B862E81EA8C6CF00E53322 /* ControlVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B862E71EA8C6CF00E53322 /* ControlVC.m */; };
@@ -88,6 +89,7 @@
 		3771DD631EA9CAA100DCCE02 /* BlurBackgroundAndTipVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurBackgroundAndTipVC.h; sourceTree = SOURCE_ROOT; };
 		3771DD641EA9CAA100DCCE02 /* BlurBackgroundAndTipVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurBackgroundAndTipVC.m; sourceTree = SOURCE_ROOT; };
 		3794BF1A1D4DEF4A005B9404 /* VHBoomMenuButtonDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VHBoomMenuButtonDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		37AC4D671EB8AD48005FB4D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		37B862DD1EA8C5FA00E53322 /* BMBTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMBTableViewCell.h; sourceTree = SOURCE_ROOT; };
 		37B862DE1EA8C5FA00E53322 /* BMBTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMBTableViewCell.m; sourceTree = SOURCE_ROOT; };
 		37B862E31EA8C6B600E53322 /* ShareVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareVC.h; sourceTree = SOURCE_ROOT; };
@@ -185,7 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				3748A98C1EB0B38E008F7C5E /* BoomMenuButton.xcodeproj */,
-				3794BF1B1D4DEF4A005B9404 /* VHBoomMenuButtonExample */,
+				3794BF1B1D4DEF4A005B9404 /* VHBoomMenuButtonDemo */,
 				3794BEE81D4DEC79005B9404 /* Products */,
 				A430A301A328C2CEA673B68A /* Pods */,
 				1ADD1CD4806937C3A05DF5D4 /* Frameworks */,
@@ -200,11 +202,11 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3794BF1B1D4DEF4A005B9404 /* VHBoomMenuButtonExample */ = {
+		3794BF1B1D4DEF4A005B9404 /* VHBoomMenuButtonDemo */ = {
 			isa = PBXGroup;
 			children = (
 				37B863211EA8C88500E53322 /* Imgs */,
-				3794BF6D1D4DF565005B9404 /* Base.lproj */,
+				37AC4D671EB8AD48005FB4D7 /* Assets.xcassets */,
 				37B8630D1EA8C7AD00E53322 /* AppDelegate.h */,
 				37B8630E1EA8C7AD00E53322 /* AppDelegate.m */,
 				37B863101EA8C7C400E53322 /* BuilderManager.h */,
@@ -253,6 +255,7 @@
 				37B863441EA8C8E500E53322 /* Main.storyboard */,
 				3794BF1C1D4DEF4A005B9404 /* Supporting Files */,
 			);
+			name = VHBoomMenuButtonDemo;
 			path = VHBoomMenuButtonExample;
 			sourceTree = "<group>";
 		};
@@ -262,13 +265,6 @@
 				37B8631C1EA8C81C00E53322 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		3794BF6D1D4DF565005B9404 /* Base.lproj */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Base.lproj;
 			sourceTree = "<group>";
 		};
 		37B863211EA8C88500E53322 /* Imgs */ = {
@@ -396,6 +392,7 @@
 				37B8633B1EA8C88500E53322 /* horse.png in Resources */,
 				37B863351EA8C88500E53322 /* bee.png in Resources */,
 				37B8633F1EA8C88500E53322 /* peacock.png in Resources */,
+				37AC4D681EB8AD48005FB4D7 /* Assets.xcassets in Resources */,
 				37B863341EA8C88500E53322 /* bear.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

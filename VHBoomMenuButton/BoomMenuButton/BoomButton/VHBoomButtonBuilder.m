@@ -27,7 +27,7 @@
         
         _pieceColor = nil;
         
-        _shadowEffect = YES;
+        _hasShadow = YES;
         _shadowOffsetX = 0;
         _shadowOffsetY = 8;
         _shadowRadius = 4;
@@ -98,7 +98,7 @@
 
 #pragma mark Basic
 
-- (void)setClickedBlock:(OnBoomButtonClickedBlock)clickedBlock
+- (void)setClickedBlock:(BoomButtonDidClickBlock)clickedBlock
 {
     if (_clickedBlock == clickedBlock)
     {
@@ -125,6 +125,15 @@
     }
 }
 
+- (void)setRotateImage:(BOOL)rotateImage
+{
+    if (_rotateImage == rotateImage)
+    {
+        return;
+    }
+    self.button.rotateImage = _rotateImage = rotateImage;
+}
+
 #pragma mark Piece
 
 - (void)setPieceColor:(UIColor *)pieceColor
@@ -139,13 +148,13 @@
 
 #pragma mark Shadow
 
-- (void)setShadowEffect:(BOOL)shadowEffect
+- (void)setHasShadow:(BOOL)hasShadow
 {
-    if (_shadowEffect == shadowEffect)
+    if (_hasShadow == hasShadow)
     {
         return;
     }
-    self.button.shadowEffect = _shadowEffect = shadowEffect;
+    self.button.hasShadow = _hasShadow = hasShadow;
     [self.button setNeedsDisplay];
 }
 
@@ -207,7 +216,7 @@
     {
         return;
     }
-    self.button.normalImageName = _normalImageName = normalImageName;
+    _normalImageName = normalImageName;
     [self.button innerSetNormalImage:self];
     if (self.button.lastStateEnum == VHButtonStateNormal)
     {
@@ -221,7 +230,7 @@
     {
         return;
     }
-    self.button.normalImage = _normalImage = normalImage;
+    _normalImage = normalImage;
     [self.button innerSetNormalImage:self];
     if (self.button.lastStateEnum == VHButtonStateNormal)
     {
@@ -235,7 +244,7 @@
     {
         return;
     }
-    self.button.highlightedImageName = _highlightedImageName = highlightedImageName;
+    _highlightedImageName = highlightedImageName;
     [self.button innerSetHighlightedImage:self];
     if (self.button.lastStateEnum == VHButtonStateHighlighted)
     {
@@ -249,7 +258,7 @@
     {
         return;
     }
-    self.button.highlightedImage = _highlightedImage = highlightedImage;
+    _highlightedImage = highlightedImage;
     [self.button innerSetHighlightedImage:self];
     if (self.button.lastStateEnum == VHButtonStateHighlighted)
     {
@@ -263,7 +272,7 @@
     {
         return;
     }
-    self.button.unableImageName = _unableImageName = unableImageName;
+    _unableImageName = unableImageName;
     [self.button innerSetUnableImage:self];
     if (self.button.lastStateEnum == VHButtonStateUnable)
     {
@@ -277,7 +286,7 @@
     {
         return;
     }
-    self.button.unableImage = _unableImage = unableImage;
+    _unableImage = unableImage;
     [self.button innerSetUnableImage:self];
     if (self.button.lastStateEnum == VHButtonStateUnable)
     {

@@ -31,7 +31,7 @@
     self.bmb1.pieceCornerRadius = 1;
     for (int i = 0; i < self.bmb1.pieceNumber; i++)
     {
-        [self.bmb1 addBuilder:[BuilderManager squaresSimpleCircleButtonBuilder]];
+        [self.bmb1 addBuilder:[BuilderManager squareSimpleCircleButtonBuilder]];
     }
     
     self.bmb2.buttonEnum = VHButtonTextInsideCircle;

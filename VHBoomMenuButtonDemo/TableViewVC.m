@@ -40,7 +40,7 @@
     cell.bmb1.buttonEnum = VHButtonSimpleCircle;
     cell.bmb1.piecePlaceEnum = VHPiecePlaceShare;
     cell.bmb1.buttonPlaceEnum = VHButtonPlaceSC_9_1;
-    cell.bmb1.inList = YES;
+    cell.bmb1.isInList = YES;
     [cell.bmb1 clearBuilders];
     for (int i = 0; i < [VHBoomMenuButton buttonNumber:cell.bmb1.buttonPlaceEnum]; i++)
     {
@@ -50,7 +50,7 @@
     cell.bmb2.buttonEnum = VHButtonHam;
     cell.bmb2.piecePlaceEnum = VHPiecePlaceHAM_3;
     cell.bmb2.buttonPlaceEnum = VHButtonPlaceHAM_3;
-    cell.bmb2.inList = YES;
+    cell.bmb2.isInList = YES;
     [cell.bmb2 clearBuilders];
     for (int i = 0; i < cell.bmb2.pieceNumber; i++)
     {
@@ -60,7 +60,7 @@
     cell.bmb3.buttonEnum = VHButtonSimpleCircle;
     cell.bmb3.piecePlaceEnum = VHPiecePlaceDOT_9_1;
     cell.bmb3.buttonPlaceEnum = VHButtonPlaceSC_9_1;
-    cell.bmb3.inList = YES;
+    cell.bmb3.isInList = YES;
     [cell.bmb3 clearBuilders];
     for (int i = 0; i < cell.bmb3.pieceNumber; i++)
     {

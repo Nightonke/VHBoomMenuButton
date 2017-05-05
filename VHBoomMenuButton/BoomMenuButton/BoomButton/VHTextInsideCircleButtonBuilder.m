@@ -61,7 +61,21 @@
     }
     self.button.radius = _radius = radius;
     [self.button innerSetButtonLayer];
-    [self.button setNeedsDisplay];
+    [self.button innerSetShadow];
+    if (self.button.lastStateEnum == VHButtonStateNormal)
+    {
+        [self.button innerToNormalButton];
+    }
+    else if (self.button.lastStateEnum == VHButtonStateHighlighted)
+    {
+        [self.button innerToHighlightedButton];
+    }
+    else if (self.button.lastStateEnum == VHButtonStateUnable)
+    {
+        [self.button innerToUnableButton];
+    }
+    self.button.rotateAnchorPointInitialized = NO;
+    [self.button setRotateAnchorPoints];
 }
 
 - (void)setRound:(BOOL)round
@@ -72,7 +86,19 @@
     }
     self.button.round = _round = round;
     [self.button innerSetButtonLayer];
-    [self.button setNeedsDisplay];
+    [self.button innerSetShadow];
+    if (self.button.lastStateEnum == VHButtonStateNormal)
+    {
+        [self.button innerToNormalButton];
+    }
+    else if (self.button.lastStateEnum == VHButtonStateHighlighted)
+    {
+        [self.button innerToHighlightedButton];
+    }
+    else if (self.button.lastStateEnum == VHButtonStateUnable)
+    {
+        [self.button innerToUnableButton];
+    }
 }
 
 @end

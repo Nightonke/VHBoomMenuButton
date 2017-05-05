@@ -36,17 +36,17 @@
                                   start:(CGFloat)start
                                     end:(CGFloat)end;
 
-+ (CABasicAnimation *)showColorAnimateKeyPath:(NSString *)keyPath
++ (CABasicAnimation *)boomColorAnimateKeyPath:(NSString *)keyPath
                                         delay:(CFTimeInterval)delay
                                      duration:(CFTimeInterval)duration
                                         start:(UIColor *)start
                                           end:(UIColor *)end;
 
-+ (CABasicAnimation *)hideColorAnimateKeyPath:(NSString *)keyPath
-                                        delay:(CFTimeInterval)delay
-                                     duration:(CFTimeInterval)duration
-                                        start:(UIColor *)start
-                                          end:(UIColor *)end;
++ (CABasicAnimation *)reboomColorAnimateKeyPath:(NSString *)keyPath
+                                          delay:(CFTimeInterval)delay
+                                       duration:(CFTimeInterval)duration
+                                          start:(UIColor *)start
+                                            end:(UIColor *)end;
 
 /**
  Add animations to a view.
@@ -74,7 +74,7 @@
  *  @param xs            X values
  *  @param ys            Y values
  */
-+ (void)calculateShowXY:(VHBoomEnum)boomEnum
++ (void)calculateBoomXY:(VHBoomEnum)boomEnum
              parentSize:(CGSize)parentSize
                    ease:(VHEase *)ease
                  frames:(int)frames
@@ -95,14 +95,14 @@
  *  @param xs            X values
  *  @param ys            Y values
  */
-+ (void)calculateHideXY:(VHBoomEnum)boomEnum
-             parentSize:(CGSize)parentSize
-                   ease:(VHEase *)ease
-                 frames:(int)frames
-          startPosition:(CGPoint)startPosition
-            endPosition:(CGPoint)endPosition
-                xValues:(NSMutableArray *)xs
-                yValues:(NSMutableArray *)ys;
++ (void)calculateReboomXY:(VHBoomEnum)boomEnum
+               parentSize:(CGSize)parentSize
+                     ease:(VHEase *)ease
+                   frames:(int)frames
+            startPosition:(CGPoint)startPosition
+              endPosition:(CGPoint)endPosition
+                  xValues:(NSMutableArray *)xs
+                  yValues:(NSMutableArray *)ys;
 
 /**
  *  Get current button index in different order
@@ -113,36 +113,6 @@
  *  @return The order for showing or hiding buttons
  */
 + (NSMutableArray<NSNumber *> *)orderIndexes:(VHOrderEnum)orderEnum inSize:(NSUInteger)size;
-
-/**
- *  Calculate the scale values for animations
- *
- *  @param ease       Ease type
- *  @param frames     Frames, to control the performance
- *  @param startScale Start scale value
- *  @param endScale   End scale value
- *
- *  @return Scale values
- */
-+ (NSMutableArray<NSNumber *> *)calculateScale:(VHEase *)ease
-                                        frames:(int)frames
-                                    startScale:(float)startScale
-                                      endScale:(float)endScale;
-
-/**
- *  Calculate the rotate values for animations
- *
- *  @param ease        Ease type
- *  @param frames      Frames, to control the performance
- *  @param startRotate Start rotate value
- *  @param endRotate   End rotate value
- *
- *  @return Rotate values
- */
-- (NSMutableArray<NSNumber *> *)calculateRotate:(VHEase *)ease
-                                         frames:(int)frames
-                                    startRotate:(float)startRotate
-                                      endRotate:(float)endRotate;
 
 + (CAKeyframeAnimation *)rotateXAnimationFromFrames:(int)frames startY:(CGFloat)startY endY:(CGFloat)endY delay:(CFTimeInterval)delay duration:(CFTimeInterval)duration;
 

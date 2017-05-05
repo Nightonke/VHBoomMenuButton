@@ -48,20 +48,20 @@
                                        @(VHButtonPlaceAlignmentBottom),
                                        @(VHButtonPlaceAlignmentLeft),
                                        @(VHButtonPlaceAlignmentRight),
-                                       @(VHButtonPlaceAlignmentTL),
-                                       @(VHButtonPlaceAlignmentTR),
-                                       @(VHButtonPlaceAlignmentBL),
-                                       @(VHButtonPlaceAlignmentBR)];
+                                       @(VHButtonPlaceAlignmentTopLeft),
+                                       @(VHButtonPlaceAlignmentTopRight),
+                                       @(VHButtonPlaceAlignmentBottomLeft),
+                                       @(VHButtonPlaceAlignmentBottomRight)];
     
     self.buttonPlaceAlignmentEnumNames = @[@"Center",
                                            @"Top",
                                            @"Bottom",
                                            @"Left",
                                            @"Right",
-                                           @"TL",
-                                           @"TR",
-                                           @"BL",
-                                           @"BR"];
+                                           @"Top-Left",
+                                           @"Top-Right",
+                                           @"Bottom-Left",
+                                           @"Bottom-Right"];
     
     [self onSliderValueChanged:self.topMarginSlider];
     [self onSliderValueChanged:self.bottomMarginSlider];

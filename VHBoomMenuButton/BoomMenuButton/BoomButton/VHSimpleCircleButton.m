@@ -48,6 +48,8 @@
     return self;
 }
 
+#pragma mark - Override Methods
+
 - (void)toNormal
 {
     [self innerToNormalImage];
@@ -65,8 +67,6 @@
     [self innerToUnableImage];
     [self innerToUnableButton];
 }
-
-#pragma mark - Override Method
 
 - (VHButtonEnum)type
 {
@@ -93,29 +93,14 @@
     return rotateViews;
 }
 
-- (CGFloat)trueWidth
+- (CGFloat)buttonWidth
 {
-    return self.radius * 2;
+    return self.radius + self.radius;
 }
 
-- (CGFloat)trueHeight
+- (CGFloat)buttonHeight
 {
-    return self.radius * 2;
-}
-
-- (CGFloat)contentWidth
-{
-    return self.radius * 2;
-}
-
-- (CGFloat)contentHeight
-{
-    return self.radius * 2;
-}
-
-- (void)setSelfScaleAnchorPoint
-{
-    
+    return self.radius + self.radius;
 }
 
 - (void)setAnchorPointOfLayer
@@ -125,14 +110,12 @@
 
 - (CGPoint)rotateAnchorPoint
 {
-    CGPoint center = CGPointMake(self.radius, self.radius);
-    return center;
+    return CGPointMake(self.radius, self.radius);
 }
 
 - (CGPoint)centerPoint
 {
-    CGPoint center = CGPointMake(self.radius, self.radius);
-    return center;
+    return CGPointMake(self.radius, self.radius);
 }
 
 @end

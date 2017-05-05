@@ -260,9 +260,9 @@
         }
         case VHButtonPlaceSC_7_1:
         {
-            ADD_POINT(-buttonHorizontalMargin - width, -buttonHorizontalMargin - height);
+            ADD_POINT(-buttonHorizontalMargin - width, -buttonVerticalMargin - height);
             ADD_POINT(0, -buttonHorizontalMargin - height);
-            ADD_POINT(buttonHorizontalMargin + width, -buttonHorizontalMargin - height);
+            ADD_POINT(buttonHorizontalMargin + width, -buttonVerticalMargin - height);
             ADD_POINT(-buttonHorizontalMargin - width, 0);
             ADD_POINT(0, 0);
             ADD_POINT(buttonHorizontalMargin + width, 0);
@@ -276,9 +276,9 @@
             ADD_POINT(-buttonHorizontalMargin - width, 0);
             ADD_POINT(0, 0);
             ADD_POINT(buttonHorizontalMargin + width, 0);
-            ADD_POINT(-buttonHorizontalMargin - width, buttonHorizontalMargin + height);
+            ADD_POINT(-buttonHorizontalMargin - width, buttonVerticalMargin + height);
             ADD_POINT(0, buttonHorizontalMargin + height);
-            ADD_POINT(buttonHorizontalMargin + width, buttonHorizontalMargin + height);
+            ADD_POINT(buttonHorizontalMargin + width, buttonVerticalMargin + height);
             [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
             break;
         }
@@ -500,19 +500,19 @@
         case VHButtonPlaceAlignmentRight:
             widthOffset = frame.size.width - width / 2 - maxWidth - buttonRightMargin;
             break;
-        case VHButtonPlaceAlignmentTL:
+        case VHButtonPlaceAlignmentTopLeft:
             heightOffset = height / 2 + buttonTopMargin - minHeight;
             widthOffset = width / 2 + buttonLeftMargin - minWidth;
             break;
-        case VHButtonPlaceAlignmentTR:
+        case VHButtonPlaceAlignmentTopRight:
             heightOffset = height / 2 + buttonTopMargin - minHeight;
             widthOffset = frame.size.width - width / 2 - maxWidth - buttonRightMargin;
             break;
-        case VHButtonPlaceAlignmentBL:
+        case VHButtonPlaceAlignmentBottomLeft:
             heightOffset = frame.size.height - height / 2 - maxHeight - buttonBottomMargin;
             widthOffset = width / 2 + buttonLeftMargin - minWidth;
             break;
-        case VHButtonPlaceAlignmentBR:
+        case VHButtonPlaceAlignmentBottomRight:
             heightOffset = frame.size.height - height / 2 - maxHeight - buttonBottomMargin;
             widthOffset = frame.size.width - width / 2 - maxWidth - buttonRightMargin;
             break;
@@ -529,7 +529,7 @@
 
 + (NSMutableArray<NSValue *> *)positionsWithEnum:(VHButtonPlaceEnum)placeEnum
                                    withAlignment:(VHButtonPlaceAlignmentEnum)alignmentEnum
-                                 withParentFrame:(CGRect)frame
+                                 withParentFrame:(CGRect)parentFrame
                                 withButtonRadius:(CGFloat)radius
                                 withButtonNumber:(long)buttonNumber
                       withButtonHorizontalMargin:(CGFloat)buttonHorizontalMargin
@@ -598,7 +598,7 @@
                 {
                     ADD_POINT(0, -2 * radius - buttonVerticalMargin - i * (2 * radius + buttonVerticalMargin));
                 }
-                ADD_POINT(0,     0);
+                ADD_POINT(0, 0);
                 for (int i = 0; i < half; i++)
                 {
                     ADD_POINT(0, 2 * radius + buttonVerticalMargin + i * (2 * radius + buttonVerticalMargin));
@@ -1018,8 +1018,8 @@
     for (int i = 0; i < positions.count; i++)
     {
         CGPoint point = [[positions objectAtIndex:i] CGPointValue];
-        [positions setObject:[NSValue valueWithCGPoint:CGPointMake(point.x + frame.size.width / 2,
-                                                                   point.y + frame.size.height / 2)] atIndexedSubscript:i];
+        [positions setObject:[NSValue valueWithCGPoint:CGPointMake(point.x + parentFrame.size.width / 2,
+                                                                   point.y + parentFrame.size.height / 2)] atIndexedSubscript:i];
     }
     
     for (NSValue *position in positions)
@@ -1039,29 +1039,29 @@
             heightOffset = radius + buttonTopMargin - minHeight;
             break;
         case VHButtonPlaceAlignmentBottom:
-            heightOffset = frame.size.height - radius - maxHeight - buttonBottomMargin;
+            heightOffset = parentFrame.size.height - radius - maxHeight - buttonBottomMargin;
             break;
         case VHButtonPlaceAlignmentLeft:
             widthOffset = radius + buttonLeftMargin - minWidth;
             break;
         case VHButtonPlaceAlignmentRight:
-            widthOffset = frame.size.width - radius - maxWidth - buttonRightMargin;
+            widthOffset = parentFrame.size.width - radius - maxWidth - buttonRightMargin;
             break;
-        case VHButtonPlaceAlignmentTL:
+        case VHButtonPlaceAlignmentTopLeft:
             heightOffset = radius + buttonTopMargin - minHeight;
             widthOffset = radius + buttonLeftMargin - minWidth;
             break;
-        case VHButtonPlaceAlignmentTR:
+        case VHButtonPlaceAlignmentTopRight:
             heightOffset = radius + buttonTopMargin - minHeight;
-            widthOffset = frame.size.width - radius - maxWidth - buttonRightMargin;
+            widthOffset = parentFrame.size.width - radius - maxWidth - buttonRightMargin;
             break;
-        case VHButtonPlaceAlignmentBL:
-            heightOffset = frame.size.height - radius - maxHeight - buttonBottomMargin;
+        case VHButtonPlaceAlignmentBottomLeft:
+            heightOffset = parentFrame.size.height - radius - maxHeight - buttonBottomMargin;
             widthOffset = radius + buttonLeftMargin - minWidth;
             break;
-        case VHButtonPlaceAlignmentBR:
-            heightOffset = frame.size.height - radius - maxHeight - buttonBottomMargin;
-            widthOffset = frame.size.width - radius - maxWidth - buttonRightMargin;
+        case VHButtonPlaceAlignmentBottomRight:
+            heightOffset = parentFrame.size.height - radius - maxHeight - buttonBottomMargin;
+            widthOffset = parentFrame.size.width - radius - maxWidth - buttonRightMargin;
             break;
     }
     for (int i = 0; i < positions.count; i++)
@@ -1230,19 +1230,19 @@
         case VHButtonPlaceAlignmentRight:
             widthOffset = frame.size.width - width / 2 - maxWidth - buttonRightMargin;
             break;
-        case VHButtonPlaceAlignmentTL:
+        case VHButtonPlaceAlignmentTopLeft:
             heightOffset = height / 2 + buttonTopMargin - minHeight;
             widthOffset = width / 2 + buttonLeftMargin - minWidth;
             break;
-        case VHButtonPlaceAlignmentTR:
+        case VHButtonPlaceAlignmentTopRight:
             heightOffset = height / 2 + buttonTopMargin - minHeight;
             widthOffset = frame.size.width - width / 2 - maxWidth - buttonRightMargin;
             break;
-        case VHButtonPlaceAlignmentBL:
+        case VHButtonPlaceAlignmentBottomLeft:
             heightOffset = frame.size.height - height / 2 - maxHeight - buttonBottomMargin;
             widthOffset = width / 2 + buttonLeftMargin - minWidth;
             break;
-        case VHButtonPlaceAlignmentBR:
+        case VHButtonPlaceAlignmentBottomRight:
             heightOffset = frame.size.height - height / 2 - maxHeight - buttonBottomMargin;
             widthOffset = frame.size.width - width / 2 - maxWidth - buttonRightMargin;
             break;

@@ -38,8 +38,8 @@
 - (void)addBuilder
 {
     __weak ListenerVC *weakSelf = self;
-    VHSimpleCircleButtonBuilder *builder = [VHSimpleCircleButtonBuilder builder];
-    builder.normalImageName = [BuilderManager imageName];
+    
+    VHSimpleCircleButtonBuilder *builder = [BuilderManager simpleCircleButtonBuilder];
     builder.clickedBlock = ^(int index) {
         weakSelf.buttonLabel.text = [NSString stringWithFormat:@"No.%d boom-button is clicked!", index];
     };
@@ -48,33 +48,35 @@
 
 #pragma mark - VHBoomDelegate
 
-- (void)onBoomButton:(VHBoomButton *)boomButton clickedAt:(int)index
+- (void)boomMenuButton:(VHBoomMenuButton *)bmb didClickBoomButtonOfBuilder:(VHBoomButtonBuilder *)builder at:(int)index
 {
     // If you have implement clickedBlocks for boom-buttons in builders,
     // then you shouldn't add any listener here for duplicate callbacks.
+    
+    // self.buttonLabel.text = builder.normalImageName;
 }
 
-- (void)onBoomBackgroundClicked
+- (void)boomMenuButtonDidClickBackground:(VHBoomMenuButton *)bmb
 {
     self.animationLabel.text = @"Click background!!!";
 }
 
-- (void)onBoomWillHide
+- (void)boomMenuButtonWillReboom:(VHBoomMenuButton *)bmb
 {
     self.animationLabel.text = @"Will RE-BOOM!!!";
 }
 
-- (void)onBoomDidHide
+- (void)boomMenuButtonDidReboom:(VHBoomMenuButton *)bmb
 {
     self.animationLabel.text = @"Did RE-BOOM!!!";
 }
 
-- (void)onBoomWillShow
+- (void)boomMenuButtonWillBoom:(VHBoomMenuButton *)bmb
 {
     self.animationLabel.text = @"Will BOOM!!!";
 }
 
-- (void)onBoomDidShow
+- (void)boomMenuButtonDidBoom:(VHBoomMenuButton *)bmb
 {
     self.animationLabel.text = @"Did BOOM!!!";
 }

@@ -103,29 +103,14 @@
     return rotateViews;
 }
 
-- (CGFloat)trueWidth
+- (CGFloat)buttonWidth
 {
     return self.radius * 2;
 }
 
-- (CGFloat)trueHeight
+- (CGFloat)buttonHeight
 {
     return self.radius * 2;
-}
-
-- (CGFloat)contentWidth
-{
-    return self.radius * 2;
-}
-
-- (CGFloat)contentHeight
-{
-    return self.radius * 2;
-}
-
-- (void)setSelfScaleAnchorPoint
-{
-    
 }
 
 - (void)setAnchorPointOfLayer

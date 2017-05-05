@@ -48,11 +48,11 @@
     }
     else if (sender == self.backgroundEffectSwitch)
     {
-        self.bmb.backgroundEffect = sender.on;
+        self.bmb.hasBackground = sender.on;
     }
     else if (sender == self.shadowEffectSwitch)
     {
-        self.bmb.shadowEffect = sender.on;
+        self.bmb.hasShadow = sender.on;
     }
 }
 

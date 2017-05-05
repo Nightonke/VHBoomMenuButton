@@ -40,40 +40,38 @@
     [self initializeBMB:self.bmb8];
     [self initializeBMB:self.bmb9];
     
-    self.bmb1.showDuration = 1;
-    self.bmb1.hideDuration = 0.5;
+    self.bmb1.boomDuration = 1;
+    self.bmb1.reboomDuration = 0.5;
     
-    self.bmb2.showEaseName = VHEaseOutExpo;
-    self.bmb2.hideEaseName = VHEaseInExpo;
+    self.bmb2.boomEaseName = VHEaseOutExpo;
+    self.bmb2.reboomEaseName = VHEaseInExpo;
     
-    self.bmb3.showEaseName = VHEaseOutBounce;
-    self.bmb3.hideEaseName = VHEaseOutBounce;
+    self.bmb3.boomEaseName = VHEaseOutBounce;
+    self.bmb3.reboomEaseName = VHEaseOutBounce;
     
-    self.bmb4.showEaseName = VHEaseOutElastic;
-    self.bmb4.hideEaseName = VHEaseInElastic;
-    self.bmb4.showDelay = 0;
-    self.bmb4.hideDelay = 0;
+    self.bmb4.boomEaseName = VHEaseOutElastic;
+    self.bmb4.reboomEaseName = VHEaseInElastic;
+    self.bmb4.delay = 0;
     
-    self.bmb5.showEaseName = VHEaseInSine;
-    self.bmb5.hideEaseName = VHEaseInSine;
+    self.bmb5.boomEaseName = VHEaseInSine;
+    self.bmb5.reboomEaseName = VHEaseInSine;
     
-    self.bmb6.showEaseName = VHEaseInCirc;
-    self.bmb6.hideEaseName = VHEaseInCirc;
+    self.bmb6.boomEaseName = VHEaseInCirc;
+    self.bmb6.reboomEaseName = VHEaseInCirc;
     
-    self.bmb7.showEaseName = VHEaseOutCirc;
-    self.bmb7.hideEaseName = VHEaseOutCirc;
+    self.bmb7.boomEaseName = VHEaseOutCirc;
+    self.bmb7.reboomEaseName = VHEaseOutCirc;
     
-    self.bmb8.showMoveEaseName = VHEaseInBack;
-    self.bmb8.showRotateEaseName = VHEaseInBack;
-    self.bmb8.showScaleEaseName = VHEaseLinear;
-    self.bmb8.hideMoveEaseName = VHEaseInBack;
-    self.bmb8.hideRotateEaseName = VHEaseInBack;
-    self.bmb8.hideScaleEaseName = VHEaseInBack;
+    self.bmb8.boomMoveEaseName = VHEaseInBack;
+    self.bmb8.boomRotateEaseName = VHEaseInBack;
+    self.bmb8.boomScaleEaseName = VHEaseLinear;
+    self.bmb8.reboomMoveEaseName = VHEaseInBack;
+    self.bmb8.reboomRotateEaseName = VHEaseInBack;
+    self.bmb8.reboomScaleEaseName = VHEaseInBack;
     
-    self.bmb9.showEaseName = VHEaseInOutQuad;
-    self.bmb9.hideEaseName = VHEaseInOutQuad;
-    self.bmb9.showDelay = 0;
-    self.bmb9.hideDelay = 0;
+    self.bmb9.boomEaseName = VHEaseInOutQuad;
+    self.bmb9.reboomEaseName = VHEaseInOutQuad;
+    self.bmb9.delay = 0;
 }
 
 - (void)initializeBMB:(VHBoomMenuButton *)bmb

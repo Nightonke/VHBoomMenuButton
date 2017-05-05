@@ -289,11 +289,6 @@
                                     <constraint firstAttribute="width" constant="60" id="PNy-Ck-ODA"/>
                                     <constraint firstAttribute="height" constant="60" id="gPo-Vd-bPM"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -341,11 +336,6 @@
                                     <constraint firstAttribute="width" constant="60" id="5JL-dB-RXQ"/>
                                     <constraint firstAttribute="height" constant="60" id="bUz-O8-xx2"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -393,11 +383,6 @@
                                     <constraint firstAttribute="width" constant="60" id="460-vd-DW0"/>
                                     <constraint firstAttribute="height" constant="60" id="w2I-ig-PuS"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -445,11 +430,6 @@
                                     <constraint firstAttribute="width" constant="60" id="Ide-4c-flL"/>
                                     <constraint firstAttribute="height" constant="60" id="iXK-lc-EWm"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -490,9 +470,6 @@
                                     <constraint firstAttribute="height" constant="60" id="ggN-Ma-TeG"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
                                         <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
@@ -508,9 +485,6 @@
                                     <constraint firstAttribute="width" constant="60" id="cCB-YV-sng"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
                                         <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
@@ -526,9 +500,6 @@
                                     <constraint firstAttribute="width" constant="60" id="y5g-zg-Yuh"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
                                         <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
@@ -646,11 +617,6 @@
                                             <constraint firstAttribute="height" constant="60" id="4Xa-fD-Ouj"/>
                                             <constraint firstAttribute="width" constant="60" id="vn9-ao-YnO"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                                <integer key="value" value="0"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -741,9 +707,6 @@
                                     <constraint firstAttribute="height" constant="60" id="hhk-Db-1OK"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
                                         <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
@@ -759,9 +722,6 @@
                                     <constraint firstAttribute="width" constant="60" id="o0T-ej-QuF"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
                                         <color key="value" red="1" green="0.8022460938" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
@@ -776,11 +736,6 @@
                                     <constraint firstAttribute="width" constant="60" id="LQW-nW-9xq"/>
                                     <constraint firstAttribute="height" constant="60" id="hse-DI-6k2"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -837,9 +792,6 @@
                                     <constraint firstAttribute="width" constant="60" id="pHa-zh-iP4"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
                                         <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
@@ -855,9 +807,6 @@
                                     <constraint firstAttribute="height" constant="60" id="Yfc-zs-4nP"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
                                         <color key="value" red="1" green="0.8022460938" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
@@ -872,11 +821,6 @@
                                     <constraint firstAttribute="height" constant="60" id="APL-JJ-rSD"/>
                                     <constraint firstAttribute="width" constant="60" id="Chx-ai-7k1"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -917,11 +861,6 @@
                                     <constraint firstAttribute="height" constant="60" id="84p-HL-jDi"/>
                                     <constraint firstAttribute="width" constant="60" id="q0T-eC-8ho"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aiU-Em-QpT" customClass="VHBoomMenuButton">
                                 <rect key="frame" x="16" y="720" width="60" height="60"/>
@@ -930,9 +869,6 @@
                                     <constraint firstAttribute="height" constant="60" id="kbM-lR-x3R"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
                                         <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
@@ -948,9 +884,6 @@
                                     <constraint firstAttribute="height" constant="60" id="lzI-lN-VAU"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
                                         <color key="value" red="1" green="0.80224609375" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
@@ -960,49 +893,49 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="0.0" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="hAG-uF-wKV">
-                                <rect key="frame" x="14" y="72" width="339" height="31"/>
+                                <rect key="frame" x="14" y="72" width="347" height="31"/>
                                 <connections>
                                     <action selector="onSliderValueChanged:" destination="e0P-8t-lhh" eventType="valueChanged" id="Nbh-ew-cLM"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="300" minValue="0.0" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="hI2-Te-HOL">
-                                <rect key="frame" x="14" y="139" width="339" height="31"/>
+                                <rect key="frame" x="14" y="139" width="347" height="31"/>
                                 <connections>
                                     <action selector="onSliderValueChanged:" destination="e0P-8t-lhh" eventType="valueChanged" id="IOk-v5-B1N"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="0.0" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="wdX-qF-0Nt">
-                                <rect key="frame" x="14" y="206" width="339" height="31"/>
+                                <rect key="frame" x="14" y="206" width="347" height="31"/>
                                 <connections>
                                     <action selector="onSliderValueChanged:" destination="e0P-8t-lhh" eventType="valueChanged" id="ztX-RS-Eew"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="300" minValue="0.0" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="xbv-Qk-5go">
-                                <rect key="frame" x="14" y="273" width="339" height="31"/>
+                                <rect key="frame" x="14" y="273" width="347" height="31"/>
                                 <connections>
                                     <action selector="onSliderValueChanged:" destination="e0P-8t-lhh" eventType="valueChanged" id="4Hc-98-1Hk"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkv-Nq-L8z">
-                                <rect key="frame" x="16" y="110" width="335" height="21"/>
+                                <rect key="frame" x="16" y="110" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IiS-Yq-RcY">
-                                <rect key="frame" x="16" y="177" width="335" height="21"/>
+                                <rect key="frame" x="16" y="177" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2R-gB-76d">
-                                <rect key="frame" x="16" y="244" width="335" height="21"/>
+                                <rect key="frame" x="16" y="244" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="waa-iR-smX">
-                                <rect key="frame" x="16" y="311" width="335" height="21"/>
+                                <rect key="frame" x="16" y="311" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1030,7 +963,7 @@
                             <constraint firstItem="N2R-gB-76d" firstAttribute="centerX" secondItem="wdX-qF-0Nt" secondAttribute="centerX" id="Y1m-Hq-0PT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="GWo-64-uFU" secondAttribute="trailing" id="ZmK-oI-sur"/>
                             <constraint firstItem="hI2-Te-HOL" firstAttribute="width" secondItem="hkv-Nq-L8z" secondAttribute="width" id="bHi-fs-xJb"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="hAG-uF-wKV" secondAttribute="trailing" constant="8" id="bpd-zi-CFD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hAG-uF-wKV" secondAttribute="trailing" id="bpd-zi-CFD"/>
                             <constraint firstItem="hkv-Nq-L8z" firstAttribute="width" secondItem="hAG-uF-wKV" secondAttribute="width" id="cLq-6C-BY1"/>
                             <constraint firstItem="N2R-gB-76d" firstAttribute="width" secondItem="wdX-qF-0Nt" secondAttribute="width" id="ctK-je-fbn"/>
                             <constraint firstItem="1gK-Ee-OKY" firstAttribute="top" secondItem="cy5-eU-JiB" secondAttribute="bottom" constant="20" id="dKf-MC-hn8"/>
@@ -1091,8 +1024,6 @@
                                                         <constraint firstAttribute="width" constant="60" id="kcd-eG-79o"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="inList" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="backgroundEffect" value="NO"/>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="shareLine1Color">
                                                             <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         </userDefinedRuntimeAttribute>
@@ -1108,10 +1039,6 @@
                                                         <constraint firstAttribute="height" constant="60" id="8JP-5e-Fha"/>
                                                         <constraint firstAttribute="width" constant="60" id="cpy-7l-K63"/>
                                                     </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="inList" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="backgroundEffect" value="NO"/>
-                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Y1-j3-JW6" customClass="VHBoomMenuButton">
                                                     <rect key="frame" x="195" y="-9" width="60" height="60"/>
@@ -1120,10 +1047,6 @@
                                                         <constraint firstAttribute="height" constant="60" id="9x5-Vi-Nhs"/>
                                                         <constraint firstAttribute="width" constant="60" id="hlg-si-0QF"/>
                                                     </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="inList" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="backgroundEffect" value="NO"/>
-                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MyV-Oi-f1x">
                                                     <rect key="frame" x="16" y="11" width="159" height="21"/>
@@ -1192,11 +1115,6 @@
                                     <constraint firstAttribute="width" constant="60" id="BJ0-ju-uFI"/>
                                     <constraint firstAttribute="height" constant="60" id="QV9-O4-rad"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1243,8 +1161,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BackgroundEffect" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PS9-nT-vkp">
-                                <rect key="frame" x="16" y="116" width="137.5" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Has Background" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PS9-nT-vkp">
+                                <rect key="frame" x="16" y="116" width="126.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1261,14 +1179,9 @@
                                     <constraint firstAttribute="height" constant="60" id="8PV-VY-nkQ"/>
                                     <constraint firstAttribute="width" constant="60" id="jUz-92-V9J"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ShadowEffect" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bY9-F6-Frh">
-                                <rect key="frame" x="16" y="155" width="107" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Has Shadow" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bY9-F6-Frh">
+                                <rect key="frame" x="16" y="155" width="96" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1321,11 +1234,6 @@
                                     <constraint firstAttribute="height" constant="60" id="dIs-Ka-tj1"/>
                                     <constraint firstAttribute="width" constant="60" id="wBU-yD-k4o"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1f9-D7-qzN" customClass="VHBoomMenuButton">
                                 <rect key="frame" x="157" y="720" width="60" height="60"/>
@@ -1334,9 +1242,6 @@
                                     <constraint firstAttribute="width" constant="60" id="lqX-gg-vBK"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
                                         <color key="value" red="0.42341697220000002" green="0.77458435299999995" blue="0.17373555900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
@@ -1352,9 +1257,6 @@
                                     <constraint firstAttribute="height" constant="60" id="Vkh-tK-Dhe"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
                                         <color key="value" red="0.91566347780000001" green="0.95004793080000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
@@ -1370,9 +1272,6 @@
                                     <constraint firstAttribute="width" constant="60" id="dRU-Kh-oWM"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
                                         <color key="value" red="0.40000000600000002" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
@@ -1388,12 +1287,6 @@
                                     <constraint firstAttribute="width" constant="60" id="dYA-x0-6si"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetX">
-                                        <real key="value" value="-4"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
                                         <color key="value" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
@@ -1409,9 +1302,6 @@
                                     <constraint firstAttribute="width" constant="60" id="aRa-vj-Evz"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
                                         <color key="value" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
@@ -1427,9 +1317,6 @@
                                     <constraint firstAttribute="width" constant="60" id="kd2-Qc-lMV"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
                                         <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
@@ -1445,12 +1332,6 @@
                                     <constraint firstAttribute="height" constant="60" id="yMn-bc-bh1"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetX">
-                                        <real key="value" value="-4"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
                                         <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
@@ -1466,9 +1347,6 @@
                                     <constraint firstAttribute="height" constant="60" id="Lqu-K5-EGy"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
                                         <color key="value" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
@@ -1534,11 +1412,6 @@
                                     <constraint firstAttribute="height" constant="60" id="6Ad-zB-pO5"/>
                                     <constraint firstAttribute="width" constant="60" id="QhJ-Ov-bIX"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Jz-sz-mGT">
                                 <rect key="frame" x="187" y="385" width="0.0" height="0.0"/>
@@ -1599,11 +1472,6 @@
                                     <constraint firstAttribute="width" constant="60" id="L71-31-Z4J"/>
                                     <constraint firstAttribute="height" constant="60" id="Lv8-km-590"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1698,11 +1566,6 @@
                                     <constraint firstAttribute="width" constant="60" id="Esj-X2-L2a"/>
                                     <constraint firstAttribute="height" constant="60" id="SbW-jf-YqG"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1740,7 +1603,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bmb" destination="hKc-fg-P3Y" id="vNs-sq-ZPA"/>
+                        <outlet property="bmb" destination="hKc-fg-P3Y" id="8dj-ag-F9r"/>
                         <outlet property="bottomMarginLabel" destination="c1E-tq-kyn" id="kR9-jm-JvW"/>
                         <outlet property="bottomMarginSlider" destination="Vuf-fn-lKZ" id="XJh-nh-L6S"/>
                         <outlet property="leftMarginLabel" destination="tMP-6J-RDQ" id="37r-pz-I95"/>
@@ -1748,7 +1611,7 @@
                         <outlet property="rightMarginLabel" destination="CtR-8n-9Zi" id="6Qr-eE-sGA"/>
                         <outlet property="rightMarginSlider" destination="QkI-B7-RHz" id="hnV-Bx-W24"/>
                         <outlet property="topMarginLabel" destination="wR0-p6-1VN" id="Aq5-s6-sd1"/>
-                        <outlet property="topMarginSlider" destination="H3e-Zb-N0Y" id="rLP-Lb-FZx"/>
+                        <outlet property="topMarginSlider" destination="H3e-Zb-N0Y" id="NZL-se-Z6S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z7A-P7-RwR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1781,11 +1644,6 @@
                                     <constraint firstAttribute="width" constant="60" id="O6h-9D-6Lo"/>
                                     <constraint firstAttribute="height" constant="60" id="vv2-4d-9sv"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonEnum">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

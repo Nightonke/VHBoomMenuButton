@@ -104,29 +104,14 @@
     return rotateViews;
 }
 
-- (CGFloat)trueWidth
+- (CGFloat)buttonWidth
 {
     return self.width;
 }
 
-- (CGFloat)trueHeight
-{
-    return self.height;
-}
-
-- (CGFloat)contentWidth
+- (CGFloat)buttonHeight
 {
     return self.width;
-}
-
-- (CGFloat)contentHeight
-{
-    return self.width;
-}
-
-- (void)setSelfScaleAnchorPoint
-{
-    [VHUtils setAnchorPoint:CGPointMake(0.5, self.width / 2 / self.height) ofLayer:self.layer];
 }
 
 - (void)setAnchorPointOfLayer

@@ -33,7 +33,7 @@ IB_DESIGNABLE
  
  The default value is @b YES .
  */
-@property (nonatomic, assign)IBInspectable BOOL cacheOptimization;
+@property (nonatomic, assign)IBInspectable BOOL cacheOptimized;
 
 /**
  Whether the BMB booms its boom-buttons in the whole screen. If @b NO, then BMB booms boom-buttons
@@ -41,7 +41,7 @@ IB_DESIGNABLE
  
  The default value is @b YES .
  */
-@property (nonatomic, assign)IBInspectable BOOL boomInWholeScreen;
+@property (nonatomic, assign)IBInspectable BOOL isBoomInWholeScreen;
 
 /**
  Whether the BMB is used in a cell of table view. If YES, then BMB will not keep the boom-buttons 
@@ -52,7 +52,7 @@ IB_DESIGNABLE
  
  The default value is @b NO .
  */
-@property (nonatomic, assign)IBInspectable BOOL inList;
+@property (nonatomic, assign)IBInspectable BOOL isInList;
 
 #pragma mark - Shadow
 
@@ -61,14 +61,14 @@ IB_DESIGNABLE
  
  The default value is @b YES .
  */
-@property (nonatomic, assign)IBInspectable BOOL shadowEffect;
+@property (nonatomic, assign)IBInspectable BOOL hasShadow;
 
 /**
  Rect (in points) of shadow path of BMB.
  
  The default value is (2, 2, BMB.width - 4, BMB.height - 4) .
  */
-@property (nonatomic, assign) CGRect shadowPathRect;
+@property (nonatomic, assign)IBInspectable CGRect shadowPathRect;
 
 /**
  Offset (in points) of shadow on x axis.
@@ -119,7 +119,7 @@ IB_DESIGNABLE
  
  The default value is @b YES .
  */
-@property (nonatomic, assign)IBInspectable BOOL backgroundEffect;
+@property (nonatomic, assign)IBInspectable BOOL hasBackground;
 
 /**
  The color of BMB at normal state.
@@ -147,7 +147,7 @@ IB_DESIGNABLE
  
  The default value is @b NO .
  */
-@property (nonatomic, assign) BOOL draggable;
+@property (nonatomic, assign)IBInspectable BOOL draggable;
 
 /**
  The top, left, bottom and right margins in BMB's superview when BMB is draggable.
@@ -212,7 +212,7 @@ IB_DESIGNABLE
 /**
  The length (in points) of the 2 lines in share style.
  
- The default value is @b 10 .
+ The default value is @b 18 .
  */
 @property (nonatomic, assign)IBInspectable CGFloat shareLineLength;
 
@@ -255,7 +255,7 @@ IB_DESIGNABLE
  
  The default value is NO.
  */
-@property (nonatomic, assign)IBInspectable BOOL blurBackground;
+@property (nonatomic, assign)IBInspectable BOOL backgroundBlurred;
 
 /**
  Blur effect of background. Notice that blur effect only works on iOS 8.0 or above.
@@ -295,7 +295,6 @@ IB_DESIGNABLE
 
 #pragma mark - Animation
 
-
 /**
  The VHBoomDelegate of BMB. Check VHBoomDelegate.h for more information.
  
@@ -322,28 +321,28 @@ IB_DESIGNABLE
  
  The default value is @b 0.05 .
  */
-@property (nonatomic, assign)IBInspectable CFTimeInterval showDelay;
+@property (nonatomic, assign)IBInspectable CFTimeInterval boomDelay;
 
 /**
  The duration (in seconds) of each boom-button when booming.
  
  The default value is @b 0.3 .
  */
-@property (nonatomic, assign)IBInspectable CFTimeInterval showDuration;
+@property (nonatomic, assign)IBInspectable CFTimeInterval boomDuration;
 
 /**
  The delay (in seconds) among each boom-button when rebooming.
  
  The default value is @b 0.05 .
  */
-@property (nonatomic, assign)IBInspectable CFTimeInterval hideDelay;
+@property (nonatomic, assign)IBInspectable CFTimeInterval reboomDelay;
 
 /**
  The duration (in seconds) of each boom-button when rebooming.
  
  The default value is @b 0.3 .
  */
-@property (nonatomic, assign)IBInspectable CFTimeInterval hideDuration;
+@property (nonatomic, assign)IBInspectable CFTimeInterval reboomDuration;
 
 /**
  Whether BMB rebooms when the background view is clicked.
@@ -376,7 +375,7 @@ IB_DESIGNABLE
 /**
  The boom-enum of booming and rebooming animations. This property changes the track of the boom-buttons' movement.
  
- The default value is VHBoomHorizontalThrow_2;
+ The default value is VHBoomHorizontalThrow2;
  */
 @property (nonatomic, assign) VHBoomEnum boomEnum;
 
@@ -387,7 +386,7 @@ IB_DESIGNABLE
  
  The default value is @b VHEaseOutBack .
  */
-@property (nonatomic, strong) NSString *showEaseName;
+@property (nonatomic, strong) NSString *boomEaseName;
 
 /**
  The name of the ease using in movement animations of boom-buttons when booming.
@@ -396,7 +395,7 @@ IB_DESIGNABLE
  
  The default value is @b VHEaseOutBack .
  */
-@property (nonatomic, strong) NSString *showMoveEaseName;
+@property (nonatomic, strong) NSString *boomMoveEaseName;
 
 /**
  The name of the ease using in scale animations of boom-buttons when booming.
@@ -405,7 +404,7 @@ IB_DESIGNABLE
  
  The default value is @b VHEaseOutBack .
  */
-@property (nonatomic, strong) NSString *showScaleEaseName;
+@property (nonatomic, strong) NSString *boomScaleEaseName;
 
 /**
  The name of the ease using in rotation animations of boom-buttons when booming.
@@ -414,7 +413,7 @@ IB_DESIGNABLE
  
  The default value is @b VHEaseOutBack .
  */
-@property (nonatomic, strong) NSString *showRotateEaseName;
+@property (nonatomic, strong) NSString *boomRotateEaseName;
 
 /**
  The name of the ease using in movement, scale and rotation animations of boom-buttons when rebooming. This property is used to change movement, scale and rotation animations' ease name with a line of code.
@@ -423,7 +422,7 @@ IB_DESIGNABLE
  
  The default value is @b VHEaseInBack .
  */
-@property (nonatomic, strong) NSString *hideEaseName;
+@property (nonatomic, strong) NSString *reboomEaseName;
 
 /**
  The name of the ease using in movement animations of boom-buttons when rebooming.
@@ -432,7 +431,7 @@ IB_DESIGNABLE
  
  The default value is @b VHEaseInBack .
  */
-@property (nonatomic, strong) NSString *hideMoveEaseName;
+@property (nonatomic, strong) NSString *reboomMoveEaseName;
 
 /**
  The name of the ease using in scale animations of boom-buttons when rebooming.
@@ -441,7 +440,7 @@ IB_DESIGNABLE
  
  The default value is @b VHEaseInBack .
  */
-@property (nonatomic, strong) NSString *hideScaleEaseName;
+@property (nonatomic, strong) NSString *reboomScaleEaseName;
 
 /**
  The name of the ease using in rotation animations of boom-buttons when rebooming.
@@ -450,7 +449,7 @@ IB_DESIGNABLE
  
  The default value is @b VHEaseInBack .
  */
-@property (nonatomic, strong) NSString *hideRotateEaseName;
+@property (nonatomic, strong) NSString *reboomRotateEaseName;
 
 /**
  The degree (in π) of rotation animations when booming.
@@ -491,6 +490,8 @@ IB_DESIGNABLE
  Notice that VHButtonPlaceEnum must correspond with VHButtonEnum and VHPiecePlaceEnum.
  
  Check https://github.com/Nightonke/VHBoomMenuButton/wiki for more information.
+ 
+ The default value is @b VHButtonPlaceUnknown .
  */
 @property (nonatomic, assign) VHButtonPlaceEnum buttonPlaceEnum;
 
@@ -523,28 +524,28 @@ IB_DESIGNABLE
 @property (nonatomic, assign)IBInspectable CGFloat buttonInclinedMargin;
 
 /**
- The margin (in points) between boom-buttons and the bottom of screen when booming. Notice that this property only works when buttonPlaceAlignmentEnum is VHButtonPlaceAlignmentBottom, VHButtonPlaceAlignmentBL or VHButtonPlaceAlignmentBR.
+ The margin (in points) between boom-buttons and the bottom of screen when booming. Notice that this property only works when buttonPlaceAlignmentEnum is VHButtonPlaceAlignmentBottom, VHButtonPlaceAlignmentBottomLeft or VHButtonPlaceAlignmentBottomRight.
  
  The default value is @b 20 .
  */
 @property (nonatomic, assign)IBInspectable CGFloat buttonBottomMargin;
 
 /**
- The margin (in points) between boom-buttons and the top of screen when booming. Notice that this property only works when buttonPlaceAlignmentEnum is VHButtonPlaceAlignmentTop, VHButtonPlaceAlignmentTL and VHButtonPlaceAlignmentTR.
+ The margin (in points) between boom-buttons and the top of screen when booming. Notice that this property only works when buttonPlaceAlignmentEnum is VHButtonPlaceAlignmentTop, VHButtonPlaceAlignmentTopLeft and VHButtonPlaceAlignmentTopRight.
  
  The default value is @b 20 .
  */
 @property (nonatomic, assign)IBInspectable CGFloat buttonTopMargin;
 
 /**
- The margin (in points) between boom-buttons and the left of screen when booming. Notice that this property only works when buttonPlaceAlignmentEnum is VHButtonPlaceAlignmentLeft, VHButtonPlaceAlignmentTL or VHButtonPlaceAlignmentBL.
+ The margin (in points) between boom-buttons and the left of screen when booming. Notice that this property only works when buttonPlaceAlignmentEnum is VHButtonPlaceAlignmentLeft, VHButtonPlaceAlignmentTopLeft or VHButtonPlaceAlignmentBottomLeft.
  
  The default value is @b 20 .
  */
 @property (nonatomic, assign)IBInspectable CGFloat buttonLeftMargin;
 
 /**
- The margin (in points) between boom-buttons and the right of screen when booming. Notice that this property only works when buttonPlaceAlignmentEnum is VHButtonPlaceAlignmentRight, VHButtonPlaceAlignmentTR or VHButtonPlaceAlignmentBR.
+ The margin (in points) between boom-buttons and the right of screen when booming. Notice that this property only works when buttonPlaceAlignmentEnum is VHButtonPlaceAlignmentRight, VHButtonPlaceAlignmentTopRight or VHButtonPlaceAlignmentBottomRight.
  
  The default value is @b 20 .
  */

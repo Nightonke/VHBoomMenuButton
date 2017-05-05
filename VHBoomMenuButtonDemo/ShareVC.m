@@ -78,23 +78,23 @@
 {
     if (sender == self.showDelaySlider)
     {
-        self.showDelayLabel.text = [NSString stringWithFormat:@"Show delay = %.0lf ms", sender.value];
-        self.bmb1.showDelay = self.bmb2.showDelay = self.bmb3.showDelay = sender.value / 1000;
+        self.showDelayLabel.text = [NSString stringWithFormat:@"Boom delay = %.0lf ms", sender.value];
+        self.bmb1.boomDelay = self.bmb2.boomDelay = self.bmb3.boomDelay = sender.value / 1000;
     }
     else if (sender == self.showDurationSlider)
     {
-        self.showDurationLabel.text = [NSString stringWithFormat:@"Show duration = %.0lf ms", sender.value];
-        self.bmb1.showDuration = self.bmb2.showDuration = self.bmb3.showDuration = sender.value / 1000;
+        self.showDurationLabel.text = [NSString stringWithFormat:@"Boom duration = %.0lf ms", sender.value];
+        self.bmb1.boomDuration = self.bmb2.boomDuration = self.bmb3.boomDuration = sender.value / 1000;
     }
     else if (sender == self.hideDelaySlider)
     {
-        self.hideDelayLabel.text = [NSString stringWithFormat:@"Hide delay = %.0lf ms", sender.value];
-        self.bmb1.hideDelay = self.bmb2.hideDelay = self.bmb3.hideDelay = sender.value / 1000;
+        self.hideDelayLabel.text = [NSString stringWithFormat:@"Reboom delay = %.0lf ms", sender.value];
+        self.bmb1.reboomDelay = self.bmb2.reboomDelay = self.bmb3.reboomDelay = sender.value / 1000;
     }
     else if (sender == self.hideDurationSlider)
     {
-        self.hideDurationLabel.text = [NSString stringWithFormat:@"Hide duration = %.0lf ms", sender.value];
-        self.bmb1.hideDuration = self.bmb2.hideDuration = self.bmb3.hideDuration = sender.value / 1000;
+        self.hideDurationLabel.text = [NSString stringWithFormat:@"Reboom duration = %.0lf ms", sender.value];
+        self.bmb1.reboomDuration = self.bmb2.reboomDuration = self.bmb3.reboomDuration = sender.value / 1000;
     }
 }
 

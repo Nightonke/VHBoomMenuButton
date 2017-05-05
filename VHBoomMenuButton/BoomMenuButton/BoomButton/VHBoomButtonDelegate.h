@@ -1,5 +1,5 @@
 //
-//  VHInnerOnBoomButtonClickListener.h
+//  VHBoomButtonDelegate.h
 //  VHBoomMenuButton
 //
 //  Created by viktorhuang on 2017/4/11.
@@ -11,7 +11,7 @@
 
 @class VHBoomButton;
 
-@protocol VHInnerOnBoomButtonClickListener <NSObject>
+@protocol VHBoomButtonDelegate <NSObject>
 
 @required
 - (void)onButton:(VHBoomButton *)boomButton clickedAt:(int)index;

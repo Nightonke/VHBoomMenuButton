@@ -17,10 +17,10 @@
  - VHButtonPlaceAlignmentBottom: Bottom.
  - VHButtonPlaceAlignmentLeft: Center-left.
  - VHButtonPlaceAlignmentRight: Center-right.
- - VHButtonPlaceAlignmentTL: Top-left.
- - VHButtonPlaceAlignmentTR: Top-right.
- - VHButtonPlaceAlignmentBL: Bottom-left.
- - VHButtonPlaceAlignmentBR: Bottom-right.
+ - VHButtonPlaceAlignmentTopLeft: Top-left.
+ - VHButtonPlaceAlignmentTopRight: Top-right.
+ - VHButtonPlaceAlignmentBottomLeft: Bottom-left.
+ - VHButtonPlaceAlignmentBottomRight: Bottom-right.
  */
 typedef NS_ENUM(NSUInteger, VHButtonPlaceAlignmentEnum)
 {
@@ -29,10 +29,10 @@ typedef NS_ENUM(NSUInteger, VHButtonPlaceAlignmentEnum)
     VHButtonPlaceAlignmentBottom,
     VHButtonPlaceAlignmentLeft,
     VHButtonPlaceAlignmentRight,
-    VHButtonPlaceAlignmentTL,
-    VHButtonPlaceAlignmentTR,
-    VHButtonPlaceAlignmentBL,
-    VHButtonPlaceAlignmentBR,
+    VHButtonPlaceAlignmentTopLeft,
+    VHButtonPlaceAlignmentTopRight,
+    VHButtonPlaceAlignmentBottomLeft,
+    VHButtonPlaceAlignmentBottomRight,
 };
 
 #endif /* VHButtonPlaceAlignmentEnum_h */

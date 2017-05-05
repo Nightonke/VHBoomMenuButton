@@ -30,7 +30,7 @@
     self.bmb.buttonEnum = VHButtonSimpleCircle;
     self.bmb.piecePlaceEnum = VHPiecePlaceDOT_9_1;
     self.bmb.buttonPlaceEnum = VHButtonPlaceSC_9_1;
-    self.bmb.boomInWholeScreen = NO;
+    self.bmb.isBoomInWholeScreen = NO;
     for (int i = 0; i < self.bmb.pieceNumber; i++)
     {
         [self.bmb addBuilder:[BuilderManager simpleCircleButtonBuilder]];

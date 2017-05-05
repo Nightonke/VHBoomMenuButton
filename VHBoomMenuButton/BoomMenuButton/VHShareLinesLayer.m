@@ -37,7 +37,7 @@
 
 + (BOOL)needsDisplayForKey:(NSString *)key
 {
-    if ([self isCustomAnimKey:key]) return true;
+    if ([self isCustomAnimKey:key]) return YES;
     return [super needsDisplayForKey:key];
 }
 

@@ -51,31 +51,31 @@
 
 #pragma mark - VHBoomDelegate
 
-- (void)onBoomButton:(VHBoomButton *)boomButton clickedAt:(int)index
+- (void)boomMenuButton:(VHBoomMenuButton *)bmb didClickBoomButtonOfBuilder:(VHBoomButtonBuilder *)builder at:(int)index
 {
-    VHHamButtonBuilder *builder = (VHHamButtonBuilder *)[self.bmb builder:index];
+    VHHamButtonBuilder *hamBuilder = (VHHamButtonBuilder *)[self.bmb builder:index];
     switch (index)
     {
         case 0:
-            builder.normalText = @"Changed!";
-            builder.highlightedText = @"Highlighted, changed!";
-            builder.normalSubText = @"Sub-text, changed!";
-            builder.normalTextColor = [UIColor yellowColor];
-            builder.highlightedColor = [UIColor purpleColor];
-            builder.normalSubTextColor = [UIColor blackColor];
+            hamBuilder.normalText = @"Changed!";
+            hamBuilder.highlightedText = @"Highlighted, changed!";
+            hamBuilder.normalSubText = @"Sub-text, changed!";
+            hamBuilder.normalTextColor = [UIColor yellowColor];
+            hamBuilder.highlightedColor = [UIColor purpleColor];
+            hamBuilder.normalSubTextColor = [UIColor blackColor];
             break;
         case 1:
-            builder.normalImageName = @"bat";
-            builder.highlightedImageName = @"bear";
+            hamBuilder.normalImageName = @"bat";
+            hamBuilder.highlightedImageName = @"bear";
             break;
         case 2:
-            builder.normalColor = [UIColor redColor];
+            hamBuilder.normalColor = [UIColor redColor];
             break;
         case 3:
-            builder.pieceColor = [UIColor whiteColor];
+            hamBuilder.pieceColor = [UIColor whiteColor];
             break;
         case 4:
-            builder.unable = YES;
+            hamBuilder.unable = YES;
             break;
         default:
             break;

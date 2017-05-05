@@ -9,7 +9,7 @@
 #ifndef VHBoomButton_protected_h
 #define VHBoomButton_protected_h
 
-#import "VHInnerOnBoomButtonClickListener.h"
+#import "VHBoomButtonDelegate.h"
 #import "VHBoomButtonBuilder.h"
 #import "VHButtonStateEnum.h"
 
@@ -18,8 +18,8 @@
 #pragma mark - Basic
 
 @property (nonatomic, assign) int innerIndex;
-@property (nonatomic, weak) id<VHInnerOnBoomButtonClickListener> innerListener;
-@property (nonatomic, copy) OnBoomButtonClickedBlock clickedBlock;
+@property (nonatomic, weak) id<VHBoomButtonDelegate> innerListener;
+@property (nonatomic, copy) BoomButtonDidClickBlock clickedBlock;
 @property (nonatomic, assign) BOOL unable;
 @property (nonatomic, assign) VHButtonStateEnum lastStateEnum;
 
@@ -29,7 +29,7 @@
 
 #pragma mark - Shadow
 
-@property (nonatomic, assign) BOOL shadowEffect;
+@property (nonatomic, assign) BOOL hasShadow;
 @property (nonatomic, assign) CGRect shadowPathRect;
 @property (nonatomic, assign) CGFloat shadowOffsetX;
 @property (nonatomic, assign) CGFloat shadowOffsetY;
@@ -119,8 +119,6 @@
 @property (nonatomic, assign) CGFloat subTextShadowOffsetY;
 
 @property (nonatomic, strong) UILabel *subLabel;
-
-#pragma mark - Sub Text
 
 #pragma mark - Private Usage
 

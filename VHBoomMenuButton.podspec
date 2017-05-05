@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   
   s.subspec 'ObjC' do |ss|
     ss.ios.deployment_target = '7.0'
-    ss.source_files = 'BoomMenuButton/**/*.{h,m}' 
+    ss.source_files = 'VHBoomMenuButton/**/*.{h,m}' 
   end
   
 end

@@ -28,7 +28,7 @@
     self.bmb1.piecePlaceEnum = VHPiecePlaceDOT_9_1;
     self.bmb1.buttonPlaceEnum = VHButtonPlaceSC_9_1;
     self.bmb1.pieceCornerRadius = 1;
-    self.bmb1.blurBackground = YES;
+    self.bmb1.backgroundBlurred = YES;
     if ([UIBlurEffect class])
     {
         self.bmb1.blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
@@ -39,13 +39,13 @@
     self.bmb1.tipLabel.textColor = [UIColor darkGrayColor];
     for (int i = 0; i < self.bmb1.pieceNumber; i++)
     {
-        [self.bmb1 addBuilder:[BuilderManager squaresSimpleCircleButtonBuilder]];
+        [self.bmb1 addBuilder:[BuilderManager squareSimpleCircleButtonBuilder]];
     }
     
     self.bmb2.buttonEnum = VHButtonHam;
     self.bmb2.piecePlaceEnum = VHPiecePlaceHAM_4;
     self.bmb2.buttonPlaceEnum = VHButtonPlaceHAM_4;
-    self.bmb2.blurBackground = YES;
+    self.bmb2.backgroundBlurred = YES;
     if ([UIBlurEffect class])
     {
         self.bmb2.blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
@@ -59,11 +59,14 @@
     self.bmb3.buttonEnum = VHButtonTextOutsideCircle;
     self.bmb3.piecePlaceEnum = VHPiecePlaceDOT_9_1;
     self.bmb3.buttonPlaceEnum = VHButtonPlaceSC_9_1;
-    self.bmb3.blurBackground = YES;
+    self.bmb3.backgroundBlurred = YES;
     if ([UIBlurEffect class])
     {
         self.bmb3.blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     }
+    self.bmb3.tip = @"Select an animal to feed!";
+    self.bmb3.tipLabel.textColor = [UIColor darkGrayColor];
+    self.bmb3.tipLabel.font = [UIFont systemFontOfSize:15];
     for (int i = 0; i < [VHBoomMenuButton pieceNumber:self.bmb3.piecePlaceEnum]; i++)
     {
         VHTextOutsideCircleButtonBuilder *builder = [BuilderManager textOutsideCircleButtonBuilder];
@@ -71,9 +74,6 @@
         builder.highlightedTextColor = [UIColor lightGrayColor];
         [self.bmb3 addBuilder:builder];
     }
-    self.bmb3.tip = @"Select an animal to feed!";
-    self.bmb3.tipLabel.textColor = [UIColor darkGrayColor];
-    self.bmb3.tipLabel.font = [UIFont systemFontOfSize:15];
 }
 
 @end

@@ -17,12 +17,7 @@
 @property (nonatomic, assign) CGFloat processForLine1;
 @property (nonatomic, assign) CGFloat processForLine2;
 
-- (void)setPiecePositions:(NSMutableArray<NSValue *> *)piecePositions
-                dotRadius:(CGFloat)dotRadius
-                showDelay:(CFTimeInterval)showDelay
-             showDuration:(CFTimeInterval)showDuration
-                hideDelay:(CFTimeInterval)hideDelay
-             hideDuration:(CFTimeInterval)hideDuration;
+- (void)setPiecePositions:(NSMutableArray<NSValue *> *)piecePositions dotRadius:(CGFloat)dotRadius;
 
 - (void)pieceStartShowAnimation:(NSUInteger)pieceIndex withDuration:(CFTimeInterval)duration;
 

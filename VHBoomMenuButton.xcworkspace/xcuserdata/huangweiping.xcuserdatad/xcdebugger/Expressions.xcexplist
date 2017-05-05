@@ -33,29 +33,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "+[BuilderManager initializeDatasForSimpleCircleButton:piecesAndButtons:]:BuilderManager.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "VHPiecePlaceEnumCount">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[VHTextOutsideCircleButtonBuilder createButton]:VHTextOutsideCircleButtonBuilder.m">
       </ContextState>
       <ContextState
-         contextName = "-[VHTextInsideCircleButton initWithImage:pressedImage:normalColor:pressedColor:imageNormalTintColor:imagePressedTintColor:textNormalColor:textPressedColor:imageFrame:textFrame:text:font:lineBreakMode:lines:buttonRadius:shadowRadius:shadowOffset:shadowOpacity:shadowColor:withDelegate:at:]:VHTextInsideCircleButton.m">
+         contextName = "__93-[VHBoomMenuButton setShowAnimationForEverySubButton:button:startPosition:endPosition:index:]_block_invoke:VHBoomMenuButton.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.textFrame">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[ViewController setButtonType]:ViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.selectedButtonEnum">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[ViewController setNoBackground]:ViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.bmb.noBackground">
+               value = "rotateView.frame">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -71,13 +63,29 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[ViewController setNoBackground]:ViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.bmb.noBackground">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[VHTextInsideCircleButton initWithImage:pressedImage:normalColor:pressedColor:imageNormalTintColor:imagePressedTintColor:textNormalColor:textPressedColor:imageFrame:textFrame:text:font:lineBreakMode:lines:buttonRadius:shadowRadius:shadowOffset:shadowOpacity:shadowColor:withDelegate:at:]:VHTextInsideCircleButton.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.textFrame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[VHBoomMenuButton getOrderIndex:inSize:]:VHBoomMenuButton.m">
       </ContextState>
       <ContextState
-         contextName = "__93-[VHBoomMenuButton setShowAnimationForEverySubButton:button:startPosition:endPosition:index:]_block_invoke:VHBoomMenuButton.m">
+         contextName = "-[ViewController setButtonType]:ViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "rotateView.frame">
+               value = "self.selectedButtonEnum">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -85,7 +93,7 @@
          contextName = "-[VHBoomMenuButton calculateErrorForTextOutSideCircleButtonForStartYPosition]:VHBoomMenuButton.m">
          <PersistentStrings>
             <PersistentString
-               value = "[value CGPointValue]">
+               value = "[[self.piecePositions objectAtIndex:i] CGPointValue]">
             </PersistentString>
             <PersistentString
                value = "[self.piecePositions objectAtIndex:i]">
@@ -94,9 +102,15 @@
                value = "self.piecePositions">
             </PersistentString>
             <PersistentString
-               value = "[[self.piecePositions objectAtIndex:i] CGPointValue]">
+               value = "[value CGPointValue]">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BoomMenuButton.draw(CGRect) -&gt; ():BoomMenuButton.swift">
+      </ContextState>
+      <ContextState
+         contextName = "static ButtonPlaceManager.positions(parentFrame : CGRect, buttonRadius : CGFloat, boomMenuButton : BoomMenuButton) -&gt; [CGPoint]:ButtonPlaceManager.swift">
       </ContextState>
       <ContextState
          contextName = "__29-[ViewController addButtons:]_block_invoke:ViewController.m">
@@ -119,13 +133,13 @@
          contextName = "-[VHSimpleCircleButton rotateAnchorPoint]:VHSimpleCircleButton.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.buttonCircle">
-            </PersistentString>
-            <PersistentString
                value = "self.buttonCircle.frame">
             </PersistentString>
             <PersistentString
                value = "self.frame.size.width">
+            </PersistentString>
+            <PersistentString
+               value = "self.buttonCircle">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

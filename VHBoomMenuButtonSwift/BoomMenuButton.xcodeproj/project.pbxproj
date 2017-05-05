@@ -1,0 +1,482 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3748A9DB1EB0DB3D008F7C5E /* BoomMenuButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 3748A9D91EB0DB3D008F7C5E /* BoomMenuButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3748A9F01EB0DC58008F7C5E /* BoomMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748A9EF1EB0DC58008F7C5E /* BoomMenuButton.swift */; };
+		3748A9F21EB0DCA2008F7C5E /* BoomEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748A9F11EB0DCA2008F7C5E /* BoomEnum.swift */; };
+		3748A9F41EB0DDF2008F7C5E /* TimeInterpolator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748A9F31EB0DDF2008F7C5E /* TimeInterpolator.swift */; };
+		3748A9F61EB0DE95008F7C5E /* Ease.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748A9F51EB0DE95008F7C5E /* Ease.swift */; };
+		3748A9F81EB1818D008F7C5E /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748A9F71EB1818D008F7C5E /* AnimationManager.swift */; };
+		3748AA021EB197FA008F7C5E /* OrderEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748AA011EB197FA008F7C5E /* OrderEnum.swift */; };
+		3748AA041EB1AA81008F7C5E /* PiecePlaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748AA031EB1AA81008F7C5E /* PiecePlaceManager.swift */; };
+		3748AA061EB1AAC3008F7C5E /* PiecePlaceEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748AA051EB1AAC3008F7C5E /* PiecePlaceEnum.swift */; };
+		3748AA0A1EB2211C008F7C5E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748AA091EB2211C008F7C5E /* Utils.swift */; };
+		37A7FA1D1EB23822004638C8 /* ButtonEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7FA1C1EB23822004638C8 /* ButtonEnum.swift */; };
+		37A7FA211EB255E2004638C8 /* BoomDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7FA201EB255E2004638C8 /* BoomDelegate.swift */; };
+		37A7FA231EB25B01004638C8 /* BoomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7FA221EB25B01004638C8 /* BoomButton.swift */; };
+		37A7FA251EB25DE9004638C8 /* BoomButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7FA241EB25DE9004638C8 /* BoomButtonBuilder.swift */; };
+		37A7FA2C1EB2E8B7004638C8 /* ButtonPlaceEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7FA2B1EB2E8B7004638C8 /* ButtonPlaceEnum.swift */; };
+		37A7FA2E1EB2E8D3004638C8 /* ButtonPlaceAlignmentEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7FA2D1EB2E8D3004638C8 /* ButtonPlaceAlignmentEnum.swift */; };
+		37A7FA301EB2F2ED004638C8 /* ButtonPlaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7FA2F1EB2F2ED004638C8 /* ButtonPlaceManager.swift */; };
+		37A7FA321EB2F318004638C8 /* SimpleCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7FA311EB2F318004638C8 /* SimpleCircleButton.swift */; };
+		37A7FA341EB2F333004638C8 /* SimpleCircleButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7FA331EB2F333004638C8 /* SimpleCircleButtonBuilder.swift */; };
+		37A7FA361EB2F55B004638C8 /* BoomButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7FA351EB2F55B004638C8 /* BoomButtonDelegate.swift */; };
+		37A7FA381EB2F71E004638C8 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7FA371EB2F71E004638C8 /* BackgroundView.swift */; };
+		37A7FA3A1EB2F738004638C8 /* ShareLinesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7FA391EB2F738004638C8 /* ShareLinesView.swift */; };
+		37A7FA3C1EB2F748004638C8 /* ShareLinesLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7FA3B1EB2F748004638C8 /* ShareLinesLayer.swift */; };
+		37A7FA3E1EB2F765004638C8 /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7FA3D1EB2F765004638C8 /* ErrorManager.swift */; };
+		37A7FA401EB2F777004638C8 /* BackgroundDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7FA3F1EB2F777004638C8 /* BackgroundDelegate.swift */; };
+		37A7FA421EB2F7FC004638C8 /* BoomStateEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7FA411EB2F7FC004638C8 /* BoomStateEnum.swift */; };
+		37A7FA441EB2F814004638C8 /* ButtonStateEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7FA431EB2F814004638C8 /* ButtonStateEnum.swift */; };
+		37A7FA461EB30C83004638C8 /* BoomPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7FA451EB30C83004638C8 /* BoomPiece.swift */; };
+		37AC4D721EB8D3AA005FB4D7 /* BoomButtonWithText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D711EB8D3AA005FB4D7 /* BoomButtonWithText.swift */; };
+		37AC4D741EB8D3E5005FB4D7 /* BoomButtonWithTextBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D731EB8D3E5005FB4D7 /* BoomButtonWithTextBuilder.swift */; };
+		37AC4D761EB8EC94005FB4D7 /* TextInsideCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D751EB8EC94005FB4D7 /* TextInsideCircleButton.swift */; };
+		37AC4D781EB8ECB0005FB4D7 /* TextInsideCircleButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D771EB8ECB0005FB4D7 /* TextInsideCircleButtonBuilder.swift */; };
+		37AC4D7C1EB9CD23005FB4D7 /* TextOutsideCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D7B1EB9CD23005FB4D7 /* TextOutsideCircleButton.swift */; };
+		37AC4D7E1EB9CD51005FB4D7 /* TextOutsideCircleButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D7D1EB9CD51005FB4D7 /* TextOutsideCircleButtonBuilder.swift */; };
+		37AC4D821EBA45FA005FB4D7 /* HamButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D811EBA45FA005FB4D7 /* HamButtonBuilder.swift */; };
+		37AC4D841EBAC711005FB4D7 /* HamButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D831EBAC711005FB4D7 /* HamButton.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3748A9D61EB0DB3D008F7C5E /* BoomMenuButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BoomMenuButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3748A9D91EB0DB3D008F7C5E /* BoomMenuButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoomMenuButton.h; sourceTree = "<group>"; };
+		3748A9DA1EB0DB3D008F7C5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3748A9EF1EB0DC58008F7C5E /* BoomMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoomMenuButton.swift; sourceTree = "<group>"; };
+		3748A9F11EB0DCA2008F7C5E /* BoomEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoomEnum.swift; sourceTree = "<group>"; };
+		3748A9F31EB0DDF2008F7C5E /* TimeInterpolator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeInterpolator.swift; sourceTree = "<group>"; };
+		3748A9F51EB0DE95008F7C5E /* Ease.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ease.swift; sourceTree = "<group>"; };
+		3748A9F71EB1818D008F7C5E /* AnimationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
+		3748AA011EB197FA008F7C5E /* OrderEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderEnum.swift; sourceTree = "<group>"; };
+		3748AA031EB1AA81008F7C5E /* PiecePlaceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PiecePlaceManager.swift; sourceTree = "<group>"; };
+		3748AA051EB1AAC3008F7C5E /* PiecePlaceEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PiecePlaceEnum.swift; sourceTree = "<group>"; };
+		3748AA091EB2211C008F7C5E /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		37A7FA1C1EB23822004638C8 /* ButtonEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonEnum.swift; sourceTree = "<group>"; };
+		37A7FA201EB255E2004638C8 /* BoomDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoomDelegate.swift; sourceTree = "<group>"; };
+		37A7FA221EB25B01004638C8 /* BoomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoomButton.swift; sourceTree = "<group>"; };
+		37A7FA241EB25DE9004638C8 /* BoomButtonBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoomButtonBuilder.swift; sourceTree = "<group>"; };
+		37A7FA2B1EB2E8B7004638C8 /* ButtonPlaceEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonPlaceEnum.swift; sourceTree = "<group>"; };
+		37A7FA2D1EB2E8D3004638C8 /* ButtonPlaceAlignmentEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonPlaceAlignmentEnum.swift; sourceTree = "<group>"; };
+		37A7FA2F1EB2F2ED004638C8 /* ButtonPlaceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonPlaceManager.swift; sourceTree = "<group>"; };
+		37A7FA311EB2F318004638C8 /* SimpleCircleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleCircleButton.swift; sourceTree = "<group>"; };
+		37A7FA331EB2F333004638C8 /* SimpleCircleButtonBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleCircleButtonBuilder.swift; sourceTree = "<group>"; };
+		37A7FA351EB2F55B004638C8 /* BoomButtonDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoomButtonDelegate.swift; sourceTree = "<group>"; };
+		37A7FA371EB2F71E004638C8 /* BackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		37A7FA391EB2F738004638C8 /* ShareLinesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareLinesView.swift; sourceTree = "<group>"; };
+		37A7FA3B1EB2F748004638C8 /* ShareLinesLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareLinesLayer.swift; sourceTree = "<group>"; };
+		37A7FA3D1EB2F765004638C8 /* ErrorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
+		37A7FA3F1EB2F777004638C8 /* BackgroundDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundDelegate.swift; sourceTree = "<group>"; };
+		37A7FA411EB2F7FC004638C8 /* BoomStateEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoomStateEnum.swift; sourceTree = "<group>"; };
+		37A7FA431EB2F814004638C8 /* ButtonStateEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStateEnum.swift; sourceTree = "<group>"; };
+		37A7FA451EB30C83004638C8 /* BoomPiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoomPiece.swift; sourceTree = "<group>"; };
+		37AC4D711EB8D3AA005FB4D7 /* BoomButtonWithText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoomButtonWithText.swift; sourceTree = "<group>"; };
+		37AC4D731EB8D3E5005FB4D7 /* BoomButtonWithTextBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoomButtonWithTextBuilder.swift; sourceTree = "<group>"; };
+		37AC4D751EB8EC94005FB4D7 /* TextInsideCircleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInsideCircleButton.swift; sourceTree = "<group>"; };
+		37AC4D771EB8ECB0005FB4D7 /* TextInsideCircleButtonBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInsideCircleButtonBuilder.swift; sourceTree = "<group>"; };
+		37AC4D7B1EB9CD23005FB4D7 /* TextOutsideCircleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextOutsideCircleButton.swift; sourceTree = "<group>"; };
+		37AC4D7D1EB9CD51005FB4D7 /* TextOutsideCircleButtonBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextOutsideCircleButtonBuilder.swift; sourceTree = "<group>"; };
+		37AC4D811EBA45FA005FB4D7 /* HamButtonBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamButtonBuilder.swift; sourceTree = "<group>"; };
+		37AC4D831EBAC711005FB4D7 /* HamButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamButton.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3748A9D21EB0DB3D008F7C5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3748A9CC1EB0DB3D008F7C5E = {
+			isa = PBXGroup;
+			children = (
+				3748A9D81EB0DB3D008F7C5E /* BoomMenuButton */,
+				3748A9D71EB0DB3D008F7C5E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3748A9D71EB0DB3D008F7C5E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3748A9D61EB0DB3D008F7C5E /* BoomMenuButton.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3748A9D81EB0DB3D008F7C5E /* BoomMenuButton */ = {
+			isa = PBXGroup;
+			children = (
+				3748A9EC1EB0DC42008F7C5E /* Animation */,
+				3748A9ED1EB0DC42008F7C5E /* BoomButton */,
+				3748A9EE1EB0DC42008F7C5E /* Piece */,
+				3748A9EF1EB0DC58008F7C5E /* BoomMenuButton.swift */,
+				37A7FA371EB2F71E004638C8 /* BackgroundView.swift */,
+				37A7FA391EB2F738004638C8 /* ShareLinesView.swift */,
+				37A7FA3B1EB2F748004638C8 /* ShareLinesLayer.swift */,
+				37A7FA3D1EB2F765004638C8 /* ErrorManager.swift */,
+				3748AA091EB2211C008F7C5E /* Utils.swift */,
+				37A7FA201EB255E2004638C8 /* BoomDelegate.swift */,
+				37A7FA3F1EB2F777004638C8 /* BackgroundDelegate.swift */,
+				37A7FA1C1EB23822004638C8 /* ButtonEnum.swift */,
+				37A7FA411EB2F7FC004638C8 /* BoomStateEnum.swift */,
+				37A7FA431EB2F814004638C8 /* ButtonStateEnum.swift */,
+				3748A9D91EB0DB3D008F7C5E /* BoomMenuButton.h */,
+				3748A9DA1EB0DB3D008F7C5E /* Info.plist */,
+			);
+			path = BoomMenuButton;
+			sourceTree = "<group>";
+		};
+		3748A9EC1EB0DC42008F7C5E /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				3748A9F71EB1818D008F7C5E /* AnimationManager.swift */,
+				3748A9F51EB0DE95008F7C5E /* Ease.swift */,
+				3748A9F31EB0DDF2008F7C5E /* TimeInterpolator.swift */,
+				3748A9F11EB0DCA2008F7C5E /* BoomEnum.swift */,
+				3748AA011EB197FA008F7C5E /* OrderEnum.swift */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		3748A9ED1EB0DC42008F7C5E /* BoomButton */ = {
+			isa = PBXGroup;
+			children = (
+				37A7FA2F1EB2F2ED004638C8 /* ButtonPlaceManager.swift */,
+				37A7FA221EB25B01004638C8 /* BoomButton.swift */,
+				37A7FA241EB25DE9004638C8 /* BoomButtonBuilder.swift */,
+				37A7FA311EB2F318004638C8 /* SimpleCircleButton.swift */,
+				37A7FA331EB2F333004638C8 /* SimpleCircleButtonBuilder.swift */,
+				37AC4D711EB8D3AA005FB4D7 /* BoomButtonWithText.swift */,
+				37AC4D731EB8D3E5005FB4D7 /* BoomButtonWithTextBuilder.swift */,
+				37AC4D751EB8EC94005FB4D7 /* TextInsideCircleButton.swift */,
+				37AC4D771EB8ECB0005FB4D7 /* TextInsideCircleButtonBuilder.swift */,
+				37AC4D7B1EB9CD23005FB4D7 /* TextOutsideCircleButton.swift */,
+				37AC4D7D1EB9CD51005FB4D7 /* TextOutsideCircleButtonBuilder.swift */,
+				37AC4D831EBAC711005FB4D7 /* HamButton.swift */,
+				37AC4D811EBA45FA005FB4D7 /* HamButtonBuilder.swift */,
+				37A7FA351EB2F55B004638C8 /* BoomButtonDelegate.swift */,
+				37A7FA2B1EB2E8B7004638C8 /* ButtonPlaceEnum.swift */,
+				37A7FA2D1EB2E8D3004638C8 /* ButtonPlaceAlignmentEnum.swift */,
+			);
+			path = BoomButton;
+			sourceTree = "<group>";
+		};
+		3748A9EE1EB0DC42008F7C5E /* Piece */ = {
+			isa = PBXGroup;
+			children = (
+				3748AA031EB1AA81008F7C5E /* PiecePlaceManager.swift */,
+				37A7FA451EB30C83004638C8 /* BoomPiece.swift */,
+				3748AA051EB1AAC3008F7C5E /* PiecePlaceEnum.swift */,
+			);
+			path = Piece;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3748A9D31EB0DB3D008F7C5E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3748A9DB1EB0DB3D008F7C5E /* BoomMenuButton.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3748A9D51EB0DB3D008F7C5E /* BoomMenuButton */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3748A9DE1EB0DB3D008F7C5E /* Build configuration list for PBXNativeTarget "BoomMenuButton" */;
+			buildPhases = (
+				3748A9D11EB0DB3D008F7C5E /* Sources */,
+				3748A9D21EB0DB3D008F7C5E /* Frameworks */,
+				3748A9D31EB0DB3D008F7C5E /* Headers */,
+				3748A9D41EB0DB3D008F7C5E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BoomMenuButton;
+			productName = BoomMenuButton;
+			productReference = 3748A9D61EB0DB3D008F7C5E /* BoomMenuButton.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3748A9CD1EB0DB3D008F7C5E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = Nightonke;
+				TargetAttributes = {
+					3748A9D51EB0DB3D008F7C5E = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = H7B6S6TRXA;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 3748A9D01EB0DB3D008F7C5E /* Build configuration list for PBXProject "BoomMenuButton" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3748A9CC1EB0DB3D008F7C5E;
+			productRefGroup = 3748A9D71EB0DB3D008F7C5E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3748A9D51EB0DB3D008F7C5E /* BoomMenuButton */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3748A9D41EB0DB3D008F7C5E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3748A9D11EB0DB3D008F7C5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37A7FA1D1EB23822004638C8 /* ButtonEnum.swift in Sources */,
+				3748A9F41EB0DDF2008F7C5E /* TimeInterpolator.swift in Sources */,
+				3748AA041EB1AA81008F7C5E /* PiecePlaceManager.swift in Sources */,
+				3748AA0A1EB2211C008F7C5E /* Utils.swift in Sources */,
+				37AC4D7C1EB9CD23005FB4D7 /* TextOutsideCircleButton.swift in Sources */,
+				37A7FA361EB2F55B004638C8 /* BoomButtonDelegate.swift in Sources */,
+				37A7FA321EB2F318004638C8 /* SimpleCircleButton.swift in Sources */,
+				37AC4D7E1EB9CD51005FB4D7 /* TextOutsideCircleButtonBuilder.swift in Sources */,
+				37A7FA421EB2F7FC004638C8 /* BoomStateEnum.swift in Sources */,
+				37AC4D721EB8D3AA005FB4D7 /* BoomButtonWithText.swift in Sources */,
+				37A7FA231EB25B01004638C8 /* BoomButton.swift in Sources */,
+				37A7FA461EB30C83004638C8 /* BoomPiece.swift in Sources */,
+				37AC4D761EB8EC94005FB4D7 /* TextInsideCircleButton.swift in Sources */,
+				37AC4D741EB8D3E5005FB4D7 /* BoomButtonWithTextBuilder.swift in Sources */,
+				37A7FA3A1EB2F738004638C8 /* ShareLinesView.swift in Sources */,
+				37AC4D841EBAC711005FB4D7 /* HamButton.swift in Sources */,
+				37A7FA251EB25DE9004638C8 /* BoomButtonBuilder.swift in Sources */,
+				37A7FA341EB2F333004638C8 /* SimpleCircleButtonBuilder.swift in Sources */,
+				37A7FA211EB255E2004638C8 /* BoomDelegate.swift in Sources */,
+				37A7FA3C1EB2F748004638C8 /* ShareLinesLayer.swift in Sources */,
+				37A7FA381EB2F71E004638C8 /* BackgroundView.swift in Sources */,
+				3748A9F01EB0DC58008F7C5E /* BoomMenuButton.swift in Sources */,
+				37AC4D781EB8ECB0005FB4D7 /* TextInsideCircleButtonBuilder.swift in Sources */,
+				37A7FA2E1EB2E8D3004638C8 /* ButtonPlaceAlignmentEnum.swift in Sources */,
+				37A7FA441EB2F814004638C8 /* ButtonStateEnum.swift in Sources */,
+				3748A9F21EB0DCA2008F7C5E /* BoomEnum.swift in Sources */,
+				3748AA021EB197FA008F7C5E /* OrderEnum.swift in Sources */,
+				37A7FA3E1EB2F765004638C8 /* ErrorManager.swift in Sources */,
+				37A7FA2C1EB2E8B7004638C8 /* ButtonPlaceEnum.swift in Sources */,
+				3748A9F61EB0DE95008F7C5E /* Ease.swift in Sources */,
+				3748A9F81EB1818D008F7C5E /* AnimationManager.swift in Sources */,
+				3748AA061EB1AAC3008F7C5E /* PiecePlaceEnum.swift in Sources */,
+				37AC4D821EBA45FA005FB4D7 /* HamButtonBuilder.swift in Sources */,
+				37A7FA401EB2F777004638C8 /* BackgroundDelegate.swift in Sources */,
+				37A7FA301EB2F2ED004638C8 /* ButtonPlaceManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3748A9DC1EB0DB3D008F7C5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3748A9DD1EB0DB3D008F7C5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3748A9DF1EB0DB3D008F7C5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = H7B6S6TRXA;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = BoomMenuButton/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = mh_dylib;
+				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-function-bodies=50";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nightonke.BoomMenuButton;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		3748A9E01EB0DB3D008F7C5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = H7B6S6TRXA;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = BoomMenuButton/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = mh_dylib;
+				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-function-bodies=50";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nightonke.BoomMenuButton;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3748A9D01EB0DB3D008F7C5E /* Build configuration list for PBXProject "BoomMenuButton" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3748A9DC1EB0DB3D008F7C5E /* Debug */,
+				3748A9DD1EB0DB3D008F7C5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3748A9DE1EB0DB3D008F7C5E /* Build configuration list for PBXNativeTarget "BoomMenuButton" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3748A9DF1EB0DB3D008F7C5E /* Debug */,
+				3748A9E01EB0DB3D008F7C5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3748A9CD1EB0DB3D008F7C5E /* Project object */;
+}

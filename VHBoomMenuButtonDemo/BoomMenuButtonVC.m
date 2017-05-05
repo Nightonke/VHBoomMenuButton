@@ -71,7 +71,7 @@
     [self dimBMBLogoAnimation];
 }
 
-- (void)onBoomWillHide
+- (void)onBoomwillReboom
 {
     [self lightBMBLogoAnimation];
 }

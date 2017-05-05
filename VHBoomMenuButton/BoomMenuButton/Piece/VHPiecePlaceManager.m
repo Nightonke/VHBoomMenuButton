@@ -27,21 +27,21 @@
             break;
         case VHPiecePlaceDOT_2_1:
             ADD_POINT(-dotHorizontalMargin / 2 - radius, 0);
-            ADD_POINT(dotHorizontalMargin / 2 + radius, 0);
+            ADD_POINT(+dotHorizontalMargin / 2 + radius, 0);
             break;
         case VHPiecePlaceDOT_2_2:
             ADD_POINT(0, -dotVerticalMargin / 2 - radius);
-            ADD_POINT(0, dotVerticalMargin / 2 + radius);
+            ADD_POINT(0, +dotVerticalMargin / 2 + radius);
             break;
         case VHPiecePlaceDOT_3_1:
             ADD_POINT(-dotHorizontalMargin - 2 * radius, 0);
             ADD_POINT(0, 0);
-            ADD_POINT(dotHorizontalMargin + 2 * radius, 0);
+            ADD_POINT(+dotHorizontalMargin + 2 * radius, 0);
             break;
         case VHPiecePlaceDOT_3_2:
             ADD_POINT(0, -dotVerticalMargin - 2 * radius);
             ADD_POINT(0, 0);
-            ADD_POINT(0, dotVerticalMargin + 2 * radius);
+            ADD_POINT(0, +dotVerticalMargin + 2 * radius);
             break;
         case VHPiecePlaceDOT_3_3:
         {
@@ -50,7 +50,7 @@
             c = b / (sqrt(3) / 2);
             a = c / 2;
             ADD_POINT(-b, -a);
-            ADD_POINT(b, -a);
+            ADD_POINT(+b, -a);
             ADD_POINT(0, c);
         }
             break;
@@ -62,21 +62,21 @@
             a = c / 2;
             ADD_POINT(0, -c);
             ADD_POINT(-b, a);
-            ADD_POINT(b, a);
+            ADD_POINT(+b, a);
         }
             break;
         case VHPiecePlaceDOT_4_1:
             ADD_POINT(-dotHorizontalMargin / 2 - radius, -dotVerticalMargin / 2 - radius);
-            ADD_POINT(dotHorizontalMargin / 2 + radius, -dotVerticalMargin / 2 - radius);
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, dotVerticalMargin / 2 + radius);
-            ADD_POINT(dotHorizontalMargin / 2 + radius, dotVerticalMargin / 2 + radius);
+            ADD_POINT(+dotHorizontalMargin / 2 + radius, -dotVerticalMargin / 2 - radius);
+            ADD_POINT(-dotHorizontalMargin / 2 - radius, +dotVerticalMargin / 2 + radius);
+            ADD_POINT(+dotHorizontalMargin / 2 + radius, +dotVerticalMargin / 2 + radius);
             break;
         case VHPiecePlaceDOT_4_2:
         {
             CGFloat a = (2 * radius + dotInclinedMargin) / sqrt(2);
             ADD_POINT(0, -a);
-            ADD_POINT(a, 0);
-            ADD_POINT(0, a);
+            ADD_POINT(+a, 0);
+            ADD_POINT(0, +a);
             ADD_POINT(-a, 0);
         }
             break;
@@ -88,9 +88,9 @@
             a = c / 2;
             ADD_POINT(-2 * b, -a);
             ADD_POINT(0, -a);
-            ADD_POINT(2 * b, -a);
+            ADD_POINT(+2 * b, -a);
             ADD_POINT(-dotHorizontalMargin / 2 - radius, c);
-            ADD_POINT(dotHorizontalMargin / 2 + radius, c);
+            ADD_POINT(+dotHorizontalMargin / 2 + radius, c);
         }
             break;
         case VHPiecePlaceDOT_5_2:
@@ -100,10 +100,10 @@
             c = b / (sqrt(3) / 2);
             a = c / 2;
             ADD_POINT(-dotHorizontalMargin / 2 - radius, -c);
-            ADD_POINT(dotHorizontalMargin / 2 + radius, -c);
+            ADD_POINT(+dotHorizontalMargin / 2 + radius, -c);
             ADD_POINT(-2 * b, a);
             ADD_POINT(0, a);
-            ADD_POINT(2 * b, a);
+            ADD_POINT(+2 * b, a);
 
         }
             break;
@@ -111,8 +111,8 @@
         {
             ADD_POINT(0, 0);
             ADD_POINT(0, -dotVerticalMargin - 2 * radius);
-            ADD_POINT(dotHorizontalMargin + 2 * radius, 0);
-            ADD_POINT(0, dotVerticalMargin + 2 * radius);
+            ADD_POINT(+dotHorizontalMargin + 2 * radius, 0);
+            ADD_POINT(0, +dotVerticalMargin + 2 * radius);
             ADD_POINT(-dotHorizontalMargin - 2 * radius, 0);
         }
             break;
@@ -120,9 +120,9 @@
         {
             CGFloat a = (2 * radius + dotInclinedMargin) / sqrt(2);
             ADD_POINT(0, 0);
-            ADD_POINT(a, -a);
-            ADD_POINT(a, a);
-            ADD_POINT(-a, a);
+            ADD_POINT(+a, -a);
+            ADD_POINT(+a, +a);
+            ADD_POINT(-a, +a);
             ADD_POINT(-a, -a);
         }
             break;
@@ -130,20 +130,20 @@
         {
             ADD_POINT(-dotHorizontalMargin - 2 * radius, -dotVerticalMargin / 2 - radius);
             ADD_POINT(0, -dotVerticalMargin / 2 - radius);
-            ADD_POINT(dotHorizontalMargin + 2 * radius, -dotVerticalMargin / 2 - radius);
-            ADD_POINT(-dotHorizontalMargin - 2 * radius, dotVerticalMargin / 2 + radius);
-            ADD_POINT(0, dotVerticalMargin / 2 + radius);
-            ADD_POINT(dotHorizontalMargin + 2 * radius, dotVerticalMargin / 2 + radius);
+            ADD_POINT(+dotHorizontalMargin + 2 * radius, -dotVerticalMargin / 2 - radius);
+            ADD_POINT(-dotHorizontalMargin - 2 * radius, +dotVerticalMargin / 2 + radius);
+            ADD_POINT(0, +dotVerticalMargin / 2 + radius);
+            ADD_POINT(+dotHorizontalMargin + 2 * radius, +dotVerticalMargin / 2 + radius);
         }
             break;
         case VHPiecePlaceDOT_6_2:
         {
             ADD_POINT(-dotHorizontalMargin / 2 - radius, -dotVerticalMargin - 2 * radius);
             ADD_POINT(-dotHorizontalMargin / 2 - radius, 0);
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, dotVerticalMargin + 2 * radius);
-            ADD_POINT(dotHorizontalMargin / 2 + radius, -dotVerticalMargin - 2 * radius);
-            ADD_POINT(dotHorizontalMargin / 2 + radius, 0);
-            ADD_POINT(dotHorizontalMargin / 2 + radius, dotVerticalMargin + 2 * radius);
+            ADD_POINT(-dotHorizontalMargin / 2 - radius, +dotVerticalMargin + 2 * radius);
+            ADD_POINT(+dotHorizontalMargin / 2 + radius, -dotVerticalMargin - 2 * radius);
+            ADD_POINT(+dotHorizontalMargin / 2 + radius, 0);
+            ADD_POINT(+dotHorizontalMargin / 2 + radius, +dotVerticalMargin + 2 * radius);
         }
             break;
         case VHPiecePlaceDOT_6_3:
@@ -153,9 +153,9 @@
             c = b / (sqrt(3) / 2);
             a = c / 2;
             ADD_POINT(-b, -a - c);
-            ADD_POINT(b, -a - c);
-            ADD_POINT(2 * b, 0);
-            ADD_POINT(b, a + c);
+            ADD_POINT(+b, -a - c);
+            ADD_POINT(+2 * b, 0);
+            ADD_POINT(+b, a + c);
             ADD_POINT(-b, a + c);
             ADD_POINT(-2 * b, 0);
         }
@@ -167,10 +167,10 @@
             c = b / (sqrt(3) / 2);
             a = c / 2;
             ADD_POINT(0, -2 * b);
-            ADD_POINT(a + c, -b);
-            ADD_POINT(a + c, b);
-            ADD_POINT(0, 2 * b);
-            ADD_POINT(-a - c, b);
+            ADD_POINT(+a + c, -b);
+            ADD_POINT(+a + c, +b);
+            ADD_POINT(0, +2 * b);
+            ADD_POINT(-a - c, +b);
             ADD_POINT(-a - c, -b);
         }
             break;
@@ -183,10 +183,10 @@
             e = c - a;
             ADD_POINT(-2 * b, -a - c + e);
             ADD_POINT(0, -a - c + e);
-            ADD_POINT(2 * b, -a - c + e);
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, 0 + e);
-            ADD_POINT(dotHorizontalMargin / 2 + radius, 0 + e);
-            ADD_POINT(0, a + c + e);
+            ADD_POINT(+2 * b, -a - c + e);
+            ADD_POINT(-dotHorizontalMargin / 2 - radius, e);
+            ADD_POINT(+dotHorizontalMargin / 2 + radius, e);
+            ADD_POINT(0, +a + c + e);
         }
             break;
         case VHPiecePlaceDOT_6_6:
@@ -197,22 +197,22 @@
             a = c / 2;
             e = c - a;
             ADD_POINT(0, -a - c - e);
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, 0 - e);
-            ADD_POINT(dotHorizontalMargin / 2 + radius, 0 - e);
+            ADD_POINT(-dotHorizontalMargin / 2 - radius, -e);
+            ADD_POINT(+dotHorizontalMargin / 2 + radius, -e);
             ADD_POINT(-2 * b, a + c - e);
-            ADD_POINT(0, a + c - e);
-            ADD_POINT(2 * b, a + c - e);
+            ADD_POINT(0, +a + c - e);
+            ADD_POINT(+2 * b, a + c - e);
         }
             break;
         case VHPiecePlaceDOT_7_1:
         {
             ADD_POINT(-dotHorizontalMargin - 2 * radius, -dotVerticalMargin - 2 * radius);
             ADD_POINT(0, -dotVerticalMargin - 2 * radius);
-            ADD_POINT(dotHorizontalMargin + 2 * radius, -dotVerticalMargin - 2 * radius);
+            ADD_POINT(+dotHorizontalMargin + 2 * radius, -dotVerticalMargin - 2 * radius);
             ADD_POINT(-dotHorizontalMargin - 2 * radius, 0);
             ADD_POINT(0, 0);
-            ADD_POINT(dotHorizontalMargin + 2 * radius, 0);
-            ADD_POINT(0, dotVerticalMargin + 2 * radius);
+            ADD_POINT(+dotHorizontalMargin + 2 * radius, 0);
+            ADD_POINT(0, +dotVerticalMargin + 2 * radius);
         }
             break;
         case VHPiecePlaceDOT_7_2:
@@ -220,10 +220,10 @@
             ADD_POINT(0, -dotVerticalMargin - 2 * radius);
             ADD_POINT(-dotHorizontalMargin - 2 * radius, 0);
             ADD_POINT(0, 0);
-            ADD_POINT(dotHorizontalMargin + 2 * radius, 0);
+            ADD_POINT(+dotHorizontalMargin + 2 * radius, 0);
             ADD_POINT(-dotHorizontalMargin - 2 * radius, dotVerticalMargin + 2 * radius);
-            ADD_POINT(0, dotVerticalMargin + 2 * radius);
-            ADD_POINT(dotHorizontalMargin + 2 * radius, dotVerticalMargin + 2 * radius);
+            ADD_POINT(0, +dotVerticalMargin + 2 * radius);
+            ADD_POINT(+dotHorizontalMargin + 2 * radius, dotVerticalMargin + 2 * radius);
         }
             break;
         case VHPiecePlaceDOT_7_3:
@@ -234,9 +234,9 @@
             a = c / 2;
             ADD_POINT(0, 0);
             ADD_POINT(-b, -a - c);
-            ADD_POINT(b, -a - c);
-            ADD_POINT(2 * b, 0);
-            ADD_POINT(b, a + c);
+            ADD_POINT(+b, -a - c);
+            ADD_POINT(+2 * b, 0);
+            ADD_POINT(+b, a + c);
             ADD_POINT(-b, a + c);
             ADD_POINT(-2 * b, 0);
         }
@@ -250,9 +250,9 @@
             ADD_POINT(0, 0);
             ADD_POINT(0, -2 * b);
             ADD_POINT(a + c, -b);
-            ADD_POINT(a + c, b);
-            ADD_POINT(0, 2 * b);
-            ADD_POINT(-a - c, b);
+            ADD_POINT(a + c, +b);
+            ADD_POINT(0, +2 * b);
+            ADD_POINT(-a - c, +b);
             ADD_POINT(-a - c, -b);
         }
             break;
@@ -264,11 +264,11 @@
             a = c / 2;
             ADD_POINT(-3 * b, -a);
             ADD_POINT(-b, -a);
-            ADD_POINT(b, -a);
-            ADD_POINT(3 * b, -a);
+            ADD_POINT(+b, -a);
+            ADD_POINT(+3 * b, -a);
             ADD_POINT(-2 * b, c);
             ADD_POINT(0, c);
-            ADD_POINT(2 * b, c);
+            ADD_POINT(+2 * b, c);
         }
             break;
         case VHPiecePlaceDOT_7_6:
@@ -279,11 +279,11 @@
             a = c / 2;
             ADD_POINT(-2 * b, -c);
             ADD_POINT(0, -c);
-            ADD_POINT(2 * b, -c);
+            ADD_POINT(+2 * b, -c);
             ADD_POINT(-3 * b, a);
             ADD_POINT(-b, a);
-            ADD_POINT(b, a);
-            ADD_POINT(3 * b, a);
+            ADD_POINT(+b, a);
+            ADD_POINT(+3 * b, a);
         }
             break;
         case VHPiecePlaceDOT_8_1:
@@ -294,12 +294,12 @@
             a = c / 2;
             ADD_POINT(-2 * b, -a - c);
             ADD_POINT(0, -a - c);
-            ADD_POINT(2 * b, -a - c);
+            ADD_POINT(+2 * b, -a - c);
             ADD_POINT(-dotHorizontalMargin / 2 - radius, 0);
-            ADD_POINT(dotHorizontalMargin / 2 + radius, 0);
+            ADD_POINT(+dotHorizontalMargin / 2 + radius, 0);
             ADD_POINT(-2 * b, a + c);
-            ADD_POINT(0, a + c);
-            ADD_POINT(2 * b, a + c);
+            ADD_POINT(0, +a + c);
+            ADD_POINT(+2 * b, a + c);
         }
             break;
         case VHPiecePlaceDOT_8_2:
@@ -310,24 +310,24 @@
             a = c / 2;
             ADD_POINT(-a - c, -2 * b);
             ADD_POINT(-a - c, 0);
-            ADD_POINT(-a - c, 2 * b);
+            ADD_POINT(-a - c, +2 * b);
             ADD_POINT(0, -dotVerticalMargin / 2 - radius);
-            ADD_POINT(0, dotVerticalMargin / 2 + radius);
-            ADD_POINT(a + c, -2 * b);
-            ADD_POINT(a + c, 0);
-            ADD_POINT(a + c, 2 * b);
+            ADD_POINT(0, +dotVerticalMargin / 2 + radius);
+            ADD_POINT(+a + c, -2 * b);
+            ADD_POINT(+a + c, 0);
+            ADD_POINT(+a + c, +2 * b);
         }
             break;
         case VHPiecePlaceDOT_8_3:
         {
             ADD_POINT(-dotHorizontalMargin - 2 * radius, -dotVerticalMargin - 2 * radius);
             ADD_POINT(0, -dotVerticalMargin - 2 * radius);
-            ADD_POINT(dotHorizontalMargin + 2 * radius, -dotVerticalMargin - 2 * radius);
+            ADD_POINT(+dotHorizontalMargin + 2 * radius, -dotVerticalMargin - 2 * radius);
             ADD_POINT(-dotHorizontalMargin - 2 * radius, 0);
-            ADD_POINT(dotHorizontalMargin + 2 * radius, 0);
-            ADD_POINT(-dotHorizontalMargin - 2 * radius, dotVerticalMargin + 2 * radius);
-            ADD_POINT(0, dotVerticalMargin + 2 * radius);
-            ADD_POINT(dotHorizontalMargin + 2 * radius, dotVerticalMargin + 2 * radius);
+            ADD_POINT(+dotHorizontalMargin + 2 * radius, 0);
+            ADD_POINT(-dotHorizontalMargin - 2 * radius, +dotVerticalMargin + 2 * radius);
+            ADD_POINT(0, +dotVerticalMargin + 2 * radius);
+            ADD_POINT(+dotHorizontalMargin + 2 * radius, +dotVerticalMargin + 2 * radius);
         }
             break;
         case VHPiecePlaceDOT_8_4:
@@ -338,23 +338,23 @@
             a = c / 2;
             ADD_POINT(0, -2 * a - 2 * c);
             ADD_POINT(-dotHorizontalMargin / 2 - radius, -a - c);
-            ADD_POINT(dotHorizontalMargin / 2 + radius, -a - c);
+            ADD_POINT(+dotHorizontalMargin / 2 + radius, -a - c);
             ADD_POINT(-2 * b, 0);
-            ADD_POINT(2 * b, 0);
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, a + c);
-            ADD_POINT(dotHorizontalMargin / 2 + radius, a + c);
-            ADD_POINT(0, 2 * a + 2 * c);
+            ADD_POINT(+2 * b, 0);
+            ADD_POINT(-dotHorizontalMargin / 2 - radius, +a + c);
+            ADD_POINT(+dotHorizontalMargin / 2 + radius, +a + c);
+            ADD_POINT(0, +2 * a + 2 * c);
         }
             break;
         case VHPiecePlaceDOT_8_5:
         {
             CGFloat a = (2 * radius + dotInclinedMargin) / sqrt(2);
             ADD_POINT(0, -2 * a);
-            ADD_POINT(a, -a);
-            ADD_POINT(2 * a, 0);
-            ADD_POINT(a, a);
-            ADD_POINT(0, 2 * a);
-            ADD_POINT(-a, a);
+            ADD_POINT(+a, -a);
+            ADD_POINT(+2 * a, 0);
+            ADD_POINT(+a, +a);
+            ADD_POINT(0, +2 * a);
+            ADD_POINT(-a, +a);
             ADD_POINT(-2 * a, 0);
             ADD_POINT(-a, -a);
         }
@@ -363,37 +363,37 @@
         {
             ADD_POINT(-dotHorizontalMargin * 3 / 2 - 3 * radius, -dotVerticalMargin / 2 - radius);
             ADD_POINT(-dotHorizontalMargin / 2 - radius, -dotVerticalMargin / 2 - radius);
-            ADD_POINT(dotHorizontalMargin / 2 + radius, -dotVerticalMargin / 2 - radius);
-            ADD_POINT(dotHorizontalMargin * 3 / 2 + 3 * radius, -dotVerticalMargin / 2 - radius);
-            ADD_POINT(-dotHorizontalMargin * 3 / 2 - 3 * radius, dotVerticalMargin / 2 + radius);
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, dotVerticalMargin / 2 + radius);
-            ADD_POINT(dotHorizontalMargin / 2 + radius, dotVerticalMargin / 2 + radius);
-            ADD_POINT(dotHorizontalMargin * 3 / 2 + 3 * radius, dotVerticalMargin / 2 + radius);
+            ADD_POINT(+dotHorizontalMargin / 2 + radius, -dotVerticalMargin / 2 - radius);
+            ADD_POINT(+dotHorizontalMargin * 3 / 2 + 3 * radius, -dotVerticalMargin / 2 - radius);
+            ADD_POINT(-dotHorizontalMargin * 3 / 2 - 3 * radius, +dotVerticalMargin / 2 + radius);
+            ADD_POINT(-dotHorizontalMargin / 2 - radius, +dotVerticalMargin / 2 + radius);
+            ADD_POINT(+dotHorizontalMargin / 2 + radius, +dotVerticalMargin / 2 + radius);
+            ADD_POINT(+dotHorizontalMargin * 3 / 2 + 3 * radius, +dotVerticalMargin / 2 + radius);
         }
             break;
         case VHPiecePlaceDOT_8_7:
         {
             ADD_POINT(-dotHorizontalMargin / 2 - radius, -dotVerticalMargin * 3 / 2 - 3 * radius);
-            ADD_POINT(dotHorizontalMargin / 2 + radius, -dotVerticalMargin * 3 / 2 - 3 * radius);
+            ADD_POINT(+dotHorizontalMargin / 2 + radius, -dotVerticalMargin * 3 / 2 - 3 * radius);
             ADD_POINT(-dotHorizontalMargin / 2 - radius, -dotVerticalMargin / 2 - radius);
-            ADD_POINT(dotHorizontalMargin / 2 + radius, -dotVerticalMargin / 2 - radius);
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, dotVerticalMargin / 2 + radius);
-            ADD_POINT(dotHorizontalMargin / 2 + radius, dotVerticalMargin / 2 + radius);
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, dotVerticalMargin * 3 / 2 + 3 * radius);
-            ADD_POINT(dotHorizontalMargin / 2 + radius, dotVerticalMargin * 3 / 2 + 3 * radius);
+            ADD_POINT(+dotHorizontalMargin / 2 + radius, -dotVerticalMargin / 2 - radius);
+            ADD_POINT(-dotHorizontalMargin / 2 - radius, +dotVerticalMargin / 2 + radius);
+            ADD_POINT(+dotHorizontalMargin / 2 + radius, +dotVerticalMargin / 2 + radius);
+            ADD_POINT(-dotHorizontalMargin / 2 - radius, +dotVerticalMargin * 3 / 2 + 3 * radius);
+            ADD_POINT(+dotHorizontalMargin / 2 + radius, +dotVerticalMargin * 3 / 2 + 3 * radius);
         }
             break;
         case VHPiecePlaceDOT_9_1:
         {
             ADD_POINT(-dotHorizontalMargin - 2 * radius, -dotVerticalMargin - 2 * radius);
             ADD_POINT(0, -dotVerticalMargin - 2 * radius);
-            ADD_POINT(dotHorizontalMargin + 2 * radius, -dotVerticalMargin - 2 * radius);
+            ADD_POINT(+dotHorizontalMargin + 2 * radius, -dotVerticalMargin - 2 * radius);
             ADD_POINT(-dotHorizontalMargin - 2 * radius, 0);
             ADD_POINT(0, 0);
-            ADD_POINT(dotHorizontalMargin + 2 * radius, 0);
-            ADD_POINT(-dotHorizontalMargin - 2 * radius, dotVerticalMargin + 2 * radius);
-            ADD_POINT(0, dotVerticalMargin + 2 * radius);
-            ADD_POINT(dotHorizontalMargin + 2 * radius, dotVerticalMargin + 2 * radius);
+            ADD_POINT(+dotHorizontalMargin + 2 * radius, 0);
+            ADD_POINT(-dotHorizontalMargin - 2 * radius, +dotVerticalMargin + 2 * radius);
+            ADD_POINT(0, +dotVerticalMargin + 2 * radius);
+            ADD_POINT(+dotHorizontalMargin + 2 * radius, +dotVerticalMargin + 2 * radius);
         }
             break;
         case VHPiecePlaceDOT_9_2:
@@ -404,25 +404,25 @@
             a = c / 2;
             ADD_POINT(0, -2 * a - 2 * c);
             ADD_POINT(-dotHorizontalMargin / 2 - radius, -a - c);
-            ADD_POINT(dotHorizontalMargin / 2 + radius, -a - c);
+            ADD_POINT(+dotHorizontalMargin / 2 + radius, -a - c);
             ADD_POINT(-2 * b, 0);
             ADD_POINT(0, 0);
-            ADD_POINT(2 * b, 0);
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, a + c);
-            ADD_POINT(dotHorizontalMargin / 2 + radius, a + c);
-            ADD_POINT(0, 2 * a + 2 * c);
+            ADD_POINT(+2 * b, 0);
+            ADD_POINT(-dotHorizontalMargin / 2 - radius, +a + c);
+            ADD_POINT(+dotHorizontalMargin / 2 + radius, +a + c);
+            ADD_POINT(0, +2 * a + 2 * c);
         }
             break;
         case VHPiecePlaceDOT_9_3:
         {
             CGFloat a = (2 * radius + dotInclinedMargin) / sqrt(2);
             ADD_POINT(0, -2 * a);
-            ADD_POINT(a, -a);
-            ADD_POINT(2 * a, 0);
-            ADD_POINT(a, a);
+            ADD_POINT(+a, -a);
+            ADD_POINT(+2 * a, 0);
+            ADD_POINT(+a, +a);
             ADD_POINT(0, 0);
-            ADD_POINT(0, 2 * a);
-            ADD_POINT(-a, a);
+            ADD_POINT(0, +2 * a);
+            ADD_POINT(-a, +a);
             ADD_POINT(-2 * a, 0);
             ADD_POINT(-a, -a);
         }

@@ -27,27 +27,28 @@
     self.bmb.buttonEnum = VHButtonSimpleCircle;
     self.bmb.piecePlaceEnum = VHPiecePlaceDOT_9_1;
     self.bmb.buttonPlaceEnum = VHButtonPlaceSC_9_1;
+    self.bmb.duration = 2;
     for (int i = 0; i < self.bmb.pieceNumber; i++)
     {
         [self.bmb addBuilder:[BuilderManager simpleCircleButtonBuilder]];
     }
     
     self.boomEnums = @[@(VHBoomStraightLine),
-                       @(VHBoomParabola_1),
-                       @(VHBoomParabola_2),
-                       @(VHBoomParabola_3),
-                       @(VHBoomParabola_4),
-                       @(VHBoomHorizontalThrow_1),
-                       @(VHBoomHorizontalThrow_2),
+                       @(VHBoomParabola1),
+                       @(VHBoomParabola2),
+                       @(VHBoomParabola3),
+                       @(VHBoomParabola4),
+                       @(VHBoomHorizontalThrow1),
+                       @(VHBoomHorizontalThrow2),
                        @(VHBoomRandom)];
     
     self.boomEnumNames = @[@"StraightLine",
-                           @"Parabola_1",
-                           @"Parabola_2",
-                           @"Parabola_3",
-                           @"Parabola_4",
-                           @"HorizontalThrow_1",
-                           @"HorizontalThrow_2",
+                           @"Parabola1",
+                           @"Parabola2",
+                           @"Parabola3",
+                           @"Parabola4",
+                           @"HorizontalThrow1",
+                           @"HorizontalThrow2",
                            @"Random"];
 }
 

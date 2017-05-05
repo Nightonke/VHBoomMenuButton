@@ -247,4 +247,13 @@
     [self.button innerSetLabel];
 }
 
+- (void)setRotateText:(BOOL)rotateText
+{
+    if (_rotateText == rotateText)
+    {
+        return;
+    }
+    self.button.rotateText = _rotateText = rotateText;
+}
+
 @end

@@ -31,12 +31,7 @@
     return self;
 }
 
-- (void)setPiecePositions:(NSMutableArray<NSValue *> *)piecePositions
-                dotRadius:(CGFloat)dotRadius
-                showDelay:(CFTimeInterval)showDelay
-             showDuration:(CFTimeInterval)showDuration
-                hideDelay:(CFTimeInterval)hideDelay
-             hideDuration:(CFTimeInterval)hideDuration
+- (void)setPiecePositions:(NSMutableArray<NSValue *> *)piecePositions dotRadius:(CGFloat)dotRadius
 {
     CGFloat xOffset = dotRadius - self.lineWidth / 4;
     CGFloat yOffset = dotRadius - self.lineWidth * sqrt(3) / 4 + 0.5;

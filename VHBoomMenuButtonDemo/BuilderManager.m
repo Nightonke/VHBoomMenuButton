@@ -22,7 +22,7 @@ static int imageNameIndex = 0;
     return builder;
 }
 
-+ (VHSimpleCircleButtonBuilder *)squaresSimpleCircleButtonBuilder
++ (VHSimpleCircleButtonBuilder *)squareSimpleCircleButtonBuilder
 {
     VHSimpleCircleButtonBuilder *builder = [BuilderManager simpleCircleButtonBuilder];
     builder.round = NO;
@@ -99,7 +99,8 @@ static int imageNameIndex = 0;
 
 #pragma mark - List Data
 
-+ (void)initializeDatasForSimpleCircleButton:(NSMutableArray<NSString *> *)datas piecesAndButtons:(NSMutableArray<NSValue *> *)piecesAndButtons
++ (void)initializeDatasForSimpleCircleButton:(NSMutableArray<NSString *> *)datas
+                            piecesAndButtons:(NSMutableArray<NSValue *> *)piecesAndButtons
 {
     for (int p = 0; p < VHPiecePlaceEnumCount; p++)
     {

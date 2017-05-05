@@ -6,7 +6,7 @@
 //  Copyright © 2016年 Nightonke. All rights reserved.
 //
 
-#import "VHInnerOnBoomButtonClickListener.h"
+#import "VHBoomButtonDelegate.h"
 #import "VHBoomButton.h"
 
 @class VHBoomButton;
@@ -21,7 +21,7 @@
  
  @param index The index of the boom-button.
  */
-typedef void (^OnBoomButtonClickedBlock)(int index);
+typedef void (^BoomButtonDidClickBlock)(int index);
 
 @interface VHBoomButtonBuilder : NSObject
 
@@ -30,12 +30,12 @@ typedef void (^OnBoomButtonClickedBlock)(int index);
 /**
  This property is @b only used in BMB package! @b DON'T modify it!
  */
-@property (nonatomic, assign) NSUInteger innerIndex;
+@property (nonatomic, assign) int innerIndex;
 
 /**
  This property is @b only used in BMB package! @b DON'T modify it!
  */
-@property (nonatomic, weak) id<VHInnerOnBoomButtonClickListener> innerListener;
+@property (nonatomic, weak) id<VHBoomButtonDelegate> innerListener;
 
 #pragma mark - Basic
 
@@ -51,7 +51,7 @@ typedef void (^OnBoomButtonClickedBlock)(int index);
  
  The default value is @b nil .
  */
-@property (nonatomic, copy) OnBoomButtonClickedBlock clickedBlock;
+@property (nonatomic, copy) BoomButtonDidClickBlock clickedBlock;
 
 /**
  Whether the boom-button is unable (for click event).
@@ -91,7 +91,7 @@ typedef void (^OnBoomButtonClickedBlock)(int index);
  
  The default value is @b YES .
  */
-@property (nonatomic, assign) BOOL shadowEffect;
+@property (nonatomic, assign) BOOL hasShadow;
 
 /**
  The rect of shadow path of boom-button.
@@ -116,7 +116,7 @@ typedef void (^OnBoomButtonClickedBlock)(int index);
  
  @b Synchronicity : Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
  
- The default value is @b 0 .
+ The default value is @b 8 .
  */
 @property (nonatomic, assign) CGFloat shadowOffsetY;
 

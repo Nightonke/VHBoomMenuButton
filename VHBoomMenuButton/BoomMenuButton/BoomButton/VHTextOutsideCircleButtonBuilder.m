@@ -76,6 +76,8 @@
     {
         [self.button innerToUnableButton];
     }
+    self.button.rotateAnchorPointInitialized = NO;
+    [self.button setRotateAnchorPoints];
 }
 
 - (void)setHeight:(CGFloat)height
@@ -99,6 +101,8 @@
     {
         [self.button innerToUnableButton];
     }
+    self.button.rotateAnchorPointInitialized = NO;
+    [self.button setRotateAnchorPoints];
 }
 
 - (void)setRound:(BOOL)round

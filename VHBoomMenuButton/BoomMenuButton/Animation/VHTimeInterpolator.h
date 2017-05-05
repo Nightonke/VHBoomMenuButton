@@ -6,8 +6,6 @@
 //  Copyright © 2017年 Nightonke. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 @protocol VHTimeInterpolator <NSObject>
 
 @required

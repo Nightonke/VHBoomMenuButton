@@ -20,7 +20,7 @@
 
 + (UIColor *)colorFromRGB:(int)color;
 
-+ (UIColor *)colorFromARGB:(int)color;
++ (UIColor *)colorFromARGB:(int64_t)color;
 
 + (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
 

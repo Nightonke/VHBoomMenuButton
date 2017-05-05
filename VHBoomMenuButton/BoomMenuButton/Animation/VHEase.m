@@ -100,6 +100,14 @@ static NSMutableDictionary<NSString *, VHEase *> *eases;
     {
         return [[VHEase alloc] initWithStartX:0.445 startY:0.050 endX:0.550 endY:0.950];
     }
+    else if ([name isEqualToString:VHEaseInQuad])
+    {
+        return [[VHEase alloc] initWithStartX:0.550 startY:0.085 endX:0.680 endY:0.530];
+    }
+    else if ([name isEqualToString:VHEaseOutQuad])
+    {
+        return [[VHEase alloc] initWithStartX:0.165 startY:0.840 endX:0.440 endY:1.000];
+    }
     else if ([name isEqualToString:VHEaseInOutQuad])
     {
         return [[VHEase alloc] initWithStartX:0.455 startY:0.030 endX:0.515 endY:0.955];
@@ -232,7 +240,7 @@ static NSMutableDictionary<NSString *, VHEase *> *eases;
         }
         else
         {
-            NSAssert(YES, @"Unknown ease name");
+            NSAssert(NO, @"Unknown ease name");
             return offset;
         }
     }

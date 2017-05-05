@@ -1,5 +1,5 @@
 //
-//  OnBackgroundClickDelegate.h
+//  VHBackgroundDelegate.h
 //  VHBoomMenuExample
 //
 //  Created by Nightonke on 16/7/31.
@@ -9,9 +9,9 @@
 /**
  *  Delegate for background clicked.
  */
-@protocol VHBackgroundClickDelegate <NSObject>
+@protocol VHBackgroundDelegate <NSObject>
 
 @required
-- (void)onBackgroundClick;
+- (void)backgroundDidClick;
 
 @end

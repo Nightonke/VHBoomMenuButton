@@ -33,7 +33,7 @@
 		3748A91F1EB09D0B008F7C5E /* VHHamButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3748A8E21EB09D0B008F7C5E /* VHHamButton.m */; };
 		3748A9201EB09D0B008F7C5E /* VHHamButtonBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 3748A8E31EB09D0B008F7C5E /* VHHamButtonBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3748A9211EB09D0B008F7C5E /* VHHamButtonBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3748A8E41EB09D0B008F7C5E /* VHHamButtonBuilder.m */; };
-		3748A9221EB09D0B008F7C5E /* VHInnerOnBoomButtonClickListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 3748A8E51EB09D0B008F7C5E /* VHInnerOnBoomButtonClickListener.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3748A9221EB09D0B008F7C5E /* VHBoomButtonDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3748A8E51EB09D0B008F7C5E /* VHBoomButtonDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3748A9231EB09D0B008F7C5E /* VHSimpleCircleButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 3748A8E61EB09D0B008F7C5E /* VHSimpleCircleButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3748A9241EB09D0B008F7C5E /* VHSimpleCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3748A8E71EB09D0B008F7C5E /* VHSimpleCircleButton.m */; };
 		3748A9251EB09D0B008F7C5E /* VHSimpleCircleButtonBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 3748A8E81EB09D0B008F7C5E /* VHSimpleCircleButtonBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -64,7 +64,7 @@
 		3748A93E1EB09D0B008F7C5E /* VHShareLinesView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3748A9021EB09D0B008F7C5E /* VHShareLinesView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3748A93F1EB09D0B008F7C5E /* VHShareLinesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3748A9031EB09D0B008F7C5E /* VHShareLinesView.m */; };
 		3748A9401EB09D0B008F7C5E /* VHUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 3748A9041EB09D0B008F7C5E /* VHUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3748A9411EB09D0B008F7C5E /* VHBackgroundClickDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3748A9051EB09D0B008F7C5E /* VHBackgroundClickDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3748A9411EB09D0B008F7C5E /* VHBackgroundDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3748A9051EB09D0B008F7C5E /* VHBackgroundDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3748A9421EB09D0B008F7C5E /* VHBoomStateEnum.h in Headers */ = {isa = PBXBuildFile; fileRef = 3748A9061EB09D0B008F7C5E /* VHBoomStateEnum.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3748A9431EB09D0B008F7C5E /* VHButtonStateEnum.h in Headers */ = {isa = PBXBuildFile; fileRef = 3748A9071EB09D0B008F7C5E /* VHButtonStateEnum.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3748A9441EB09D0B008F7C5E /* VHUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3748A9081EB09D0B008F7C5E /* VHUtils.m */; };
@@ -99,7 +99,7 @@
 		3748A8E21EB09D0B008F7C5E /* VHHamButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHHamButton.m; sourceTree = "<group>"; };
 		3748A8E31EB09D0B008F7C5E /* VHHamButtonBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHHamButtonBuilder.h; sourceTree = "<group>"; };
 		3748A8E41EB09D0B008F7C5E /* VHHamButtonBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHHamButtonBuilder.m; sourceTree = "<group>"; };
-		3748A8E51EB09D0B008F7C5E /* VHInnerOnBoomButtonClickListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHInnerOnBoomButtonClickListener.h; sourceTree = "<group>"; };
+		3748A8E51EB09D0B008F7C5E /* VHBoomButtonDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHBoomButtonDelegate.h; sourceTree = "<group>"; };
 		3748A8E61EB09D0B008F7C5E /* VHSimpleCircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHSimpleCircleButton.h; sourceTree = "<group>"; };
 		3748A8E71EB09D0B008F7C5E /* VHSimpleCircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHSimpleCircleButton.m; sourceTree = "<group>"; };
 		3748A8E81EB09D0B008F7C5E /* VHSimpleCircleButtonBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHSimpleCircleButtonBuilder.h; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 		3748A9021EB09D0B008F7C5E /* VHShareLinesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHShareLinesView.h; sourceTree = "<group>"; };
 		3748A9031EB09D0B008F7C5E /* VHShareLinesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHShareLinesView.m; sourceTree = "<group>"; };
 		3748A9041EB09D0B008F7C5E /* VHUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHUtils.h; sourceTree = "<group>"; };
-		3748A9051EB09D0B008F7C5E /* VHBackgroundClickDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHBackgroundClickDelegate.h; sourceTree = "<group>"; };
+		3748A9051EB09D0B008F7C5E /* VHBackgroundDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHBackgroundDelegate.h; sourceTree = "<group>"; };
 		3748A9061EB09D0B008F7C5E /* VHBoomStateEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHBoomStateEnum.h; sourceTree = "<group>"; };
 		3748A9071EB09D0B008F7C5E /* VHButtonStateEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHButtonStateEnum.h; sourceTree = "<group>"; };
 		3748A9081EB09D0B008F7C5E /* VHUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHUtils.m; sourceTree = "<group>"; };
@@ -169,23 +169,23 @@
 				3748A8CA1EB09D0B008F7C5E /* Animation */,
 				3748A8D21EB09D0B008F7C5E /* BoomButton */,
 				3748A8F21EB09D0B008F7C5E /* Piece */,
-				3748A8F81EB09D0B008F7C5E /* VHBackgroundView.h */,
-				3748A8F91EB09D0B008F7C5E /* VHBackgroundView.m */,
-				3748A8FA1EB09D0B008F7C5E /* VHBoomDelegate.h */,
 				3748A8FB1EB09D0B008F7C5E /* VHBoomMenuButton.h */,
 				3748A8FC1EB09D0B008F7C5E /* VHBoomMenuButton.m */,
-				3748A8FD1EB09D0B008F7C5E /* VHButtonEnum.h */,
-				3748A8FE1EB09D0B008F7C5E /* VHErrorManager.h */,
-				3748A8FF1EB09D0B008F7C5E /* VHErrorManager.m */,
-				3748A9001EB09D0B008F7C5E /* VHShareLinesLayer.h */,
-				3748A9011EB09D0B008F7C5E /* VHShareLinesLayer.m */,
+				3748A8F81EB09D0B008F7C5E /* VHBackgroundView.h */,
+				3748A8F91EB09D0B008F7C5E /* VHBackgroundView.m */,
 				3748A9021EB09D0B008F7C5E /* VHShareLinesView.h */,
 				3748A9031EB09D0B008F7C5E /* VHShareLinesView.m */,
+				3748A9001EB09D0B008F7C5E /* VHShareLinesLayer.h */,
+				3748A9011EB09D0B008F7C5E /* VHShareLinesLayer.m */,
+				3748A8FE1EB09D0B008F7C5E /* VHErrorManager.h */,
+				3748A8FF1EB09D0B008F7C5E /* VHErrorManager.m */,
 				3748A9041EB09D0B008F7C5E /* VHUtils.h */,
-				3748A9051EB09D0B008F7C5E /* VHBackgroundClickDelegate.h */,
+				3748A9081EB09D0B008F7C5E /* VHUtils.m */,
+				3748A8FA1EB09D0B008F7C5E /* VHBoomDelegate.h */,
+				3748A9051EB09D0B008F7C5E /* VHBackgroundDelegate.h */,
+				3748A8FD1EB09D0B008F7C5E /* VHButtonEnum.h */,
 				3748A9061EB09D0B008F7C5E /* VHBoomStateEnum.h */,
 				3748A9071EB09D0B008F7C5E /* VHButtonStateEnum.h */,
-				3748A9081EB09D0B008F7C5E /* VHUtils.m */,
 				3748A8C21EB09CC1008F7C5E /* BoomMenuButton.h */,
 				3748A8C31EB09CC1008F7C5E /* Info.plist */,
 			);
@@ -197,11 +197,11 @@
 			children = (
 				3748A8CB1EB09D0B008F7C5E /* VHAnimationManager.h */,
 				3748A8CC1EB09D0B008F7C5E /* VHAnimationManager.m */,
-				3748A8CD1EB09D0B008F7C5E /* VHBoomEnum.h */,
 				3748A8CE1EB09D0B008F7C5E /* VHEase.h */,
 				3748A8CF1EB09D0B008F7C5E /* VHEase.m */,
-				3748A8D01EB09D0B008F7C5E /* VHOrderEnum.h */,
 				3748A8D11EB09D0B008F7C5E /* VHTimeInterpolator.h */,
+				3748A8CD1EB09D0B008F7C5E /* VHBoomEnum.h */,
+				3748A8D01EB09D0B008F7C5E /* VHOrderEnum.h */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -209,29 +209,22 @@
 		3748A8D21EB09D0B008F7C5E /* BoomButton */ = {
 			isa = PBXGroup;
 			children = (
+				3748A8DF1EB09D0B008F7C5E /* VHButtonPlaceManager.h */,
+				3748A8E01EB09D0B008F7C5E /* VHButtonPlaceManager.m */,
 				3748A8D31EB09D0B008F7C5E /* VHBoomButton.h */,
 				3748A8D41EB09D0B008F7C5E /* VHBoomButton.m */,
 				3748A8D51EB09D0B008F7C5E /* VHBoomButton_protected.h */,
 				3748A8D61EB09D0B008F7C5E /* VHBoomButtonBuilder.h */,
 				3748A8D71EB09D0B008F7C5E /* VHBoomButtonBuilder.m */,
 				3748A8D81EB09D0B008F7C5E /* VHBoomButtonBuilder_protected.h */,
-				3748A8D91EB09D0B008F7C5E /* VHBoomButtonWithText.h */,
-				3748A8DA1EB09D0B008F7C5E /* VHBoomButtonWithText.m */,
-				3748A8DB1EB09D0B008F7C5E /* VHBoomButtonWithTextBuilder.h */,
-				3748A8DC1EB09D0B008F7C5E /* VHBoomButtonWithTextBuilder.m */,
-				3748A8DD1EB09D0B008F7C5E /* VHButtonPlaceAlignmentEnum.h */,
-				3748A8DE1EB09D0B008F7C5E /* VHButtonPlaceEnum.h */,
-				3748A8DF1EB09D0B008F7C5E /* VHButtonPlaceManager.h */,
-				3748A8E01EB09D0B008F7C5E /* VHButtonPlaceManager.m */,
-				3748A8E11EB09D0B008F7C5E /* VHHamButton.h */,
-				3748A8E21EB09D0B008F7C5E /* VHHamButton.m */,
-				3748A8E31EB09D0B008F7C5E /* VHHamButtonBuilder.h */,
-				3748A8E41EB09D0B008F7C5E /* VHHamButtonBuilder.m */,
-				3748A8E51EB09D0B008F7C5E /* VHInnerOnBoomButtonClickListener.h */,
 				3748A8E61EB09D0B008F7C5E /* VHSimpleCircleButton.h */,
 				3748A8E71EB09D0B008F7C5E /* VHSimpleCircleButton.m */,
 				3748A8E81EB09D0B008F7C5E /* VHSimpleCircleButtonBuilder.h */,
 				3748A8E91EB09D0B008F7C5E /* VHSimpleCircleButtonBuilder.m */,
+				3748A8D91EB09D0B008F7C5E /* VHBoomButtonWithText.h */,
+				3748A8DA1EB09D0B008F7C5E /* VHBoomButtonWithText.m */,
+				3748A8DB1EB09D0B008F7C5E /* VHBoomButtonWithTextBuilder.h */,
+				3748A8DC1EB09D0B008F7C5E /* VHBoomButtonWithTextBuilder.m */,
 				3748A8EA1EB09D0B008F7C5E /* VHTextInsideCircleButton.h */,
 				3748A8EB1EB09D0B008F7C5E /* VHTextInsideCircleButton.m */,
 				3748A8EC1EB09D0B008F7C5E /* VHTextInsideCircleButtonBuilder.h */,
@@ -240,6 +233,13 @@
 				3748A8EF1EB09D0B008F7C5E /* VHTextOutsideCircleButton.m */,
 				3748A8F01EB09D0B008F7C5E /* VHTextOutsideCircleButtonBuilder.h */,
 				3748A8F11EB09D0B008F7C5E /* VHTextOutsideCircleButtonBuilder.m */,
+				3748A8E11EB09D0B008F7C5E /* VHHamButton.h */,
+				3748A8E21EB09D0B008F7C5E /* VHHamButton.m */,
+				3748A8E31EB09D0B008F7C5E /* VHHamButtonBuilder.h */,
+				3748A8E41EB09D0B008F7C5E /* VHHamButtonBuilder.m */,
+				3748A8E51EB09D0B008F7C5E /* VHBoomButtonDelegate.h */,
+				3748A8DE1EB09D0B008F7C5E /* VHButtonPlaceEnum.h */,
+				3748A8DD1EB09D0B008F7C5E /* VHButtonPlaceAlignmentEnum.h */,
 			);
 			path = BoomButton;
 			sourceTree = "<group>";
@@ -247,11 +247,11 @@
 		3748A8F21EB09D0B008F7C5E /* Piece */ = {
 			isa = PBXGroup;
 			children = (
+				3748A8F61EB09D0B008F7C5E /* VHPiecePlaceManager.h */,
+				3748A8F71EB09D0B008F7C5E /* VHPiecePlaceManager.m */,
 				3748A8F31EB09D0B008F7C5E /* VHBoomPiece.h */,
 				3748A8F41EB09D0B008F7C5E /* VHBoomPiece.m */,
 				3748A8F51EB09D0B008F7C5E /* VHPiecePlaceEnum.h */,
-				3748A8F61EB09D0B008F7C5E /* VHPiecePlaceManager.h */,
-				3748A8F71EB09D0B008F7C5E /* VHPiecePlaceManager.m */,
 			);
 			path = Piece;
 			sourceTree = "<group>";
@@ -271,7 +271,7 @@
 				3748A90C1EB09D0B008F7C5E /* VHEase.h in Headers */,
 				3748A90E1EB09D0B008F7C5E /* VHOrderEnum.h in Headers */,
 				3748A91A1EB09D0B008F7C5E /* VHButtonPlaceAlignmentEnum.h in Headers */,
-				3748A9221EB09D0B008F7C5E /* VHInnerOnBoomButtonClickListener.h in Headers */,
+				3748A9221EB09D0B008F7C5E /* VHBoomButtonDelegate.h in Headers */,
 				3748A9201EB09D0B008F7C5E /* VHHamButtonBuilder.h in Headers */,
 				3748A9131EB09D0B008F7C5E /* VHBoomButtonBuilder.h in Headers */,
 				3748A9181EB09D0B008F7C5E /* VHBoomButtonWithTextBuilder.h in Headers */,
@@ -292,7 +292,7 @@
 				3748A9341EB09D0B008F7C5E /* VHBackgroundView.h in Headers */,
 				3748A9271EB09D0B008F7C5E /* VHTextInsideCircleButton.h in Headers */,
 				3748A9121EB09D0B008F7C5E /* VHBoomButton_protected.h in Headers */,
-				3748A9411EB09D0B008F7C5E /* VHBackgroundClickDelegate.h in Headers */,
+				3748A9411EB09D0B008F7C5E /* VHBackgroundDelegate.h in Headers */,
 				3748A9231EB09D0B008F7C5E /* VHSimpleCircleButton.h in Headers */,
 				3748A9421EB09D0B008F7C5E /* VHBoomStateEnum.h in Headers */,
 				3748A9151EB09D0B008F7C5E /* VHBoomButtonBuilder_protected.h in Headers */,
