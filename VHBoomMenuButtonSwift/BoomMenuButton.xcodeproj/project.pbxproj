@@ -43,6 +43,7 @@
 		37AC4D7E1EB9CD51005FB4D7 /* TextOutsideCircleButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D7D1EB9CD51005FB4D7 /* TextOutsideCircleButtonBuilder.swift */; };
 		37AC4D821EBA45FA005FB4D7 /* HamButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D811EBA45FA005FB4D7 /* HamButtonBuilder.swift */; };
 		37AC4D841EBAC711005FB4D7 /* HamButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4D831EBAC711005FB4D7 /* HamButton.swift */; };
+		37D0BC3D1EC0AD7900DB9124 /* BoomMenuButton.h in Sources */ = {isa = PBXBuildFile; fileRef = 3748A9D91EB0DB3D008F7C5E /* BoomMenuButton.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -262,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37D0BC3D1EC0AD7900DB9124 /* BoomMenuButton.h in Sources */,
 				37A7FA1D1EB23822004638C8 /* ButtonEnum.swift in Sources */,
 				3748A9F41EB0DDF2008F7C5E /* TimeInterpolator.swift in Sources */,
 				3748AA041EB1AA81008F7C5E /* PiecePlaceManager.swift in Sources */,
