@@ -13,20 +13,37 @@ typealias DelayClosure = () -> Void
 @IBDesignable
 public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
 
-    private static let kFillColorAnimation = "kFillColorAnimation"
+    private static let kFillColorAnimation: String = "kFillColorAnimation"
+    private static let kBoomButtonAnimation: String = "kBoomButtonAnimation"
+    private static let kBoomButton3DAnimation: String = "kBoomButton3DAnimation"
+    private static let kBoomButtonRotateViewAnimation: String = "kBoomButtonRotateViewAnimation"
+    private static let kBoomButtonGoneViewAnimation: String = "kBoomButtonGoneViewAnimation"
+    private static let kFadeViewAnimation: String = "kFadeViewAnimation"
     
     // MARK: - Public Properties
     
     // MARK: Basic
     
+    /// Whether use a cache optimization. If **true** , then the boom-buttons and their background view on screen will be kept by BMB. So BMB doesn't need to re-create them the next time it booms.
+    ///
+    /// The default value is **true**.
     @IBInspectable public var cacheOptimized: Bool = true
     
+    /// Whether the BMB booms its boom-buttons in the whole screen. If **false**, then BMB booms boom-buttons in its superview.
+    ///
+    /// The default value is **true**.
     @IBInspectable public var isBoomInWholeScreen: Bool = true
     
+    /// Whether the BMB is used in a cell of table view. If YES, then BMB will not keep the boom-buttons and the background view to avoid memory leaks and do some re-calculate jobs when table view has been scrolled.
+    ///
+    /// The default value is **false**.
     @IBInspectable public var isInList: Bool = false
     
     // MARK: Shadow
     
+    /// Whether BMB has a shadow.
+    ///
+    /// The default value is **true**.
     @IBInspectable public var hasShadow: Bool = true {
         didSet {
             if hasShadow != oldValue {
@@ -35,6 +52,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// Rect (in points) of shadow path of BMB.
+    ///
+    /// The default value is (2, 2, BMB.width - 4, BMB.height - 4).
     @IBInspectable public var shadowPathRect: CGRect! {
         didSet {
             if shadowPathRect != oldValue {
@@ -43,6 +63,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// Offset (in points) of shadow on x axis.
+    ///
+    /// The default value is **0**.
     @IBInspectable public var shadowOffsetX: CGFloat = 0 {
         didSet {
             if shadowOffsetX != oldValue {
@@ -51,6 +74,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// Offset (in points) of shadow on y axis.
+    ///
+    /// The default value is **8**.
     @IBInspectable public var shadowOffsetY: CGFloat = 8 {
         didSet {
             if shadowOffsetY != oldValue {
@@ -59,6 +85,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// The blur radius (in points) used to render the BMB’s shadow.
+    ///
+    /// The default value is **4**.
     @IBInspectable public var shadowRadius: CGFloat = 4 {
         didSet {
             if shadowRadius != oldValue {
@@ -67,6 +96,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// The color of BMB's shadow.
+    ///
+    /// The default value is **0x44000000**.
     @IBInspectable public var shadowColor: UIColor = Utils.color(argb: 0x44000000) {
         didSet {
             if Utils.isSameColor(shadowColor, oldValue) {
@@ -77,6 +109,19 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
     
     // MARK: Button
     
+    /// ButtonEnum of BMB. This property tells BMB what kind of boom-button that it needs to boom.
+    ///
+    /// It should be one of the following enums: 
+    /// 1. **simpleCircle**
+    /// 2. **textInsideCircle**
+    /// 3. **textOutsideCircle**
+    /// 4. **ham**
+    ///
+    /// Notice that ButtonEnum must correspond with PiecePlaceEnum and ButtonPlaceEnum.
+    ///
+    /// Check https://github.com/Nightonke/VHBoomMenuButton/wiki for more information.
+    ///
+    /// The default value is **unknown**.
     public var buttonEnum: ButtonEnum = ButtonEnum.unknown {
         didSet {
             if buttonEnum != oldValue {
@@ -88,6 +133,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// Whether the BMB has the circular background. BMB should not have a background effect when used in navigation bar or table view.
+    ///
+    /// The default value is **true**.
     @IBInspectable public var hasBackground: Bool = true {
         didSet {
             if hasBackground != oldValue {
@@ -96,6 +144,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// The color of BMB at normal state.
+    ///
+    /// The default value is **0x30a2fb**.
     @IBInspectable public var normalColor: UIColor = Utils.color(rgb: 0x30a2fb) {
         didSet {
             if Utils.isSameColor(normalColor, oldValue) {
@@ -104,6 +155,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// The color of BMB at highlighted state.
+    ///
+    /// The default value is **0x73bdf1**.
     @IBInspectable public var highlightedColor: UIColor = Utils.color(rgb: 0x73bdf1) {
         didSet {
             if Utils.isSameColor(highlightedColor, oldValue) {
@@ -112,6 +166,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// The color of BMB at unable state. BMB can be set to unable state by isUserInteractionEnabled = false.
+    ///
+    /// The default value is **0x30a2fb**.
     @IBInspectable public var unableColor: UIColor = Utils.color(rgb: 0x30a2fb) {
         didSet {
             if Utils.isSameColor(unableColor, oldValue) {
@@ -132,7 +189,14 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// Whether BMB is draggable. If YES, BMB can be dragged in its superview.
+    ///
+    /// The default value is **false**.
     @IBInspectable public var draggable: Bool = false
+    
+    /// The top, left, bottom and right margins in BMB's superview when BMB is draggable.
+    ///
+    /// The default value is UIEdgeInsets.init(top: 15, left: 15, bottom: 15, right: 15).
     public var edgeInsetsInSuperView: UIEdgeInsets = UIEdgeInsets.init(top: 15, left: 15, bottom: 15, right: 15) {
         didSet {
             if edgeInsetsInSuperView != oldValue {
@@ -143,6 +207,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
     
     // MARK: Piece
     
+    /// The radius (in points) of dots on BMB.
+    ///
+    /// The default value is **3**.
     @IBInspectable public var dotRadius: CGFloat = 3 {
         didSet {
             if dotRadius != oldValue {
@@ -151,6 +218,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// The width (in points) of hams on BMB.
+    ///
+    /// The default value is **20**.
     @IBInspectable public var hamWidth: CGFloat = 20 {
         didSet {
             if hamWidth != oldValue {
@@ -159,6 +229,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// The height (in points) of hams on BMB.
+    ///
+    /// The default value is **3**.
     @IBInspectable public var hamHeight: CGFloat = 3 {
         didSet {
             if hamHeight != oldValue {
@@ -167,6 +240,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// The corner radius (in points) of pieces on BMB. Pieces include dots and hams. This property can make the dots look like blocks, which is useful when boom-buttons are square. A negative corner radius does no effect.
+    ///
+    /// The default value is **-1**.
     @IBInspectable public var pieceCornerRadius: CGFloat = -1 {
         didSet {
             if pieceCornerRadius != oldValue {
@@ -175,6 +251,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// The horizontal margin (in points) of pieces on BMB.
+    ///
+    /// The default value is **2**.
     @IBInspectable public var pieceHorizontalMargin: CGFloat = 2 {
         didSet {
             if pieceHorizontalMargin != oldValue {
@@ -183,6 +262,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// The vertical margin (in points) of pieces on BMB.
+    ///
+    /// The default value is **2**.
     @IBInspectable public var pieceVerticalMargin: CGFloat = 2 {
         didSet {
             if pieceVerticalMargin != oldValue {
@@ -191,6 +273,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// The inclined margin (in points) of pieces on BMB.
+    ///
+    /// The default value is **2**.
     @IBInspectable public var pieceInclinedMargin: CGFloat = 2 {
         didSet {
             if pieceInclinedMargin != oldValue {
@@ -199,6 +284,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// The length (in points) of the 2 lines in share style.
+    ///
+    /// The default value is **18**.
     @IBInspectable public var shareLineLength: CGFloat = 18 {
         didSet {
             if shareLineLength != oldValue {
@@ -207,6 +295,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// The color of the first line (the higher one) in share style.
+    ///
+    /// The default value is **UIColor.white**.
     @IBInspectable public var shareLine1Color: UIColor = UIColor.white {
         didSet {
             if Utils.isSameColor(shareLine1Color, oldValue) {
@@ -215,6 +306,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// The color of the second line (the lower one) in share style.
+    ///
+    /// The default value is **UIColor.white**.
     @IBInspectable public var shareLine2Color: UIColor = UIColor.white {
         didSet {
             if Utils.isSameColor(shareLine2Color, oldValue) {
@@ -223,6 +317,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// The width (in points) of the 2 lines in share style.
+    ///
+    /// The default value is **1.5**.
     @IBInspectable public var shareLineWidth: CGFloat = 1.5 {
         didSet {
             if shareLineWidth != oldValue {
@@ -231,6 +328,13 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// PiecePlaceEnum tells BMB how the pieces should be placed on BMB.
+    ///
+    /// Check PiecePlaceEnum.swift file to check all piece-place-enums.
+    ///
+    /// Notice that PiecePlaceEnum must correspond with ButtonEnum and ButtonPlaceEnum.
+    ///
+    /// Check https://github.com/Nightonke/VHBoomMenuButton/wiki for more information.
     public var piecePlaceEnum = PiecePlaceEnum.unknown {
         didSet {
             // We have to clear pieces because the pieces may be changed even though the piece-place-enum is still the same
@@ -239,8 +343,21 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// The customize-positions of pieces. Only works when the piece-place-enum is **custom**. The elements in positions-array must be CGPoint.
+    ///
+    /// The default value is an empty array.
+    public var customPiecePlacePositions: [CGPoint] = [CGPoint]() {
+        didSet {
+            clearPieces()
+            needToCalculateStartPositions = true
+        }
+    }
+    
     // MARK: Background
     
+    /// Whether use a blur background. Notice that blur effect only works on iOS 8.0 or above.
+    ///
+    /// The default value is **false**.
     @IBInspectable public var backgroundBlurred: Bool = false {
         didSet {
             if backgroundBlurred == oldValue {
@@ -268,6 +385,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// Blur effect of background. Notice that blur effect only works on iOS 8.0 or above.
+    ///
+    /// The default value is UIBlurEffect.init(style: UIBlurEffectStyle.dark).
     @available(iOS 8.0, *)
     public var blurEffect: UIBlurEffect? {
         get {
@@ -278,6 +398,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// The color of the background-dim animation when BMB booms.
+    ///
+    /// The default value is **0x55000000**.
     @IBInspectable public var dimColor: UIColor = Utils.color(argb: 0x55000000) {
         didSet {
             if Utils.isSameColor(dimColor, oldValue) {
@@ -289,6 +412,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// The tip string on background when BMB finishes the booming animation.
+    ///
+    /// The default value is **nil**.
     @IBInspectable public var tip: String? {
         didSet {
             if tip != oldValue {
@@ -297,6 +423,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// Whether the tip string is put below the boom-buttons on background.
+    ///
+    /// The default value is **false**.
     @IBInspectable public var tipBelowButtons: Bool = false {
         didSet {
             if tipBelowButtons != oldValue {
@@ -305,6 +434,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// The margin (in points) between label of tip and the highest boom-button (if tipBelowButtons is NO) or the lowest boom-button (if tipBelowButtons is false).
+    ///
+    /// The default value is **40**.
     @IBInspectable public var tipButtonMargin: CGFloat = 40 {
         didSet {
             if tipButtonMargin != oldValue {
@@ -315,8 +447,14 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
     
     // MARK: Animation
     
+    /// The BoomDelegate of BMB. Check BoomDelegate.swift for more information.
+    ///
+    /// The default value is **nil**.
     public weak var boomDelegate: BoomDelegate?
     
+    /// The delay (in seconds) among each boom-button when booming and rebooming.
+    ///
+    /// The default value is **0.05**.
     @IBInspectable public var delay: CFTimeInterval {
         get {
             return boomDelay
@@ -327,6 +465,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// The duration (in seconds) of each boom-button when booming and rebooming.
+    ///
+    /// The default value is **0.3**.
     @IBInspectable public var duration: CFTimeInterval {
         get {
             return boomDuration
@@ -337,8 +478,14 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// The delay (in seconds) among each boom-button when booming.
+    ///
+    /// The default value is **0.05**.
     @IBInspectable public var boomDelay: CFTimeInterval = 0.05
     
+    /// The duration (in seconds) of each boom-button when booming.
+    ///
+    /// The default value is **0.3**.
     @IBInspectable public var boomDuration: CFTimeInterval = 0.3 {
         didSet {
             if boomDuration <= 0 {
@@ -347,8 +494,14 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// The delay (in seconds) among each boom-button when rebooming.
+    ///
+    /// The default value is **0.05**.
     @IBInspectable public var reboomDelay: CFTimeInterval = 0.05
     
+    /// The duration (in seconds) of each boom-button when rebooming.
+    ///
+    /// The default value is **0.3**.
     @IBInspectable public var reboomDuration: CFTimeInterval = 0.3 {
         didSet {
             if reboomDuration <= 0 {
@@ -357,16 +510,36 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// Whether BMB rebooms when the background view is clicked.
+    ///
+    /// The default value is **true**.
     @IBInspectable public var cancelable: Bool = true
     
+    /// Whether BMB rebooms when one of the boom-buttons is clicked.
+    ///
+    /// The default value is **true**.
     @IBInspectable public var autoHide: Bool = true
     
+    /// The order of animtions of boom-buttons when booming and rebooming.
+    ///
+    /// The default value is **random**.
     public var orderEnum = OrderEnum.random
     
+    /// How many frames should the booming and rebooming animations have.
+    ///
+    /// The default value is **60**.
     @IBInspectable public var frames: Int = 60
     
+    /// The boom-enum of booming and rebooming animations. This property changes the track of the boom-buttons' movement.
+    ///
+    /// The default value is **horizontalThrow2**.
     @IBInspectable public var boomEnum = BoomEnum.horizontalThrow2
     
+    /// The name of the ease using in movement, scale and rotation animations of boom-buttons when booming. This property is used to change movement, scale and rotation animations' ease name with a line of code.
+    ///
+    /// Check Ease.swift to find all the ease-names supported by BMB.
+    ///
+    /// The default value is **outBack**.
     public var boomEaseName: String! = Ease.outBack {
         didSet {
             boomMoveEaseName = boomEaseName
@@ -375,24 +548,70 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// The time-interpolator using in movement, scale and rotation animations of boom-buttons when booming. This property is used to change movement, scale and rotation animations' ease name with a line of code.
+    ///
+    /// The default value is **outBack-ease**.
+    public var boomEase: TimeInterpolator! = Ease.ease(name: Ease.outBack) {
+        didSet {
+            boomMoveEase = boomEase
+            boomScaleEase = boomEase
+            boomRotateEase = boomEase
+        }
+    }
+    
+    /// The name of the ease using in movement animations of boom-buttons when booming.
+    ///
+    /// Check Ease.swift to find all the ease-names supported by BMB.
+    ///
+    /// The default value is **outBack**.
     public var boomMoveEaseName = Ease.outBack {
         didSet {
             boomMoveEase = Ease.ease(name: boomMoveEaseName)
         }
     }
     
+    /// The time-interpolator using in movement animations of boom-buttons when booming.
+    ///
+    /// The default value is **out-back-ease**.
+    public var boomMoveEase: TimeInterpolator! = Ease.ease(name: Ease.outBack)
+    
+    /// The name of the ease using in scale animations of boom-buttons when booming.
+    ///
+    /// Check Ease.swift to find all the ease-names supported by BMB.
+    ///
+    /// The default value is **outBack**.
     public var boomScaleEaseName = Ease.outBack {
         didSet {
             boomScaleEase = Ease.ease(name: boomScaleEaseName)
         }
     }
     
+    /// The time-interpolator using in scale animations of boom-buttons when booming.
+    ///
+    /// The default value is **out-back-ease**.
+    public var boomScaleEase: TimeInterpolator! = Ease.ease(name: Ease.outBack)
+    
+    /// The name of the ease using in rotation animations of boom-buttons when booming.
+    ///
+    /// Check Ease.swift to find all the ease-names supported by BMB.
+    ///
+    /// The default value is **outBack**.
     public var boomRotateEaseName = Ease.outBack {
         didSet {
             boomRotateEase = Ease.ease(name: boomRotateEaseName)
         }
     }
     
+    /// The time-interpolator using in rotation animations of boom-buttons when booming.
+    ///
+    /// The default value is **out-back-ease**.
+    public var boomRotateEase: TimeInterpolator! = Ease.ease(name: Ease.outBack)
+    
+    /// The name of the ease using in movement, scale and rotation animations of boom-buttons when rebooming. This property is used to change movement, scale and rotation animations' ease name with a line of code.
+    ///
+    /// Check Ease.swift to find all the ease-names supported by BMB.
+    ///
+    /// The default value is **inBack**.
     public var reboomEaseName: String! = Ease.inBack {
         didSet {
             reboomMoveEaseName = reboomEaseName
@@ -401,33 +620,96 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// The time-interpolator using in movement, scale and rotation animations of boom-buttons when rebooming. This property is used to change movement, scale and rotation animations' ease name with a line of code.
+    ///
+    /// The default value is **in-back-ease**.
+    public var reboomEase: TimeInterpolator! = Ease.ease(name: Ease.inBack) {
+        didSet {
+            reboomMoveEase = reboomEase
+            reboomScaleEase = reboomEase
+            reboomRotateEase = reboomEase
+        }
+    }
+    
+    /// The name of the ease using in movement animations of boom-buttons when rebooming.
+    ///
+    /// Check Ease.swift to find all the ease-names supported by BMB.
+    ///
+    /// The default value is **inBack**.
     public var reboomMoveEaseName = Ease.inBack {
         didSet {
             reboomMoveEase = Ease.ease(name: reboomMoveEaseName)
         }
     }
     
+    /// The time-interpolator using in movement animations of boom-buttons when rebooming.
+    ///
+    /// The default value is **in-back-ease**.
+    public var reboomMoveEase: TimeInterpolator! = Ease.ease(name: Ease.inBack)
+    
+    /// The name of the ease using in scale animations of boom-buttons when rebooming.
+    ///
+    /// Check Ease.swift to find all the ease-names supported by BMB.
+    ///
+    /// The default value is **inBack**.
     public var reboomScaleEaseName = Ease.inBack {
         didSet {
             reboomScaleEase = Ease.ease(name: reboomScaleEaseName)
         }
     }
     
+    /// The time-interpolator using in scale animations of boom-buttons when rebooming.
+    ///
+    /// The default value is **in-back-ease**.
+    public var reboomScaleEase: TimeInterpolator! = Ease.ease(name: Ease.inBack)
+    
+    /// The name of the ease using in rotation animations of boom-buttons when rebooming.
+    ///
+    /// Check Ease.swift to find all the ease-names supported by BMB.
+    ///
+    /// The default value is **inBack**.
     public var reboomRotateEaseName = Ease.inBack {
         didSet {
             reboomRotateEase = Ease.ease(name: reboomRotateEaseName)
         }
     }
     
+    /// The time-interpolator using in rotation animations of boom-buttons when rebooming.
+    ///
+    /// The default value is **in-back-ease**.
+    public var reboomRotateEase: TimeInterpolator! = Ease.ease(name: Ease.inBack)
+    
+    /// The degree (in π) of rotation animations when booming. In reboomming, the value is -degree.
+    ///
+    /// The default value is **4π**.
     @IBInspectable public var rotateDegree: CGFloat = 4 * CGFloat.pi
     
+    /// Whether use a 3D transform animation when booming or rebooming.
+    ///
+    /// The default value is **true**.
     @IBInspectable public var use3DTransformAnimation: Bool = true
     
+    /// Whether BMB will boom automatically with animations when its drawRect method is called. This property can be useful if the BMB is supposed to boom when its view-controller appears.
+    ///
+    /// The default value is **false**.
     @IBInspectable public var autoBoom: Bool = false
     
+    /// Whether BMB will boom automatically without animations when its drawRect method is called. This property can be useful if the BMB is supposed to boom when its view-controller appears.
+    ///
+    /// The default value is **false**.
     @IBInspectable public var autoBoomImmediately: Bool = false
     
     // MARK: Boom Buttons
+    
+    /// ButtonPlaceEnum tells BMB how the boom-buttons should be placed on the background when booming.
+    ///
+    /// Check ButtonPlaceEnum.swift file to check all button-place-enums.
+    ///
+    /// Notice that ButtonPlaceEnum must correspond with ButtonEnum and PiecePlaceEnum.
+    ///
+    /// Check https://github.com/Nightonke/VHBoomMenuButton/wiki for more information.
+    ///
+    /// The default value is **unknown** .
     public var buttonPlaceEnum = ButtonPlaceEnum.unknown {
         didSet {
             // We have to clear pieces because the buttons may be changed even though the button-place-enum is still the same
@@ -436,22 +718,59 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// The customize-positions of boom-buttons. Only works when the button-place-enum is **custom**. The elements in positions-array must be CGPoint.
+    ///
+    /// The default value is an empty array.
+    public var customButtonPlacePositions: [CGPoint] = [CGPoint]() {
+        didSet {
+            clearButtons()
+            needToCalculateStartPositions = true
+        }
+    }
+    
+    /// ButtonPlaceAlignmentEnum tells BMB the boom-buttons' alignment position. For instance, you can put all the boom-buttons align-bottom with ButtonPlaceAlignmentEnum.bottom.
+    ///
+    /// The default value is **ButtonPlaceAlignmentEnum.center**.
     public var buttonPlaceAlignmentEnum = ButtonPlaceAlignmentEnum.center
     
+    /// The horizontal margin (in points) among boom-buttons.
+    ///
+    /// The default value is **12**.
     @IBInspectable public var buttonHorizontalMargin: CGFloat = 12
     
+    /// The vertical margin (in points) among boom-buttons.
+    ///
+    /// The default value is **12**.
     @IBInspectable public var buttonVerticalMargin: CGFloat = 12
     
+    /// The inclined margin (in points) among boom-buttons.
+    ///
+    /// The default value is **12**.
     @IBInspectable public var buttonInclinedMargin: CGFloat = 12
     
+    /// The margin (in points) between boom-buttons and the bottom of screen when booming. Notice that this property only works when buttonPlaceAlignmentEnum is bottom, bottomLeft or bottomRight.
+    ///
+    /// The default value is **20**.
     @IBInspectable public var buttonBottomMargin: CGFloat = 20
     
+    /// The margin (in points) between boom-buttons and the top of screen when booming. Notice that this property only works when buttonPlaceAlignmentEnum is top, topLeft and topRight.
+    ///
+    /// The default value is **20**.
     @IBInspectable public var buttonTopMargin: CGFloat = 20
     
+    /// The margin (in points) between boom-buttons and the left of screen when booming. Notice that this property only works when buttonPlaceAlignmentEnum is left, topLeft or bottomLeft.
+    ///
+    /// The default value is **20**.
     @IBInspectable public var buttonLeftMargin: CGFloat = 20
     
+    /// The margin (in points) between boom-buttons and the right of screen when booming. Notice that this property only works when buttonPlaceAlignmentEnum is right, topRight or bottomRight.
+    ///
+    /// The default value is **20**.
     @IBInspectable public var buttonRightMargin: CGFloat = 20
     
+    /// The margin (in points) between the last boom-button and the last but one. This property is useful when the last boom-button is used as a 'Cancel' choice. Notice that this property only works when buttonEnum is ham and its value must be positive.
+    ///
+    /// The default value is **-1**.
     @IBInspectable public var buttonHamButtonTopMargin: CGFloat = -1
     
     // MARK: - Private Properties
@@ -474,12 +793,6 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
     // MARK: Animation
     
     private var animatingViewsNumber = 0
-    private var boomMoveEase: Ease! = Ease.ease(name: Ease.outBack)
-    private var boomScaleEase: Ease! = Ease.ease(name: Ease.outBack)
-    private var boomRotateEase: Ease! = Ease.ease(name: Ease.outBack)
-    private var reboomMoveEase: Ease! = Ease.ease(name: Ease.inBack)
-    private var reboomScaleEase: Ease! = Ease.ease(name: Ease.inBack)
-    private var reboomRotateEase: Ease! = Ease.ease(name: Ease.inBack)
     private var boomState = BoomStateEnum.didReboom
     
     // MARK: Background
@@ -505,6 +818,10 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
     // MARK: Device Orientation
     
     private var lastDeviceOrientation = UIDevice.current.orientation
+    
+    // MARK: Fade Views
+    
+    private var fadeViews: [UIView] = [UIView]()
     
     // MARK: - Initialize
     
@@ -580,6 +897,10 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
     override public func layoutSubviews() {
         super.layoutSubviews()
         backgroundColor = UIColor.clear
+        if uninitializedBoomButtons() {
+            return
+        }
+        placeFadeViews()
         clearPieces()
         createPieces()
         placeShareLinesView()
@@ -655,12 +976,12 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         switch buttonEnum {
         case .simpleCircle, .textInsideCircle, .textOutsideCircle:
             if piecePlaceEnum == .share {
-                piecePositions = PiecePlaceManager.positions(radius: dotRadius, dotNumber: boomButtonBuilders.count, boomMenuButton: self)
+                piecePositions = PiecePlaceManager.shareDotPositions(dotNumber: boomButtonBuilders.count, boomMenuButton: self)
             } else {
-                piecePositions = PiecePlaceManager.positions(radius: dotRadius, boomMenuButton: self)
+                piecePositions = PiecePlaceManager.dotPositions(boomMenuButton: self)
             }
         case .ham:
-            piecePositions = PiecePlaceManager.positions(width: hamWidth, height: hamHeight, boomMenuButton: self)
+            piecePositions = PiecePlaceManager.hamPositions(boomMenuButton: self)
         case .unknown:
             break
         }
@@ -760,20 +1081,25 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
     
     // MARK: - Animation
     
+    /// Whether BMB is animating.
+    ///
+    /// - Returns: Is animating.
     public func isAnimating() -> Bool! {
         return animatingViewsNumber != 0
     }
     
+    /// Make BMB boom. BMB can only boom when it's NOT animating and it has finished rebooming.
     public func boom() {
         innerBoom(immediately: false)
     }
     
+    /// Make BMB boom immediately without animation. In fact, this method does the same job as boom with 1-millisecond duration.
     public func boomImmediately() {
         innerBoom(immediately: true)
     }
     
     private func innerBoom(immediately: Bool) {
-        if uninitializedBoomButtons() || isAnimating() || boomState != .didReboom {
+        if isAnimating() || boomState != .didReboom {
             return
         }
         ErrorManager.judge(boomMenuButton: self, withBuilders: self.boomButtonBuilders)
@@ -783,13 +1109,16 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         createButtons()
         dimBackground(immediately: immediately)
         startBoomAnimations(immediately: immediately)
+        startBoomAnimationForFadeViews(immediately: immediately)
         adjustTipLabel()
     }
     
+    /// Make BMB reboom. BMB can only reboom when it's NOT animatiing and it has finished booming.
     public func reboom() {
         innerReboom(immediately: false)
     }
     
+    /// Make BMB reboom immdiately without animation. In fact, this method does the same job as reboom with 1-millisecond duration.
     public func reboomImmediately() {
         innerReboom(immediately: true)
     }
@@ -802,6 +1131,7 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         boomDelegate?.boomMenuButtonWillReboom?(boomMenuButton: self)
         lightBackground(immediately: immediately)
         startReboomAnimation(immediately: immediately)
+        startReboomAnimationForFadeViews(immediately: immediately)
     }
     
     private func dimBackground(immediately: Bool) {
@@ -961,14 +1291,22 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
                                                            frames: self.frames,
                                                            start: scaleY,
                                                            end: 1)
-            AnimationManager.addAnimations(view: boomButton, animations: xPositionAnimation, yPositionAnimation, xScaleAnimation, yScaleAnimation)
-            AnimationManager.addAnimation(animation: rotateAnimation, views: boomButton.rotateViews())
-            AnimationManager.addAnimation(animation: opacityAnimation, views: boomButton.goneViews())
+            AnimationManager.addAnimations(view: boomButton,
+                                           key: BoomMenuButton.kBoomButtonAnimation,
+                                           animations: xPositionAnimation, yPositionAnimation, xScaleAnimation, yScaleAnimation)
+            AnimationManager.addAnimation(animation: rotateAnimation,
+                                          key: BoomMenuButton.kBoomButtonRotateViewAnimation,
+                                          views: boomButton.rotateViews())
+            AnimationManager.addAnimation(animation: opacityAnimation,
+                                          key: BoomMenuButton.kBoomButtonGoneViewAnimation,
+                                          views: boomButton.goneViews())
             
             if self.use3DTransformAnimation {
                 let rotateXAnimation = AnimationManager.rotateXAnimation(ys: ys, delay: 0, duration: duration)
                 let rotateYAnimation = AnimationManager.rotateYAnimation(xs: xs, delay: 0, duration: duration)
-                AnimationManager.addAnimations(view: boomButton, animations: rotateXAnimation, rotateYAnimation)
+                AnimationManager.addAnimations(view: boomButton,
+                                               key: BoomMenuButton.kBoomButton3DAnimation,
+                                               animations: rotateXAnimation, rotateYAnimation)
             }
             
             boomButton.frame = CGRect.init(x: endPosition.x - boomButton.centerPoint().x,
@@ -1070,14 +1408,22 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
                                                            frames: self.frames,
                                                            start: 1,
                                                            end: scaleY)
-            AnimationManager.addAnimations(view: boomButton, animations: xPositionAnimation, yPositionAnimation, xScaleAnimation, yScaleAnimation)
-            AnimationManager.addAnimation(animation: rotateAnimation, views: boomButton.rotateViews())
-            AnimationManager.addAnimation(animation: opacityAnimation, views: boomButton.goneViews())
+            AnimationManager.addAnimations(view: boomButton,
+                                           key: BoomMenuButton.kBoomButtonAnimation,
+                                           animations: xPositionAnimation, yPositionAnimation, xScaleAnimation, yScaleAnimation)
+            AnimationManager.addAnimation(animation: rotateAnimation,
+                                          key: BoomMenuButton.kBoomButtonRotateViewAnimation,
+                                          views: boomButton.rotateViews())
+            AnimationManager.addAnimation(animation: opacityAnimation,
+                                          key: BoomMenuButton.kBoomButtonGoneViewAnimation,
+                                          views: boomButton.goneViews())
             
             if self.use3DTransformAnimation {
                 let rotateXAnimation = AnimationManager.rotateXAnimation(ys: ys, delay: 0, duration: duration)
                 let rotateYAnimation = AnimationManager.rotateYAnimation(xs: xs, delay: 0, duration: duration)
-                AnimationManager.addAnimations(view: boomButton, animations: rotateXAnimation, rotateYAnimation)
+                AnimationManager.addAnimations(view: boomButton, 
+                                               key: BoomMenuButton.kBoomButton3DAnimation,
+                                               animations: rotateXAnimation, rotateYAnimation)
             }
             
             boomButton.frame = CGRect.init(x: endPosition.x - boomButton.centerPoint().x,
@@ -1224,6 +1570,8 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
             return 0
         } else if piecePlaceEnum == .share {
             return boomButtonBuilders.count
+        } else if piecePlaceEnum == .custom {
+            return customPiecePlacePositions.count
         } else {
             return piecePlaceEnum.pieceNumber()
         }
@@ -1394,26 +1742,49 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
     
     // MARK: - Builders
     
-    
+    /// Add a builder for a boom-button. Notice that boom-button is the sub-button of BMB and one builder for one boom-button.
+    ///
+    /// The builder should be a instance of: 
+    /// 1. SimpleCircleButtonBuilder
+    /// 2. TextInsideCircleButtonBuilder
+    /// 3. TextOutsideCircleButtonBuilder
+    /// 4. HamButtonBuilder.
+    ///
+    /// - Parameter builder: Builder for a boom-button.
     public func addBuilder(_ builder: BoomButtonBuilder) {
         boomButtonBuilders.append(builder)
         setNeedsLayout()
     }
     
+    /// Replace a builder at the certain index.
+    ///
+    /// - Parameters:
+    ///   - builder: Builder.
+    ///   - index: Index.
     public func setBuilder(_ builder: BoomButtonBuilder, at index: Int) {
         boomButtonBuilders[index] = builder
         setNeedsLayout()
     }
     
+    /// Replace all builders.
+    ///
+    /// - Parameter builders: Builders.
     public func setBuilders(_ builders: [BoomButtonBuilder]) {
         boomButtonBuilders = builders
         setNeedsLayout()
     }
     
+    /// Get a builder at a centain index. This method is useful when a boom-button needs to change its attributes. The attributes of boom-button are able to be changed from its corresponding builder.
+    ///
+    /// - Parameter index: Index.
+    /// - Returns: Builder.
     public func builder(at index: Int) -> BoomButtonBuilder? {
         return boomButtonBuilders[index]
     }
     
+    /// Remove a certain builder.
+    ///
+    /// - Parameter builder: Builder.
     public func removeBuilder(_ builder: BoomButtonBuilder) {
         let index = boomButtonBuilders.index(of: builder)
         if index != nil {
@@ -1422,11 +1793,15 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
+    /// Remove a builder at index.
+    ///
+    /// - Parameter index: Index.
     public func removeBuilder(at index: Int) {
         boomButtonBuilders.remove(at: index)
         setNeedsLayout()
     }
     
+    /// Remove all builders.
     public func clearBuilders() {
         boomButtonBuilders.removeAll()
     }
@@ -1452,17 +1827,70 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
     }
     
-    // MARK: Background
+    // MARK: - Background
     
+    /// Add views to background view. The background view is the superview of boom-buttons when the animations are processing. The views added from this method will play alpha-animations when booming and rebooming.
+    ///
+    /// - Parameter view: View that's to be added into background.
     public func addViewToBackground(view: UIView) {
         createBackground()
         background?.addGoneView(view)
     }
     
+    /// Get the tip-label that shows a tip in background. Use this method to customize the tip-label.
+    ///
+    /// - Returns: UILabel of tip in background.
     public func tipLabel() -> UILabel! {
         if _tipLabel == nil {
             _tipLabel = UILabel.init()
         }
         return _tipLabel
+    }
+    
+    // MARK: - Fade Views
+    
+    private func placeFadeViews() {
+        for view in fadeViews {
+            view.removeFromSuperview()
+            self.addSubview(view)
+        }
+    }
+    
+    /// Add a fade view which plays fade-in and fade-out animations when booming or rebooming on BMB.
+    ///
+    /// - Parameter view: The fading view.
+    public func addFadeView(_ view: UIView) {
+        fadeViews.append(view)
+        self.addSubview(view)
+    }
+    
+    /// Remove a fade view which plays fade-in and fade-out animations when booming or rebooming on BMB.
+    ///
+    /// - Parameter view: The fade view.
+    public func removeFadeView(_ view: UIView) {
+        if let index = fadeViews.index(of: view) {
+            fadeViews.remove(at: index)
+        }
+        view.removeFromSuperview()
+    }
+    
+    /// Remove all fade views which play fade-in and fade-out animations when booming or rebooming on BMB.
+    public func clearFadeViews() {
+        for view in fadeViews {
+            view.removeFromSuperview()
+        }
+        fadeViews.removeAll()
+    }
+    
+    private func startBoomAnimationForFadeViews(immediately: Bool) {
+        let duration = immediately ? 0.001 : boomDuration + CFTimeInterval(pieces.count - 1) * boomDelay
+        let opacityAnimation = AnimationManager.fadeViewsOpacityAnimation(isBooming: true, duration: duration)
+        AnimationManager.addAnimation(animation: opacityAnimation, key: BoomMenuButton.kFadeViewAnimation, views: fadeViews)
+    }
+    
+    private func startReboomAnimationForFadeViews(immediately: Bool) {
+        let duration = immediately ? 0.001 : reboomDuration + CFTimeInterval(pieces.count - 1) * reboomDelay
+        let opacityAnimation = AnimationManager.fadeViewsOpacityAnimation(isBooming: false, duration: duration)
+        AnimationManager.addAnimation(animation: opacityAnimation, key: BoomMenuButton.kFadeViewAnimation, views: fadeViews)
     }
 }

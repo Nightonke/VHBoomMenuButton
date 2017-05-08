@@ -8,518 +8,425 @@
 
 #import "VHPiecePlaceManager.h"
 
-#define ADD_POINT(a, b) [positions addObject:[NSValue valueWithCGPoint:CGPointMake(a, b)]];
+#define addPosition(a, b) [positions addObject:[NSValue valueWithCGPoint:CGPointMake(a, b)]];
 
 @implementation VHPiecePlaceManager
 
-+ (NSMutableArray<NSValue *> *)positionsWithEnum:(VHPiecePlaceEnum)placeEnum
-                                 withParentFrame:(CGRect)frame
-                                   withDotRadius:(CGFloat)radius
-                            withHorizontalMargin:(CGFloat)dotHorizontalMargin
-                              withVerticalMargin:(CGFloat)dotVerticalMargin
-                              withInclinedMargin:(CGFloat)dotInclinedMargin
++ (NSMutableArray<NSValue *> *)dotPositions:(VHBoomMenuButton *)bmb
 {
-    NSMutableArray *positions = [NSMutableArray arrayWithCapacity:[VHPiecePlaceManager pieceNumber:placeEnum]];
+    CGRect parentFrame = bmb.bounds;
     
-    switch (placeEnum) {
-        case VHPiecePlaceDOT_1:
-            ADD_POINT(0, 0);
-            break;
-        case VHPiecePlaceDOT_2_1:
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, 0);
-            ADD_POINT(+dotHorizontalMargin / 2 + radius, 0);
-            break;
-        case VHPiecePlaceDOT_2_2:
-            ADD_POINT(0, -dotVerticalMargin / 2 - radius);
-            ADD_POINT(0, +dotVerticalMargin / 2 + radius);
-            break;
-        case VHPiecePlaceDOT_3_1:
-            ADD_POINT(-dotHorizontalMargin - 2 * radius, 0);
-            ADD_POINT(0, 0);
-            ADD_POINT(+dotHorizontalMargin + 2 * radius, 0);
-            break;
-        case VHPiecePlaceDOT_3_2:
-            ADD_POINT(0, -dotVerticalMargin - 2 * radius);
-            ADD_POINT(0, 0);
-            ADD_POINT(0, +dotVerticalMargin + 2 * radius);
-            break;
-        case VHPiecePlaceDOT_3_3:
-        {
-            CGFloat a, b, c;
-            b = dotHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(-b, -a);
-            ADD_POINT(+b, -a);
-            ADD_POINT(0, c);
-        }
-            break;
-        case VHPiecePlaceDOT_3_4:
-        {
-            CGFloat a, b, c;
-            b = dotHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(0, -c);
-            ADD_POINT(-b, a);
-            ADD_POINT(+b, a);
-        }
-            break;
-        case VHPiecePlaceDOT_4_1:
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, -dotVerticalMargin / 2 - radius);
-            ADD_POINT(+dotHorizontalMargin / 2 + radius, -dotVerticalMargin / 2 - radius);
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, +dotVerticalMargin / 2 + radius);
-            ADD_POINT(+dotHorizontalMargin / 2 + radius, +dotVerticalMargin / 2 + radius);
-            break;
+    CGFloat hm = bmb.pieceHorizontalMargin;
+    CGFloat hm_0_5 = hm / 2;
+    CGFloat hm_1_5 = hm * 1.5;
+    CGFloat vm = bmb.pieceVerticalMargin;
+    CGFloat vm_0_5 = vm / 2;
+    CGFloat vm_1_5 = vm * 1.5;
+    CGFloat im = bmb.pieceInclinedMargin;
+    CGFloat r = bmb.dotRadius;
+    CGFloat r_2_0 = r * 2;
+    CGFloat r_3_0 = r * 3;
+    
+    NSMutableArray *positions = [NSMutableArray array];
+    
+    CGFloat a, b, c, e;
+    b = hm_0_5 + r;
+    c = b / (sqrt(3) / 2);
+    a = c / 2;
+    e = c - a;
+    switch (bmb.piecePlaceEnum)
+    {
         case VHPiecePlaceDOT_4_2:
-        {
-            CGFloat a = (2 * radius + dotInclinedMargin) / sqrt(2);
-            ADD_POINT(0, -a);
-            ADD_POINT(+a, 0);
-            ADD_POINT(0, +a);
-            ADD_POINT(-a, 0);
-        }
-            break;
-        case VHPiecePlaceDOT_5_1:
-        {
-            CGFloat a, b, c;
-            b = dotHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(-2 * b, -a);
-            ADD_POINT(0, -a);
-            ADD_POINT(+2 * b, -a);
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, c);
-            ADD_POINT(+dotHorizontalMargin / 2 + radius, c);
-        }
-            break;
-        case VHPiecePlaceDOT_5_2:
-        {
-            CGFloat a, b, c;
-            b = dotHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, -c);
-            ADD_POINT(+dotHorizontalMargin / 2 + radius, -c);
-            ADD_POINT(-2 * b, a);
-            ADD_POINT(0, a);
-            ADD_POINT(+2 * b, a);
-
-        }
-            break;
-        case VHPiecePlaceDOT_5_3:
-        {
-            ADD_POINT(0, 0);
-            ADD_POINT(0, -dotVerticalMargin - 2 * radius);
-            ADD_POINT(+dotHorizontalMargin + 2 * radius, 0);
-            ADD_POINT(0, +dotVerticalMargin + 2 * radius);
-            ADD_POINT(-dotHorizontalMargin - 2 * radius, 0);
-        }
-            break;
         case VHPiecePlaceDOT_5_4:
-        {
-            CGFloat a = (2 * radius + dotInclinedMargin) / sqrt(2);
-            ADD_POINT(0, 0);
-            ADD_POINT(+a, -a);
-            ADD_POINT(+a, +a);
-            ADD_POINT(-a, +a);
-            ADD_POINT(-a, -a);
-        }
-            break;
-        case VHPiecePlaceDOT_6_1:
-        {
-            ADD_POINT(-dotHorizontalMargin - 2 * radius, -dotVerticalMargin / 2 - radius);
-            ADD_POINT(0, -dotVerticalMargin / 2 - radius);
-            ADD_POINT(+dotHorizontalMargin + 2 * radius, -dotVerticalMargin / 2 - radius);
-            ADD_POINT(-dotHorizontalMargin - 2 * radius, +dotVerticalMargin / 2 + radius);
-            ADD_POINT(0, +dotVerticalMargin / 2 + radius);
-            ADD_POINT(+dotHorizontalMargin + 2 * radius, +dotVerticalMargin / 2 + radius);
-        }
-            break;
-        case VHPiecePlaceDOT_6_2:
-        {
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, -dotVerticalMargin - 2 * radius);
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, 0);
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, +dotVerticalMargin + 2 * radius);
-            ADD_POINT(+dotHorizontalMargin / 2 + radius, -dotVerticalMargin - 2 * radius);
-            ADD_POINT(+dotHorizontalMargin / 2 + radius, 0);
-            ADD_POINT(+dotHorizontalMargin / 2 + radius, +dotVerticalMargin + 2 * radius);
-        }
-            break;
-        case VHPiecePlaceDOT_6_3:
-        {
-            CGFloat a, b, c;
-            b = dotHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(-b, -a - c);
-            ADD_POINT(+b, -a - c);
-            ADD_POINT(+2 * b, 0);
-            ADD_POINT(+b, a + c);
-            ADD_POINT(-b, a + c);
-            ADD_POINT(-2 * b, 0);
-        }
-            break;
-        case VHPiecePlaceDOT_6_4:
-        {
-            CGFloat a, b, c;
-            b = dotHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(0, -2 * b);
-            ADD_POINT(+a + c, -b);
-            ADD_POINT(+a + c, +b);
-            ADD_POINT(0, +2 * b);
-            ADD_POINT(-a - c, +b);
-            ADD_POINT(-a - c, -b);
-        }
-            break;
-        case VHPiecePlaceDOT_6_5:
-        {
-            CGFloat a, b, c, e;
-            b = dotHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            e = c - a;
-            ADD_POINT(-2 * b, -a - c + e);
-            ADD_POINT(0, -a - c + e);
-            ADD_POINT(+2 * b, -a - c + e);
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, e);
-            ADD_POINT(+dotHorizontalMargin / 2 + radius, e);
-            ADD_POINT(0, +a + c + e);
-        }
-            break;
-        case VHPiecePlaceDOT_6_6:
-        {
-            CGFloat a, b, c, e;
-            b = dotHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            e = c - a;
-            ADD_POINT(0, -a - c - e);
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, -e);
-            ADD_POINT(+dotHorizontalMargin / 2 + radius, -e);
-            ADD_POINT(-2 * b, a + c - e);
-            ADD_POINT(0, +a + c - e);
-            ADD_POINT(+2 * b, a + c - e);
-        }
-            break;
-        case VHPiecePlaceDOT_7_1:
-        {
-            ADD_POINT(-dotHorizontalMargin - 2 * radius, -dotVerticalMargin - 2 * radius);
-            ADD_POINT(0, -dotVerticalMargin - 2 * radius);
-            ADD_POINT(+dotHorizontalMargin + 2 * radius, -dotVerticalMargin - 2 * radius);
-            ADD_POINT(-dotHorizontalMargin - 2 * radius, 0);
-            ADD_POINT(0, 0);
-            ADD_POINT(+dotHorizontalMargin + 2 * radius, 0);
-            ADD_POINT(0, +dotVerticalMargin + 2 * radius);
-        }
-            break;
-        case VHPiecePlaceDOT_7_2:
-        {
-            ADD_POINT(0, -dotVerticalMargin - 2 * radius);
-            ADD_POINT(-dotHorizontalMargin - 2 * radius, 0);
-            ADD_POINT(0, 0);
-            ADD_POINT(+dotHorizontalMargin + 2 * radius, 0);
-            ADD_POINT(-dotHorizontalMargin - 2 * radius, dotVerticalMargin + 2 * radius);
-            ADD_POINT(0, +dotVerticalMargin + 2 * radius);
-            ADD_POINT(+dotHorizontalMargin + 2 * radius, dotVerticalMargin + 2 * radius);
-        }
-            break;
-        case VHPiecePlaceDOT_7_3:
-        {
-            CGFloat a, b, c;
-            b = dotHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(0, 0);
-            ADD_POINT(-b, -a - c);
-            ADD_POINT(+b, -a - c);
-            ADD_POINT(+2 * b, 0);
-            ADD_POINT(+b, a + c);
-            ADD_POINT(-b, a + c);
-            ADD_POINT(-2 * b, 0);
-        }
-            break;
-        case VHPiecePlaceDOT_7_4:
-        {
-            CGFloat a, b, c;
-            b = dotHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(0, 0);
-            ADD_POINT(0, -2 * b);
-            ADD_POINT(a + c, -b);
-            ADD_POINT(a + c, +b);
-            ADD_POINT(0, +2 * b);
-            ADD_POINT(-a - c, +b);
-            ADD_POINT(-a - c, -b);
-        }
-            break;
-        case VHPiecePlaceDOT_7_5:
-        {
-            CGFloat a, b, c;
-            b = dotHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(-3 * b, -a);
-            ADD_POINT(-b, -a);
-            ADD_POINT(+b, -a);
-            ADD_POINT(+3 * b, -a);
-            ADD_POINT(-2 * b, c);
-            ADD_POINT(0, c);
-            ADD_POINT(+2 * b, c);
-        }
-            break;
-        case VHPiecePlaceDOT_7_6:
-        {
-            CGFloat a, b, c;
-            b = dotHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(-2 * b, -c);
-            ADD_POINT(0, -c);
-            ADD_POINT(+2 * b, -c);
-            ADD_POINT(-3 * b, a);
-            ADD_POINT(-b, a);
-            ADD_POINT(+b, a);
-            ADD_POINT(+3 * b, a);
-        }
-            break;
-        case VHPiecePlaceDOT_8_1:
-        {
-            CGFloat a, b, c;
-            b = dotHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(-2 * b, -a - c);
-            ADD_POINT(0, -a - c);
-            ADD_POINT(+2 * b, -a - c);
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, 0);
-            ADD_POINT(+dotHorizontalMargin / 2 + radius, 0);
-            ADD_POINT(-2 * b, a + c);
-            ADD_POINT(0, +a + c);
-            ADD_POINT(+2 * b, a + c);
-        }
+        case VHPiecePlaceDOT_8_5:
+        case VHPiecePlaceDOT_9_3:
+            a = (r_2_0 + im) / sqrt(2);
             break;
         case VHPiecePlaceDOT_8_2:
-        {
-            CGFloat a, b, c;
-            b = dotVerticalMargin / 2 + radius;
+            b = vm_0_5 + r;
             c = b / (sqrt(3) / 2);
             a = c / 2;
-            ADD_POINT(-a - c, -2 * b);
-            ADD_POINT(-a - c, 0);
-            ADD_POINT(-a - c, +2 * b);
-            ADD_POINT(0, -dotVerticalMargin / 2 - radius);
-            ADD_POINT(0, +dotVerticalMargin / 2 + radius);
-            ADD_POINT(+a + c, -2 * b);
-            ADD_POINT(+a + c, 0);
-            ADD_POINT(+a + c, +2 * b);
-        }
+            e = c - a;
+            break;
+        default:
+            break;
+    }
+    CGFloat a_2_0 = a * 2;
+    CGFloat b_2_0 = b * 2;
+    CGFloat b_3_0 = b * 3;
+    CGFloat c_2_0 = c * 2;
+    
+    switch (bmb.piecePlaceEnum)
+    {
+        case VHPiecePlaceDOT_1:
+            addPosition(0, 0);
+            break;
+        case VHPiecePlaceDOT_2_1:
+            addPosition(-hm_0_5 - r, 0);
+            addPosition(+hm_0_5 + r, 0);
+            break;
+        case VHPiecePlaceDOT_2_2:
+            addPosition(0, -vm_0_5 - r);
+            addPosition(0, +vm_0_5 + r);
+            break;
+        case VHPiecePlaceDOT_3_1:
+            addPosition(-hm - r_2_0, 0);
+            addPosition(0, 0);
+            addPosition(+hm + r_2_0, 0);
+            break;
+        case VHPiecePlaceDOT_3_2:
+            addPosition(0, -vm - r_2_0);
+            addPosition(0, 0);
+            addPosition(0, +vm + r_2_0);
+            break;
+        case VHPiecePlaceDOT_3_3:
+            addPosition(-b, -a);
+            addPosition(+b, -a);
+            addPosition(0, c);
+            break;
+        case VHPiecePlaceDOT_3_4:
+            addPosition(0, -c);
+            addPosition(-b, a);
+            addPosition(+b, a);
+            break;
+        case VHPiecePlaceDOT_4_1:
+            addPosition(-hm_0_5 - r, -vm_0_5 - r);
+            addPosition(+hm_0_5 + r, -vm_0_5 - r);
+            addPosition(-hm_0_5 - r, +vm_0_5 + r);
+            addPosition(+hm_0_5 + r, +vm_0_5 + r);
+            break;
+        case VHPiecePlaceDOT_4_2:
+            addPosition(0, -a);
+            addPosition(+a, 0);
+            addPosition(0, +a);
+            addPosition(-a, 0);
+            break;
+        case VHPiecePlaceDOT_5_1:
+            addPosition(-b_2_0, -a);
+            addPosition(0, -a);
+            addPosition(+b_2_0, -a);
+            addPosition(-hm_0_5 - r, c);
+            addPosition(+hm_0_5 + r, c);
+            break;
+        case VHPiecePlaceDOT_5_2:
+            addPosition(-hm_0_5 - r, -c);
+            addPosition(+hm_0_5 + r, -c);
+            addPosition(-b_2_0, a);
+            addPosition(0, a);
+            addPosition(+b_2_0, a);
+            break;
+        case VHPiecePlaceDOT_5_3:
+            addPosition(0, -vm - r_2_0);
+            addPosition(-hm - r_2_0, 0);
+            addPosition(0, 0);
+            addPosition(+hm + r_2_0, 0);
+            addPosition(0, +vm + r_2_0);
+            break;
+        case VHPiecePlaceDOT_5_4:
+            addPosition(-a, -a);
+            addPosition(+a, -a);
+            addPosition(0, 0);
+            addPosition(-a, +a);
+            addPosition(+a, +a);
+            break;
+        case VHPiecePlaceDOT_6_1:
+            addPosition(-hm - r_2_0, -vm_0_5 - r);
+            addPosition(0, -vm_0_5 - r);
+            addPosition(+hm + r_2_0, -vm_0_5 - r);
+            addPosition(-hm - r_2_0, +vm_0_5 + r);
+            addPosition(0, +vm_0_5 + r);
+            addPosition(+hm + r_2_0, +vm_0_5 + r);
+            break;
+        case VHPiecePlaceDOT_6_2:
+            addPosition(-hm_0_5 - r, -vm - r_2_0);
+            addPosition(+hm_0_5 + r, -vm - r_2_0);
+            addPosition(-hm_0_5 - r, 0);
+            addPosition(+hm_0_5 + r, 0);
+            addPosition(-hm_0_5 - r, +vm + r_2_0);
+            addPosition(+hm_0_5 + r, +vm + r_2_0);
+            break;
+        case VHPiecePlaceDOT_6_3:
+            addPosition(-b, -a - c);
+            addPosition(+b, -a - c);
+            addPosition(-b_2_0, 0);
+            addPosition(+b_2_0, 0);
+            addPosition(-b, +a + c);
+            addPosition(+b, +a + c);
+            break;
+        case VHPiecePlaceDOT_6_4:
+            addPosition(0, -b_2_0);
+            addPosition(-a - c, -b);
+            addPosition(+a + c, -b);
+            addPosition(-a - c, +b);
+            addPosition(+a + c, +b);
+            addPosition(0, +b_2_0);
+            break;
+        case VHPiecePlaceDOT_6_5:
+            addPosition(-b_2_0, -a - c + e);
+            addPosition(0, -a - c + e);
+            addPosition(+b_2_0, -a - c + e);
+            addPosition(-hm_0_5 - r, e);
+            addPosition(+hm_0_5 + r, e);
+            addPosition(0, +a + c + e);
+            break;
+        case VHPiecePlaceDOT_6_6:
+            addPosition(0, -a - c - e);
+            addPosition(-hm_0_5 - r, -e);
+            addPosition(+hm_0_5 + r, -e);
+            addPosition(-b_2_0, a + c - e);
+            addPosition(0, +a + c - e);
+            addPosition(+b_2_0, a + c - e);
+            break;
+        case VHPiecePlaceDOT_7_1:
+            addPosition(-hm - r_2_0, -vm - r_2_0);
+            addPosition(0, -vm - r_2_0);
+            addPosition(+hm + r_2_0, -vm - r_2_0);
+            addPosition(-hm - r_2_0, 0);
+            addPosition(0, 0);
+            addPosition(+hm + r_2_0, 0);
+            addPosition(0, +vm + r_2_0);
+            break;
+        case VHPiecePlaceDOT_7_2:
+            addPosition(0, -vm - r_2_0);
+            addPosition(-hm - r_2_0, 0);
+            addPosition(0, 0);
+            addPosition(+hm + r_2_0, 0);
+            addPosition(-hm - r_2_0, +vm + r_2_0);
+            addPosition(0, +vm + r_2_0);
+            addPosition(+hm + r_2_0, +vm + r_2_0);
+            break;
+        case VHPiecePlaceDOT_7_3:
+            addPosition(-b, -a - c);
+            addPosition(+b, -a - c);
+            addPosition(-b_2_0, 0);
+            addPosition(0, 0);
+            addPosition(+b_2_0, 0);
+            addPosition(-b, +a + c);
+            addPosition(+b, +a + c);
+            break;
+        case VHPiecePlaceDOT_7_4:
+            addPosition(0, -b_2_0);
+            addPosition(-a - c, -b);
+            addPosition(+a + c, -b);
+            addPosition(0, 0);
+            addPosition(-a - c, +b);
+            addPosition(+a + c, +b);
+            addPosition(0, +b_2_0);
+            break;
+        case VHPiecePlaceDOT_7_5:
+            addPosition(-b_3_0, -a);
+            addPosition(-b, -a);
+            addPosition(+b, -a);
+            addPosition(+b_3_0, -a);
+            addPosition(-b_2_0, +c);
+            addPosition(0, c);
+            addPosition(+b_2_0, +c);
+            break;
+        case VHPiecePlaceDOT_7_6:
+            addPosition(-b_2_0, -c);
+            addPosition(0, -c);
+            addPosition(+b_2_0, -c);
+            addPosition(-b_3_0, +a);
+            addPosition(-b, a);
+            addPosition(+b, a);
+            addPosition(+b_3_0, +a);
+            break;
+        case VHPiecePlaceDOT_8_1:
+            addPosition(-b_2_0, -a - c);
+            addPosition(0, -a - c);
+            addPosition(+b_2_0, -a - c);
+            addPosition(-hm_0_5 - r, 0);
+            addPosition(+hm_0_5 + r, 0);
+            addPosition(-b_2_0, +a + c);
+            addPosition(0, +a + c);
+            addPosition(+b_2_0, +a + c);
+            break;
+        case VHPiecePlaceDOT_8_2:
+            addPosition(-a - c, -b_2_0);
+            addPosition(+a + c, -b_2_0);
+            addPosition(0, -vm_0_5 - r);
+            addPosition(-a - c, 0);
+            addPosition(+a + c, 0);
+            addPosition(0, +vm_0_5 + r);
+            addPosition(-a - c, +b_2_0);
+            addPosition(+a + c, +b_2_0);
             break;
         case VHPiecePlaceDOT_8_3:
-        {
-            ADD_POINT(-dotHorizontalMargin - 2 * radius, -dotVerticalMargin - 2 * radius);
-            ADD_POINT(0, -dotVerticalMargin - 2 * radius);
-            ADD_POINT(+dotHorizontalMargin + 2 * radius, -dotVerticalMargin - 2 * radius);
-            ADD_POINT(-dotHorizontalMargin - 2 * radius, 0);
-            ADD_POINT(+dotHorizontalMargin + 2 * radius, 0);
-            ADD_POINT(-dotHorizontalMargin - 2 * radius, +dotVerticalMargin + 2 * radius);
-            ADD_POINT(0, +dotVerticalMargin + 2 * radius);
-            ADD_POINT(+dotHorizontalMargin + 2 * radius, +dotVerticalMargin + 2 * radius);
-        }
+            addPosition(-hm - r_2_0, -vm - r_2_0);
+            addPosition(0, -vm - r_2_0);
+            addPosition(+hm + r_2_0, -vm - r_2_0);
+            addPosition(-hm - r_2_0, 0);
+            addPosition(+hm + r_2_0, 0);
+            addPosition(-hm - r_2_0, +vm + r_2_0);
+            addPosition(0, +vm + r_2_0);
+            addPosition(+hm + r_2_0, +vm + r_2_0);
             break;
         case VHPiecePlaceDOT_8_4:
-        {
-            CGFloat a, b, c;
-            b = dotHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(0, -2 * a - 2 * c);
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, -a - c);
-            ADD_POINT(+dotHorizontalMargin / 2 + radius, -a - c);
-            ADD_POINT(-2 * b, 0);
-            ADD_POINT(+2 * b, 0);
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, +a + c);
-            ADD_POINT(+dotHorizontalMargin / 2 + radius, +a + c);
-            ADD_POINT(0, +2 * a + 2 * c);
-        }
+            addPosition(0, -a_2_0 - c_2_0);
+            addPosition(-hm_0_5 - r, -a - c);
+            addPosition(+hm_0_5 + r, -a - c);
+            addPosition(-b_2_0, 0);
+            addPosition(+b_2_0, 0);
+            addPosition(-hm_0_5 - r, +a + c);
+            addPosition(+hm_0_5 + r, +a + c);
+            addPosition(0, +a_2_0 + c_2_0);
             break;
         case VHPiecePlaceDOT_8_5:
-        {
-            CGFloat a = (2 * radius + dotInclinedMargin) / sqrt(2);
-            ADD_POINT(0, -2 * a);
-            ADD_POINT(+a, -a);
-            ADD_POINT(+2 * a, 0);
-            ADD_POINT(+a, +a);
-            ADD_POINT(0, +2 * a);
-            ADD_POINT(-a, +a);
-            ADD_POINT(-2 * a, 0);
-            ADD_POINT(-a, -a);
-        }
+            addPosition(0, -a_2_0);
+            addPosition(-a, -a);
+            addPosition(+a, -a);
+            addPosition(-a_2_0, 0);
+            addPosition(+a_2_0, 0);
+            addPosition(-a, +a);
+            addPosition(+a, +a);
+            addPosition(0, +a_2_0);
             break;
         case VHPiecePlaceDOT_8_6:
-        {
-            ADD_POINT(-dotHorizontalMargin * 3 / 2 - 3 * radius, -dotVerticalMargin / 2 - radius);
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, -dotVerticalMargin / 2 - radius);
-            ADD_POINT(+dotHorizontalMargin / 2 + radius, -dotVerticalMargin / 2 - radius);
-            ADD_POINT(+dotHorizontalMargin * 3 / 2 + 3 * radius, -dotVerticalMargin / 2 - radius);
-            ADD_POINT(-dotHorizontalMargin * 3 / 2 - 3 * radius, +dotVerticalMargin / 2 + radius);
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, +dotVerticalMargin / 2 + radius);
-            ADD_POINT(+dotHorizontalMargin / 2 + radius, +dotVerticalMargin / 2 + radius);
-            ADD_POINT(+dotHorizontalMargin * 3 / 2 + 3 * radius, +dotVerticalMargin / 2 + radius);
-        }
+            addPosition(-hm_1_5 - r_3_0, -vm_0_5 - r);
+            addPosition(-hm_0_5 - r, -vm_0_5 - r);
+            addPosition(+hm_0_5 + r, -vm_0_5 - r);
+            addPosition(+hm_1_5 + r_3_0, -vm_0_5 - r);
+            addPosition(-hm_1_5 - r_3_0, +vm_0_5 + r);
+            addPosition(-hm_0_5 - r, +vm_0_5 + r);
+            addPosition(+hm_0_5 + r, +vm_0_5 + r);
+            addPosition(+hm_1_5 + r_3_0, +vm_0_5 + r);
             break;
         case VHPiecePlaceDOT_8_7:
-        {
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, -dotVerticalMargin * 3 / 2 - 3 * radius);
-            ADD_POINT(+dotHorizontalMargin / 2 + radius, -dotVerticalMargin * 3 / 2 - 3 * radius);
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, -dotVerticalMargin / 2 - radius);
-            ADD_POINT(+dotHorizontalMargin / 2 + radius, -dotVerticalMargin / 2 - radius);
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, +dotVerticalMargin / 2 + radius);
-            ADD_POINT(+dotHorizontalMargin / 2 + radius, +dotVerticalMargin / 2 + radius);
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, +dotVerticalMargin * 3 / 2 + 3 * radius);
-            ADD_POINT(+dotHorizontalMargin / 2 + radius, +dotVerticalMargin * 3 / 2 + 3 * radius);
-        }
+            addPosition(-hm_0_5 - r, -vm_1_5 - r_3_0);
+            addPosition(+hm_0_5 + r, -vm_1_5 - r_3_0);
+            addPosition(-hm_0_5 - r, -vm_0_5 - r);
+            addPosition(+hm_0_5 + r, -vm_0_5 - r);
+            addPosition(-hm_0_5 - r, +vm_0_5 + r);
+            addPosition(+hm_0_5 + r, +vm_0_5 + r);
+            addPosition(-hm_0_5 - r, +vm_1_5 + r_3_0);
+            addPosition(+hm_0_5 + r, +vm_1_5 + r_3_0);
             break;
         case VHPiecePlaceDOT_9_1:
-        {
-            ADD_POINT(-dotHorizontalMargin - 2 * radius, -dotVerticalMargin - 2 * radius);
-            ADD_POINT(0, -dotVerticalMargin - 2 * radius);
-            ADD_POINT(+dotHorizontalMargin + 2 * radius, -dotVerticalMargin - 2 * radius);
-            ADD_POINT(-dotHorizontalMargin - 2 * radius, 0);
-            ADD_POINT(0, 0);
-            ADD_POINT(+dotHorizontalMargin + 2 * radius, 0);
-            ADD_POINT(-dotHorizontalMargin - 2 * radius, +dotVerticalMargin + 2 * radius);
-            ADD_POINT(0, +dotVerticalMargin + 2 * radius);
-            ADD_POINT(+dotHorizontalMargin + 2 * radius, +dotVerticalMargin + 2 * radius);
-        }
+            addPosition(-hm - r_2_0, -vm - r_2_0);
+            addPosition(0, -vm - r_2_0);
+            addPosition(+hm + r_2_0, -vm - r_2_0);
+            addPosition(-hm - r_2_0, 0);
+            addPosition(0, 0);
+            addPosition(+hm + r_2_0, 0);
+            addPosition(-hm - r_2_0, +vm + r_2_0);
+            addPosition(0, +vm + r_2_0);
+            addPosition(+hm + r_2_0, +vm + r_2_0);
             break;
         case VHPiecePlaceDOT_9_2:
-        {
-            CGFloat a, b, c;
-            b = dotHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(0, -2 * a - 2 * c);
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, -a - c);
-            ADD_POINT(+dotHorizontalMargin / 2 + radius, -a - c);
-            ADD_POINT(-2 * b, 0);
-            ADD_POINT(0, 0);
-            ADD_POINT(+2 * b, 0);
-            ADD_POINT(-dotHorizontalMargin / 2 - radius, +a + c);
-            ADD_POINT(+dotHorizontalMargin / 2 + radius, +a + c);
-            ADD_POINT(0, +2 * a + 2 * c);
-        }
+            addPosition(0, -a_2_0 - c_2_0);
+            addPosition(-hm_0_5 - r, -a - c);
+            addPosition(+hm_0_5 + r, -a - c);
+            addPosition(-b_2_0, 0);
+            addPosition(0, 0);
+            addPosition(+b_2_0, 0);
+            addPosition(-hm_0_5 - r, +a + c);
+            addPosition(+hm_0_5 + r, +a + c);
+            addPosition(0, +a_2_0 + c_2_0);
             break;
         case VHPiecePlaceDOT_9_3:
+            addPosition(0, -a_2_0);
+            addPosition(+a, -a);
+            addPosition(+a_2_0, 0);
+            addPosition(+a, +a);
+            addPosition(0, 0);
+            addPosition(0, +a_2_0);
+            addPosition(-a, +a);
+            addPosition(-a_2_0, 0);
+            addPosition(-a, -a);
+            break;
+        case VHPiecePlaceCustom:
+            [positions addObjectsFromArray:bmb.customPiecePositions];
+            break;
+        default:
+            NSAssert(NO, @"Piece place enum not found!");
+            break;
+    }
+    
+    [VHPiecePlaceManager adjustPositions:positions withX:parentFrame.size.width / 2 - r withY:parentFrame.size.height / 2 - r];
+    for (int i = 0; i < positions.count; i++)
+    {
+        CGPoint point = [(NSValue *)[positions objectAtIndex:i] CGPointValue];
+        [positions setObject:[NSValue valueWithCGRect:CGRectMake(point.x, point.y, r_2_0, r_2_0)] atIndexedSubscript:i];
+    }
+    
+    return positions;
+}
+
++ (NSMutableArray<NSValue *> *)hamPositions:(VHBoomMenuButton *)bmb
+{
+    CGRect parentFrame = bmb.bounds;
+    
+    int pn = (int)[VHPiecePlaceManager pieceNumber:bmb.piecePlaceEnum];
+    int pn_0_5 = pn / 2;
+    
+    NSMutableArray *positions = [NSMutableArray array];
+    
+    CGFloat w = bmb.hamWidth;
+    CGFloat w_0_5 = w / 2;
+    CGFloat h = bmb.hamHeight;
+    CGFloat h_0_5 = h / 2;
+    
+    CGFloat vm = bmb.pieceVerticalMargin;
+    CGFloat vm_0_5 = vm / 2;
+    
+    if (bmb.piecePlaceEnum != VHPiecePlaceCustom)
+    {
+        if (pn % 2 == 0)
         {
-            CGFloat a = (2 * radius + dotInclinedMargin) / sqrt(2);
-            ADD_POINT(0, -2 * a);
-            ADD_POINT(+a, -a);
-            ADD_POINT(+2 * a, 0);
-            ADD_POINT(+a, +a);
-            ADD_POINT(0, 0);
-            ADD_POINT(0, +2 * a);
-            ADD_POINT(-a, +a);
-            ADD_POINT(-2 * a, 0);
-            ADD_POINT(-a, -a);
+            for (int i = pn_0_5 - 1; i >= 0; i--)
+            {
+                addPosition(0, -h_0_5 - vm_0_5 - i * (h + vm));
+            }
+            for (int i = 0; i < pn_0_5; i++)
+            {
+                addPosition(0, +h_0_5 + vm_0_5 + i * (h + vm));
+            }
         }
-            break;
-        default:
-            NSAssert(NO, @"Piece place enum not found!");
-            break;
+        else
+        {
+            for (int i = pn_0_5 - 1; i >= 0; i--)
+            {
+                addPosition(0, -h - vm - i * (h + vm));
+            }
+            addPosition(0, 0)
+            for (int i = 0; i < pn_0_5; i++)
+            {
+                addPosition(0, +h + vm + i * (h + vm));
+            }
+        }
+    }
+    else
+    {
+        [positions addObjectsFromArray:bmb.customPiecePositions];
     }
     
+    [VHPiecePlaceManager adjustPositions:positions withX:parentFrame.size.width / 2 - w_0_5 withY:parentFrame.size.height / 2 - h_0_5];
     for (int i = 0; i < positions.count; i++)
     {
         CGPoint point = [(NSValue *)[positions objectAtIndex:i] CGPointValue];
-        [positions setObject:[NSValue valueWithCGRect:CGRectMake(point.x + frame.size.width / 2 - radius,
-                                                                 point.y + frame.size.height / 2 - radius,
-                                                                 2 * radius,
-                                                                 2 * radius)]
-          atIndexedSubscript:i];
+        [positions setObject:[NSValue valueWithCGRect:CGRectMake(point.x, point.y, w, h)] atIndexedSubscript:i];
     }
     
     return positions;
 }
 
-+ (NSMutableArray<NSValue *> *)positionsWithEnum:(VHPiecePlaceEnum)placeEnum
-                                 withParentFrame:(CGRect)frame
-                                    withHamWidth:(CGFloat)width
-                                   withHamHeight:(CGFloat)height
-                            withHorizontalMargin:(CGFloat)dotHorizontalMargin
-                              withVerticalMargin:(CGFloat)dotVerticalMargin
++ (NSMutableArray<NSValue *> *)shareDotPositionsWithDotNumber:(NSUInteger)n withBoomMenuButton:(VHBoomMenuButton *)bmb
 {
-    NSMutableArray *positions = [NSMutableArray arrayWithCapacity:[VHPiecePlaceManager pieceNumber:placeEnum]];
+    CGRect parentFrame = bmb.bounds;
     
-    switch (placeEnum) {
-        case VHPiecePlaceHAM_1:
-            ADD_POINT(0, 0);
-            break;
-        case VHPiecePlaceHAM_2:
-            ADD_POINT(0, -dotVerticalMargin / 2 - height / 2);
-            ADD_POINT(0, dotVerticalMargin / 2 + height / 2);
-            break;
-        case VHPiecePlaceHAM_3:
-            ADD_POINT(0, -dotVerticalMargin - height);
-            ADD_POINT(0, 0);
-            ADD_POINT(0, dotVerticalMargin + height);
-            break;
-        case VHPiecePlaceHAM_4:
-            ADD_POINT(0, -dotVerticalMargin * 3 / 2 - height * 3 / 2);
-            ADD_POINT(0, -dotVerticalMargin / 2 - height / 2);
-            ADD_POINT(0, dotVerticalMargin / 2 + height / 2);
-            ADD_POINT(0, dotVerticalMargin * 3 / 2 + height * 3 / 2);
-            break;
-        case VHPiecePlaceHAM_5:
-            ADD_POINT(0, -dotVerticalMargin * 2 - height * 2);
-            ADD_POINT(0, -dotVerticalMargin - height);
-            ADD_POINT(0, 0);
-            ADD_POINT(0, dotVerticalMargin + height);
-            ADD_POINT(0, dotVerticalMargin * 2 + height * 2);
-            break;
-        case VHPiecePlaceHAM_6:
-            ADD_POINT(0, -dotVerticalMargin * 5 / 2 - height * 5 / 2);
-            ADD_POINT(0, -dotVerticalMargin * 3 / 2 - height * 3 / 2);
-            ADD_POINT(0, -dotVerticalMargin / 2 - height / 2);
-            ADD_POINT(0, dotVerticalMargin / 2 + height / 2);
-            ADD_POINT(0, dotVerticalMargin * 3 / 2 + height * 3 / 2);
-            ADD_POINT(0, dotVerticalMargin * 5 / 2 + height * 5 / 2);
-            break;
-        default:
-            NSAssert(NO, @"Piece place enum not found!");
-            break;
-    }
+    NSMutableArray<NSValue *> *positions = [NSMutableArray array];
     
-    for (int i = 0; i < positions.count; i++)
-    {
-        CGPoint point = [(NSValue *)[positions objectAtIndex:i] CGPointValue];
-        [positions setObject:[NSValue valueWithCGRect:CGRectMake(point.x + frame.size.width / 2 - width / 2,
-                                                                 point.y + frame.size.height / 2 - height / 2,
-                                                                 width,
-                                                                 height)]
-          atIndexedSubscript:i];
-    }
-    
-    return positions;
-}
-
-+ (NSMutableArray<NSValue *> *)positionsForShareStyleWithParentFrame:(CGRect)frame
-                                                       withDotRadius:(CGFloat)radius
-                                                       withDotNumber:(NSUInteger)dotNumber
-                                                 withShareLineLength:(CGFloat)shareLineLength
-{
-    NSMutableArray<NSValue *> *positions = [NSMutableArray arrayWithCapacity:dotNumber];
-    CGFloat h = shareLineLength * sqrt(3) / 3;
-    for (int i = 0; i < dotNumber; i++)
+    CGFloat r = bmb.dotRadius;
+    CGFloat h = bmb.shareLineLength * sqrt(3) / 3;
+    CGFloat h_0_5 = h / 2;
+    CGFloat l_0_5 = bmb.shareLineLength / 2;
+    for (int i = 0; i < n; i++)
     {
         switch (i % 3)
         {
-            case 0: ADD_POINT(h / 2, -shareLineLength / 2); break;
-            case 1: ADD_POINT(-h, 0); break;
-            case 2: ADD_POINT(h / 2, shareLineLength / 2); break;
+            case 0: addPosition(h_0_5, -l_0_5); break;
+            case 1: addPosition(-h, 0); break;
+            case 2: addPosition(h_0_5, +l_0_5); break;
         }
     }
     [positions sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
@@ -532,16 +439,16 @@
     for (int i = 0; i < positions.count; i++)
     {
         CGPoint point = [(NSValue *)[positions objectAtIndex:i] CGPointValue];
-        [positions setObject:[NSValue valueWithCGRect:CGRectMake(point.x + frame.size.width / 2 - radius,
-                                                                 point.y + frame.size.height / 2 - radius,
-                                                                 2 * radius,
-                                                                 2 * radius)]
+        [positions setObject:[NSValue valueWithCGRect:CGRectMake(point.x + parentFrame.size.width / 2 - r,
+                                                                 point.y + parentFrame.size.height / 2 - r,
+                                                                 r + r,
+                                                                 r + r)]
           atIndexedSubscript:i];
     }
     return positions;
 }
 
-+ (NSInteger)pieceNumber:(VHPiecePlaceEnum)placeEnum
++ (int)pieceNumber:(VHPiecePlaceEnum)placeEnum
 {
     switch (placeEnum)
     {
@@ -598,17 +505,34 @@
         case VHPiecePlaceUnknown:
             return 0;
         case VHPiecePlaceShare:
+        case VHPiecePlaceCustom:
         case VHPiecePlaceEnumCount:
             return -1;
     }
 }
 
-+ (NSInteger)minPieceNumber:(VHPiecePlaceEnum)placeEnum
++ (int)minPieceNumber:(VHPiecePlaceEnum)placeEnum
 {
     switch (placeEnum)
     {
         case VHPiecePlaceShare:
             return 3;
+        case VHPiecePlaceCustom:
+            return 1;
+        case VHPiecePlaceUnknown:
+            return 0;
+        default:
+            return -1;
+    }
+}
+
++ (int)maxPieceNumber:(VHPiecePlaceEnum)placeEnum
+{
+    switch (placeEnum)
+    {
+        case VHPiecePlaceShare:
+        case VHPiecePlaceCustom:
+            return INT_MAX;
             break;
         case VHPiecePlaceUnknown:
             return 0;
@@ -617,17 +541,12 @@
     }
 }
 
-+ (NSInteger)maxPieceNumber:(VHPiecePlaceEnum)placeEnum
++ (void)adjustPositions:(NSMutableArray<NSValue *> *)positions withX:(CGFloat)x withY:(CGFloat)y
 {
-    switch (placeEnum)
+    for (int i = 0; i < positions.count; i++)
     {
-        case VHPiecePlaceShare:
-            return 9;
-            break;
-        case VHPiecePlaceUnknown:
-            return 0;
-        default:
-            return -1;
+        CGPoint point = [[positions objectAtIndex:i] CGPointValue];
+        [positions setObject:[NSValue valueWithCGPoint:CGPointMake(point.x + x, point.y + y)] atIndexedSubscript:i];
     }
 }
 

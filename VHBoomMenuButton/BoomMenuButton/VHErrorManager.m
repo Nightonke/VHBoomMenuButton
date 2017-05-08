@@ -19,52 +19,78 @@
     NSAssert(bmb.piecePlaceEnum < VHPiecePlaceEnumCount, @"[BMB] Unknown piece-place-enum!");
     NSAssert(bmb.buttonPlaceEnum < VHButtonPlaceEnumCount, @"[BMB] Unknown button-place-enum!");
     NSAssert(bmb.boomEnum < VHBoomEnumCount, @"[BMB] Unknown boom-enum!");
-    NSAssert(builders.count, @"[BMB] Empty builders!");
+    NSAssert(builders.count > 0, @"[BMB] Empty builders!");
     
-    int pieceNumber = (int)bmb.pieceNumber;
-    int buttonNumber = (int)bmb.buttonNumber;
-    int builderNumber = (int)builders.count;
+    int pieceNumber = bmb.pieceNumber;
+    int minPieceNumber = bmb.minPieceNumber;
+    int maxPieceNumber = bmb.maxPieceNumber;
+    int customPiecePositionsNumber = bmb.customPiecePositions.count;
+    
+    int buttonNumber = bmb.buttonNumber;
+    int minButtonNumber = bmb.minButtonNumber;
+    int maxButtonNumber = bmb.maxButtonNumber;
+    int customButtonPositionsNumber = bmb.customButtonPositions.count;
+    
+    int builderNumber = builders.count;
     
     if (pieceNumber == -1)
     {
-        if (bmb.piecePlaceEnum == VHPiecePlaceShare)
+        // The piece number is in a range
+        if (buttonNumber != -1 && !(minPieceNumber <= buttonNumber && buttonNumber <= maxPieceNumber))
         {
-            int minPieceNumber = (int)[VHPiecePlaceManager minPieceNumber:bmb.piecePlaceEnum];
-            int maxPieceNumber = (int)[VHPiecePlaceManager maxPieceNumber:bmb.piecePlaceEnum];
-            if (buttonNumber < minPieceNumber)
-            {
-                NSAssert(NO, @"[BMB] In share style, button-place-enum(%zd) must have %d buttons at least!", bmb.buttonPlaceEnum, minPieceNumber);
-            }
-            else if (buttonNumber > maxPieceNumber)
-            {
-                NSAssert(NO, @"[BMB] In share style, button-place-enum(%zd) can only have %d buttons at most", bmb.buttonPlaceEnum, maxPieceNumber);
-            }
-            else if (builderNumber < minPieceNumber)
-            {
-                NSAssert(NO, @"[BMB] In share style, BMB must have %d builders at least!", minPieceNumber);
-            }
-            else if (builderNumber > maxPieceNumber)
-            {
-                NSAssert(NO, @"[BMB] In share style, BMB can only have %d buttons at most", maxPieceNumber);
-            }
-            else if (bmb.buttonEnum == VHButtonHam)
-            {
-                NSAssert(NO, @"[BMB] BMB in share style does NOT support ham-boom-buttons", maxPieceNumber);
-            }
+            // The button-place-enum has a certain number of buttons, then it must be in the range
+            NSAssert(NO, @"[BMB] The number(%d) of buttons of button-place-enum(%d) is not in the range([%d, %d]) of the piece-place-enum(%d)", buttonNumber, bmb.buttonPlaceEnum, minPieceNumber, maxPieceNumber, bmb.piecePlaceEnum);
+        }
+        if (!(minPieceNumber <= builderNumber && builderNumber <= maxPieceNumber))
+        {
+            // The number of builders must be in the range
+            NSAssert(NO, @"[BMB] The number of builders(%d) is not in the range([%d, %d]) of the piece-place-enum(%d)", builderNumber, minPieceNumber, maxPieceNumber, bmb.piecePlaceEnum);
+        }
+    }
+    else
+    {
+        if (buttonNumber != -1)
+        {
+            // The piece-place-enum and button-place-enum both have a certain number of pieces and buttons. They must be the same
+            NSAssert(pieceNumber == buttonNumber, @"[BMB] The number of piece(%d) is not equal to buttons'(%d)", pieceNumber, buttonNumber);
+            NSAssert(pieceNumber == builderNumber, @"[BMB] The number of piece(%d) is not equal to builders'(%d)", pieceNumber, builderNumber);
         }
     }
     
-    if (pieceNumber != buttonNumber
-        && bmb.buttonPlaceEnum != VHButtonPlaceHorizontal
-        && bmb.buttonPlaceEnum != VHButtonPlaceVertical
-        && bmb.piecePlaceEnum != VHPiecePlaceShare)
+    if (bmb.piecePlaceEnum == VHPiecePlaceCustom)
     {
-        NSAssert(NO, @"[BMB] Number of pieces(%d) is not equal to buttons'(%d)!", pieceNumber, buttonNumber);
+        NSAssert(customPiecePositionsNumber > 0, @"[BMB] When the positions of pieces is customized, the custom-piece-place-positions array is empty");
+        if (buttonNumber == -1)
+        {
+            // The button number is in a range
+            NSAssert(minButtonNumber <= customPiecePositionsNumber && customPiecePositionsNumber <= maxButtonNumber,
+                     @"[BMB] When the positions of pieces is customized, the length(%d) of custom-piece-place-positions array is not in the range([%d, %d])", customPiecePositionsNumber, minButtonNumber, maxButtonNumber);
+        }
+        else
+        {
+            NSAssert(customPiecePositionsNumber == buttonNumber, @"[BMB] The number of piece(%d) is not equal to buttons'(%d)",
+                     customPiecePositionsNumber, buttonNumber);
+        }
+        NSAssert(customPiecePositionsNumber == builderNumber, @"[BMB] The number of piece(%d) is not equal to builders'(%d)",
+                 customPiecePositionsNumber, builderNumber);
     }
     
-    if (pieceNumber != builderNumber && bmb.piecePlaceEnum != VHPiecePlaceShare)
+    if (bmb.buttonPlaceEnum == VHButtonPlaceCustom)
     {
-        NSAssert(NO, @"[BMB] Number of pieces(%d) is not equal to builders'(%d)!", pieceNumber, builderNumber);
+        NSAssert(customButtonPositionsNumber > 0, @"[BMB] When the positions of buttons is customized, the custom-button-place-positions array is empty");
+        if (pieceNumber == -1)
+        {
+            // The piece number is in a range
+            NSAssert(minPieceNumber <= customButtonPositionsNumber && customButtonPositionsNumber <= maxPieceNumber,
+                     @"[BMB] When the positions of buttons is customized, the length(%d) of custom-button-place-positions array is not in the range([%d, %d])", customButtonPositionsNumber, minPieceNumber, maxPieceNumber);
+        }
+        else
+        {
+            NSAssert(customButtonPositionsNumber == pieceNumber, @"[BMB] The number of button(%d) is not equal to pieces'(%d)",
+                     customButtonPositionsNumber, pieceNumber);
+        }
+        NSAssert(customButtonPositionsNumber == builderNumber, @"[BMB] The number of button(%d) is not equal to builders'(%d)",
+                 customButtonPositionsNumber, builderNumber);
     }
 }
 

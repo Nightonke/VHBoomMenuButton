@@ -8,1258 +8,843 @@
 
 #import "VHButtonPlaceManager.h"
 
-#define ADD_POINT(a, b) [positions addObject:[NSValue valueWithCGPoint:CGPointMake(a, b)]];
+#define addPosition(a, b) [positions addObject:[NSValue valueWithCGPoint:CGPointMake(a, b)]];
 
 @implementation VHButtonPlaceManager
 
-+ (NSMutableArray<NSValue *> *)positionsWithEnum:(VHButtonPlaceEnum)placeEnum
-                                   withAlignment:(VHButtonPlaceAlignmentEnum)alignmentEnum
-                                 withParentFrame:(CGRect)frame
-                                 withButtonWidth:(CGFloat)width
-                                withButtonHeight:(CGFloat)height
-                                withButtonNumber:(long)buttonNumber
-                      withButtonHorizontalMargin:(CGFloat)buttonHorizontalMargin
-                        withButtonInclinedMargin:(CGFloat)buttonInclinedMargin
-                        withButtonVerticalMargin:(CGFloat)buttonVerticalMargin
-                             withButtonTopMargin:(CGFloat)buttonTopMargin
-                          withButtonBottomMargin:(CGFloat)buttonBottomMargin
-                            withButtonLeftMargin:(CGFloat)buttonLeftMargin
-                           withButtonRightMargin:(CGFloat)buttonRightMargin
++ (NSMutableArray<NSValue *> *)positionsWithParentFrame:(CGRect)parentFrame
+                                        withButtonWidth:(CGFloat)buttonWidth
+                                       withButtonHeight:(CGFloat)buttonHeight
+                                       withButtonNumber:(long)buttonNumber
+                                     withBoomMenuButton:(VHBoomMenuButton *)bmb
 {
     NSMutableArray *positions = [NSMutableArray array];
     
-    CGFloat minHeight = CGFLOAT_MAX;
-    CGFloat maxHeight = CGFLOAT_MIN;
-    CGFloat minWidth = CGFLOAT_MAX;
-    CGFloat maxWidth = CGFLOAT_MIN;
+    CGFloat hm = bmb.buttonHorizontalMargin;
+    CGFloat hm_0_5 = hm / 2;
+    CGFloat hm_1_5 = hm * 1.5;
+    CGFloat hm_2_0 = hm * 2;
     
-    switch (placeEnum) {
+    CGFloat vm = bmb.buttonVerticalMargin;
+    CGFloat vm_0_5 = vm / 2;
+    CGFloat vm_1_5 = vm * 1.5;
+    CGFloat vm_2_0 = vm * 2;
+    
+    CGFloat w = buttonWidth;
+    CGFloat w_0_5 = w / 2;
+    CGFloat w_1_5 = w * 1.5;
+    CGFloat w_2_0 = w * 2;
+    
+    CGFloat h = buttonHeight;
+    CGFloat h_0_5 = h / 2;
+    CGFloat h_1_5 = h * 1.5;
+    CGFloat h_2_0 = h * 2;
+    
+    long half = buttonNumber / 2;
+    
+    switch (bmb.buttonPlaceEnum) {
         case VHButtonPlaceHorizontal:
-        {
             if (buttonNumber % 2 == 0)
             {
-                long half = buttonNumber / 2;
                 for (long i = half - 1; i >= 0; i--)
                 {
-                    ADD_POINT(-width / 2 - buttonHorizontalMargin / 2 - i * (width + buttonHorizontalMargin), 0);
+                    addPosition(-w_0_5 - hm_0_5 - i * (w + hm), 0);
                 }
                 for (int i = 0; i < half; i++)
                 {
-                    ADD_POINT(width / 2 + buttonHorizontalMargin / 2 + i * (width + buttonHorizontalMargin), 0);
+                    addPosition(+w_0_5 + hm_0_5 + i * (w + hm), 0);
                 }
             }
             else
             {
-                long half = buttonNumber / 2;
                 for (long i = half - 1; i >= 0; i--)
                 {
-                    ADD_POINT(-width - buttonHorizontalMargin - i * (width + buttonHorizontalMargin), 0);
+                    addPosition(-w - hm - i * (w + hm), 0);
                 }
-                ADD_POINT(0,     0);
+                addPosition(0,     0);
                 for (int i = 0; i < half; i++)
                 {
-                    ADD_POINT(width + buttonHorizontalMargin + i * (width + buttonHorizontalMargin), 0);
+                    addPosition(+w + hm + i * (w + hm), 0);
                 }
                 break;
             }
-        }
         case VHButtonPlaceVertical:
-        {
-            if (buttonNumber % 2 == 0)
-            {
-                long half = buttonNumber / 2;
-                for (long i = half - 1; i >= 0; i--)
-                {
-                    ADD_POINT(0, -height / 2 - buttonVerticalMargin / 2 - i * (height + buttonVerticalMargin));
-                }
-                for (int i = 0; i < half; i++)
-                {
-                    ADD_POINT(0, height / 2 + buttonVerticalMargin / 2 + i * (height + buttonVerticalMargin));
-                }
-            }
-            else
-            {
-                long half = buttonNumber / 2;
-                for (long i = half - 1; i >= 0; i--)
-                {
-                    ADD_POINT(0, -height - buttonVerticalMargin - i * (height + buttonVerticalMargin));
-                }
-                ADD_POINT(0, 0);
-                for (int i = 0; i < half; i++)
-                {
-                    ADD_POINT(0, height + buttonVerticalMargin + i * (height + buttonVerticalMargin));
-                }
-                break;
-            }
-        }
-        case VHButtonPlaceSC_1:
-            ADD_POINT(0, 0);
-            break;
-        case VHButtonPlaceSC_2_1:
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, 0);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, 0);
-            break;
-        case VHButtonPlaceSC_2_2:
-            ADD_POINT(0, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(0, buttonVerticalMargin / 2 + height / 2);
-            break;
-        case VHButtonPlaceSC_3_1:
-            ADD_POINT(-buttonHorizontalMargin - width, 0);
-            ADD_POINT(0, 0);
-            ADD_POINT(buttonHorizontalMargin + width, 0);
-            break;
-        case VHButtonPlaceSC_3_2:
-            ADD_POINT(0, -buttonVerticalMargin - height);
-            ADD_POINT(0, 0);
-            ADD_POINT(0, buttonVerticalMargin + height);
-            break;
-        case VHButtonPlaceSC_3_3:
-        {
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(0, buttonVerticalMargin / 2 + height / 2);
-            CGFloat yOffset = [VHButtonPlaceManager calculateYOffsetToCenterWithHorizontalMargin:buttonHorizontalMargin
-                                                                                  verticalMargin:buttonVerticalMargin
-                                                                                           width:width
-                                                                                          height:height];
-            [self adjustOffsetForPositions:positions withX:0 withY:yOffset];
-            break;
-        }
-        case VHButtonPlaceSC_3_4:
-        {
-            ADD_POINT(0, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, buttonVerticalMargin / 2 + height / 2);
-            CGFloat yOffset = [self calculateYOffsetToCenterWithHorizontalMargin:buttonHorizontalMargin
-                                                                  verticalMargin:buttonVerticalMargin
-                                                                           width:width
-                                                                          height:height];
-            [self adjustOffsetForPositions:positions withX:0 withY:-yOffset];
-            break;
-        }
-        case VHButtonPlaceSC_4_1:
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, buttonVerticalMargin / 2 + height / 2);
-            break;
-        case VHButtonPlaceSC_4_2:
-        {
-            ADD_POINT(0, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(buttonHorizontalMargin + width, 0);
-            ADD_POINT(0, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(-buttonHorizontalMargin - width, 0);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_5_1:
-        {
-            ADD_POINT(-buttonHorizontalMargin - width, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(0, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(buttonHorizontalMargin + width, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, buttonVerticalMargin / 2 + height / 2);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_5_2:
-        {
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(-buttonHorizontalMargin - width, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(0, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(buttonHorizontalMargin + width, buttonVerticalMargin / 2 + height / 2);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_5_3:
-        {
-            ADD_POINT(0, -buttonVerticalMargin - height);
-            ADD_POINT(-buttonHorizontalMargin - width, 0);
-            ADD_POINT(0, 0);
-            ADD_POINT(buttonHorizontalMargin + width, 0);
-            ADD_POINT(0, buttonVerticalMargin + height);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_5_4:
-        {
-            ADD_POINT(-buttonHorizontalMargin - width, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(buttonHorizontalMargin + width, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(0, 0);
-            ADD_POINT(-buttonHorizontalMargin - width, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(buttonHorizontalMargin + width, buttonVerticalMargin / 2 + height / 2);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_6_1:
-        {
-            ADD_POINT(-buttonHorizontalMargin - width, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(0, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(buttonHorizontalMargin + width, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(-buttonHorizontalMargin - width, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(0, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(buttonHorizontalMargin + width, buttonVerticalMargin / 2 + height / 2);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_6_2:
-        {
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, -buttonVerticalMargin - height);
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, 0);
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, buttonVerticalMargin + height);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, -buttonVerticalMargin - height);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, 0);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, buttonVerticalMargin + height);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_6_3:
-        {
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, -buttonVerticalMargin - height);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, -buttonVerticalMargin - height);
-            ADD_POINT(-buttonHorizontalMargin - width, 0);
-            ADD_POINT(buttonHorizontalMargin + width, 0);
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, buttonVerticalMargin + height);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, buttonVerticalMargin + height);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_6_4:
-        {
-            ADD_POINT(0, -buttonVerticalMargin - height);
-            ADD_POINT(buttonHorizontalMargin + width, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(buttonHorizontalMargin + width, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(0, buttonVerticalMargin + height);
-            ADD_POINT(-buttonHorizontalMargin - width, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(-buttonHorizontalMargin - width, buttonVerticalMargin / 2 + height / 2);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_6_5:
-        {
-            ADD_POINT(-buttonHorizontalMargin - width, -buttonVerticalMargin - height);
-            ADD_POINT(0, -buttonVerticalMargin - height);
-            ADD_POINT(buttonHorizontalMargin + width, -buttonVerticalMargin - height);
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, 0);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, 0);
-            ADD_POINT(0, buttonVerticalMargin + height);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_6_6:
-        {
-            ADD_POINT(0, -buttonVerticalMargin - height);
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, 0);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, 0);
-            ADD_POINT(-buttonHorizontalMargin - width, buttonVerticalMargin + height);
-            ADD_POINT(0, buttonVerticalMargin + height);
-            ADD_POINT(buttonHorizontalMargin + width, buttonVerticalMargin + height);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_7_1:
-        {
-            ADD_POINT(-buttonHorizontalMargin - width, -buttonVerticalMargin - height);
-            ADD_POINT(0, -buttonHorizontalMargin - height);
-            ADD_POINT(buttonHorizontalMargin + width, -buttonVerticalMargin - height);
-            ADD_POINT(-buttonHorizontalMargin - width, 0);
-            ADD_POINT(0, 0);
-            ADD_POINT(buttonHorizontalMargin + width, 0);
-            ADD_POINT(0, buttonHorizontalMargin + height);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_7_2:
-        {
-            ADD_POINT(0, -buttonHorizontalMargin - height);
-            ADD_POINT(-buttonHorizontalMargin - width, 0);
-            ADD_POINT(0, 0);
-            ADD_POINT(buttonHorizontalMargin + width, 0);
-            ADD_POINT(-buttonHorizontalMargin - width, buttonVerticalMargin + height);
-            ADD_POINT(0, buttonHorizontalMargin + height);
-            ADD_POINT(buttonHorizontalMargin + width, buttonVerticalMargin + height);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_7_3:
-        {
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, -buttonVerticalMargin - height);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, -buttonVerticalMargin - height);
-            ADD_POINT(-buttonHorizontalMargin - width, 0);
-            ADD_POINT(0, 0);
-            ADD_POINT(buttonHorizontalMargin + width, 0);
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, buttonVerticalMargin + height);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, buttonVerticalMargin + height);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_7_4:
-        {
-            ADD_POINT(0, -buttonVerticalMargin - height);
-            ADD_POINT(buttonHorizontalMargin + width, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(buttonHorizontalMargin + width, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(0, 0);
-            ADD_POINT(0, buttonVerticalMargin + height);
-            ADD_POINT(-buttonHorizontalMargin - width, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(-buttonHorizontalMargin - width, buttonVerticalMargin / 2 + height / 2);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_7_5:
-        {
-            ADD_POINT(-buttonHorizontalMargin * 3 / 2 - width * 3 / 2, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(buttonHorizontalMargin * 3 / 2 + width * 3 / 2, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(-buttonHorizontalMargin - width, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(0, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(buttonHorizontalMargin + width, buttonVerticalMargin / 2 + height / 2);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_7_6:
-        {
-            ADD_POINT(-buttonHorizontalMargin - width, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(0, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(buttonHorizontalMargin + width, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(-buttonHorizontalMargin * 3 / 2 - width * 3 / 2, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(buttonHorizontalMargin * 3 / 2 + width * 3 / 2, buttonVerticalMargin / 2 + height / 2);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_8_1:
-        {
-            ADD_POINT(-buttonHorizontalMargin - width, -buttonVerticalMargin - height);
-            ADD_POINT(0, -buttonVerticalMargin - height);
-            ADD_POINT(buttonHorizontalMargin + width, -buttonVerticalMargin - height);
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, 0);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, 0);
-            ADD_POINT(-buttonHorizontalMargin - width, buttonVerticalMargin + height);
-            ADD_POINT(0, buttonVerticalMargin + height);
-            ADD_POINT(buttonHorizontalMargin + width, buttonVerticalMargin + height);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_8_2:
-        {
-            ADD_POINT(-buttonHorizontalMargin - width, -buttonVerticalMargin - height);
-            ADD_POINT(-buttonHorizontalMargin - width, 0);
-            ADD_POINT(-buttonHorizontalMargin - width, buttonVerticalMargin + height);
-            ADD_POINT(0, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(0, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(buttonHorizontalMargin + width, -buttonVerticalMargin - height);
-            ADD_POINT(buttonHorizontalMargin + width, 0);
-            ADD_POINT(buttonHorizontalMargin + width, buttonVerticalMargin + height);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_8_3:
-        {
-            ADD_POINT(-buttonHorizontalMargin - width, -buttonVerticalMargin - height);
-            ADD_POINT(-buttonHorizontalMargin - width, 0);
-            ADD_POINT(-buttonHorizontalMargin - width, buttonVerticalMargin + height);
-            ADD_POINT(0, -buttonVerticalMargin - height);
-            ADD_POINT(0, buttonVerticalMargin + height);
-            ADD_POINT(buttonHorizontalMargin + width, -buttonVerticalMargin - height);
-            ADD_POINT(buttonHorizontalMargin + width, 0);
-            ADD_POINT(buttonHorizontalMargin + width, buttonVerticalMargin + height);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_8_4:
-        {
-            ADD_POINT(0, -buttonVerticalMargin * 2 - height * 2);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, -buttonVerticalMargin - height);
-            ADD_POINT(buttonHorizontalMargin + width, 0);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, buttonVerticalMargin + height);
-            ADD_POINT(0, buttonVerticalMargin * 2 + height * 2);
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, buttonVerticalMargin + height);
-            ADD_POINT(-buttonHorizontalMargin - width, 0);
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, -buttonVerticalMargin - height);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_8_5:
-        {
-            ADD_POINT(0, -buttonVerticalMargin - height);
-            ADD_POINT(buttonHorizontalMargin + width, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(buttonHorizontalMargin * 2 + width * 2, 0);
-            ADD_POINT(buttonHorizontalMargin + width, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(0, buttonVerticalMargin + height);
-            ADD_POINT(-buttonHorizontalMargin - width, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(-buttonHorizontalMargin * 2 - width * 2, 0);
-            ADD_POINT(-buttonHorizontalMargin - width, -buttonVerticalMargin / 2 - height / 2);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_8_6:
-        {
-            ADD_POINT(-buttonHorizontalMargin * 3 / 2 - width * 3 / 2, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(buttonHorizontalMargin * 3 / 2 + width * 3 / 2, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(-buttonHorizontalMargin * 3 / 2 - width * 3 / 2, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(buttonHorizontalMargin * 3 / 2 + width * 3 / 2, buttonVerticalMargin / 2 + height / 2);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_8_7:
-        {
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, -buttonVerticalMargin * 3 / 2 - height * 3 / 2);
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, buttonVerticalMargin * 3 / 2 + height * 3 / 2);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, -buttonVerticalMargin * 3 / 2 - height * 3 / 2);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, buttonVerticalMargin * 3 / 2 + height * 3 / 2);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_9_1:
-        {
-            ADD_POINT(-buttonHorizontalMargin - width, -buttonVerticalMargin - height);
-            ADD_POINT(-buttonHorizontalMargin - width, 0);
-            ADD_POINT(-buttonHorizontalMargin - width, buttonVerticalMargin + height);
-            ADD_POINT(0, -buttonVerticalMargin - height);
-            ADD_POINT(0, 0);
-            ADD_POINT(0, buttonVerticalMargin + height);
-            ADD_POINT(buttonHorizontalMargin + width, -buttonVerticalMargin - height);
-            ADD_POINT(buttonHorizontalMargin + width, 0);
-            ADD_POINT(buttonHorizontalMargin + width, buttonVerticalMargin + height);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_9_2:
-        {
-            ADD_POINT(0, -buttonVerticalMargin * 2 - height * 2);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, -buttonVerticalMargin - height);
-            ADD_POINT(buttonHorizontalMargin + width, 0);
-            ADD_POINT(buttonHorizontalMargin / 2 + width / 2, buttonVerticalMargin + height);
-            ADD_POINT(0, buttonVerticalMargin * 2 + height * 2);
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, buttonVerticalMargin + height);
-            ADD_POINT(-buttonHorizontalMargin - width, 0);
-            ADD_POINT(-buttonHorizontalMargin / 2 - width / 2, -buttonVerticalMargin - height);
-            ADD_POINT(0, 0);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        case VHButtonPlaceSC_9_3:
-        {
-            ADD_POINT(0, -buttonVerticalMargin - height);
-            ADD_POINT(buttonHorizontalMargin + width, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(buttonHorizontalMargin * 2 + width * 2, 0);
-            ADD_POINT(buttonHorizontalMargin + width, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(0, buttonVerticalMargin + height);
-            ADD_POINT(-buttonHorizontalMargin - width, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(-buttonHorizontalMargin * 2 - width * 2, 0);
-            ADD_POINT(-buttonHorizontalMargin - width, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(0, 0);
-            [self adjustOffsetForPositions:positions withX:0 withY:(height - width) / 2];
-            break;
-        }
-        default:
-            NSAssert(NO, @"Button place enum not found!");
-            break;
-    }
-    
-    for (int i = 0; i < positions.count; i++)
-    {
-        CGPoint point = [[positions objectAtIndex:i] CGPointValue];
-        [positions setObject:[NSValue valueWithCGPoint:CGPointMake(point.x + frame.size.width / 2,
-                                                                   point.y + frame.size.height / 2)] atIndexedSubscript:i];
-    }
-    
-    for (NSValue *position in positions)
-    {
-        maxHeight = MAX(maxHeight, [position CGPointValue].y);
-        minHeight = MIN(minHeight, [position CGPointValue].y);
-        maxWidth = MAX(maxWidth, [position CGPointValue].x);
-        minWidth = MIN(minWidth, [position CGPointValue].x);
-    }
-    
-    CGFloat heightOffset = 0;
-    CGFloat widthOffset = 0;
-    switch (alignmentEnum) {
-        case VHButtonPlaceAlignmentCenter:
-            break;
-        case VHButtonPlaceAlignmentTop:
-            heightOffset = height / 2 + buttonTopMargin - minHeight;
-            break;
-        case VHButtonPlaceAlignmentBottom:
-            heightOffset = frame.size.height - height / 2 - maxHeight - buttonBottomMargin;
-            break;
-        case VHButtonPlaceAlignmentLeft:
-            widthOffset = width / 2 + buttonLeftMargin - minWidth;
-            break;
-        case VHButtonPlaceAlignmentRight:
-            widthOffset = frame.size.width - width / 2 - maxWidth - buttonRightMargin;
-            break;
-        case VHButtonPlaceAlignmentTopLeft:
-            heightOffset = height / 2 + buttonTopMargin - minHeight;
-            widthOffset = width / 2 + buttonLeftMargin - minWidth;
-            break;
-        case VHButtonPlaceAlignmentTopRight:
-            heightOffset = height / 2 + buttonTopMargin - minHeight;
-            widthOffset = frame.size.width - width / 2 - maxWidth - buttonRightMargin;
-            break;
-        case VHButtonPlaceAlignmentBottomLeft:
-            heightOffset = frame.size.height - height / 2 - maxHeight - buttonBottomMargin;
-            widthOffset = width / 2 + buttonLeftMargin - minWidth;
-            break;
-        case VHButtonPlaceAlignmentBottomRight:
-            heightOffset = frame.size.height - height / 2 - maxHeight - buttonBottomMargin;
-            widthOffset = frame.size.width - width / 2 - maxWidth - buttonRightMargin;
-            break;
-    }
-    for (int i = 0; i < positions.count; i++)
-    {
-        CGPoint point = [[positions objectAtIndex:i] CGPointValue];
-        [positions setObject:[NSValue valueWithCGPoint:CGPointMake(point.x + widthOffset, point.y + heightOffset)] atIndexedSubscript:i];
-    }
-    
-    return positions;
-
-}
-
-+ (NSMutableArray<NSValue *> *)positionsWithEnum:(VHButtonPlaceEnum)placeEnum
-                                   withAlignment:(VHButtonPlaceAlignmentEnum)alignmentEnum
-                                 withParentFrame:(CGRect)parentFrame
-                                withButtonRadius:(CGFloat)radius
-                                withButtonNumber:(long)buttonNumber
-                      withButtonHorizontalMargin:(CGFloat)buttonHorizontalMargin
-                        withButtonInclinedMargin:(CGFloat)buttonInclinedMargin
-                        withButtonVerticalMargin:(CGFloat)buttonVerticalMargin
-                             withButtonTopMargin:(CGFloat)buttonTopMargin
-                          withButtonBottomMargin:(CGFloat)buttonBottomMargin
-                            withButtonLeftMargin:(CGFloat)buttonLeftMargin
-                           withButtonRightMargin:(CGFloat)buttonRightMargin
-{
-    NSMutableArray *positions = [NSMutableArray array];
-    
-    CGFloat minHeight = CGFLOAT_MAX;
-    CGFloat maxHeight = CGFLOAT_MIN;
-    CGFloat minWidth = CGFLOAT_MAX;
-    CGFloat maxWidth = CGFLOAT_MIN;
-    
-    switch (placeEnum) {
-        case VHButtonPlaceHorizontal:
-        {
-            if (buttonNumber % 2 == 0)
-            {
-                long half = buttonNumber / 2;
-                for (long i = half - 1; i >= 0; i--)
-                {
-                    ADD_POINT(-radius - buttonHorizontalMargin / 2 - i * (2 * radius + buttonHorizontalMargin), 0);
-                }
-                for (int i = 0; i < half; i++)
-                {
-                    ADD_POINT(radius + buttonHorizontalMargin / 2 + i * (2 * radius + buttonHorizontalMargin), 0);
-                }
-            }
-            else
-            {
-                long half = buttonNumber / 2;
-                for (long i = half - 1; i >= 0; i--)
-                {
-                    ADD_POINT(-2 * radius - buttonHorizontalMargin - i * (2 * radius + buttonHorizontalMargin), 0);
-                }
-                ADD_POINT(0, 0);
-                for (int i = 0; i < half; i++)
-                {
-                    ADD_POINT(2 * radius + buttonHorizontalMargin + i * (2 * radius + buttonHorizontalMargin), 0);
-                }
-            }
-            break;
-        }
-        case VHButtonPlaceVertical:
-        {
-            if (buttonNumber % 2 == 0)
-            {
-                long half = buttonNumber / 2;
-                for (long i = half - 1; i >= 0; i--)
-                {
-                    ADD_POINT(0, -radius - buttonVerticalMargin / 2 - i * (2 * radius + buttonVerticalMargin));
-                }
-                for (int i = 0; i < half; i++)
-                {
-                    ADD_POINT(0, radius + buttonVerticalMargin / 2 + i * (2 * radius + buttonVerticalMargin));
-                }
-            }
-            else
-            {
-                long half = buttonNumber / 2;
-                for (long i = half - 1; i >= 0; i--)
-                {
-                    ADD_POINT(0, -2 * radius - buttonVerticalMargin - i * (2 * radius + buttonVerticalMargin));
-                }
-                ADD_POINT(0, 0);
-                for (int i = 0; i < half; i++)
-                {
-                    ADD_POINT(0, 2 * radius + buttonVerticalMargin + i * (2 * radius + buttonVerticalMargin));
-                }
-            }
-            break;
-        }
-        case VHButtonPlaceSC_1:
-            ADD_POINT(0, 0);
-            break;
-        case VHButtonPlaceSC_2_1:
-            ADD_POINT(-buttonHorizontalMargin / 2 - radius, 0);
-            ADD_POINT(buttonHorizontalMargin / 2 + radius, 0);
-            break;
-        case VHButtonPlaceSC_2_2:
-            ADD_POINT(0, -buttonVerticalMargin / 2 - radius);
-            ADD_POINT(0, buttonVerticalMargin / 2 + radius);
-            break;
-        case VHButtonPlaceSC_3_1:
-            ADD_POINT(-buttonHorizontalMargin - 2 * radius, 0);
-            ADD_POINT(0, 0);
-            ADD_POINT(buttonHorizontalMargin + 2 * radius, 0);
-            break;
-        case VHButtonPlaceSC_3_2:
-            ADD_POINT(0, -buttonVerticalMargin - 2 * radius);
-            ADD_POINT(0, 0);
-            ADD_POINT(0, buttonVerticalMargin + 2 * radius);
-            break;
-        case VHButtonPlaceSC_3_3:
-        {
-            CGFloat a, b, c;
-            b = buttonHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(-b, -a);
-            ADD_POINT(b, -a);
-            ADD_POINT(0, c);
-            break;
-        }
-        case VHButtonPlaceSC_3_4:
-        {
-            CGFloat a, b, c;
-            b = buttonHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(0, -c);
-            ADD_POINT(-b, a);
-            ADD_POINT(b, a);
-            break;
-        }
-        case VHButtonPlaceSC_4_1:
-            ADD_POINT(-buttonHorizontalMargin / 2 - radius, -buttonVerticalMargin / 2 - radius);
-            ADD_POINT(buttonHorizontalMargin / 2 + radius, -buttonVerticalMargin / 2 - radius);
-            ADD_POINT(-buttonHorizontalMargin / 2 - radius, buttonVerticalMargin / 2 + radius);
-            ADD_POINT(buttonHorizontalMargin / 2 + radius, buttonVerticalMargin / 2 + radius);
-            break;
-        case VHButtonPlaceSC_4_2:
-        {
-            CGFloat a = (2 * radius + buttonInclinedMargin) / sqrt(2);
-            ADD_POINT(0, -a);
-            ADD_POINT(a, 0);
-            ADD_POINT(0, a);
-            ADD_POINT(-a, 0);
-            break;
-        }
-        case VHButtonPlaceSC_5_1:
-        {
-            CGFloat a, b, c;
-            b = buttonHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(-2 * b, -c);
-            ADD_POINT(0, -c);
-            ADD_POINT(2 * b, -c);
-            ADD_POINT(-buttonHorizontalMargin / 2 - radius, a);
-            ADD_POINT(buttonHorizontalMargin / 2 + radius, a);
-            break;
-        }
-        case VHButtonPlaceSC_5_2:
-        {
-            CGFloat a, b, c;
-            b = buttonHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(-buttonHorizontalMargin / 2 - radius, -a);
-            ADD_POINT(buttonHorizontalMargin / 2 + radius, -a);
-            ADD_POINT(-2 * b, c);
-            ADD_POINT(0, c);
-            ADD_POINT(2 * b, c);
-            break;
-        }
-        case VHButtonPlaceSC_5_3:
-        {
-            ADD_POINT(0, 0);
-            ADD_POINT(0, -buttonVerticalMargin - 2 * radius);
-            ADD_POINT(buttonHorizontalMargin + 2 * radius, 0);
-            ADD_POINT(0, buttonVerticalMargin + 2 * radius);
-            ADD_POINT(-buttonHorizontalMargin - 2 * radius, 0);
-            break;
-        }
-        case VHButtonPlaceSC_5_4:
-        {
-            CGFloat a = (2 * radius + buttonInclinedMargin) / sqrt(2);
-            ADD_POINT(0, 0);
-            ADD_POINT(a, -a);
-            ADD_POINT(a, a);
-            ADD_POINT(-a, a);
-            ADD_POINT(-a, -a);
-            break;
-        }
-        case VHButtonPlaceSC_6_1:
-        {
-            ADD_POINT(-buttonHorizontalMargin - 2 * radius, -buttonVerticalMargin / 2 - radius);
-            ADD_POINT(0, -buttonVerticalMargin / 2 - radius);
-            ADD_POINT(buttonHorizontalMargin + 2 * radius, -buttonVerticalMargin / 2 - radius);
-            ADD_POINT(-buttonHorizontalMargin - 2 * radius, buttonVerticalMargin / 2 + radius);
-            ADD_POINT(0, buttonVerticalMargin / 2 + radius);
-            ADD_POINT(buttonHorizontalMargin + 2 * radius, buttonVerticalMargin / 2 + radius);
-            break;
-        }
-        case VHButtonPlaceSC_6_2:
-        {
-            ADD_POINT(-buttonHorizontalMargin / 2 - radius, -buttonVerticalMargin - 2 * radius);
-            ADD_POINT(-buttonHorizontalMargin / 2 - radius, 0);
-            ADD_POINT(-buttonHorizontalMargin / 2 - radius, buttonVerticalMargin + 2 * radius);
-            ADD_POINT(buttonHorizontalMargin / 2 + radius, -buttonVerticalMargin - 2 * radius);
-            ADD_POINT(buttonHorizontalMargin / 2 + radius, 0);
-            ADD_POINT(buttonHorizontalMargin / 2 + radius, buttonVerticalMargin + 2 * radius);
-            break;
-        }
-        case VHButtonPlaceSC_6_3:
-        {
-            CGFloat a, b, c;
-            b = buttonHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(-b, -a - c);
-            ADD_POINT(b, -a - c);
-            ADD_POINT(2 * b, 0);
-            ADD_POINT(b, a + c);
-            ADD_POINT(-b, a + c);
-            ADD_POINT(-2 * b, 0);
-            break;
-        }
-        case VHButtonPlaceSC_6_4:
-        {
-            CGFloat a, b, c;
-            b = buttonHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(0, -2 * b);
-            ADD_POINT(a + c, -b);
-            ADD_POINT(a + c, b);
-            ADD_POINT(0, 2 * b);
-            ADD_POINT(-a - c, b);
-            ADD_POINT(-a - c, -b);
-        }
-            break;
-        case VHButtonPlaceSC_6_5:
-        {
-            CGFloat a, b, c, yOffset;
-            b = buttonHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            yOffset = c - a;
-            ADD_POINT(-2 * b, -a - c + yOffset);
-            ADD_POINT(0, -a - c + yOffset);
-            ADD_POINT(2 * b, -a - c + yOffset);
-            ADD_POINT(-buttonHorizontalMargin / 2 - radius, 0 + yOffset);
-            ADD_POINT(buttonHorizontalMargin / 2 + radius, 0 + yOffset);
-            ADD_POINT(0, a + c + yOffset);
-            break;
-        }
-        case VHButtonPlaceSC_6_6:
-        {
-            CGFloat a, b, c, yOffset;
-            b = buttonHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            yOffset = c - a;
-            ADD_POINT(0, -a - c - yOffset);
-            ADD_POINT(-buttonHorizontalMargin / 2 - radius, 0 - yOffset);
-            ADD_POINT(buttonHorizontalMargin / 2 + radius, 0 - yOffset);
-            ADD_POINT(-2 * b, a + c - yOffset);
-            ADD_POINT(0, a + c - yOffset);
-            ADD_POINT(2 * b, a + c - yOffset);
-            break;
-        }
-        case VHButtonPlaceSC_7_1:
-        {
-            ADD_POINT(-buttonHorizontalMargin - 2 * radius, -buttonVerticalMargin - 2 * radius);
-            ADD_POINT(0, -buttonVerticalMargin - 2 * radius);
-            ADD_POINT(buttonHorizontalMargin + 2 * radius, -buttonVerticalMargin - 2 * radius);
-            ADD_POINT(-buttonHorizontalMargin - 2 * radius, 0);
-            ADD_POINT(0, 0);
-            ADD_POINT(buttonHorizontalMargin + 2 * radius, 0);
-            ADD_POINT(0, buttonVerticalMargin + 2 * radius);
-            break;
-        }
-        case VHButtonPlaceSC_7_2:
-        {
-            ADD_POINT(0, -buttonVerticalMargin - 2 * radius);
-            ADD_POINT(-buttonHorizontalMargin - 2 * radius, 0);
-            ADD_POINT(0, 0);
-            ADD_POINT(buttonHorizontalMargin + 2 * radius, 0);
-            ADD_POINT(-buttonHorizontalMargin - 2 * radius, buttonVerticalMargin + 2 * radius);
-            ADD_POINT(0, buttonVerticalMargin + 2 * radius);
-            ADD_POINT(buttonHorizontalMargin + 2 * radius, buttonVerticalMargin + 2 * radius);
-            break;
-        }
-        case VHButtonPlaceSC_7_3:
-        {
-            CGFloat a, b, c;
-            b = buttonHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(0, 0);
-            ADD_POINT(-b, -a - c);
-            ADD_POINT(b, -a - c);
-            ADD_POINT(2 * b, 0);
-            ADD_POINT(b, a + c);
-            ADD_POINT(-b, a + c);
-            ADD_POINT(-2 * b, 0);
-            break;
-        }
-        case VHButtonPlaceSC_7_4:
-        {
-            CGFloat a, b, c;
-            b = buttonHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(0, 0);
-            ADD_POINT(0, -2 * b);
-            ADD_POINT(a + c, -b);
-            ADD_POINT(a + c, b);
-            ADD_POINT(0, 2 * b);
-            ADD_POINT(-a - c, b);
-            ADD_POINT(-a - c, -b);
-            break;
-        }
-        case VHButtonPlaceSC_7_5:
-        {
-            CGFloat a, b, c;
-            b = buttonHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(-3 * b, -a);
-            ADD_POINT(-b, -a);
-            ADD_POINT(b, -a);
-            ADD_POINT(3 * b, -a);
-            ADD_POINT(-2 * b, c);
-            ADD_POINT(0, c);
-            ADD_POINT(2 * b, c);
-            break;
-        }
-        case VHButtonPlaceSC_7_6:
-        {
-            CGFloat a, b, c;
-            b = buttonHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(-2 * b, -c);
-            ADD_POINT(0, -c);
-            ADD_POINT(2 * b, -c);
-            ADD_POINT(-3 * b, a);
-            ADD_POINT(-b, a);
-            ADD_POINT(b, a);
-            ADD_POINT(3 * b, a);
-            break;
-        }
-        case VHButtonPlaceSC_8_1:
-        {
-            CGFloat a, b, c;
-            b = buttonHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(-2 * b, -a - c);
-            ADD_POINT(0, -a - c);
-            ADD_POINT(2 * b, -a - c);
-            ADD_POINT(-buttonHorizontalMargin / 2 - radius, 0);
-            ADD_POINT(buttonHorizontalMargin / 2 + radius, 0);
-            ADD_POINT(-2 * b, a + c);
-            ADD_POINT(0, a + c);
-            ADD_POINT(2 * b, a + c);
-            break;
-        }
-        case VHButtonPlaceSC_8_2:
-        {
-            CGFloat a, b, c;
-            b = buttonVerticalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(-a - c, -2 * b);
-            ADD_POINT(-a - c, 0);
-            ADD_POINT(-a - c, 2 * b);
-            ADD_POINT(0, -buttonVerticalMargin / 2 - radius);
-            ADD_POINT(0, buttonVerticalMargin / 2 + radius);
-            ADD_POINT(a + c, -2 * b);
-            ADD_POINT(a + c, 0);
-            ADD_POINT(a + c, 2 * b);
-            break;
-        }
-        case VHButtonPlaceSC_8_3:
-        {
-            ADD_POINT(-buttonHorizontalMargin - 2 * radius, -buttonVerticalMargin - 2 * radius);
-            ADD_POINT(0, -buttonVerticalMargin - 2 * radius);
-            ADD_POINT(buttonHorizontalMargin + 2 * radius, -buttonVerticalMargin - 2 * radius);
-            ADD_POINT(-buttonHorizontalMargin - 2 * radius, 0);
-            ADD_POINT(buttonHorizontalMargin + 2 * radius, 0);
-            ADD_POINT(-buttonHorizontalMargin - 2 * radius, buttonVerticalMargin + 2 * radius);
-            ADD_POINT(0, buttonVerticalMargin + 2 * radius);
-            ADD_POINT(buttonHorizontalMargin + 2 * radius, buttonVerticalMargin + 2 * radius);
-            break;
-        }
-        case VHButtonPlaceSC_8_4:
-        {
-            CGFloat a, b, c;
-            b = buttonHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(0, -2 * a - 2 * c);
-            ADD_POINT(-buttonHorizontalMargin / 2 - radius, -a - c);
-            ADD_POINT(buttonHorizontalMargin / 2 + radius, -a - c);
-            ADD_POINT(-2 * b, 0);
-            ADD_POINT(2 * b, 0);
-            ADD_POINT(-buttonHorizontalMargin / 2 - radius, a + c);
-            ADD_POINT(buttonHorizontalMargin / 2 + radius, a + c);
-            ADD_POINT(0, 2 * a + 2 * c);
-            break;
-        }
-        case VHButtonPlaceSC_8_5:
-        {
-            CGFloat a = (2 * radius + buttonInclinedMargin) / sqrt(2);
-            ADD_POINT(0, -2 * a);
-            ADD_POINT(a, -a);
-            ADD_POINT(2 * a, 0);
-            ADD_POINT(a, a);
-            ADD_POINT(0, 2 * a);
-            ADD_POINT(-a, a);
-            ADD_POINT(-2 * a, 0);
-            ADD_POINT(-a, -a);
-            break;
-        }
-        case VHButtonPlaceSC_8_6:
-        {
-            ADD_POINT(-buttonHorizontalMargin * 3 / 2 - 3 * radius, -buttonVerticalMargin / 2 - radius);
-            ADD_POINT(-buttonHorizontalMargin / 2 - radius, -buttonVerticalMargin / 2 - radius);
-            ADD_POINT(buttonHorizontalMargin / 2 + radius, -buttonVerticalMargin / 2 - radius);
-            ADD_POINT(buttonHorizontalMargin * 3 / 2 + 3 * radius, -buttonVerticalMargin / 2 - radius);
-            ADD_POINT(-buttonHorizontalMargin * 3 / 2 - 3 * radius, buttonVerticalMargin / 2 + radius);
-            ADD_POINT(-buttonHorizontalMargin / 2 - radius, buttonVerticalMargin / 2 + radius);
-            ADD_POINT(buttonHorizontalMargin / 2 + radius, buttonVerticalMargin / 2 + radius);
-            ADD_POINT(buttonHorizontalMargin * 3 / 2 + 3 * radius, buttonVerticalMargin / 2 + radius);
-            break;
-        }
-        case VHButtonPlaceSC_8_7:
-        {
-            ADD_POINT(-buttonHorizontalMargin / 2 - radius, -buttonVerticalMargin * 3 / 2 - 3 * radius);
-            ADD_POINT(buttonHorizontalMargin / 2 + radius, -buttonVerticalMargin * 3 / 2 - 3 * radius);
-            ADD_POINT(-buttonHorizontalMargin / 2 - radius, -buttonVerticalMargin / 2 - radius);
-            ADD_POINT(buttonHorizontalMargin / 2 + radius, -buttonVerticalMargin / 2 - radius);
-            ADD_POINT(-buttonHorizontalMargin / 2 - radius, buttonVerticalMargin / 2 + radius);
-            ADD_POINT(buttonHorizontalMargin / 2 + radius, buttonVerticalMargin / 2 + radius);
-            ADD_POINT(-buttonHorizontalMargin / 2 - radius, buttonVerticalMargin * 3 / 2 + 3 * radius);
-            ADD_POINT(buttonHorizontalMargin / 2 + radius, buttonVerticalMargin * 3 / 2 + 3 * radius);
-            break;
-        }
-        case VHButtonPlaceSC_9_1:
-        {
-            ADD_POINT(-buttonHorizontalMargin - 2 * radius, -buttonVerticalMargin - 2 * radius);
-            ADD_POINT(0, -buttonVerticalMargin - 2 * radius);
-            ADD_POINT(buttonHorizontalMargin + 2 * radius, -buttonVerticalMargin - 2 * radius);
-            ADD_POINT(-buttonHorizontalMargin - 2 * radius, 0);
-            ADD_POINT(0, 0);
-            ADD_POINT(buttonHorizontalMargin + 2 * radius, 0);
-            ADD_POINT(-buttonHorizontalMargin - 2 * radius, buttonVerticalMargin + 2 * radius);
-            ADD_POINT(0, buttonVerticalMargin + 2 * radius);
-            ADD_POINT(buttonHorizontalMargin + 2 * radius, buttonVerticalMargin + 2 * radius);
-            break;
-        }
-        case VHButtonPlaceSC_9_2:
-        {
-            CGFloat a, b, c;
-            b = buttonHorizontalMargin / 2 + radius;
-            c = b / (sqrt(3) / 2);
-            a = c / 2;
-            ADD_POINT(0, -2 * a - 2 * c);
-            ADD_POINT(-buttonHorizontalMargin / 2 - radius, -a - c);
-            ADD_POINT(buttonHorizontalMargin / 2 + radius, -a - c);
-            ADD_POINT(-2 * b, 0);
-            ADD_POINT(0, 0);
-            ADD_POINT(2 * b, 0);
-            ADD_POINT(-buttonHorizontalMargin / 2 - radius, a + c);
-            ADD_POINT(buttonHorizontalMargin / 2 + radius, a + c);
-            ADD_POINT(0, 2 * a + 2 * c);
-            break;
-        }
-        case VHButtonPlaceSC_9_3:
-        {
-            CGFloat a = (2 * radius + buttonInclinedMargin) / sqrt(2);
-            ADD_POINT(0, -2 * a);
-            ADD_POINT(a, -a);
-            ADD_POINT(2 * a, 0);
-            ADD_POINT(a, a);
-            ADD_POINT(0, 0);
-            ADD_POINT(0, 2 * a);
-            ADD_POINT(-a, a);
-            ADD_POINT(-2 * a, 0);
-            ADD_POINT(-a, -a);
-            break;
-        }
-        default:
-            NSAssert(NO, @"Button place enum not found!");
-            break;
-    }
-
-    for (int i = 0; i < positions.count; i++)
-    {
-        CGPoint point = [[positions objectAtIndex:i] CGPointValue];
-        [positions setObject:[NSValue valueWithCGPoint:CGPointMake(point.x + parentFrame.size.width / 2,
-                                                                   point.y + parentFrame.size.height / 2)] atIndexedSubscript:i];
-    }
-    
-    for (NSValue *position in positions)
-    {
-        maxHeight = MAX(maxHeight, [position CGPointValue].y);
-        minHeight = MIN(minHeight, [position CGPointValue].y);
-        maxWidth = MAX(maxWidth, [position CGPointValue].x);
-        minWidth = MIN(minWidth, [position CGPointValue].x);
-    }
-    
-    CGFloat heightOffset = 0;
-    CGFloat widthOffset = 0;
-    switch (alignmentEnum) {
-        case VHButtonPlaceAlignmentCenter:
-            break;
-        case VHButtonPlaceAlignmentTop:
-            heightOffset = radius + buttonTopMargin - minHeight;
-            break;
-        case VHButtonPlaceAlignmentBottom:
-            heightOffset = parentFrame.size.height - radius - maxHeight - buttonBottomMargin;
-            break;
-        case VHButtonPlaceAlignmentLeft:
-            widthOffset = radius + buttonLeftMargin - minWidth;
-            break;
-        case VHButtonPlaceAlignmentRight:
-            widthOffset = parentFrame.size.width - radius - maxWidth - buttonRightMargin;
-            break;
-        case VHButtonPlaceAlignmentTopLeft:
-            heightOffset = radius + buttonTopMargin - minHeight;
-            widthOffset = radius + buttonLeftMargin - minWidth;
-            break;
-        case VHButtonPlaceAlignmentTopRight:
-            heightOffset = radius + buttonTopMargin - minHeight;
-            widthOffset = parentFrame.size.width - radius - maxWidth - buttonRightMargin;
-            break;
-        case VHButtonPlaceAlignmentBottomLeft:
-            heightOffset = parentFrame.size.height - radius - maxHeight - buttonBottomMargin;
-            widthOffset = radius + buttonLeftMargin - minWidth;
-            break;
-        case VHButtonPlaceAlignmentBottomRight:
-            heightOffset = parentFrame.size.height - radius - maxHeight - buttonBottomMargin;
-            widthOffset = parentFrame.size.width - radius - maxWidth - buttonRightMargin;
-            break;
-    }
-    for (int i = 0; i < positions.count; i++)
-    {
-        CGPoint point = [[positions objectAtIndex:i] CGPointValue];
-        [positions setObject:[NSValue valueWithCGPoint:CGPointMake(point.x + widthOffset, point.y + heightOffset)] atIndexedSubscript:i];
-    }
-    
-    return positions;
-}
-
-+ (NSMutableArray<NSValue *> *)positionsForHamWithEnum:(VHButtonPlaceEnum)placeEnum
-                                         withAlignment:(VHButtonPlaceAlignmentEnum)alignmentEnum
-                                       withParentFrame:(CGRect)frame
-                                       withButtonWidth:(CGFloat)width
-                                      withButtonHeight:(CGFloat)height
-                                      withButtonNumber:(long)buttonNumber
-                            withButtonHorizontalMargin:(CGFloat)buttonHorizontalMargin
-                              withButtonVerticalMargin:(CGFloat)buttonVerticalMargin
-                                   withButtonTopMargin:(CGFloat)buttonTopMargin
-                                withButtonBottomMargin:(CGFloat)buttonBottomMargin
-                                  withButtonLeftMargin:(CGFloat)buttonLeftMargin
-                                 withButtonRightMargin:(CGFloat)buttonRightMargin
-                           withLastButtonMarginMoreTop:(BOOL)lastButtonMarginMoreTop
-                               withLastButtonTopMargin:(CGFloat)lastButtonTopMargin
-
-{
-    NSMutableArray *positions = [NSMutableArray array];
-    
-    CGFloat minHeight = CGFLOAT_MAX;
-    CGFloat maxHeight = CGFLOAT_MIN;
-    CGFloat minWidth = CGFLOAT_MAX;
-    CGFloat maxWidth = CGFLOAT_MIN;
-    
-    switch (placeEnum)
-    {
-        case VHButtonPlaceHorizontal:
-        {
-            if (buttonNumber % 2 == 0)
-            {
-                long half = buttonNumber / 2;
-                for (long i = half - 1; i >= 0; i--)
-                {
-                    ADD_POINT(-width / 2 - buttonHorizontalMargin / 2 - i * (width + buttonHorizontalMargin), 0);
-                }
-                for (int i = 0; i < half; i++)
-                {
-                    ADD_POINT(width / 2 + buttonHorizontalMargin / 2 + i * (width + buttonHorizontalMargin), 0);
-                }
-            }
-            else
-            {
-                long half = buttonNumber / 2;
-                for (long i = half - 1; i >= 0; i--)
-                {
-                    ADD_POINT(-width - buttonHorizontalMargin - i * (width + buttonHorizontalMargin), 0);
-                }
-                ADD_POINT(0,     0);
-                for (int i = 0; i < half; i++)
-                {
-                    ADD_POINT(width + buttonHorizontalMargin + i * (width + buttonHorizontalMargin), 0);
-                }
-            }
-            break;
-        }
-        case VHButtonPlaceVertical:
-        {
-            if (buttonNumber % 2 == 0)
-            {
-                long half = buttonNumber / 2;
-                for (long i = half - 1; i >= 0; i--)
-                {
-                    ADD_POINT(0, -height / 2 - buttonHorizontalMargin / 2 - i * (height + buttonHorizontalMargin));
-                }
-                for (int i = 0; i < half; i++)
-                {
-                    ADD_POINT(0, height / 2 + buttonHorizontalMargin / 2 + i * (height + buttonHorizontalMargin));
-                }
-            }
-            else
-            {
-                long half = buttonNumber / 2;
-                for (long i = half - 1; i >= 0; i--)
-                {
-                    ADD_POINT(0, -height - buttonVerticalMargin - i * (height + buttonVerticalMargin));
-                }
-                ADD_POINT(0,     0);
-                for (int i = 0; i < half; i++)
-                {
-                    ADD_POINT(0, height + buttonVerticalMargin + i * (height + buttonVerticalMargin));
-                }
-            }
-            break;
-        }
         case VHButtonPlaceHAM_1:
-            ADD_POINT(0, 0);
+        case VHButtonPlaceHAM_2:
+        case VHButtonPlaceHAM_3:
+        case VHButtonPlaceHAM_4:
+        case VHButtonPlaceHAM_5:
+        case VHButtonPlaceHAM_6:
+            if (buttonNumber % 2 == 0)
+            {
+                for (long i = half - 1; i >= 0; i--)
+                {
+                    addPosition(0, -h_0_5 - vm_0_5 - i * (h + vm));
+                }
+                for (int i = 0; i < half; i++)
+                {
+                    addPosition(0, +h_0_5 + vm_0_5 + i * (h + vm));
+                }
+            }
+            else
+            {
+                for (long i = half - 1; i >= 0; i--)
+                {
+                    addPosition(0, -h - vm - i * (h + vm));
+                }
+                addPosition(0, 0);
+                for (int i = 0; i < half; i++)
+                {
+                    addPosition(0, +h + vm + i * (h + vm));
+                }
+                break;
+            }
+        case VHButtonPlaceSC_1:
+            addPosition(0, 0);
+            break;
+        case VHButtonPlaceSC_2_1:
+            addPosition(-hm_0_5 - w_0_5, 0);
+            addPosition(+hm_0_5 + w_0_5, 0);
+            break;
+        case VHButtonPlaceSC_2_2:
+            addPosition(0, -vm_0_5 - hm_0_5);
+            addPosition(0, +vm_0_5 + hm_0_5);
+            break;
+        case VHButtonPlaceSC_3_1:
+            addPosition(-hm - w, 0);
+            addPosition(0, 0);
+            addPosition(+hm + w, 0);
+            break;
+        case VHButtonPlaceSC_3_2:
+            addPosition(0, -vm - h);
+            addPosition(0, 0);
+            addPosition(0, +vm + h);
+            break;
+        case VHButtonPlaceSC_3_3:
+            addPosition(-hm_0_5 - w_0_5, -vm_0_5 - hm_0_5);
+            addPosition(+hm_0_5 + w_0_5, -vm_0_5 - hm_0_5);
+            addPosition(0, vm_0_5 + hm_0_5);
+            break;
+        case VHButtonPlaceSC_3_4:
+            addPosition(0, -vm_0_5 - hm_0_5);
+            addPosition(-hm_0_5 - w_0_5, vm_0_5 + hm_0_5);
+            addPosition(+hm_0_5 + w_0_5, vm_0_5 + hm_0_5);
+            break;
+        case VHButtonPlaceSC_4_1:
+            addPosition(-hm_0_5 - w_0_5, -vm_0_5 - hm_0_5);
+            addPosition(+hm_0_5 + w_0_5, -vm_0_5 - hm_0_5);
+            addPosition(-hm_0_5 - w_0_5, +vm_0_5 + hm_0_5);
+            addPosition(+hm_0_5 + w_0_5, +vm_0_5 + hm_0_5);
+            break;
+        case VHButtonPlaceSC_4_2:
+            addPosition(0, -vm_0_5 - hm_0_5);
+            addPosition(-hm - w, 0);
+            addPosition(+hm + w, 0);
+            addPosition(0, +vm_0_5 + hm_0_5);
+            break;
+        case VHButtonPlaceSC_5_1:
+            addPosition(-hm - w, -vm_0_5 - hm_0_5);
+            addPosition(0, -vm_0_5 - hm_0_5);
+            addPosition(+hm + w, -vm_0_5 - hm_0_5);
+            addPosition(-hm_0_5 - w_0_5, vm_0_5 + hm_0_5);
+            addPosition(+hm_0_5 + w_0_5, vm_0_5 + hm_0_5);
+            break;
+        case VHButtonPlaceSC_5_2:
+            addPosition(-hm_0_5 - w_0_5, -vm_0_5 - hm_0_5);
+            addPosition(+hm_0_5 + w_0_5, -vm_0_5 - hm_0_5);
+            addPosition(-hm - w, vm_0_5 + hm_0_5);
+            addPosition(0, vm_0_5 + hm_0_5);
+            addPosition(+hm + w, vm_0_5 + hm_0_5);
+            break;
+        case VHButtonPlaceSC_5_3:
+            addPosition(0, -vm - h);
+            addPosition(-hm - w, 0);
+            addPosition(0, 0);
+            addPosition(+hm + w, 0);
+            addPosition(0, +vm + h);
+            break;
+        case VHButtonPlaceSC_5_4:
+            addPosition(-hm - w, -vm_0_5 - hm_0_5);
+            addPosition(+hm + w, -vm_0_5 - hm_0_5);
+            addPosition(0, 0);
+            addPosition(-hm - w, vm_0_5 + hm_0_5);
+            addPosition(+hm + w, vm_0_5 + hm_0_5);
+            break;
+        case VHButtonPlaceSC_6_1:
+            addPosition(-hm - w, -vm_0_5 - hm_0_5);
+            addPosition(0, -vm_0_5 - hm_0_5);
+            addPosition(+hm + w, -vm_0_5 - hm_0_5);
+            addPosition(-hm - w, vm_0_5 + hm_0_5);
+            addPosition(0, vm_0_5 + hm_0_5);
+            addPosition(+hm + w, vm_0_5 + hm_0_5);
+            break;
+        case VHButtonPlaceSC_6_2:
+            addPosition(-hm_0_5 - w_0_5, -vm - h);
+            addPosition(+hm_0_5 + w_0_5, -vm - h);
+            addPosition(-hm_0_5 - w_0_5, 0);
+            addPosition(+hm_0_5 + w_0_5, 0);
+            addPosition(-hm_0_5 - w_0_5, +vm + h);
+            addPosition(+hm_0_5 + w_0_5, +vm + h);
+            break;
+        case VHButtonPlaceSC_6_3:
+            addPosition(-hm_0_5 - w_0_5, -vm - h);
+            addPosition(+hm_0_5 + w_0_5, -vm - h);
+            addPosition(-hm - w, 0);
+            addPosition(+hm + w, 0);
+            addPosition(-hm_0_5 - w_0_5, +vm + h);
+            addPosition(+hm_0_5 + w_0_5, +vm + h);
+            break;
+        case VHButtonPlaceSC_6_4:
+            addPosition(0, -vm - h);
+            addPosition(-hm - w, -vm_0_5 - hm_0_5);
+            addPosition(+hm + w, -vm_0_5 - hm_0_5);
+            addPosition(-hm - w, +vm_0_5 + hm_0_5);
+            addPosition(+hm + w, +vm_0_5 + hm_0_5);
+            addPosition(0, +vm + h);
+            break;
+        case VHButtonPlaceSC_6_5:
+            addPosition(-hm - w, -vm - h);
+            addPosition(0, -vm - h);
+            addPosition(+hm + w, -vm - h);
+            addPosition(-hm_0_5 - w_0_5, 0);
+            addPosition(+hm_0_5 + w_0_5, 0);
+            addPosition(0, vm + h);
+            break;
+        case VHButtonPlaceSC_6_6:
+            addPosition(0, -vm - h);
+            addPosition(-hm_0_5 - w_0_5, 0);
+            addPosition(+hm_0_5 + w_0_5, 0);
+            addPosition(-hm - w, vm + h);
+            addPosition(0, vm + h);
+            addPosition(+hm + w, vm + h);
+            break;
+        case VHButtonPlaceSC_7_1:
+            addPosition(-hm - w, -vm - h);
+            addPosition(0, -hm - h);
+            addPosition(+hm + w, -vm - h);
+            addPosition(-hm - w, 0);
+            addPosition(0, 0);
+            addPosition(+hm + w, 0);
+            addPosition(0, hm + h);
+            break;
+        case VHButtonPlaceSC_7_2:
+            addPosition(0, -hm - h);
+            addPosition(-hm - w, 0);
+            addPosition(0, 0);
+            addPosition(+hm + w, 0);
+            addPosition(-hm - w, vm + h);
+            addPosition(0, hm + h);
+            addPosition(+hm + w, vm + h);
+            break;
+        case VHButtonPlaceSC_7_3:
+            addPosition(-hm_0_5 - w_0_5, -vm - h);
+            addPosition(+hm_0_5 + w_0_5, -vm - h);
+            addPosition(-hm - w, 0);
+            addPosition(0, 0);
+            addPosition(hm + w, 0);
+            addPosition(-hm_0_5 - w_0_5, vm + h);
+            addPosition(+hm_0_5 + w_0_5, vm + h);
+            break;
+        case VHButtonPlaceSC_7_4:
+            addPosition(0, -vm - h);
+            addPosition(-hm - w, -vm_0_5 - hm_0_5);
+            addPosition(+hm + w, -vm_0_5 - hm_0_5);
+            addPosition(0, 0);
+            addPosition(-hm - w, +vm_0_5 + hm_0_5);
+            addPosition(+hm + w, +vm_0_5 + hm_0_5);
+            addPosition(0, vm + h);
+            break;
+        case VHButtonPlaceSC_7_5:
+            addPosition(-hm_1_5 - w_1_5, -vm_0_5 - hm_0_5);
+            addPosition(-hm_0_5 - w_0_5, -vm_0_5 - hm_0_5);
+            addPosition(+hm_0_5 + w_0_5, -vm_0_5 - hm_0_5);
+            addPosition(+hm_1_5 + w_1_5, -vm_0_5 - hm_0_5);
+            addPosition(-hm - w, vm_0_5 + hm_0_5);
+            addPosition(0, vm_0_5 + hm_0_5);
+            addPosition(+hm + w, vm_0_5 + hm_0_5);
+            break;
+        case VHButtonPlaceSC_7_6:
+            addPosition(-hm - w, -vm_0_5 - hm_0_5);
+            addPosition(0, -vm_0_5 - hm_0_5);
+            addPosition(+hm + w, -vm_0_5 - hm_0_5);
+            addPosition(-hm_1_5 - w_1_5, vm_0_5 + hm_0_5);
+            addPosition(-hm_0_5 - w_0_5, vm_0_5 + hm_0_5);
+            addPosition(+hm_0_5 + w_0_5, vm_0_5 + hm_0_5);
+            addPosition(+hm_1_5 + w_1_5, vm_0_5 + hm_0_5);
+            break;
+        case VHButtonPlaceSC_8_1:
+            addPosition(-hm - w, -vm - h);
+            addPosition(0, -vm - h);
+            addPosition(+hm + w, -vm - h);
+            addPosition(-hm_0_5 - w_0_5, 0);
+            addPosition(+hm_0_5 + w_0_5, 0);
+            addPosition(-hm - w, vm + h);
+            addPosition(0, vm + h);
+            addPosition(+hm + w, vm + h);
+            break;
+        case VHButtonPlaceSC_8_2:
+            addPosition(-hm - w, -vm - h);
+            addPosition(+hm + w, -vm - h);
+            addPosition(0, -vm_0_5 - hm_0_5);
+            addPosition(-hm - w, 0);
+            addPosition(+hm + w, 0);
+            addPosition(0, +vm_0_5 + hm_0_5);
+            addPosition(-hm - w, +vm + h);
+            addPosition(+hm + w, +vm + h);
+            break;
+        case VHButtonPlaceSC_8_3:
+            addPosition(-hm - w, -vm - h);
+            addPosition(0, -vm - h);
+            addPosition(+hm + w, -vm - h);
+            addPosition(-hm - w, 0);
+            addPosition(+hm + w, 0);
+            addPosition(-hm - w, +vm + h);
+            addPosition(0, +vm + h);
+            addPosition(+hm + w, +vm + h);
+            break;
+        case VHButtonPlaceSC_8_4:
+            addPosition(0, -vm_2_0 - h_2_0);
+            addPosition(-hm_0_5 - w_0_5, -vm - h);
+            addPosition(+hm_0_5 + w_0_5, -vm - h);
+            addPosition(-hm - w, 0);
+            addPosition(+hm + w, 0);
+            addPosition(-hm_0_5 - w_0_5, +vm + h);
+            addPosition(+hm_0_5 + w_0_5, +vm + h);
+            addPosition(0, +vm_2_0 + h_2_0);
+            break;
+        case VHButtonPlaceSC_8_5:
+            addPosition(0, -vm - h);
+            addPosition(-hm - w, -vm_0_5 - hm_0_5);
+            addPosition(+hm + w, -vm_0_5 - hm_0_5);
+            addPosition(-hm_2_0 - w_2_0, 0);
+            addPosition(+hm_2_0 + w_2_0, 0);
+            addPosition(-hm - w, +vm_0_5 + hm_0_5);
+            addPosition(+hm + w, +vm_0_5 + hm_0_5);
+            addPosition(0, +vm + h);
+            break;
+        case VHButtonPlaceSC_8_6:
+            addPosition(-hm_1_5 - w_1_5, -vm_0_5 - hm_0_5);
+            addPosition(-hm_0_5 - w_0_5, -vm_0_5 - hm_0_5);
+            addPosition(+hm_0_5 + w_0_5, -vm_0_5 - hm_0_5);
+            addPosition(+hm_1_5 + w_1_5, -vm_0_5 - hm_0_5);
+            addPosition(-hm_1_5 - w_1_5, +vm_0_5 + hm_0_5);
+            addPosition(-hm_0_5 - w_0_5, +vm_0_5 + hm_0_5);
+            addPosition(+hm_0_5 + w_0_5, +vm_0_5 + hm_0_5);
+            addPosition(+hm_1_5 + w_1_5, +vm_0_5 + hm_0_5);
+            break;
+        case VHButtonPlaceSC_8_7:
+            addPosition(-hm_0_5 - w_0_5, -vm_1_5 - h_1_5);
+            addPosition(+hm_0_5 + w_0_5, -vm_1_5 - h_1_5);
+            addPosition(-hm_0_5 - w_0_5, -vm_0_5 - hm_0_5);
+            addPosition(+hm_0_5 + w_0_5, -vm_0_5 - hm_0_5);
+            addPosition(-hm_0_5 - w_0_5, +vm_0_5 + hm_0_5);
+            addPosition(+hm_0_5 + w_0_5, +vm_0_5 + hm_0_5);
+            addPosition(-hm_0_5 - w_0_5, +vm_1_5 + h_1_5);
+            addPosition(+hm_0_5 + w_0_5, +vm_1_5 + h_1_5);
+            break;
+        case VHButtonPlaceSC_9_1:
+            addPosition(-hm - w, -vm - h);
+            addPosition(0, -vm - h);
+            addPosition(+hm + w, -vm - h);
+            addPosition(-hm - w, 0);
+            addPosition(0, 0);
+            addPosition(+hm + w, 0);
+            addPosition(-hm - w, +vm + h);
+            addPosition(0, +vm + h);
+            addPosition(+hm + w, +vm + h);
+            break;
+        case VHButtonPlaceSC_9_2:
+            addPosition(0, -vm_2_0 - hm_2_0);
+            addPosition(-hm_0_5 - w_0_5, -vm - h);
+            addPosition(+hm_0_5 + w_0_5, -vm - h);
+            addPosition(-hm - w, 0);
+            addPosition(0, 0);
+            addPosition(+hm + w, 0);
+            addPosition(-hm_0_5 - w_0_5, +vm + h);
+            addPosition(+hm_0_5 + w_0_5, +vm + h);
+            addPosition(0, +vm_2_0 + hm_2_0);
+            break;
+        case VHButtonPlaceSC_9_3:
+            addPosition(0, -vm - h);
+            addPosition(-hm - w, -vm_0_5 - hm_0_5);
+            addPosition(+hm + w, -vm_0_5 - hm_0_5);
+            addPosition(-hm_2_0 - w_2_0, 0);
+            addPosition(0, 0);
+            addPosition(+hm_2_0 + w_2_0, 0);
+            addPosition(-hm - w, +vm_0_5 + hm_0_5);
+            addPosition(+hm + w, +vm_0_5 + hm_0_5);
+            addPosition(0, vm + h);
+            break;
+        case VHButtonPlaceCustom:
+            [positions addObjectsFromArray:bmb.customButtonPositions];
+            break;
+        default:
+            NSAssert(NO, @"Button place enum not found!");
+            break;
+    }
+    
+    switch (bmb.buttonPlaceEnum) {
+        case VHButtonPlaceSC_3_3:
+            [VHButtonPlaceManager adjustPositions:positions withX:0 withY:+pow(hm_0_5 + w_0_5, 2) / (vm + h)];
+            break;
+        case VHButtonPlaceSC_3_4:
+            [VHButtonPlaceManager adjustPositions:positions withX:0 withY:-pow(hm_0_5 + w_0_5, 2) / (vm + h)];
+            break;
+        case VHButtonPlaceSC_4_2:
+        case VHButtonPlaceSC_5_1:
+        case VHButtonPlaceSC_5_2:
+        case VHButtonPlaceSC_5_3:
+        case VHButtonPlaceSC_5_4:
+        case VHButtonPlaceSC_6_1:
+        case VHButtonPlaceSC_6_2:
+        case VHButtonPlaceSC_6_3:
+        case VHButtonPlaceSC_6_4:
+        case VHButtonPlaceSC_6_5:
+        case VHButtonPlaceSC_6_6:
+        case VHButtonPlaceSC_7_1:
+        case VHButtonPlaceSC_7_2:
+        case VHButtonPlaceSC_7_3:
+        case VHButtonPlaceSC_7_4:
+        case VHButtonPlaceSC_7_5:
+        case VHButtonPlaceSC_7_6:
+        case VHButtonPlaceSC_8_1:
+        case VHButtonPlaceSC_8_2:
+        case VHButtonPlaceSC_8_3:
+        case VHButtonPlaceSC_8_4:
+        case VHButtonPlaceSC_8_5:
+        case VHButtonPlaceSC_8_6:
+        case VHButtonPlaceSC_8_7:
+        case VHButtonPlaceSC_9_1:
+        case VHButtonPlaceSC_9_2:
+        case VHButtonPlaceSC_9_3:
+            [VHButtonPlaceManager adjustPositions:positions withX:0 withY:h_0_5 - w_0_5];
             break;
         case VHButtonPlaceHAM_2:
-            ADD_POINT(0, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(0, buttonVerticalMargin / 2 + height / 2);
-            break;
         case VHButtonPlaceHAM_3:
-            ADD_POINT(0, -buttonVerticalMargin - height);
-            ADD_POINT(0, 0);
-            ADD_POINT(0, buttonVerticalMargin + height);
         case VHButtonPlaceHAM_4:
-            ADD_POINT(0, -buttonVerticalMargin * 3 / 2 - height * 3 / 2);
-            ADD_POINT(0, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(0, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(0, buttonVerticalMargin * 3 / 2 + height * 3 / 2);
-            break;
         case VHButtonPlaceHAM_5:
-            ADD_POINT(0, -buttonVerticalMargin * 2 - height * 2);
-            ADD_POINT(0, -buttonVerticalMargin - height);
-            ADD_POINT(0, 0);
-            ADD_POINT(0, buttonVerticalMargin + height);
-            ADD_POINT(0, buttonVerticalMargin * 2 + height * 2);
-            break;
         case VHButtonPlaceHAM_6:
-            ADD_POINT(0, -buttonVerticalMargin * 5 / 2 - height * 5 / 2);
-            ADD_POINT(0, -buttonVerticalMargin * 3 / 2 - height * 3 / 2);
-            ADD_POINT(0, -buttonVerticalMargin / 2 - height / 2);
-            ADD_POINT(0, buttonVerticalMargin / 2 + height / 2);
-            ADD_POINT(0, buttonVerticalMargin * 3 / 2 + height * 3 / 2);
-            ADD_POINT(0, buttonVerticalMargin * 5 / 2 + height * 5 / 2);
+            if (buttonNumber >= 2 && bmb.bottomHamButtonTopMargin > 0)
+            {
+                CGPoint point = [positions.lastObject CGPointValue];
+                [positions setObject:[NSValue valueWithCGPoint:CGPointMake(point.x,
+                                                                           point.y + bmb.bottomHamButtonTopMargin - vm)]
+                  atIndexedSubscript:buttonNumber - 1];
+            }
+            break;
+        default:
+            break;
+    }
+    
+    [VHButtonPlaceManager adjustPositions:positions withX:parentFrame.size.width / 2 withY:parentFrame.size.height / 2];
+    [VHButtonPlaceManager adjustAlignmentPositions:positions withParentFrame:parentFrame
+                               withHalfButtonWidth:w_0_5 withHalfButtonHeight:h_0_5 withBoomMenuButton:bmb];
+    
+    return positions;
+}
+
++ (NSMutableArray<NSValue *> *)positionsWithParentFrame:(CGRect)parentFrame
+                                       withButtonRadius:(CGFloat)radius
+                                       withButtonNumber:(long)buttonNumber
+                                     withBoomMenuButton:(VHBoomMenuButton *)bmb
+{
+    NSMutableArray *positions = [NSMutableArray array];
+    
+    CGFloat hm = bmb.buttonHorizontalMargin;
+    CGFloat hm_0_5 = hm / 2;
+    CGFloat hm_1_5 = hm * 1.5;
+    
+    CGFloat vm = bmb.buttonVerticalMargin;
+    CGFloat vm_0_5 = vm / 2;
+    CGFloat vm_1_5 = hm * 1.5;
+    
+    CGFloat im = bmb.buttonInclinedMargin;
+    
+    CGFloat r = radius;
+    CGFloat r_2_0 = r * 2;
+    CGFloat r_3_0 = r * 3;
+    
+    CGFloat a, b, c, e;
+    b = hm_0_5 + r;
+    c = b / (sqrt(3) / 2);
+    a = c / 2;
+    e = c - a;
+    switch (bmb.buttonPlaceEnum) {
+        case VHButtonPlaceSC_4_2:
+        case VHButtonPlaceSC_5_4:
+        case VHButtonPlaceSC_8_5:
+        case VHButtonPlaceSC_9_3:
+            a = (r_2_0 + im) / sqrt(2);
+            break;
+        case VHButtonPlaceSC_8_2:
+            b = vm_0_5 + r;
+            c = b / (sqrt(3) / 2);
+            a = c / 2;
+            e = c - a;
+            break;
+        default:
+            break;
+    }
+    CGFloat a_2_0 = a * 2;
+    CGFloat b_2_0 = b * 2;
+    CGFloat b_3_0 = b * 3;
+    CGFloat c_2_0 = c * 2;
+    
+    long half = buttonNumber / 2;
+    
+    switch (bmb.buttonPlaceEnum)
+    {
+        case VHButtonPlaceHorizontal:
+        {
+            if (buttonNumber % 2 == 0)
+            {
+                for (long i = half - 1; i >= 0; i--)
+                {
+                    addPosition(-r - hm_0_5 - i * (r_2_0 + hm), 0);
+                }
+                for (int i = 0; i < half; i++)
+                {
+                    addPosition(+r + hm_0_5 + i * (r_2_0 + hm), 0);
+                }
+            }
+            else
+            {
+                for (long i = half - 1; i >= 0; i--)
+                {
+                    addPosition(-r_2_0 - hm - i * (r_2_0 + hm), 0);
+                }
+                addPosition(0, 0);
+                for (int i = 0; i < half; i++)
+                {
+                    addPosition(+r_2_0 + hm + i * (r_2_0 + hm), 0);
+                }
+            }
+            break;
+        }
+        case VHButtonPlaceVertical:
+        {
+            if (buttonNumber % 2 == 0)
+            {
+                long half = buttonNumber / 2;
+                for (long i = half - 1; i >= 0; i--)
+                {
+                    addPosition(0, -radius - vm_0_5 - i * (2 * radius + vm));
+                }
+                for (int i = 0; i < half; i++)
+                {
+                    addPosition(0, radius + vm_0_5 + i * (2 * radius + vm));
+                }
+            }
+            else
+            {
+                long half = buttonNumber / 2;
+                for (long i = half - 1; i >= 0; i--)
+                {
+                    addPosition(0, -2 * radius - vm - i * (2 * radius + vm));
+                }
+                addPosition(0, 0);
+                for (int i = 0; i < half; i++)
+                {
+                    addPosition(0, 2 * radius + vm + i * (2 * radius + vm));
+                }
+            }
+            break;
+        }
+        case VHButtonPlaceSC_1:
+            addPosition(0, 0);
+            break;
+        case VHButtonPlaceSC_2_1:
+            addPosition(-hm_0_5 - r, 0);
+            addPosition(+hm_0_5 + r, 0);
+            break;
+        case VHButtonPlaceSC_2_2:
+            addPosition(0, -vm_0_5 - r);
+            addPosition(0, +vm_0_5 + r);
+            break;
+        case VHButtonPlaceSC_3_1:
+            addPosition(-hm - r_2_0, 0);
+            addPosition(0, 0);
+            addPosition(+hm + r_2_0, 0);
+            break;
+        case VHButtonPlaceSC_3_2:
+            addPosition(0, -vm - r_2_0);
+            addPosition(0, 0);
+            addPosition(0, +vm + r_2_0);
+            break;
+        case VHButtonPlaceSC_3_3:
+            addPosition(-b, -a);
+            addPosition(+b, -a);
+            addPosition(0, c);
+            break;
+        case VHButtonPlaceSC_3_4:
+            addPosition(0, -c);
+            addPosition(-b, a);
+            addPosition(+b, a);
+            break;
+        case VHButtonPlaceSC_4_1:
+            addPosition(-hm_0_5 - r, -vm_0_5 - r);
+            addPosition(+hm_0_5 + r, -vm_0_5 - r);
+            addPosition(-hm_0_5 - r, +vm_0_5 + r);
+            addPosition(+hm_0_5 + r, +vm_0_5 + r);
+            break;
+        case VHButtonPlaceSC_4_2:
+            addPosition(0, -a);
+            addPosition(-a, 0);
+            addPosition(+a, 0);
+            addPosition(0, +a);
+            break;
+        case VHButtonPlaceSC_5_1:
+            addPosition(-b_2_0, -c);
+            addPosition(0, -c);
+            addPosition(+b_2_0, -c);
+            addPosition(-hm_0_5 - r, a);
+            addPosition(+hm_0_5 + r, a);
+            break;
+        case VHButtonPlaceSC_5_2:
+            addPosition(-hm_0_5 - r, -a);
+            addPosition(+hm_0_5 + r, -a);
+            addPosition(-b_2_0, c);
+            addPosition(0, c);
+            addPosition(+b_2_0, c);
+            break;
+        case VHButtonPlaceSC_5_3:
+            addPosition(0, -vm - r_2_0);
+            addPosition(-hm - r_2_0, 0);
+            addPosition(0, 0);
+            addPosition(+hm + r_2_0, 0);
+            addPosition(0, +vm + r_2_0);
+            break;
+        case VHButtonPlaceSC_5_4:
+            addPosition(-a, -a);
+            addPosition(+a, -a);
+            addPosition(0, 0);
+            addPosition(-a, +a);
+            addPosition(+a, +a);
+            break;
+        case VHButtonPlaceSC_6_1:
+            addPosition(-hm - r_2_0, -vm_0_5 - r);
+            addPosition(0, -vm_0_5 - r);
+            addPosition(+hm + r_2_0, -vm_0_5 - r);
+            addPosition(-hm - r_2_0, +vm_0_5 + r);
+            addPosition(0, vm_0_5 + r);
+            addPosition(+hm + r_2_0, +vm_0_5 + r);
+            break;
+        case VHButtonPlaceSC_6_2:
+            addPosition(-hm_0_5 - radius, -vm - 2 * radius);
+            addPosition(+hm_0_5 + radius, -vm - 2 * radius);
+            addPosition(-hm_0_5 - radius, 0);
+            addPosition(+hm_0_5 + radius, 0);
+            addPosition(-hm_0_5 - radius, +vm + 2 * radius);
+            addPosition(+hm_0_5 + radius, +vm + 2 * radius);
+            break;
+        case VHButtonPlaceSC_6_3:
+            addPosition(-b, -a - c);
+            addPosition(+b, -a - c);
+            addPosition(-b_2_0, 0);
+            addPosition(+b_2_0, 0);
+            addPosition(-b, +a + c);
+            addPosition(+b, +a + c);
+            break;
+        case VHButtonPlaceSC_6_4:
+            addPosition(0, -b_2_0);
+            addPosition(-a - c, -b);
+            addPosition(+a + c, -b);
+            addPosition(-a - c, +b);
+            addPosition(+a + c, +b);
+            addPosition(0, +b_2_0);
+            break;
+        case VHButtonPlaceSC_6_5:
+            addPosition(-b_2_0, -a - c + e);
+            addPosition(0, -a - c + e);
+            addPosition(+b_2_0, -a - c + e);
+            addPosition(-hm_0_5 - r, +e);
+            addPosition(hm_0_5 + r, +e);
+            addPosition(0, a + c + e);
+            break;
+        case VHButtonPlaceSC_6_6:
+            addPosition(0, -a - c - e);
+            addPosition(-hm_0_5 - r, -e);
+            addPosition(+hm_0_5 + r, -e);
+            addPosition(-b_2_0, +a + c - e);
+            addPosition(0, +a + c - e);
+            addPosition(+b_2_0, +a + c - e);
+            break;
+        case VHButtonPlaceSC_7_1:
+            addPosition(-hm - r_2_0, -vm - r_2_0);
+            addPosition(0, -vm - r_2_0);
+            addPosition(+hm + r_2_0, -vm - r_2_0);
+            addPosition(-hm - r_2_0, 0);
+            addPosition(0, 0);
+            addPosition(+hm + r_2_0, 0);
+            addPosition(0, +vm + r_2_0);
+            break;
+        case VHButtonPlaceSC_7_2:
+            addPosition(0, -vm - r_2_0);
+            addPosition(-hm - r_2_0, 0);
+            addPosition(0, 0);
+            addPosition(+hm + r_2_0, 0);
+            addPosition(-hm - r_2_0, +vm + r_2_0);
+            addPosition(0, +vm + r_2_0);
+            addPosition(+hm + r_2_0, +vm + r_2_0);
+            break;
+        case VHButtonPlaceSC_7_3:
+            addPosition(-b, -a - c);
+            addPosition(+b, -a - c);
+            addPosition(-b_2_0, 0);
+            addPosition(0, 0);
+            addPosition(+b_2_0, 0);
+            addPosition(-b, +a + c);
+            addPosition(+b, +a + c);
+            break;
+        case VHButtonPlaceSC_7_4:
+            addPosition(0, -b_2_0);
+            addPosition(-a - c, -b);
+            addPosition(+a + c, -b);
+            addPosition(0, 0);
+            addPosition(-a - c, +b);
+            addPosition(+a + c, +b);
+            addPosition(0, +b_2_0);
+            break;
+        case VHButtonPlaceSC_7_5:
+            addPosition(-b_3_0, -a);
+            addPosition(-b, -a);
+            addPosition(+b, -a);
+            addPosition(+b_3_0, -a);
+            addPosition(-b_2_0, c);
+            addPosition(0, c);
+            addPosition(+b_2_0, c);
+            break;
+        case VHButtonPlaceSC_7_6:
+            addPosition(-b_2_0, -c);
+            addPosition(0, -c);
+            addPosition(+b_2_0, -c);
+            addPosition(-b_3_0, a);
+            addPosition(-b, a);
+            addPosition(+b, a);
+            addPosition(+b_3_0, a);
+            break;
+        case VHButtonPlaceSC_8_1:
+            addPosition(-b_2_0, -a - c);
+            addPosition(0, -a - c);
+            addPosition(+b_2_0, -a - c);
+            addPosition(-hm_0_5 - r, 0);
+            addPosition(+hm_0_5 + r, 0);
+            addPosition(-b_2_0, a + c);
+            addPosition(0, a + c);
+            addPosition(+b_2_0, a + c);
+            break;
+        case VHButtonPlaceSC_8_2:
+            addPosition(-a - c, -b_2_0);
+            addPosition(+a + c, -b_2_0);
+            addPosition(0, -vm_0_5 - r);
+            addPosition(-a - c, 0);
+            addPosition(+a + c, 0);
+            addPosition(0, +vm_0_5 + r);
+            addPosition(-a - c, +b_2_0);
+            addPosition(+a + c, +b_2_0);
+            break;
+        case VHButtonPlaceSC_8_3:
+            addPosition(-hm - r_2_0, -vm - r_2_0);
+            addPosition(0, -vm - r_2_0);
+            addPosition(+hm + r_2_0, -vm - r_2_0);
+            addPosition(-hm - r_2_0, 0);
+            addPosition(+hm + r_2_0, 0);
+            addPosition(-hm - r_2_0, +vm + r_2_0);
+            addPosition(0, vm + r_2_0);
+            addPosition(+hm + r_2_0, +vm + r_2_0);
+            break;
+        case VHButtonPlaceSC_8_4:
+            addPosition(0, -a_2_0 - c_2_0);
+            addPosition(-hm_0_5 - r, -a - c);
+            addPosition(+hm_0_5 + r, -a - c);
+            addPosition(-b_2_0, 0);
+            addPosition(+b_2_0, 0);
+            addPosition(-hm_0_5 - r, a + c);
+            addPosition(+hm_0_5 + r, a + c);
+            addPosition(0, +a_2_0 + c_2_0);
+            break;
+        case VHButtonPlaceSC_8_5:
+            addPosition(0, -a_2_0);
+            addPosition(-a, -a);
+            addPosition(+a, -a);
+            addPosition(-a_2_0, 0);
+            addPosition(+a_2_0, 0);
+            addPosition(-a, +a);
+            addPosition(+a, +a);
+            addPosition(0, a_2_0);
+            break;
+        case VHButtonPlaceSC_8_6:
+            addPosition(-hm_1_5 - r_3_0, -vm_0_5 - r);
+            addPosition(-hm_0_5 - r, -vm_0_5 - r);
+            addPosition(+hm_0_5 + r, -vm_0_5 - r);
+            addPosition(+hm_1_5 + r_3_0, -vm_0_5 - r);
+            addPosition(-hm_1_5 - r_3_0, vm_0_5 + r);
+            addPosition(-hm_0_5 - r, vm_0_5 + r);
+            addPosition(+hm_0_5 + r, vm_0_5 + r);
+            addPosition(+hm_1_5 + r_3_0, vm_0_5 + r);
+            break;
+        case VHButtonPlaceSC_8_7:
+            addPosition(-hm_0_5 - r, -vm_1_5 - r_3_0);
+            addPosition(+hm_0_5 + r, -vm_1_5 - r_3_0);
+            addPosition(-hm_0_5 - r, -vm_0_5 - r);
+            addPosition(+hm_0_5 + r, -vm_0_5 - r);
+            addPosition(-hm_0_5 - r, +vm_0_5 + r);
+            addPosition(+hm_0_5 + r, +vm_0_5 + r);
+            addPosition(-hm_0_5 - r, +vm_1_5 + r_3_0);
+            addPosition(+hm_0_5 + r, +vm_1_5 + r_3_0);
+            break;
+        case VHButtonPlaceSC_9_1:
+            addPosition(-hm - r_2_0, -vm - r_2_0);
+            addPosition(0, -vm - r_2_0);
+            addPosition(+hm + r_2_0, -vm - r_2_0);
+            addPosition(-hm - r_2_0, 0);
+            addPosition(0, 0);
+            addPosition(+hm + r_2_0, 0);
+            addPosition(-hm - r_2_0, +vm + r_2_0);
+            addPosition(0, vm + r_2_0);
+            addPosition(+hm + r_2_0, +vm + r_2_0);
+            break;
+        case VHButtonPlaceSC_9_2:
+            addPosition(0, -a_2_0 - c_2_0);
+            addPosition(-hm_0_5 - r, -a - c);
+            addPosition(+hm_0_5 + r, -a - c);
+            addPosition(-b_2_0, 0);
+            addPosition(0, 0);
+            addPosition(+b_2_0, 0);
+            addPosition(-hm_0_5 - r, +a + c);
+            addPosition(+hm_0_5 + r, +a + c);
+            addPosition(0, +a_2_0 + c_2_0);
+            break;
+        case VHButtonPlaceSC_9_3:
+            addPosition(0, -a_2_0);
+            addPosition(-a, -a);
+            addPosition(+a, -a);
+            addPosition(-a_2_0, 0);
+            addPosition(0, 0);
+            addPosition(+a_2_0, 0);
+            addPosition(-a, +a);
+            addPosition(+a, +a);
+            addPosition(0, +a_2_0);
+            break;
+        case VHButtonPlaceCustom:
+            [positions addObjectsFromArray:bmb.customButtonPositions];
             break;
         default:
             NSAssert(NO, @"Button place enum not found!");
             break;
     }
     
-    if (buttonNumber >= 2 && lastButtonMarginMoreTop)
-    {
-        CGPoint point = [[positions objectAtIndex:buttonNumber - 1] CGPointValue];
-        [positions setObject:[NSValue valueWithCGPoint:CGPointMake(point.x, point.y + lastButtonTopMargin - buttonVerticalMargin)] atIndexedSubscript:buttonNumber - 1];
-    }
     
-    for (int i = 0; i < positions.count; i++)
-    {
-        CGPoint point = [[positions objectAtIndex:i] CGPointValue];
-        [positions setObject:[NSValue valueWithCGPoint:CGPointMake(point.x + frame.size.width / 2, point.y + frame.size.height / 2) ] atIndexedSubscript:i];
-    }
-    
-    for (NSValue *position in positions)
-    {
-        maxHeight = MAX(maxHeight, [position CGPointValue].y);
-        minHeight = MIN(minHeight, [position CGPointValue].y);
-        maxWidth = MAX(maxWidth, [position CGPointValue].x);
-        minWidth = MIN(minWidth, [position CGPointValue].x);
-    }
-    
-    CGFloat heightOffset = 0;
-    CGFloat widthOffset = 0;
-    switch (alignmentEnum) {
-        case VHButtonPlaceAlignmentCenter:
-            break;
-        case VHButtonPlaceAlignmentTop:
-            heightOffset = height / 2 + buttonTopMargin - minHeight;
-            break;
-        case VHButtonPlaceAlignmentBottom:
-            heightOffset = frame.size.height - height / 2 - maxHeight - buttonBottomMargin;
-            break;
-        case VHButtonPlaceAlignmentLeft:
-            widthOffset = width / 2 + buttonLeftMargin - minWidth;
-            break;
-        case VHButtonPlaceAlignmentRight:
-            widthOffset = frame.size.width - width / 2 - maxWidth - buttonRightMargin;
-            break;
-        case VHButtonPlaceAlignmentTopLeft:
-            heightOffset = height / 2 + buttonTopMargin - minHeight;
-            widthOffset = width / 2 + buttonLeftMargin - minWidth;
-            break;
-        case VHButtonPlaceAlignmentTopRight:
-            heightOffset = height / 2 + buttonTopMargin - minHeight;
-            widthOffset = frame.size.width - width / 2 - maxWidth - buttonRightMargin;
-            break;
-        case VHButtonPlaceAlignmentBottomLeft:
-            heightOffset = frame.size.height - height / 2 - maxHeight - buttonBottomMargin;
-            widthOffset = width / 2 + buttonLeftMargin - minWidth;
-            break;
-        case VHButtonPlaceAlignmentBottomRight:
-            heightOffset = frame.size.height - height / 2 - maxHeight - buttonBottomMargin;
-            widthOffset = frame.size.width - width / 2 - maxWidth - buttonRightMargin;
-            break;
-    }
-    for (int i = 0; i < positions.count; i++)
-    {
-        CGPoint point = [[positions objectAtIndex:i] CGPointValue];
-        [positions setObject:[NSValue valueWithCGPoint:CGPointMake(point.x + widthOffset, point.y + heightOffset)] atIndexedSubscript:i];
-    }
-
+    [VHButtonPlaceManager adjustPositions:positions withX:parentFrame.size.width / 2 withY:parentFrame.size.height / 2];
+    [VHButtonPlaceManager adjustAlignmentPositions:positions withParentFrame:parentFrame
+                               withHalfButtonWidth:r withHalfButtonHeight:r withBoomMenuButton:bmb];
     
     return positions;
 }
 
-+ (NSInteger)buttonNumber:(VHButtonPlaceEnum)placeEnum
++ (int)buttonNumber:(VHButtonPlaceEnum)buttonPlaceEnum
 {
-    switch (placeEnum)
+    switch (buttonPlaceEnum)
     {
         case VHButtonPlaceSC_1:
         case VHButtonPlaceHAM_1:
@@ -1313,7 +898,38 @@
             return 9;
         case VHButtonPlaceHorizontal:
         case VHButtonPlaceVertical:
-            return LONG_MAX;
+        case VHButtonPlaceCustom:
+            return -1;
+        default:
+            return -1;
+    }
+}
+
++ (int)minButtonNumber:(VHButtonPlaceEnum)buttonPlaceEnum
+{
+    switch (buttonPlaceEnum)
+    {
+        case VHButtonPlaceHorizontal:
+        case VHButtonPlaceVertical:
+        case VHButtonPlaceCustom:
+            return 1;
+        case VHButtonPlaceUnknown:
+            return 0;
+        default:
+            return -1;
+    }
+}
+
++ (int)maxButtonNumber:(VHButtonPlaceEnum)buttonPlaceEnum
+{
+    switch (buttonPlaceEnum)
+    {
+        case VHButtonPlaceHorizontal:
+        case VHButtonPlaceVertical:
+        case VHButtonPlaceCustom:
+            return INT_MAX;
+        case VHButtonPlaceUnknown:
+            return 0;
         default:
             return -1;
     }
@@ -1324,7 +940,63 @@
     return (hm / 2 + w / 2) * (hm / 2 + w / 2) / (vm + h);
 }
 
-+ (void)adjustOffsetForPositions:(NSMutableArray<NSValue *> *)positions withX:(CGFloat)x withY:(CGFloat)y
++ (void)adjustAlignmentPositions:(NSMutableArray<NSValue *> *)positions
+                 withParentFrame:(CGRect)parentFrame
+             withHalfButtonWidth:(CGFloat)halfWidth
+            withHalfButtonHeight:(CGFloat)halfHeight
+              withBoomMenuButton:(VHBoomMenuButton *)bmb {
+    CGFloat minY = CGFLOAT_MAX;
+    CGFloat maxY = CGFLOAT_MIN;
+    CGFloat minX = CGFLOAT_MAX;
+    CGFloat maxX = CGFLOAT_MIN;
+    
+    for (NSValue *position in positions)
+    {
+        maxY = MAX(maxY, [position CGPointValue].y);
+        minY = MIN(minY, [position CGPointValue].y);
+        maxX = MAX(maxX, [position CGPointValue].x);
+        minX = MIN(minX, [position CGPointValue].x);
+    }
+    
+    CGFloat yOffset = 0;
+    CGFloat xOffset = 0;
+    switch (bmb.buttonPlaceAlignmentEnum)
+    {
+        case VHButtonPlaceAlignmentCenter:
+            break;
+        case VHButtonPlaceAlignmentTop:
+            yOffset = halfHeight + bmb.buttonTopMargin - minY;
+            break;
+        case VHButtonPlaceAlignmentBottom:
+            yOffset = parentFrame.size.height - halfHeight - maxY - bmb.buttonBottomMargin;
+            break;
+        case VHButtonPlaceAlignmentLeft:
+            xOffset = halfWidth + bmb.buttonLeftMargin - minX;
+            break;
+        case VHButtonPlaceAlignmentRight:
+            xOffset = parentFrame.size.width - halfHeight - maxX - bmb.buttonRightMargin;
+            break;
+        case VHButtonPlaceAlignmentTopLeft:
+            yOffset = halfHeight + bmb.buttonTopMargin - minY;
+            xOffset = halfWidth + bmb.buttonLeftMargin - minX;
+            break;
+        case VHButtonPlaceAlignmentTopRight:
+            yOffset = halfHeight + bmb.buttonTopMargin - minY;
+            xOffset = parentFrame.size.width - halfWidth - maxX - bmb.buttonRightMargin;
+            break;
+        case VHButtonPlaceAlignmentBottomLeft:
+            yOffset = parentFrame.size.height - halfHeight - maxY - bmb.buttonBottomMargin;
+            xOffset = halfWidth + bmb.buttonLeftMargin - minX;
+            break;
+        case VHButtonPlaceAlignmentBottomRight:
+            yOffset = parentFrame.size.height - halfHeight - maxY - bmb.buttonBottomMargin;
+            xOffset = parentFrame.size.width - halfWidth - maxX - bmb.buttonRightMargin;
+            break;
+    }
+    [VHButtonPlaceManager adjustPositions:positions withX:xOffset withY:yOffset];
+}
+
++ (void)adjustPositions:(NSMutableArray<NSValue *> *)positions withX:(CGFloat)x withY:(CGFloat)y
 {
     for (int i = 0; i < positions.count; i++)
     {

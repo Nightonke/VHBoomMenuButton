@@ -13,8 +13,11 @@
 /// - random: Random.
 public enum OrderEnum {
     
+    /// In-order.
     case inOrder
+    /// Reverse.
     case reverse
+    /// Random.
     case random
     
     static var count: Int {

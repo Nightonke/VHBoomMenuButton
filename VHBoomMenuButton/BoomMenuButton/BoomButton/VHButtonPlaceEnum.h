@@ -22,6 +22,8 @@
  
  4. VHButtonPlaceVertical: All the boom-buttons are place vertically.
  
+ 5. VHButtonPlaceCustom: Allows to customize the positions of buttons.
+ 
  Check https://github.com/Nightonke/VHBoomMenuButton/wiki for more information.
  */
 typedef NS_ENUM(NSUInteger, VHButtonPlaceEnum)
@@ -75,9 +77,11 @@ typedef NS_ENUM(NSUInteger, VHButtonPlaceEnum)
     VHButtonPlaceHorizontal,
     VHButtonPlaceVertical,
     
+    VHButtonPlaceCustom,
+    
     VHButtonPlaceEnumCount,
     
-    VHButtonPlaceUnknown     = -1,
+    VHButtonPlaceUnknown = -1,
     
 };
 

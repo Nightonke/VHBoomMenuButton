@@ -32,7 +32,7 @@ static CAMediaTimingFunction *hideColorAnimationFunction;
 + (CAKeyframeAnimation *)animateKeyPath:(NSString *)keyPath
                                   delay:(CFTimeInterval)delay
                                duration:(CFTimeInterval)duration
-                                   ease:(VHEase *)ease
+                                   ease:(id<VHTimeInterpolator>)ease
                                  frames:(int)frames
                                   start:(CGFloat)start
                                     end:(CGFloat)end
@@ -80,31 +80,43 @@ static CAMediaTimingFunction *hideColorAnimationFunction;
     return colorAnimation;
 }
 
-+ (void)addAnimations:(UIView *)view, ... NS_REQUIRES_NIL_TERMINATION
++ (CAAnimation *)fadeViewsOpacityAnimation:(BOOL)isBooming duration:(CFTimeInterval)duration
+{
+    CAKeyframeAnimation *opacityAnimation = [VHAnimationManager animateKeyPath:@"opacity"
+                                                                         delay:0
+                                                                      duration:duration
+                                                                        values:isBooming ? @[@(1), @(0)] : @[@(0), @(1)]];
+    opacityAnimation.timingFunction = isBooming ? [VHAnimationManager showColorAnimationFunction] : [VHAnimationManager hideColorAnimationFunction];
+    return opacityAnimation;
+}
+
++ (void)addAnimations:(UIView *)view forKey:(NSString *)key, ... NS_REQUIRES_NIL_TERMINATION
 {
     if (view)
     {
         va_list animations;
         CAAnimation *animation;
-        va_start(animations, view);
+        va_start(animations, key);
+        int i = 0;
         while ((animation = va_arg(animations, CAAnimation *)))
         {
-            [view.layer addAnimation:animation forKey:nil];
+            [view.layer addAnimation:animation forKey:[NSString stringWithFormat:@"%@_%d", key, i]];
+            i++;
         }
     }
 }
 
-+ (void)addAnimation:(CAAnimation *)animation toViews:(NSArray<UIView *> *)views
++ (void)addAnimation:(CAAnimation *)animation forKey:(NSString *)key toViews:(NSArray<UIView *> *)views
 {
     for (UIView *view in views)
     {
-        [view.layer addAnimation:animation forKey:nil];
+        [view.layer addAnimation:animation forKey:key];
     }
 }
 
 + (void)calculateBoomXY:(VHBoomEnum)boomEnum
              parentSize:(CGSize)parentSize
-                   ease:(VHEase *)ease
+                   ease:(id<VHTimeInterpolator>)ease
                  frames:(int)frames
           startPosition:(CGPoint)startPosition
             endPosition:(CGPoint)endPosition
@@ -245,7 +257,7 @@ static CAMediaTimingFunction *hideColorAnimationFunction;
 
 + (void)calculateReboomXY:(VHBoomEnum)boomEnum
                parentSize:(CGSize)parentSize
-                     ease:(VHEase *)ease
+                     ease:(id<VHTimeInterpolator>)ease
                    frames:(int)frames
             startPosition:(CGPoint)startPosition
               endPosition:(CGPoint)endPosition
@@ -353,13 +365,13 @@ static CAMediaTimingFunction *hideColorAnimationFunction;
                     count++;
                 }
             }
-        }
             break;
+        }
     }
     return indexes;
 }
 
-+ (NSMutableArray<NSNumber *> *)values:(VHEase *)ease
++ (NSMutableArray<NSNumber *> *)values:(id<VHTimeInterpolator>)ease
                                 frames:(int)frames
                                  start:(float)start
                                    end:(float)end

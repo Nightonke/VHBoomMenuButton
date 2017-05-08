@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		37A7FA261EB2D9C7004638C8 /* BoomMenuButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3748A9E61EB0DB5A008F7C5E /* BoomMenuButton.framework */; };
-		37A7FA271EB2D9C7004638C8 /* BoomMenuButton.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3748A9E61EB0DB5A008F7C5E /* BoomMenuButton.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3707E8B71EC0025C00562D42 /* FadeViewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3707E8B61EC0025C00562D42 /* FadeViewsVC.swift */; };
+		3707E8C51EC01AF800562D42 /* BoomMenuButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3748A9E61EB0DB5A008F7C5E /* BoomMenuButton.framework */; };
+		3707E8C61EC01AF800562D42 /* BoomMenuButton.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3748A9E61EB0DB5A008F7C5E /* BoomMenuButton.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		37AC4D501EB781BC005FB4D7 /* bat.png in Resources */ = {isa = PBXBuildFile; fileRef = 37AC4D401EB781BC005FB4D7 /* bat.png */; };
 		37AC4D511EB781BC005FB4D7 /* bear.png in Resources */ = {isa = PBXBuildFile; fileRef = 37AC4D411EB781BC005FB4D7 /* bear.png */; };
 		37AC4D521EB781BC005FB4D7 /* bee.png in Resources */ = {isa = PBXBuildFile; fileRef = 37AC4D421EB781BC005FB4D7 /* bee.png */; };
@@ -49,9 +50,17 @@
 		37AC4DA41EBCBF05005FB4D7 /* BlurBackgroundAndTipVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC4DA31EBCBF05005FB4D7 /* BlurBackgroundAndTipVC.swift */; };
 		37B863CC1EA8F9C300E53322 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B863CA1EA8F9C300E53322 /* AppDelegate.swift */; };
 		37B863D61EA8F9F800E53322 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37B863D51EA8F9F800E53322 /* Assets.xcassets */; };
+		37EC4AFE1EBDE6E000302D71 /* CustomPositionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EC4AFD1EBDE6E000302D71 /* CustomPositionVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3707E8C71EC01AF800562D42 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3748A9E11EB0DB5A008F7C5E /* BoomMenuButton.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 3748A9D51EB0DB3D008F7C5E;
+			remoteInfo = BoomMenuButton;
+		};
 		3748A9E51EB0DB5A008F7C5E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3748A9E11EB0DB5A008F7C5E /* BoomMenuButton.xcodeproj */;
@@ -59,23 +68,16 @@
 			remoteGlobalIDString = 3748A9D61EB0DB3D008F7C5E;
 			remoteInfo = BoomMenuButton;
 		};
-		37A7FA281EB2D9C7004638C8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3748A9E11EB0DB5A008F7C5E /* BoomMenuButton.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 3748A9D51EB0DB3D008F7C5E;
-			remoteInfo = BoomMenuButton;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		37A7FA2A1EB2D9C7004638C8 /* Embed Frameworks */ = {
+		3707E8C91EC01AF800562D42 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				37A7FA271EB2D9C7004638C8 /* BoomMenuButton.framework in Embed Frameworks */,
+				3707E8C61EC01AF800562D42 /* BoomMenuButton.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -83,6 +85,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3707E8B61EC0025C00562D42 /* FadeViewsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeViewsVC.swift; sourceTree = SOURCE_ROOT; };
 		3748A9E11EB0DB5A008F7C5E /* BoomMenuButton.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BoomMenuButton.xcodeproj; path = ../VHBoomMenuButtonSwift/BoomMenuButton.xcodeproj; sourceTree = "<group>"; };
 		37AC4D401EB781BC005FB4D7 /* bat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bat.png; sourceTree = "<group>"; };
 		37AC4D411EB781BC005FB4D7 /* bear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bear.png; sourceTree = "<group>"; };
@@ -126,6 +129,7 @@
 		37B863CA1EA8F9C300E53322 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		37B863D51EA8F9F800E53322 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		37B863D91EA8FA4400E53322 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
+		37EC4AFD1EBDE6E000302D71 /* CustomPositionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPositionVC.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,7 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37A7FA261EB2D9C7004638C8 /* BoomMenuButton.framework in Frameworks */,
+				3707E8C51EC01AF800562D42 /* BoomMenuButton.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +219,8 @@
 				37AC4D9F1EBCB352005FB4D7 /* ChangeBoomButtonVC.swift */,
 				37AC4DA11EBCB980005FB4D7 /* ThreeDAnimationVC.swift */,
 				37AC4DA31EBCBF05005FB4D7 /* BlurBackgroundAndTipVC.swift */,
+				37EC4AFD1EBDE6E000302D71 /* CustomPositionVC.swift */,
+				3707E8B61EC0025C00562D42 /* FadeViewsVC.swift */,
 				37B863D91EA8FA4400E53322 /* Info.plist */,
 				37AC4D651EB8AC68005FB4D7 /* Main.storyboard */,
 			);
@@ -231,12 +237,12 @@
 				37B863B11EA8F94D00E53322 /* Sources */,
 				37B863B21EA8F94D00E53322 /* Frameworks */,
 				37B863B31EA8F94D00E53322 /* Resources */,
-				37A7FA2A1EB2D9C7004638C8 /* Embed Frameworks */,
+				3707E8C91EC01AF800562D42 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				37A7FA291EB2D9C7004638C8 /* PBXTargetDependency */,
+				3707E8C81EC01AF800562D42 /* PBXTargetDependency */,
 			);
 			name = VHBoomMenuButtonSwiftDemo;
 			productName = VHBoomMenuButtonSwiftDemo;
@@ -328,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37EC4AFE1EBDE6E000302D71 /* CustomPositionVC.swift in Sources */,
 				37AC4D861EBAD9D4005FB4D7 /* HamButtonVC.swift in Sources */,
 				37AC4D6C1EB8AE52005FB4D7 /* BuilderManager.swift in Sources */,
 				37AC4D921EBB6D19005FB4D7 /* DraggableVC.swift in Sources */,
@@ -346,6 +353,7 @@
 				37AC4D701EB8B343005FB4D7 /* SimpleCircleButtonVC.swift in Sources */,
 				37AC4D9E1EBC7A3F005FB4D7 /* BMBTableViewCell.swift in Sources */,
 				37AC4D8E1EBB55CC005FB4D7 /* OrderVC.swift in Sources */,
+				3707E8B71EC0025C00562D42 /* FadeViewsVC.swift in Sources */,
 				37B863CC1EA8F9C300E53322 /* AppDelegate.swift in Sources */,
 				37AC4DA41EBCBF05005FB4D7 /* BlurBackgroundAndTipVC.swift in Sources */,
 				37AC4D8A1EBAFB1B005FB4D7 /* BoomVC.swift in Sources */,
@@ -356,10 +364,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		37A7FA291EB2D9C7004638C8 /* PBXTargetDependency */ = {
+		3707E8C81EC01AF800562D42 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BoomMenuButton;
-			targetProxy = 37A7FA281EB2D9C7004638C8 /* PBXContainerItemProxy */;
+			targetProxy = 3707E8C71EC01AF800562D42 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -387,6 +395,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Swift";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -405,7 +414,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -438,6 +447,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Swift";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -450,7 +460,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -466,6 +476,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = H7B6S6TRXA;
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -483,6 +494,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = H7B6S6TRXA;
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

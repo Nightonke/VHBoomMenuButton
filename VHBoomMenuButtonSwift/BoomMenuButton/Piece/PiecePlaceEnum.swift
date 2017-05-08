@@ -6,6 +6,19 @@
 //  Copyright © 2017年 Nightonke. All rights reserved.
 //
 
+///  VHPiecePlaceEnum tells BMB how the pieces should be placed.
+
+///  All the piece-place-enums are in the following form:
+
+///  1. VHPiecePlaceDOT_M_A: M means the number of pieces in a dot or a small square shape. A means different type of placing.
+
+///  2. VHPiecePlaceHAM_M: M means the number of pieces in a ham shape.
+
+///  3. VHPiecePlaceShare: Share style.
+
+///  4. VHPiecePlaceCustom: Allows to customize the positions of pieces.
+///
+///  Check https://github.com/Nightonke/VHBoomMenuButton/wiki for more information.
 public enum PiecePlaceEnum: Int {
     
     // Dots
@@ -55,10 +68,12 @@ public enum PiecePlaceEnum: Int {
     
     case share
     
+    case custom
+    
     case unknown
     
     public static var count: Int {
-        return PiecePlaceEnum.share.hashValue + 1
+        return PiecePlaceEnum.custom.hashValue + 1
     }
     
     public func pieceNumber() -> Int {
@@ -81,7 +96,7 @@ public enum PiecePlaceEnum: Int {
             return 8
         case .dot_9_1, .dot_9_2, .dot_9_3:
             return 9
-        case .share:
+        case .share, .custom:
             return -1
         case .unknown:
             return 0
@@ -92,6 +107,8 @@ public enum PiecePlaceEnum: Int {
         switch self {
         case .share:
             return 3
+        case .custom:
+            return 1
         case .unknown:
             return 0
         default:
@@ -101,8 +118,8 @@ public enum PiecePlaceEnum: Int {
     
     public func maxPieceNumber() -> Int {
         switch self {
-        case .share:
-            return 9
+        case .share, .custom:
+            return Int.max
         case .unknown:
             return 0
         default:

@@ -8,7 +8,7 @@
 
 class PiecePlaceManager: NSObject {
     
-    static func positions(radius r: CGFloat, boomMenuButton bmb: BoomMenuButton) -> [CGRect] {
+    static func dotPositions(boomMenuButton bmb: BoomMenuButton) -> [CGRect] {
         
         let parentFrame: CGRect = bmb.bounds
         
@@ -19,6 +19,7 @@ class PiecePlaceManager: NSObject {
         let vm_0_5: CGFloat = vm / 2
         let vm_1_5: CGFloat = vm * 1.5
         let im: CGFloat = bmb.pieceInclinedMargin
+        let r: CGFloat = bmb.dotRadius
         let r_2_0: CGFloat = 2 * r
         let r_3_0: CGFloat = 3 * r
         
@@ -94,17 +95,17 @@ class PiecePlaceManager: NSObject {
             positionOrigins.append(CGPoint.init(x: 0, y: a))
             positionOrigins.append(CGPoint.init(x: +b_2_0, y: a))
         case .dot_5_3:
-            positionOrigins.append(CGPoint.init(x: 0, y: 0))
             positionOrigins.append(CGPoint.init(x: 0, y: -vm - r_2_0))
+            positionOrigins.append(CGPoint.init(x: -hm - r_2_0, y: 0))
+            positionOrigins.append(CGPoint.init(x: 0, y: 0))
             positionOrigins.append(CGPoint.init(x: +hm + r_2_0, y: 0))
             positionOrigins.append(CGPoint.init(x: 0, y: +vm + r_2_0))
-            positionOrigins.append(CGPoint.init(x: -hm - r_2_0, y: 0))
         case .dot_5_4:
-            positionOrigins.append(CGPoint.init(x: 0, y: 0))
-            positionOrigins.append(CGPoint.init(x: +a, y: -a))
-            positionOrigins.append(CGPoint.init(x: +a, y: +a))
-            positionOrigins.append(CGPoint.init(x: -a, y: +a))
             positionOrigins.append(CGPoint.init(x: -a, y: -a))
+            positionOrigins.append(CGPoint.init(x: +a, y: -a))
+            positionOrigins.append(CGPoint.init(x: 0, y: 0))
+            positionOrigins.append(CGPoint.init(x: -a, y: +a))
+            positionOrigins.append(CGPoint.init(x: +a, y: +a))
         case .dot_6_1:
             positionOrigins.append(CGPoint.init(x: -hm - r_2_0, y: -vm_0_5 - r))
             positionOrigins.append(CGPoint.init(x: 0, y: -vm_0_5 - r))
@@ -114,25 +115,25 @@ class PiecePlaceManager: NSObject {
             positionOrigins.append(CGPoint.init(x: +hm + r_2_0, y: +vm_0_5 + r))
         case .dot_6_2:
             positionOrigins.append(CGPoint.init(x: -hm_0_5 - r, y: -vm - r_2_0))
-            positionOrigins.append(CGPoint.init(x: -hm_0_5 - r, y: 0))
-            positionOrigins.append(CGPoint.init(x: -hm_0_5 - r, y: +vm + r_2_0))
             positionOrigins.append(CGPoint.init(x: +hm_0_5 + r, y: -vm - r_2_0))
+            positionOrigins.append(CGPoint.init(x: -hm_0_5 - r, y: 0))
             positionOrigins.append(CGPoint.init(x: +hm_0_5 + r, y: 0))
+            positionOrigins.append(CGPoint.init(x: -hm_0_5 - r, y: +vm + r_2_0))
             positionOrigins.append(CGPoint.init(x: +hm_0_5 + r, y: +vm + r_2_0))
         case .dot_6_3:
             positionOrigins.append(CGPoint.init(x: -b, y: -a - c))
             positionOrigins.append(CGPoint.init(x: +b, y: -a - c))
-            positionOrigins.append(CGPoint.init(x: +b_2_0, y: 0))
-            positionOrigins.append(CGPoint.init(x: +b, y: a + c))
-            positionOrigins.append(CGPoint.init(x: -b, y: a + c))
             positionOrigins.append(CGPoint.init(x: -b_2_0, y: 0))
+            positionOrigins.append(CGPoint.init(x: +b_2_0, y: 0))
+            positionOrigins.append(CGPoint.init(x: -b, y: +a + c))
+            positionOrigins.append(CGPoint.init(x: +b, y: +a + c))
         case .dot_6_4:
             positionOrigins.append(CGPoint.init(x: 0, y: -b_2_0))
+            positionOrigins.append(CGPoint.init(x: -a - c, y: -b))
             positionOrigins.append(CGPoint.init(x: +a + c, y: -b))
+            positionOrigins.append(CGPoint.init(x: -a - c, y: +b))
             positionOrigins.append(CGPoint.init(x: +a + c, y: +b))
             positionOrigins.append(CGPoint.init(x: 0, y: +b_2_0))
-            positionOrigins.append(CGPoint.init(x: -a - c, y: +b))
-            positionOrigins.append(CGPoint.init(x: -a - c, y: -b))
         case .dot_6_5:
             positionOrigins.append(CGPoint.init(x: -b_2_0, y: -a - c + e))
             positionOrigins.append(CGPoint.init(x: 0, y: -a - c + e))
@@ -160,58 +161,58 @@ class PiecePlaceManager: NSObject {
             positionOrigins.append(CGPoint.init(x: -hm - r_2_0, y: 0))
             positionOrigins.append(CGPoint.init(x: 0, y: 0))
             positionOrigins.append(CGPoint.init(x: +hm + r_2_0, y: 0))
-            positionOrigins.append(CGPoint.init(x: -hm - r_2_0, y: vm + r_2_0))
+            positionOrigins.append(CGPoint.init(x: -hm - r_2_0, y: +vm + r_2_0))
             positionOrigins.append(CGPoint.init(x: 0, y: +vm + r_2_0))
-            positionOrigins.append(CGPoint.init(x: +hm + r_2_0, y: vm + r_2_0))
+            positionOrigins.append(CGPoint.init(x: +hm + r_2_0, y: +vm + r_2_0))
         case .dot_7_3:
-            positionOrigins.append(CGPoint.init(x: 0, y: 0))
             positionOrigins.append(CGPoint.init(x: -b, y: -a - c))
             positionOrigins.append(CGPoint.init(x: +b, y: -a - c))
-            positionOrigins.append(CGPoint.init(x: +b_2_0, y: 0))
-            positionOrigins.append(CGPoint.init(x: +b, y: a + c))
-            positionOrigins.append(CGPoint.init(x: -b, y: a + c))
             positionOrigins.append(CGPoint.init(x: -b_2_0, y: 0))
-        case .dot_7_4:
             positionOrigins.append(CGPoint.init(x: 0, y: 0))
+            positionOrigins.append(CGPoint.init(x: +b_2_0, y: 0))
+            positionOrigins.append(CGPoint.init(x: -b, y: a + c))
+            positionOrigins.append(CGPoint.init(x: +b, y: a + c))
+        case .dot_7_4:
             positionOrigins.append(CGPoint.init(x: 0, y: -b_2_0))
-            positionOrigins.append(CGPoint.init(x: a + c, y: -b))
-            positionOrigins.append(CGPoint.init(x: a + c, y: +b))
-            positionOrigins.append(CGPoint.init(x: 0, y: +b_2_0))
-            positionOrigins.append(CGPoint.init(x: -a - c, y: +b))
             positionOrigins.append(CGPoint.init(x: -a - c, y: -b))
+            positionOrigins.append(CGPoint.init(x: +a + c, y: -b))
+            positionOrigins.append(CGPoint.init(x: 0, y: 0))
+            positionOrigins.append(CGPoint.init(x: -a - c, y: +b))
+            positionOrigins.append(CGPoint.init(x: +a + c, y: +b))
+            positionOrigins.append(CGPoint.init(x: 0, y: +b_2_0))
         case .dot_7_5:
             positionOrigins.append(CGPoint.init(x: -b_3_0, y: -a))
             positionOrigins.append(CGPoint.init(x: -b, y: -a))
             positionOrigins.append(CGPoint.init(x: +b, y: -a))
             positionOrigins.append(CGPoint.init(x: +b_3_0, y: -a))
-            positionOrigins.append(CGPoint.init(x: -b_2_0, y: c))
+            positionOrigins.append(CGPoint.init(x: -b_2_0, y: +c))
             positionOrigins.append(CGPoint.init(x: 0, y: c))
-            positionOrigins.append(CGPoint.init(x: +b_2_0, y: c))
+            positionOrigins.append(CGPoint.init(x: +b_2_0, y: +c))
         case .dot_7_6:
             positionOrigins.append(CGPoint.init(x: -b_2_0, y: -c))
             positionOrigins.append(CGPoint.init(x: 0, y: -c))
             positionOrigins.append(CGPoint.init(x: +b_2_0, y: -c))
-            positionOrigins.append(CGPoint.init(x: -b_3_0, y: a))
+            positionOrigins.append(CGPoint.init(x: -b_3_0, y: +a))
             positionOrigins.append(CGPoint.init(x: -b, y: a))
             positionOrigins.append(CGPoint.init(x: +b, y: a))
-            positionOrigins.append(CGPoint.init(x: +b_3_0, y: a))
+            positionOrigins.append(CGPoint.init(x: +b_3_0, y: +a))
         case .dot_8_1:
             positionOrigins.append(CGPoint.init(x: -b_2_0, y: -a - c))
             positionOrigins.append(CGPoint.init(x: 0, y: -a - c))
             positionOrigins.append(CGPoint.init(x: +b_2_0, y: -a - c))
             positionOrigins.append(CGPoint.init(x: -hm_0_5 - r, y: 0))
             positionOrigins.append(CGPoint.init(x: +hm_0_5 + r, y: 0))
-            positionOrigins.append(CGPoint.init(x: -b_2_0, y: a + c))
+            positionOrigins.append(CGPoint.init(x: -b_2_0, y: +a + c))
             positionOrigins.append(CGPoint.init(x: 0, y: +a + c))
-            positionOrigins.append(CGPoint.init(x: +b_2_0, y: a + c))
+            positionOrigins.append(CGPoint.init(x: +b_2_0, y: +a + c))
         case .dot_8_2:
             positionOrigins.append(CGPoint.init(x: -a - c, y: -b_2_0))
-            positionOrigins.append(CGPoint.init(x: -a - c, y: 0))
-            positionOrigins.append(CGPoint.init(x: -a - c, y: +b_2_0))
-            positionOrigins.append(CGPoint.init(x: 0, y: -vm_0_5 - r))
-            positionOrigins.append(CGPoint.init(x: 0, y: +vm_0_5 + r))
             positionOrigins.append(CGPoint.init(x: +a + c, y: -b_2_0))
+            positionOrigins.append(CGPoint.init(x: 0, y: -vm_0_5 - r))
+            positionOrigins.append(CGPoint.init(x: -a - c, y: 0))
             positionOrigins.append(CGPoint.init(x: +a + c, y: 0))
+            positionOrigins.append(CGPoint.init(x: 0, y: +vm_0_5 + r))
+            positionOrigins.append(CGPoint.init(x: -a - c, y: +b_2_0))
             positionOrigins.append(CGPoint.init(x: +a + c, y: +b_2_0))
         case .dot_8_3:
             positionOrigins.append(CGPoint.init(x: -hm - r_2_0, y: -vm - r_2_0))
@@ -233,13 +234,13 @@ class PiecePlaceManager: NSObject {
             positionOrigins.append(CGPoint.init(x: 0, y: +a_2_0 + c_2_0))
         case .dot_8_5:
             positionOrigins.append(CGPoint.init(x: 0, y: -a_2_0))
+            positionOrigins.append(CGPoint.init(x: -a, y: -a))
             positionOrigins.append(CGPoint.init(x: +a, y: -a))
+            positionOrigins.append(CGPoint.init(x: -a_2_0, y: 0))
             positionOrigins.append(CGPoint.init(x: +a_2_0, y: 0))
+            positionOrigins.append(CGPoint.init(x: -a, y: +a))
             positionOrigins.append(CGPoint.init(x: +a, y: +a))
             positionOrigins.append(CGPoint.init(x: 0, y: +a_2_0))
-            positionOrigins.append(CGPoint.init(x: -a, y: +a))
-            positionOrigins.append(CGPoint.init(x: -a_2_0, y: 0))
-            positionOrigins.append(CGPoint.init(x: -a, y: -a))
         case .dot_8_6:
             positionOrigins.append(CGPoint.init(x: -hm_1_5 - r_3_0, y: -vm_0_5 - r))
             positionOrigins.append(CGPoint.init(x: -hm_0_5 - r, y: -vm_0_5 - r))
@@ -288,6 +289,8 @@ class PiecePlaceManager: NSObject {
             positionOrigins.append(CGPoint.init(x: -a, y: +a))
             positionOrigins.append(CGPoint.init(x: -a_2_0, y: 0))
             positionOrigins.append(CGPoint.init(x: -a, y: -a))
+        case .custom:
+            positionOrigins += bmb.customPiecePlacePositions
         default:
             assert(false, "Piece place enum not found!")
         }
@@ -302,7 +305,7 @@ class PiecePlaceManager: NSObject {
         return positions
     }
     
-    static func positions(width w: CGFloat, height h: CGFloat, boomMenuButton bmb: BoomMenuButton) -> [CGRect] {
+    static func hamPositions(boomMenuButton bmb: BoomMenuButton) -> [CGRect] {
         
         let parentFrame: CGRect = bmb.bounds
         
@@ -312,27 +315,33 @@ class PiecePlaceManager: NSObject {
         let pn: Int = bmb.piecePlaceEnum.pieceNumber()
         let pn_0_5: Int = pn / 2
         
+        let w: CGFloat = bmb.hamWidth
         let w_0_5: CGFloat = w / 2
+        let h: CGFloat = bmb.hamHeight
         let h_0_5: CGFloat = h / 2
         
         let vm: CGFloat = bmb.pieceVerticalMargin
         let vm_0_5: CGFloat = vm / 2
         
-        if pn % 2 == 0 {
-            for i in (0..<pn_0_5).reversed() {
-                positionOrigins.append(CGPoint.init(x: 0, y: -h_0_5 - vm_0_5 - CGFloat(i) * (h + vm)))
-            }
-            for i in 0..<pn_0_5 {
-                positionOrigins.append(CGPoint.init(x: 0, y: +h_0_5 + vm_0_5 + CGFloat(i) * (h + vm)))
+        if bmb.piecePlaceEnum != .custom {
+            if pn % 2 == 0 {
+                for i in (0..<pn_0_5).reversed() {
+                    positionOrigins.append(CGPoint.init(x: 0, y: -h_0_5 - vm_0_5 - CGFloat(i) * (h + vm)))
+                }
+                for i in 0..<pn_0_5 {
+                    positionOrigins.append(CGPoint.init(x: 0, y: +h_0_5 + vm_0_5 + CGFloat(i) * (h + vm)))
+                }
+            } else {
+                for i in (0..<pn_0_5).reversed() {
+                    positionOrigins.append(CGPoint.init(x: 0, y: -h - vm - CGFloat(i) * (h + vm)))
+                }
+                positionOrigins.append(CGPoint.init(x: 0, y: 0))
+                for i in 0..<pn_0_5 {
+                    positionOrigins.append(CGPoint.init(x: 0, y: +h + vm + CGFloat(i) * (h + vm)))
+                }
             }
         } else {
-            for i in (0..<pn_0_5).reversed() {
-                positionOrigins.append(CGPoint.init(x: 0, y: -h - vm - CGFloat(i) * (h + vm)))
-            }
-            positionOrigins.append(CGPoint.init(x: 0, y: 0))
-            for i in 0..<pn_0_5 {
-                positionOrigins.append(CGPoint.init(x: 0, y: +h + vm + CGFloat(i) * (h + vm)))
-            }
+            positionOrigins += bmb.customPiecePlacePositions
         }
         
         for point in positionOrigins {
@@ -345,12 +354,13 @@ class PiecePlaceManager: NSObject {
         return positions
     }
     
-    static func positions(radius r: CGFloat, dotNumber n: Int, boomMenuButton bmb: BoomMenuButton) -> [CGRect] {
+    static func shareDotPositions(dotNumber n: Int, boomMenuButton bmb: BoomMenuButton) -> [CGRect] {
         
         let parentFrame: CGRect = bmb.bounds
         
         var positions: [CGRect] = [CGRect]()
         
+        let r: CGFloat = bmb.dotRadius
         let h: CGFloat = bmb.shareLineLength * CGFloat(sqrt(3) / 3)
         let h_0_5: CGFloat = h / 2
         let l_0_5: CGFloat = bmb.shareLineLength / 2

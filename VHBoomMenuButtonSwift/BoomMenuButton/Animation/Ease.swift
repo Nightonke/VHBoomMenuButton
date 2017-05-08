@@ -8,48 +8,80 @@
 
 import UIKit
 
+/// Check https://github.com/Nightonke/VHBoomMenuButton/wiki/Ease-Animations-for-Buttons for more information about ease-animation.
 public class Ease: NSObject, TimeInterpolator {
     
+    /// Linear timing function.
     public static let linear = "EaseLinear"
     
+    /// In-Sine timing function.
     public static let inSine = "EaseInSine"
+    /// Out-Sine timing function.
     public static let outSine = "EaseOutSine"
+    /// In-Out-Sine timing function.
     public static let inOutSine = "EaseInOutSine"
     
+    /// In-Quad timing function.
     public static let inQuad = "EaseInQuad"
+    /// Out-Quad timing function.
     public static let outQuad = "EaseOutQuad"
+    /// In-Out-Quad timing function.
     public static let inOutQuad = "EaseInOutQuad"
     
+    /// In-Cubic timing function.
     public static let inCubic = "EaseInCubic"
+    /// Out-Cubic timing function.
     public static let outCubic = "EaseOutCubic"
+    /// In-Out-Cubic timing function.
     public static let inOutCubic = "EaseInOutCubic"
     
+    /// In-Quart timing function.
     public static let inQuart = "EaseInQuart"
+    /// Out-Quart timing function.
     public static let outQuart = "EaseOutQuart"
+    /// In-Out-Quart timing function.
     public static let inOutQuart = "EaseInOutQuart"
     
+    /// In-Quint timing function.
     public static let inQuint = "EaseInQuint"
+    /// Out-Quint timing function.
     public static let outQuint = "EaseOutQuint"
+    /// In-Out-Quint timing function.
     public static let inOutQuint = "EaseInOutQuint"
     
+    /// In-Circ timing function.
     public static let inCirc = "EaseInCirc"
+    /// Out-Circ timing function.
     public static let outCirc = "EaseOutCirc"
+    /// In-Out-Circ timing function.
     public static let inOutCirc = "EaseInOutCirc"
     
+    /// In-Expo timing function.
     public static let inExpo = "EaseInExpo"
+    /// Out-Expo timing function.
     public static let outExpo = "EaseOutExpo"
+    /// In-Out-Expo timinig function.
     public static let inOutExpo = "EaseInOutExpo"
     
+    /// In-Back timing function.
     public static let inBack = "EaseInBack"
+    /// Out-Back timing function.
     public static let outBack = "EaseOutBack"
+    /// In-Out-Back timing function.
     public static let inOutBack = "EaseInOutBack"
     
+    /// In-Elastic timing function.
     public static let inElastic = "EaseInElastic"
+    /// Out-Elastic timing function.
     public static let outElastic = "EaseOutElastic"
+    /// In-Out-Elastic timing function.
     public static let inOutElastic = "EaseInOutElastic"
     
+    /// In-Bounce timing function.
     public static let inBounce = "EaseInBounce"
+    /// Out-Bounce timing function.
     public static let outBounce = "EaseOutBounce"
+    /// In-Out-Bounce timing function.
     public static let inOutBounce = "EaseInOutBounce"
     
     private static var eases = [String: Ease]()
@@ -140,7 +172,7 @@ public class Ease: NSObject, TimeInterpolator {
         self.name = name
     }
     
-    func interpolation(_ offset: CGFloat) -> CGFloat {
+    public func interpolation(_ offset: CGFloat) -> CGFloat {
         if ableToDefineWithControlPoints {
             return getBezierCoordinateY(time:offset)
         } else {

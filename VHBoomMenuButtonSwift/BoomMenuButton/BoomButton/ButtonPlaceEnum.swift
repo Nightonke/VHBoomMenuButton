@@ -6,6 +6,21 @@
 //  Copyright © 2017年 Nightonke. All rights reserved.
 //
 
+/// VHButtonPlaceEnum tells BMB how the boom-buttons should be placed.
+
+/// All the button-place-enums are in the following form:
+
+/// 1. VHButtonPlaceSC_M_A: M means the number of boom-buttons in a circle or a square shape. A means different type of placing.
+
+/// 2. VHButtonPlaceHAM_M: M means the number of boom-buttons in a ham shape.
+
+/// 3. VHButtonPlaceHorizontal: All the boom-buttons are placed horizontally.
+
+/// 4. VHButtonPlaceVertical: All the boom-buttons are place vertically.
+
+/// 5. VHButtonPlaceCustom: Allows to customize the positions of buttons.
+///
+/// Check https://github.com/Nightonke/VHBoomMenuButton/wiki for more information.
 public enum ButtonPlaceEnum: Int {
     
     case sc_1
@@ -54,10 +69,12 @@ public enum ButtonPlaceEnum: Int {
     case horizontal
     case vertical
     
+    case custom
+    
     case unknown
     
     public static var count: Int {
-        return ButtonPlaceEnum.vertical.hashValue + 1
+        return ButtonPlaceEnum.custom.hashValue + 1
     }
     
     public func buttonNumber() -> Int {
@@ -80,7 +97,7 @@ public enum ButtonPlaceEnum: Int {
             return 8
         case .sc_9_1, .sc_9_2, .sc_9_3:
             return 9
-        case .horizontal, .vertical:
+        case .horizontal, .vertical, .custom:
             return -1
         case .unknown:
             return 0
@@ -89,7 +106,7 @@ public enum ButtonPlaceEnum: Int {
     
     public func minButtonNumber() -> Int {
         switch self {
-        case .horizontal, .vertical:
+        case .horizontal, .vertical, .custom:
             return 1
         case .unknown:
             return 0
@@ -100,8 +117,8 @@ public enum ButtonPlaceEnum: Int {
     
     public func maxButtonNumber() -> Int {
         switch self {
-        case .horizontal, .vertical:
-            return 9
+        case .horizontal, .vertical, .custom:
+            return Int.max
         case .unknown:
             return 0
         default:

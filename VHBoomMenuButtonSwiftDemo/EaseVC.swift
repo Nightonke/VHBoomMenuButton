@@ -47,8 +47,9 @@ class EaseVC: BoomMenuButtonVC {
         bmb4.reboomEaseName = Ease.inElastic
         bmb4.delay = 0
         
-        bmb5.boomEaseName = Ease.inSine
-        bmb5.reboomEaseName = Ease.inSine
+        bmb5.boomEase = CustomTimeInterpolator.init()
+        bmb5.reboomEase = CustomTimeInterpolator.init()
+        bmb5.duration = 2
         
         bmb6.boomEaseName = Ease.inCirc
         bmb6.reboomEaseName = Ease.inCirc
@@ -74,6 +75,12 @@ class EaseVC: BoomMenuButtonVC {
         bmb.buttonPlaceEnum = .sc_9_1
         for _ in 0..<bmb.piecePlaceEnum.pieceNumber() {
             bmb.addBuilder(BuilderManager.simpleCircleButtonBuilder())
+        }
+    }
+    
+    class CustomTimeInterpolator: TimeInterpolator {
+        func interpolation(_ offset: CGFloat) -> CGFloat {
+            return offset < 0.5 ? offset : min(offset * 1.5, 1)
         }
     }
 

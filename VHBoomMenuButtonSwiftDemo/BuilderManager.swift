@@ -114,12 +114,14 @@ class BuilderManager: NSObject {
                         || piecePlaceEnum == .ham_5
                         || piecePlaceEnum == .ham_6
                         || piecePlaceEnum == .share
+                        || piecePlaceEnum == .custom
                         || buttonPlaceEnum == .ham_1
                         || buttonPlaceEnum == .ham_2
                         || buttonPlaceEnum == .ham_3
                         || buttonPlaceEnum == .ham_4
                         || buttonPlaceEnum == .ham_5
-                        || buttonPlaceEnum == .ham_6 {
+                        || buttonPlaceEnum == .ham_6
+                        || buttonPlaceEnum == .custom {
                         datas.removeLast()
                         piecesAndButtons.removeLast()
                     }
@@ -151,7 +153,9 @@ class BuilderManager: NSObject {
                     piecesAndButtons.append((piecePlaceEnum, buttonPlaceEnum))
                     if piecePlaceEnum.rawValue < PiecePlaceEnum.ham_1.rawValue
                         || piecePlaceEnum == .share
-                        || buttonPlaceEnum.rawValue < ButtonPlaceEnum.ham_1.rawValue {
+                        || piecePlaceEnum == .custom
+                        || buttonPlaceEnum.rawValue < ButtonPlaceEnum.ham_1.rawValue
+                        || buttonPlaceEnum == .custom {
                         datas.removeLast()
                         piecesAndButtons.removeLast()
                     }
@@ -222,7 +226,8 @@ class BuilderManager: NSObject {
                                                           "HAM_4",
                                                           "HAM_5",
                                                           "HAM_6",
-                                                          "Share"]
+                                                          "Share",
+                                                          "Custom"]
     
     private static let buttonPlaceEnumStrings: [String] = ["SC_1",
                                                            "SC_2_1",
@@ -266,5 +271,6 @@ class BuilderManager: NSObject {
                                                            "HAM_5",
                                                            "HAM_6",
                                                            "Horizontal",
-                                                           "Vertical"]
+                                                           "Vertical",
+                                                           "Custom"]
 }

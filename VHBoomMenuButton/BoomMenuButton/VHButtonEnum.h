@@ -20,12 +20,12 @@
  */
 typedef NS_ENUM(NSUInteger, VHButtonEnum)
 {
-    VHButtonSimpleCircle      = 0,
-    VHButtonTextInsideCircle  = 1,
-    VHButtonTextOutsideCircle = 2,
-    VHButtonHam               = 3,
+    VHButtonSimpleCircle,
+    VHButtonTextInsideCircle,
+    VHButtonTextOutsideCircle,
+    VHButtonHam,
     
-    VHButtonUnknown           = -1,
+    VHButtonUnknown = -1,
 };
 
 #endif /* VHButtonEnum_h */

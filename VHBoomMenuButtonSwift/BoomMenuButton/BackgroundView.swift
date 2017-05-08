@@ -10,6 +10,8 @@ import UIKit
 
 class BackgroundView: UIView {
 
+    private static let kOpacityAnimation: String = "kOpacityAnimation"
+    
     var dimColor: UIColor
     
     var backgroundBlurred: Bool {
@@ -89,7 +91,9 @@ class BackgroundView: UIView {
         }
         
         let opacityAnimation = AnimationManager.animate("opacity", delay: 0, duration: duration, values: [0, 1])
-        AnimationManager.addAnimation(animation: opacityAnimation, views: goneViews)
+        AnimationManager.addAnimation(animation: opacityAnimation,
+                                      key: BackgroundView.kOpacityAnimation,
+                                      views: goneViews)
     }
     
     func light(duration: CFTimeInterval, completion: ((Bool) -> Swift.Void)? = nil) {
@@ -105,7 +109,9 @@ class BackgroundView: UIView {
         }
         
         let opacityAnimation = AnimationManager.animate("opacity", delay: 0, duration: duration, values: [1, 0])
-        AnimationManager.addAnimation(animation: opacityAnimation, views: goneViews)
+        AnimationManager.addAnimation(animation: opacityAnimation,
+                                      key: BackgroundView.kOpacityAnimation,
+                                      views: goneViews)
     }
     
     func removeAllBoomButtons() {

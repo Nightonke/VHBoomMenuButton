@@ -8,6 +8,11 @@
 
 public class TextOutsideCircleButtonBuilder: BoomButtonWithTextBuilder {
 
+    /// Width (in points) of the boom-button (including the text label).
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **80**.
     public var width: CGFloat = 80 {
         didSet {
             if width == oldValue {
@@ -28,6 +33,11 @@ public class TextOutsideCircleButtonBuilder: BoomButtonWithTextBuilder {
         }
     }
     
+    /// Height (in points) of the boom-button (including the text label).
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **96**.
     public var height: CGFloat = 96 {
         didSet {
             if height == oldValue {
@@ -48,6 +58,11 @@ public class TextOutsideCircleButtonBuilder: BoomButtonWithTextBuilder {
         }
     }
     
+    /// Whether the boom-button is in a circular shape. If not, then the simple-circle-button looks like a simple-square-button. Only after the 'round' property is false does the corner-radius property work.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **true**.
     public var round: Bool = true {
         didSet {
             if round == oldValue {

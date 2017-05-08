@@ -8,6 +8,11 @@
 
 public class SimpleCircleButtonBuilder: BoomButtonBuilder {
 
+    /// The radius (in points) of the circular (or square) button.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **40**.
     public var radius: CGFloat = 40 {
         didSet {
             if radius == oldValue {
@@ -28,6 +33,11 @@ public class SimpleCircleButtonBuilder: BoomButtonBuilder {
         }
     }
     
+    /// Whether the boom-button is in a circular shape. If not, then the simple-circle-button looks like a simple-square-button. Only after the 'round' property is false does the corner-radius property work.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **true**.
     public var round = true {
         didSet {
             if round == oldValue {

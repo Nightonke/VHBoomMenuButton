@@ -20,6 +20,8 @@
  
  3. VHPiecePlaceShare: Share style.
  
+ 4. VHPiecePlaceCustom: Allows to customize the positions of pieces.
+ 
  Check https://github.com/Nightonke/VHBoomMenuButton/wiki for more information.
  */
 typedef NS_ENUM(NSUInteger, VHPiecePlaceEnum)
@@ -70,6 +72,8 @@ typedef NS_ENUM(NSUInteger, VHPiecePlaceEnum)
     VHPiecePlaceHAM_6,
     
     VHPiecePlaceShare,
+    
+    VHPiecePlaceCustom,
     
     VHPiecePlaceEnumCount,
     

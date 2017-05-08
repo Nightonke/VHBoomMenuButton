@@ -132,7 +132,7 @@
 @property (nonatomic, assign) CGRect subTextFrame;
 
 /**
- The font of text on boom-button.
+ The font of sub-text on boom-button.
  
  @b Synchronicity : Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
  
@@ -159,7 +159,7 @@
 @property (nonatomic, assign) NSLineBreakMode subTextLineBreakMode;
 
 /**
- The maximum number of lines to use for subtext on boom-button.
+ The maximum number of lines to use for sub-text on boom-button.
  
  @b Synchronicity : Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
  
@@ -177,7 +177,7 @@
 @property (nonatomic, strong) UIColor *subTextShadowColor;
 
 /**
- The offset (in points) on x axis for sub-text on boom-button.
+ The shadow offset (in points) on x axis for sub-text on boom-button.
  
  @b Synchronicity : Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
  
@@ -186,7 +186,7 @@
 @property (nonatomic, assign) CGFloat subTextShadowOffsetX;
 
 /**
- The offset (in points) on y axis for sub-text on boom-button.
+ The shadow offset (in points) on y axis for sub-text on boom-button.
  
  @b Synchronicity : Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
  

@@ -11,18 +11,10 @@
 #import "VHBoomEnum.h"
 #import "VHEase.h"
 #import "VHOrderEnum.h"
+#import "VHTimeInterpolator.h"
 
 @interface VHAnimationManager : NSObject
 
-/**
- Create a key-frame-animation.
-
- @param keyPath KeyPath
- @param delay Delay
- @param duration Duration
- @param values Values
- @return Key-frame-animation
- */
 + (CAKeyframeAnimation *)animateKeyPath:(NSString *)keyPath
                                   delay:(CFTimeInterval)delay
                                duration:(CFTimeInterval)duration
@@ -31,7 +23,7 @@
 + (CAKeyframeAnimation *)animateKeyPath:(NSString *)keyPath
                                   delay:(CFTimeInterval)delay
                                duration:(CFTimeInterval)duration
-                                   ease:(VHEase *)ease
+                                   ease:(id<VHTimeInterpolator>)ease
                                  frames:(int)frames
                                   start:(CGFloat)start
                                     end:(CGFloat)end;
@@ -48,70 +40,35 @@
                                           start:(UIColor *)start
                                             end:(UIColor *)end;
 
-/**
- Add animations to a view.
++ (CAAnimation *)fadeViewsOpacityAnimation:(BOOL)isBooming duration:(CFTimeInterval)duration;
 
- @param view The target view
- */
-+ (void)addAnimations:(UIView *)view, ... NS_REQUIRES_NIL_TERMINATION;
++ (void)addAnimations:(UIView *)view forKey:(NSString *)key, ... NS_REQUIRES_NIL_TERMINATION;
 
-+ (void)addAnimation:(CAAnimation *)animation toViews:(NSArray<UIView *> *)views;
++ (void)addAnimation:(CAAnimation *)animation forKey:(NSString *)key toViews:(NSArray<UIView *> *)views;
 
-+ (NSMutableArray<NSNumber *> *)values:(VHEase *)ease
++ (NSMutableArray<NSNumber *> *)values:(id<VHTimeInterpolator>)ease
                                 frames:(int)frames
                                  start:(float)start
                                    end:(float)end;
 
-/**
- *  Calculate the x, y values for showing-animation
- *
- *  @param boomEnum      The boom type
- *  @param parentSize    Size of parent view
- *  @param ease          Ease type
- *  @param frames        Frames, to control the performance
- *  @param startPosition Start position
- *  @param endPosition   End position
- *  @param xs            X values
- *  @param ys            Y values
- */
 + (void)calculateBoomXY:(VHBoomEnum)boomEnum
              parentSize:(CGSize)parentSize
-                   ease:(VHEase *)ease
+                   ease:(id<VHTimeInterpolator>)ease
                  frames:(int)frames
           startPosition:(CGPoint)startPosition
             endPosition:(CGPoint)endPosition
                 xValues:(NSMutableArray *)xs
                 yValues:(NSMutableArray *)ys;
 
-/**
- *  Calculate the x, y values for hiding-animation
- *
- *  @param boomEnum      The boom type
- *  @param parentSize    Size of parent view
- *  @param ease          Ease type
- *  @param frames        Frames, to control the performance
- *  @param startPosition Start position
- *  @param endPosition   End position
- *  @param xs            X values
- *  @param ys            Y values
- */
 + (void)calculateReboomXY:(VHBoomEnum)boomEnum
                parentSize:(CGSize)parentSize
-                     ease:(VHEase *)ease
+                     ease:(id<VHTimeInterpolator>)ease
                    frames:(int)frames
             startPosition:(CGPoint)startPosition
               endPosition:(CGPoint)endPosition
                   xValues:(NSMutableArray *)xs
                   yValues:(NSMutableArray *)ys;
 
-/**
- *  Get current button index in different order
- *
- *  @param orderEnum Order
- *  @param size      The number of buttons
- *
- *  @return The order for showing or hiding buttons
- */
 + (NSMutableArray<NSNumber *> *)orderIndexes:(VHOrderEnum)orderEnum inSize:(NSUInteger)size;
 
 + (CAKeyframeAnimation *)rotateXAnimationFromFrames:(int)frames startY:(CGFloat)startY endY:(CGFloat)endY delay:(CFTimeInterval)delay duration:(CFTimeInterval)duration;

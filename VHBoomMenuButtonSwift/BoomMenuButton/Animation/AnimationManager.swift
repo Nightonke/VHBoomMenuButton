@@ -31,7 +31,7 @@ class AnimationManager: NSObject {
     static func animate(_ keyPath: String!,
                         delay: CFTimeInterval,
                         duration: CFTimeInterval,
-                        ease: Ease,
+                        ease: TimeInterpolator,
                         frames: Int,
                         start: CGFloat,
                         end: CGFloat) -> CAKeyframeAnimation {
@@ -71,29 +71,36 @@ class AnimationManager: NSObject {
         return colorAnimation
     }
     
-    static func addAnimations(view: UIView?, animations: CAAnimation...) {
+    static func fadeViewsOpacityAnimation(isBooming: Bool, duration: CFTimeInterval) -> CAAnimation {
+        let opacityAnimation: CAKeyframeAnimation = AnimationManager.animate("opacity", delay: 0, duration: duration,
+                                                                             values: isBooming ? [1, 0] : [0, 1])
+        opacityAnimation.timingFunction = isBooming ? AnimationManager.showColorAnimationFunction : AnimationManager.hideColorAnimationFunction
+        return opacityAnimation
+    }
+    
+    static func addAnimations(view: UIView?, key: String!, animations: CAAnimation...) {
         guard view != nil else {
             return
         }
         if let view = view {
-            for animation in animations {
-                view.layer.add(animation, forKey: nil)
+            for (index, animation) in animations.enumerated() {
+                view.layer.add(animation, forKey: "\(key)_\(index)")
             }
         }
     }
     
-    static func addAnimation(animation: CAAnimation?, views: [UIView]?) {
+    static func addAnimation(animation: CAAnimation?, key: String!,  views: [UIView]?) {
         guard animation != nil && views != nil else {
             return
         }
         for view in views! {
-            view.layer.add(animation!, forKey: nil)
+            view.layer.add(animation!, forKey: key)
         }
     }
     
     static func calculateBoomXY(boomEnum: BoomEnum,
                                 parentSize: CGSize,
-                                ease: Ease,
+                                ease: TimeInterpolator,
                                 frames: Int,
                                 startPosition: CGPoint,
                                 endPosition: CGPoint,
@@ -199,7 +206,7 @@ class AnimationManager: NSObject {
                 offset += p
             }
         case .random:
-            calculateBoomXY(boomEnum: BoomEnum(rawValue: arc4random() % BoomEnum.random.rawValue)!,
+            calculateBoomXY(boomEnum: BoomEnum(rawValue: Int(arc4random()) % BoomEnum.random.rawValue)!,
                             parentSize: parentSize,
                             ease: ease,
                             frames: frames,
@@ -212,7 +219,7 @@ class AnimationManager: NSObject {
     
     static func calculateReboomXY(boomEnum: BoomEnum,
                                 parentSize: CGSize,
-                                ease: Ease,
+                                ease: TimeInterpolator,
                                 frames: Int,
                                 startPosition: CGPoint,
                                 endPosition: CGPoint,
@@ -300,7 +307,7 @@ class AnimationManager: NSObject {
         return indexes
     }
     
-    static func values(ease: Ease, frames: Int, start: CGFloat, end: CGFloat) -> [CGFloat] {
+    static func values(ease: TimeInterpolator, frames: Int, start: CGFloat, end: CGFloat) -> [CGFloat] {
         var values = Array<CGFloat>.init(repeating: 0, count: frames + 1)
         let p = 1.0 / CGFloat(frames)
         let totalOffset = end - start

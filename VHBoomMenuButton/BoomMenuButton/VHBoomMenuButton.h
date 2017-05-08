@@ -21,6 +21,7 @@
 #import "VHTextOutsideCircleButtonBuilder.h"
 #import "VHHamButtonBuilder.h"
 #import "VHEase.h"
+#import "VHTimeInterpolator.h"
 
 IB_DESIGNABLE
 @interface VHBoomMenuButton : UIView
@@ -103,8 +104,7 @@ IB_DESIGNABLE
 /**
  VHButtonEnum of BMB. This property tells BMB what kind of boom-button that it needs to boom.
  
- It should be one of the following enums: @b VHButtonSimpleCircle , @b VHButtonTextInsideCircle , @b VHButtonTextOutsideCircle and
- @b VHButtonHam .
+ It should be one of the following enums: @b VHButtonSimpleCircle , @b VHButtonTextInsideCircle , @b VHButtonTextOutsideCircle and @b VHButtonHam .
  
  Notice that VHButtonEnum must correspond with VHPiecePlaceEnum and VHButtonPlaceEnum.
  
@@ -248,12 +248,19 @@ IB_DESIGNABLE
  */
 @property (nonatomic, assign) VHPiecePlaceEnum piecePlaceEnum;
 
+/**
+ The customize-positions of pieces. Only works when the piece-place-enum is @b VHPiecePlaceCustom. The elements in positions-array must be CGPoint.
+ 
+ The default value is an empty array.
+ */
+@property (nonatomic, strong) NSMutableArray<NSValue *> *customPiecePositions;
+
 #pragma mark - Background
 
 /**
  Whether use a blur background. Notice that blur effect only works on iOS 8.0 or above.
  
- The default value is NO.
+ The default value is @b NO.
  */
 @property (nonatomic, assign)IBInspectable BOOL backgroundBlurred;
 
@@ -389,6 +396,13 @@ IB_DESIGNABLE
 @property (nonatomic, strong) NSString *boomEaseName;
 
 /**
+ The time-interpolator using in movement, scale and rotation animations of boom-buttons when booming. This property is used to change movement, scale and rotation animations' ease name with a line of code.
+ 
+ The default value is @b outBack-ease.
+ */
+@property (nonatomic, strong) id<VHTimeInterpolator> boomEase;
+
+/**
  The name of the ease using in movement animations of boom-buttons when booming.
  
  Check VHEase.h to find all the ease-names supported by BMB.
@@ -396,6 +410,13 @@ IB_DESIGNABLE
  The default value is @b VHEaseOutBack .
  */
 @property (nonatomic, strong) NSString *boomMoveEaseName;
+
+/**
+ The time-interpolator using in movement animations of boom-buttons when booming.
+ 
+ The default value is @b out-back-ease.
+ */
+@property (nonatomic, strong) id<VHTimeInterpolator> boomMoveEase;
 
 /**
  The name of the ease using in scale animations of boom-buttons when booming.
@@ -407,6 +428,13 @@ IB_DESIGNABLE
 @property (nonatomic, strong) NSString *boomScaleEaseName;
 
 /**
+ The time-interpolator using in scale animations of boom-buttons when booming.
+ 
+ The default value is @b out-back-ease.
+ */
+@property (nonatomic, strong) id<VHTimeInterpolator> boomScaleEase;
+
+/**
  The name of the ease using in rotation animations of boom-buttons when booming.
  
  Check VHEase.h to find all the ease-names supported by BMB.
@@ -414,6 +442,13 @@ IB_DESIGNABLE
  The default value is @b VHEaseOutBack .
  */
 @property (nonatomic, strong) NSString *boomRotateEaseName;
+
+/**
+ The time-interpolator using in rotation animations of boom-buttons when booming.
+ 
+ The default value is @b out-back-ease.
+ */
+@property (nonatomic, strong) id<VHTimeInterpolator> boomRotateEase;
 
 /**
  The name of the ease using in movement, scale and rotation animations of boom-buttons when rebooming. This property is used to change movement, scale and rotation animations' ease name with a line of code.
@@ -425,6 +460,13 @@ IB_DESIGNABLE
 @property (nonatomic, strong) NSString *reboomEaseName;
 
 /**
+ The time-interpolator using in movement, scale and rotation animations of boom-buttons when rebooming. This property is used to change movement, scale and rotation animations' ease name with a line of code.
+ 
+ The default value is @b in-back-ease.
+ */
+@property (nonatomic, strong) id<VHTimeInterpolator> reboomEase;
+
+/**
  The name of the ease using in movement animations of boom-buttons when rebooming.
  
  Check VHEase.h to find all the ease-names supported by BMB.
@@ -432,6 +474,13 @@ IB_DESIGNABLE
  The default value is @b VHEaseInBack .
  */
 @property (nonatomic, strong) NSString *reboomMoveEaseName;
+
+/**
+ The time-interpolator using in movement animations of boom-buttons when rebooming.
+ 
+ The default value is @b in-back-ease.
+ */
+@property (nonatomic, strong) id<VHTimeInterpolator> reboomMoveEase;
 
 /**
  The name of the ease using in scale animations of boom-buttons when rebooming.
@@ -443,6 +492,13 @@ IB_DESIGNABLE
 @property (nonatomic, strong) NSString *reboomScaleEaseName;
 
 /**
+ The time-interpolator using in scale animations of boom-buttons when rebooming.
+ 
+ The default value is @b in-back-ease.
+ */
+@property (nonatomic, strong) id<VHTimeInterpolator> reboomScaleEase;
+
+/**
  The name of the ease using in rotation animations of boom-buttons when rebooming.
  
  Check VHEase.h to find all the ease-names supported by BMB.
@@ -450,6 +506,13 @@ IB_DESIGNABLE
  The default value is @b VHEaseInBack .
  */
 @property (nonatomic, strong) NSString *reboomRotateEaseName;
+
+/**
+ The time-interpolator using in rotation animations of boom-buttons when rebooming.
+ 
+ The default value is @b in-back-ease.
+ */
+@property (nonatomic, strong) id<VHTimeInterpolator> reboomRotateEase;
 
 /**
  The degree (in π) of rotation animations when booming.
@@ -494,6 +557,14 @@ IB_DESIGNABLE
  The default value is @b VHButtonPlaceUnknown .
  */
 @property (nonatomic, assign) VHButtonPlaceEnum buttonPlaceEnum;
+
+/**
+ The customize-positions of boom-buttons. Only works when the button-place-enum is VHButtonPlaceCustom.
+ The elements in positions-array must be CGPoint.
+ 
+ The default value is an empty array.
+ */
+@property (nonatomic, strong) NSMutableArray<NSValue *> *customButtonPositions;
 
 /**
  VHButtonPlaceAlignmentEnum tells BMB the boom-buttons' alignment position. For instance, you can put all the boom-buttons align-bottom with VHButtonPlaceAlignmentBottom.
@@ -562,21 +633,52 @@ IB_DESIGNABLE
 
 /**
  Get the number of pieces from VHPiecePlaceEnum.
- Notice that in share-style BMB, the number of piece is NOT able to determined 
- from VHPiecePlaceEnum.
+ Notice that in share-style BMB, the number of piece is NOT able to determined from VHPiecePlaceEnum.
 
- @param placeEnum Piece-place-enum.
+ @param piecePlaceEnum Piece-place-enum.
  @return Number of pieces.
  */
-+ (NSInteger)pieceNumber:(VHPiecePlaceEnum)placeEnum;
++ (int)pieceNumber:(VHPiecePlaceEnum)piecePlaceEnum;
+
+/**
+ Get the minimum number of pieces from VHPiecePlaceEnum.
+
+ @param piecePlaceEnum Piece-place-enum.
+ @return Minimum number of pieces.
+ */
++ (int)minPieceNumber:(VHPiecePlaceEnum)piecePlaceEnum;
+
+/**
+ Get the maximum number of pieces from VHPiecePlaceEnum.
+
+ @param piecePlaceEnum Piece-place-enum.
+ @return Maximum number of pieces.
+ */
++ (int)maxPieceNumber:(VHPiecePlaceEnum)piecePlaceEnum;
 
 /**
  Get the number of buttons from VHButtonPlaceEnum.
 
- @param placeEnum Button-place-enum.
+ @param buttonPlaceEnum Button-place-enum.
  @return Number of buttons.
  */
-+ (NSInteger)buttonNumber:(VHButtonPlaceEnum)placeEnum;
++ (int)buttonNumber:(VHButtonPlaceEnum)buttonPlaceEnum;
+
+/**
+ Get the minimum number of pieces from VHButtonPlaceEnum.
+
+ @param buttonPlaceEnum Button-place-enum.
+ @return Minimum number of buttons.
+ */
++ (int)minButtonNumber:(VHButtonPlaceEnum)buttonPlaceEnum;
+
+/**
+ Get the maximum number of pieces from VHButtonPlaceEnum.
+
+ @param buttonPlaceEnum Button-place-enum.
+ @return Maximum number of buttons.
+ */
++ (int)maxButtonNumber:(VHButtonPlaceEnum)buttonPlaceEnum;
 
 /**
  Get the number of pieces from VHPiecePlaceEnum.
@@ -584,7 +686,21 @@ IB_DESIGNABLE
 
  @return Number of pieces.
  */
-- (NSInteger)pieceNumber;
+- (int)pieceNumber;
+
+/**
+ Get the minimum number of pieces from VHPiecePlaceEnum.
+
+ @return Minimum number of pieces.
+ */
+- (int)minPieceNumber;
+
+/**
+ Get the maximum number of pieces from VHPiecePlaceEnum.
+
+ @return Maximum number of pieces.
+ */
+- (int)maxPieceNumber;
 
 /**
  Get the number of buttons from VHButtonPlaceEnum.
@@ -592,7 +708,21 @@ IB_DESIGNABLE
 
  @return Number of buttons.
  */
-- (NSInteger)buttonNumber;
+- (int)buttonNumber;
+
+/**
+ Get the minimum number of pieces from VHButtonPlaceEnum.
+ 
+ @return Minimum number of buttons.
+ */
+- (int)minButtonNumber;
+
+/**
+ Get the maximum number of pieces from VHButtonPlaceEnum.
+ 
+ @return Maximum number of buttons.
+ */
+- (int)maxButtonNumber;
 
 #pragma mark - Background
 
@@ -701,5 +831,26 @@ IB_DESIGNABLE
  Remove all builders.
  */
 - (void)clearBuilders;
+
+#pragma mark - Fade Views
+
+/**
+ Add a fade view which plays fade-in and fade-out animations when booming or rebooming on BMB.
+
+ @param view The fading view.
+ */
+- (void)addFadeView:(UIView *)view;
+
+/**
+ Remove a fade view which plays fade-in and fade-out animations when booming or rebooming on BMB.
+
+ @param view The fade view.
+ */
+- (void)removeFadeView:(UIView *)view;
+
+/**
+ Remove all fade views which play fade-in and fade-out animations when booming or rebooming on BMB.
+ */
+- (void)clearFadeViews;
 
 @end

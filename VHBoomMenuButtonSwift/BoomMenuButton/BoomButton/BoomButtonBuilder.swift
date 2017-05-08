@@ -24,12 +24,26 @@ public class BoomButtonBuilder: NSObject {
     
     // MARK: - Basic
     
+    /// Event closure when the boom-button corresponding the builder itself is clicked.
+    ///
+    ///     builder.clickedClosure = { (index: Int) -> Void in
+    ///         // logic
+    ///     }
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var clickedClosure: BoomButtonDidClickClosure? {
         didSet {
             button?.clickedClosure = clickedClosure
         }
     }
     
+    /// Whether the boom-button is unable (for click event).
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **false**.
     public var unable = false {
         didSet {
             if oldValue == unable {
@@ -45,6 +59,11 @@ public class BoomButtonBuilder: NSObject {
         }
     }
     
+    /// Whether the image in boom-button plays a rotation animation.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **true**.
     public var rotateImage = true {
         didSet {
             if oldValue == rotateImage {
@@ -56,6 +75,11 @@ public class BoomButtonBuilder: NSObject {
     
     // MARK: - Piece
     
+    /// The color of the corresponding piece. If the color of piece is nil (by default), then BMB will use the color of boom-button at normal state (if the boom-buttons is unable, then use color at unable state) to draw the piece. If the color of piece is different from boom-button's, then BMB will play a discoloration animation when booming or rebooming.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var pieceColor: UIColor? {
         didSet {
             if Utils.isSameColor(pieceColor, oldValue) {
@@ -68,6 +92,11 @@ public class BoomButtonBuilder: NSObject {
     
     // MARK: - Shadow
     
+    /// Whether the boom-button has a shadow effect.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    /// 
+    /// The default value is **true**.
     public var hasShadow = true {
         didSet {
             if oldValue == hasShadow {
@@ -78,6 +107,11 @@ public class BoomButtonBuilder: NSObject {
         }
     }
     
+    /// The rect of shadow path of boom-button.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value depends on different type of boom-buttons. Check the init methods in builders of different boom-buttons for more information.
     public var shadowPathRect: CGRect = CGRect.zero {
         didSet {
             if shadowPathRect.equalTo(oldValue) {
@@ -88,6 +122,11 @@ public class BoomButtonBuilder: NSObject {
         }
     }
     
+    /// The offset (in points) of shadow in x axis.
+    /// 
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **0**.
     public var shadowOffsetX: CGFloat = 0 {
         didSet {
             if shadowOffsetX == oldValue {
@@ -98,6 +137,11 @@ public class BoomButtonBuilder: NSObject {
         }
     }
     
+    /// The offset (in points) of shadow in y axis.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **8**.
     public var shadowOffsetY: CGFloat = 8 {
         didSet {
             if shadowOffsetY == oldValue {
@@ -108,6 +152,11 @@ public class BoomButtonBuilder: NSObject {
         }
     }
     
+    /// The blur radius (in points) used to render the boom-button's shadow.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **4**.
     public var shadowRadius: CGFloat = 4 {
         didSet {
             if shadowRadius == oldValue {
@@ -118,6 +167,11 @@ public class BoomButtonBuilder: NSObject {
         }
     }
     
+    /// The color of the boom-button's shadow.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **0x44000000**.
     public var shadowColor = Utils.color(argb: 0x44000000) {
         didSet {
             if Utils.isSameColor(shadowColor, oldValue) {
@@ -130,6 +184,11 @@ public class BoomButtonBuilder: NSObject {
     
     // MARK: - Image
     
+    /// The name of the image on the boom-button at normal state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var normalImageName: String? {
         didSet {
             if normalImageName == oldValue {
@@ -142,6 +201,11 @@ public class BoomButtonBuilder: NSObject {
         }
     }
     
+    /// The image on the boom-button at normal state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var normalImage: UIImage? {
         didSet {
             if normalImage == oldValue {
@@ -154,6 +218,11 @@ public class BoomButtonBuilder: NSObject {
         }
     }
     
+    /// The name of the image on the boom-button at highlighted state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var highlightedImageName: String? {
         didSet {
             if highlightedImageName == oldValue {
@@ -166,6 +235,11 @@ public class BoomButtonBuilder: NSObject {
         }
     }
     
+    /// The image on the boom-button at highlighted state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var highlightedImage: UIImage? {
         didSet {
             if highlightedImage == oldValue {
@@ -178,6 +252,11 @@ public class BoomButtonBuilder: NSObject {
         }
     }
     
+    /// The name of the image on the boom-button at unable state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var unableImageName: String? {
         didSet {
             if unableImageName == oldValue {
@@ -190,6 +269,11 @@ public class BoomButtonBuilder: NSObject {
         }
     }
     
+    /// The image on the boom-button at unable state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var unableImage: UIImage? {
         didSet {
             if unableImage == oldValue {
@@ -202,6 +286,11 @@ public class BoomButtonBuilder: NSObject {
         }
     }
     
+    /// The tint color of image on boom-button at normal state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var normalImageTintColor: UIColor? {
         didSet {
             if Utils.isSameColor(normalImageTintColor, oldValue) {
@@ -215,6 +304,11 @@ public class BoomButtonBuilder: NSObject {
         }
     }
     
+    /// The tint color of image on boom-button at highlighted state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var highlightedImageTintColor: UIColor? {
         didSet {
             if Utils.isSameColor(highlightedColor, oldValue) {
@@ -228,6 +322,11 @@ public class BoomButtonBuilder: NSObject {
         }
     }
     
+    /// The tint color of image on boom-button at unable state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var unableImageTintColor: UIColor? {
         didSet {
             if Utils.isSameColor(unableImageTintColor, oldValue) {
@@ -241,6 +340,11 @@ public class BoomButtonBuilder: NSObject {
         }
     }
     
+    /// The frame of the image view on boom-button.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is CGRect.init(x: 10, y: 10, width: 60, height: 60).
     public var imageFrame = CGRect.init(x: 10, y: 10, width: 60, height: 60) {
         didSet {
             if imageFrame.equalTo(oldValue) {
@@ -252,6 +356,11 @@ public class BoomButtonBuilder: NSObject {
         }
     }
     
+    /// The image size of the image view on boom-button.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is CGSize.init(width: 60, height: 60).
     public var imageSize = CGSize.init(width: 60, height: 60) {
         didSet {
             if imageSize.equalTo(oldValue) {
@@ -274,6 +383,11 @@ public class BoomButtonBuilder: NSObject {
     
     // MARK: - Button
     
+    /// The color of boom-button at normal state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is a random color.
     public var normalColor: UIColor = Utils.color() {
         didSet {
             if Utils.isSameColor(normalColor, oldValue) {
@@ -287,6 +401,11 @@ public class BoomButtonBuilder: NSObject {
         }
     }
     
+    /// The color of boom-button at highlighted state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is a random color.
     public var highlightedColor: UIColor? = Utils.color() {
         didSet {
             if Utils.isSameColor(highlightedColor, oldValue) {
@@ -300,6 +419,11 @@ public class BoomButtonBuilder: NSObject {
         }
     }
     
+    /// The color of boom-button at unable state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is a random color.
     public var unableColor: UIColor? = Utils.color() {
         didSet {
             if Utils.isSameColor(unableColor, oldValue) {
@@ -313,6 +437,11 @@ public class BoomButtonBuilder: NSObject {
         }
     }
     
+    /// The corner radius (in points) of boom-button.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **5**.
     public var cornerRadius: CGFloat = 5 {
         didSet {
             if cornerRadius == oldValue {

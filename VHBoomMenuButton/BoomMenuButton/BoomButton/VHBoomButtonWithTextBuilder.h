@@ -146,7 +146,7 @@
 @property (nonatomic, strong) UIColor *textShadowColor;
 
 /**
- The offset (in points) on x axis for text on boom-button.
+ The shadow offset (in points) on x axis for text on boom-button.
  
  @b Synchronicity : Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
  
@@ -155,7 +155,7 @@
 @property (nonatomic, assign) CGFloat textShadowOffsetX;
 
 /**
- The offset (in points) on y axis for text on boom-button.
+ The shadow offset (in points) on y axis for text on boom-button.
  
  @b Synchronicity : Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
  

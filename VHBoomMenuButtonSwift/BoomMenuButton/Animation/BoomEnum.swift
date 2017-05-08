@@ -16,15 +16,23 @@
 /// - horizontalThrow1: Boom-buttons boom in a horizontal-throw line that opens downward.
 /// - horizontalThrow2: Boom-buttons boom in a horizontal-throw line that opens upward.
 /// - random: Boom-buttons boom in a random line selected from straight, parabola1, parabola2, parabola3, parabola4, horizonal-throw1 and horizonal-throw2 lines.
-public enum BoomEnum: UInt32 {
+public enum BoomEnum: Int {
     
-    case straightLine
+    /// Boom-buttons boom in a straight line.
+    case straightLine = 0
+    /// Boom-buttons boom in a parabola line that opens downward.
     case parabola1
+    /// Boom-buttons boom in a parabola line that opens upward.
     case parabola2
+    /// Boom-buttons boom in a parabola line that opens rightward.
     case parabola3
+    /// Boom-buttons boom in a parabola line that opens leftward.
     case parabola4
+    /// Boom-buttons boom in a horizontal-throw line that opens downward.
     case horizontalThrow1
+    /// Boom-buttons boom in a horizontal-throw line that opens upward.
     case horizontalThrow2
+    /// Boom-buttons boom in a random line selected from straight, parabola1, parabola2, parabola3, parabola4, horizonal-throw1 and horizonal-throw2 lines.
     case random
     
     static var count: Int {

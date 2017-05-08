@@ -8,32 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "VHPiecePlaceEnum.h"
+#import "VHBoomMenuButton.h"
 
 @interface VHPiecePlaceManager : NSObject
 
-+ (NSMutableArray<NSValue *> *)positionsWithEnum:(VHPiecePlaceEnum)placeEnum
-                                 withParentFrame:(CGRect)frame
-                                   withDotRadius:(CGFloat)radius
-                            withHorizontalMargin:(CGFloat)dotHorizontalMargin
-                              withVerticalMargin:(CGFloat)dotVerticalMargin
-                              withInclinedMargin:(CGFloat)dotInclinedMargin;
++ (NSMutableArray<NSValue *> *)dotPositions:(VHBoomMenuButton *)bmb;
 
-+ (NSMutableArray<NSValue *> *)positionsWithEnum:(VHPiecePlaceEnum)placeEnum
-                                 withParentFrame:(CGRect)frame
-                                    withHamWidth:(CGFloat)width
-                                   withHamHeight:(CGFloat)height
-                            withHorizontalMargin:(CGFloat)dotHorizontalMargin
-                              withVerticalMargin:(CGFloat)dotVerticalMargin;
++ (NSMutableArray<NSValue *> *)hamPositions:(VHBoomMenuButton *)bmb;
 
-+ (NSMutableArray<NSValue *> *)positionsForShareStyleWithParentFrame:(CGRect)frame
-                                                       withDotRadius:(CGFloat)radius
-                                                       withDotNumber:(NSUInteger)dotNumber
-                                                 withShareLineLength:(CGFloat)shareLineLength;
++ (NSMutableArray<NSValue *> *)shareDotPositionsWithDotNumber:(NSUInteger)n withBoomMenuButton:(VHBoomMenuButton *)bmb;
 
-+ (NSInteger)pieceNumber:(VHPiecePlaceEnum)placeEnum;
++ (int)pieceNumber:(VHPiecePlaceEnum)placeEnum;
 
-+ (NSInteger)minPieceNumber:(VHPiecePlaceEnum)placeEnum;
++ (int)minPieceNumber:(VHPiecePlaceEnum)placeEnum;
 
-+ (NSInteger)maxPieceNumber:(VHPiecePlaceEnum)placeEnum;
++ (int)maxPieceNumber:(VHPiecePlaceEnum)placeEnum;
 
 @end

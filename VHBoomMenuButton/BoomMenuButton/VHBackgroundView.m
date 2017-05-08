@@ -9,6 +9,8 @@
 #import "VHBackgroundView.h"
 #import "VHAnimationManager.h"
 
+static NSString *const kOpacityAnimation = @"kOpacityAnimation";
+
 @interface VHBackgroundView ()
 
 @property (nonatomic, strong) UIVisualEffectView *visualEffectView;
@@ -43,7 +45,7 @@
                                                                          delay:0
                                                                       duration:duration
                                                                         values:@[@(0), @(1)]];
-    [VHAnimationManager addAnimation:opacityAnimation toViews:self.goneViews];
+    [VHAnimationManager addAnimation:opacityAnimation forKey:kOpacityAnimation toViews:self.goneViews];
 }
 
 - (void)light:(CFTimeInterval)duration
@@ -68,7 +70,7 @@
                                                                          delay:0
                                                                       duration:duration
                                                                         values:@[@(1), @(0)]];
-    [VHAnimationManager addAnimation:opacityAnimation toViews:self.goneViews];
+    [VHAnimationManager addAnimation:opacityAnimation forKey:kOpacityAnimation toViews:self.goneViews];
 }
 
 - (void)removeAllBoomButtons

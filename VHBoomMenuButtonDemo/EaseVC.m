@@ -10,6 +10,19 @@
 #import "BuilderManager.h"
 #import <BoomMenuButton/BoomMenuButton.h>
 
+@interface CustomTimeInterpolator : NSObject<VHTimeInterpolator>
+
+@end
+
+@implementation CustomTimeInterpolator
+
+- (CGFloat)interpolation:(CGFloat)offset
+{
+    return offset < 0.5 ? offset : MIN(offset * 1.5, 1);
+}
+
+@end
+
 @interface EaseVC ()
 
 @property (weak, nonatomic) IBOutlet VHBoomMenuButton *bmb1;
@@ -53,8 +66,9 @@
     self.bmb4.reboomEaseName = VHEaseInElastic;
     self.bmb4.delay = 0;
     
-    self.bmb5.boomEaseName = VHEaseInSine;
-    self.bmb5.reboomEaseName = VHEaseInSine;
+    self.bmb5.boomEase = [CustomTimeInterpolator new];
+    self.bmb5.reboomEase = [CustomTimeInterpolator new];
+    self.bmb5.duration = 2;
     
     self.bmb6.boomEaseName = VHEaseInCirc;
     self.bmb6.reboomEaseName = VHEaseInCirc;

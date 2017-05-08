@@ -27,11 +27,11 @@ class ButtonPlaceManager: NSObject {
         let vm_1_5: CGFloat = vm * 1.5
         let vm_2_0: CGFloat = vm * 2
         
-        let w_0_5: CGFloat = w / CGFloat(2)
+        let w_0_5: CGFloat = w / 2
         let w_1_5: CGFloat = w * 1.5
         let w_2_0: CGFloat = w * 2
         
-        let h_0_5: CGFloat = h / CGFloat(2)
+        let h_0_5: CGFloat = h / 2
         let h_1_5: CGFloat = h * 1.5
         let h_2_0: CGFloat = h * 2
         
@@ -101,9 +101,9 @@ class ButtonPlaceManager: NSObject {
             positions.append(CGPoint.init(x: +hm_0_5 + w_0_5, y: +vm_0_5 + h_0_5))
         case .sc_4_2:
             positions.append(CGPoint.init(x: 0, y: -vm_0_5 - h_0_5))
+            positions.append(CGPoint.init(x: -hm - w, y: 0))
             positions.append(CGPoint.init(x: +hm + w, y: 0))
             positions.append(CGPoint.init(x: 0, y: +vm_0_5 + h_0_5))
-            positions.append(CGPoint.init(x: -hm - w, y: 0))
         case .sc_5_1:
             positions.append(CGPoint.init(x: -hm - w, y: -vm_0_5 - h_0_5))
             positions.append(CGPoint.init(x: 0, y: -vm_0_5 - h_0_5))
@@ -137,10 +137,10 @@ class ButtonPlaceManager: NSObject {
             positions.append(CGPoint.init(x: +hm + w, y: +vm_0_5 + h_0_5))
         case .sc_6_2:
             positions.append(CGPoint.init(x: -hm_0_5 - w_0_5, y: -vm - h))
-            positions.append(CGPoint.init(x: -hm_0_5 - w_0_5, y: 0))
-            positions.append(CGPoint.init(x: -hm_0_5 - w_0_5, y: +vm + h))
             positions.append(CGPoint.init(x: +hm_0_5 + w_0_5, y: -vm - h))
+            positions.append(CGPoint.init(x: -hm_0_5 - w_0_5, y: 0))
             positions.append(CGPoint.init(x: +hm_0_5 + w_0_5, y: 0))
+            positions.append(CGPoint.init(x: -hm_0_5 - w_0_5, y: +vm + h))
             positions.append(CGPoint.init(x: +hm_0_5 + w_0_5, y: +vm + h))
         case .sc_6_3:
             positions.append(CGPoint.init(x: -hm_0_5 - w_0_5, y: -vm - h))
@@ -151,11 +151,11 @@ class ButtonPlaceManager: NSObject {
             positions.append(CGPoint.init(x: +hm_0_5 + w_0_5, y: +vm + h))
         case .sc_6_4:
             positions.append(CGPoint.init(x: 0, y: -vm - h))
+            positions.append(CGPoint.init(x: -hm - w, y: -vm_0_5 - h_0_5))
             positions.append(CGPoint.init(x: +hm + w, y: -vm_0_5 - h_0_5))
+            positions.append(CGPoint.init(x: -hm - w, y: +vm_0_5 + h_0_5))
             positions.append(CGPoint.init(x: +hm + w, y: +vm_0_5 + h_0_5))
             positions.append(CGPoint.init(x: 0, y: +vm + h))
-            positions.append(CGPoint.init(x: -hm - w, y: -vm_0_5 - h_0_5))
-            positions.append(CGPoint.init(x: -hm - w, y: +vm_0_5 + h_0_5))
         case .sc_6_5:
             positions.append(CGPoint.init(x: -hm - w, y: -vm - h))
             positions.append(CGPoint.init(x: 0, y: -vm - h))
@@ -196,12 +196,12 @@ class ButtonPlaceManager: NSObject {
             positions.append(CGPoint.init(x: +hm_0_5 + w_0_5, y: +vm + h))
         case .sc_7_4:
             positions.append(CGPoint.init(x: 0, y: -vm - h))
-            positions.append(CGPoint.init(x: +hm + w, y: -vm_0_5 - h_0_5))
-            positions.append(CGPoint.init(x: +hm + w, y: +vm_0_5 + h_0_5))
-            positions.append(CGPoint.init(x: 0, y: 0))
-            positions.append(CGPoint.init(x: 0, y: +vm + h))
             positions.append(CGPoint.init(x: -hm - w, y: -vm_0_5 - h_0_5))
+            positions.append(CGPoint.init(x: +hm + w, y: -vm_0_5 - h_0_5))
+            positions.append(CGPoint.init(x: 0, y: 0))
             positions.append(CGPoint.init(x: -hm - w, y: +vm_0_5 + h_0_5))
+            positions.append(CGPoint.init(x: +hm + w, y: +vm_0_5 + h_0_5))
+            positions.append(CGPoint.init(x: 0, y: +vm + h))
         case .sc_7_5:
             positions.append(CGPoint.init(x: -hm_1_5 - w_1_5, y: -vm_0_5 - h_0_5))
             positions.append(CGPoint.init(x: -hm_0_5 - w_0_5, y: -vm_0_5 - h_0_5))
@@ -229,12 +229,12 @@ class ButtonPlaceManager: NSObject {
             positions.append(CGPoint.init(x: +hm + w, y: +vm + h))
         case .sc_8_2:
             positions.append(CGPoint.init(x: -hm - w, y: -vm - h))
-            positions.append(CGPoint.init(x: -hm - w, y: 0))
-            positions.append(CGPoint.init(x: -hm - w, y: +vm + h))
-            positions.append(CGPoint.init(x: 0, y: -vm_0_5 - h_0_5))
-            positions.append(CGPoint.init(x: 0, y: +vm_0_5 + h_0_5))
             positions.append(CGPoint.init(x: +hm + w, y: -vm - h))
+            positions.append(CGPoint.init(x: 0, y: -vm_0_5 - h_0_5))
+            positions.append(CGPoint.init(x: -hm - w, y: 0))
             positions.append(CGPoint.init(x: +hm + w, y: 0))
+            positions.append(CGPoint.init(x: 0, y: +vm_0_5 + h_0_5))
+            positions.append(CGPoint.init(x: -hm - w, y: +vm + h))
             positions.append(CGPoint.init(x: +hm + w, y: +vm + h))
         case .sc_8_3:
             positions.append(CGPoint.init(x: -hm - w, y: -vm - h))
@@ -248,21 +248,21 @@ class ButtonPlaceManager: NSObject {
         case .sc_8_4:
             positions.append(CGPoint.init(x: 0, y: -vm_2_0 - h_2_0))
             positions.append(CGPoint.init(x: +hm_0_5 + w_0_5, y: -vm - h))
+            positions.append(CGPoint.init(x: -hm_0_5 - w_0_5, y: -vm - h))
+            positions.append(CGPoint.init(x: -hm - w, y: 0))
             positions.append(CGPoint.init(x: +hm + w, y: 0))
+            positions.append(CGPoint.init(x: -hm_0_5 - w_0_5, y: +vm + h))
             positions.append(CGPoint.init(x: +hm_0_5 + w_0_5, y: +vm + h))
             positions.append(CGPoint.init(x: 0, y: +vm_2_0 + h_2_0))
-            positions.append(CGPoint.init(x: -hm_0_5 - w_0_5, y: +vm + h))
-            positions.append(CGPoint.init(x: -hm - w, y: 0))
-            positions.append(CGPoint.init(x: -hm_0_5 - w_0_5, y: -vm - h))
         case .sc_8_5:
             positions.append(CGPoint.init(x: 0, y: -vm - h))
+            positions.append(CGPoint.init(x: -hm - w, y: -vm_0_5 - h_0_5))
             positions.append(CGPoint.init(x: +hm + w, y: -vm_0_5 - h_0_5))
+            positions.append(CGPoint.init(x: -hm_2_0 - w_2_0, y: 0))
             positions.append(CGPoint.init(x: +hm_2_0 + w_2_0, y: 0))
+            positions.append(CGPoint.init(x: -hm - w, y: +vm_0_5 + h_0_5))
             positions.append(CGPoint.init(x: +hm + w, y: +vm_0_5 + h_0_5))
             positions.append(CGPoint.init(x: 0, y: +vm + h))
-            positions.append(CGPoint.init(x: -hm - w, y: +vm_0_5 + h_0_5))
-            positions.append(CGPoint.init(x: -hm_2_0 - w_2_0, y: 0))
-            positions.append(CGPoint.init(x: -hm - w, y: -vm_0_5 - h_0_5))
         case .sc_8_6:
             positions.append(CGPoint.init(x: -hm_1_5 - w_1_5, y: -vm_0_5 - h_0_5))
             positions.append(CGPoint.init(x: -hm_0_5 - w_0_5, y: -vm_0_5 - h_0_5))
@@ -293,24 +293,26 @@ class ButtonPlaceManager: NSObject {
             positions.append(CGPoint.init(x: +hm + w, y: +vm + h))
         case .sc_9_2:
             positions.append(CGPoint.init(x: 0, y: -vm_2_0 - h_2_0))
+            positions.append(CGPoint.init(x: -hm_0_5 - w_0_5, y: -vm - h))
             positions.append(CGPoint.init(x: +hm_0_5 + w_0_5, y: -vm - h))
+            positions.append(CGPoint.init(x: -hm - w, y: 0))
+            positions.append(CGPoint.init(x: 0, y: 0))
             positions.append(CGPoint.init(x: +hm + w, y: 0))
+            positions.append(CGPoint.init(x: -hm_0_5 - w_0_5, y: +vm + h))
             positions.append(CGPoint.init(x: +hm_0_5 + w_0_5, y: +vm + h))
             positions.append(CGPoint.init(x: 0, y: +vm_2_0 + h_2_0))
-            positions.append(CGPoint.init(x: -hm_0_5 - w_0_5, y: +vm + h))
-            positions.append(CGPoint.init(x: -hm - w, y: 0))
-            positions.append(CGPoint.init(x: -hm_0_5 - w_0_5, y: -vm - h))
-            positions.append(CGPoint.init(x: 0, y: 0))
         case .sc_9_3:
             positions.append(CGPoint.init(x: 0, y: -vm - h))
+            positions.append(CGPoint.init(x: -hm - w, y: -vm_0_5 - h_0_5))
             positions.append(CGPoint.init(x: +hm + w, y: -vm_0_5 - h_0_5))
+            positions.append(CGPoint.init(x: -hm_2_0 - w_2_0, y: 0))
+            positions.append(CGPoint.init(x: 0, y: 0))
             positions.append(CGPoint.init(x: +hm_2_0 + w_2_0, y: 0))
+            positions.append(CGPoint.init(x: -hm - w, y: +vm_0_5 + h_0_5))
             positions.append(CGPoint.init(x: +hm + w, y: +vm_0_5 + h_0_5))
             positions.append(CGPoint.init(x: 0, y: +vm + h))
-            positions.append(CGPoint.init(x: -hm - w, y: +vm_0_5 + h_0_5))
-            positions.append(CGPoint.init(x: -hm_2_0 - w_2_0, y: 0))
-            positions.append(CGPoint.init(x: -hm - w, y: -vm_0_5 - h_0_5))
-            positions.append(CGPoint.init(x: 0, y: 0))
+        case .custom:
+            positions += bmb.customButtonPlacePositions
         default:
             assert(false, "Button place enum not found!")
             break
@@ -318,18 +320,14 @@ class ButtonPlaceManager: NSObject {
         
         switch bmb.buttonPlaceEnum {
         case .sc_3_3:
-            adjust(positions: &positions,
-                   offsetX: 0,
-                   offsetY: +pow(hm_0_5 + w_0_5, 2) / (vm + h))
+            adjust(positions: &positions, offsetX: 0, offsetY: +pow(hm_0_5 + w_0_5, 2) / (vm + h))
         case .sc_3_4:
-            adjust(positions: &positions,
-                   offsetX: 0,
-                   offsetY: -pow(hm_0_5 + w_0_5, 2) / (vm + h))
+            adjust(positions: &positions, offsetX: 0, offsetY: -pow(hm_0_5 + w_0_5, 2) / (vm + h))
         case .sc_4_2, .sc_5_1, .sc_5_2, .sc_5_3, .sc_5_4, .sc_6_1, .sc_6_2, .sc_6_3, .sc_6_4, .sc_6_5, .sc_6_6,
              .sc_7_1, .sc_7_2, .sc_7_3, .sc_7_4, .sc_7_5, .sc_7_6, .sc_8_1, .sc_8_2, .sc_8_3, .sc_8_4, .sc_8_5,
              .sc_8_6, .sc_8_7, .sc_9_1, .sc_9_2, .sc_9_3:
             adjust(positions: &positions, offsetX: 0, offsetY: h_0_5 - w_0_5)
-        case .ham_1, .ham_2, .ham_3, .ham_3, .ham_4, .ham_5, .ham_6:
+        case .ham_2, .ham_3, .ham_3, .ham_4, .ham_5, .ham_6:
             if buttonNumber >= 2 && bmb.buttonHamButtonTopMargin > 0 {
                 positions[buttonNumber - 1].y += bmb.buttonHamButtonTopMargin - vm
             }
@@ -353,9 +351,11 @@ class ButtonPlaceManager: NSObject {
         
         let hm: CGFloat = bmb.buttonHorizontalMargin
         let hm_0_5: CGFloat = hm / 2
+        let hm_1_5: CGFloat = hm * 1.5
         
         let vm: CGFloat = bmb.buttonVerticalMargin
         let vm_0_5: CGFloat = vm / 2
+        let vm_1_5: CGFloat = vm * 1.5
         
         let im: CGFloat = bmb.buttonInclinedMargin
         
@@ -449,9 +449,9 @@ class ButtonPlaceManager: NSObject {
             positions.append(CGPoint.init(x: +hm_0_5 + r, y: +vm_0_5 + r))
         case .sc_4_2:
             positions.append(CGPoint.init(x: 0, y: -a))
+            positions.append(CGPoint.init(x: -a, y: 0))
             positions.append(CGPoint.init(x: +a, y: 0))
             positions.append(CGPoint.init(x: 0, y: +a))
-            positions.append(CGPoint.init(x: -a, y: 0))
         case .sc_5_1:
             positions.append(CGPoint.init(x: -b_2_0, y: -c))
             positions.append(CGPoint.init(x: 0, y: -c))
@@ -465,17 +465,17 @@ class ButtonPlaceManager: NSObject {
             positions.append(CGPoint.init(x: 0, y: c))
             positions.append(CGPoint.init(x: +b_2_0, y: c))
         case .sc_5_3:
-            positions.append(CGPoint.init(x: 0, y: 0))
             positions.append(CGPoint.init(x: 0, y: -vm - r_2_0))
+            positions.append(CGPoint.init(x: -hm - r_2_0, y: 0))
+            positions.append(CGPoint.init(x: 0, y: 0))
             positions.append(CGPoint.init(x: +hm + r_2_0, y: 0))
             positions.append(CGPoint.init(x: 0, y: +vm + r_2_0))
-            positions.append(CGPoint.init(x: -hm - r_2_0, y: 0))
         case .sc_5_4:
-            positions.append(CGPoint.init(x: 0, y: 0))
-            positions.append(CGPoint.init(x: +a, y: -a))
-            positions.append(CGPoint.init(x: +a, y: +a))
-            positions.append(CGPoint.init(x: -a, y: +a))
             positions.append(CGPoint.init(x: -a, y: -a))
+            positions.append(CGPoint.init(x: +a, y: -a))
+            positions.append(CGPoint.init(x: 0, y: 0))
+            positions.append(CGPoint.init(x: -a, y: +a))
+            positions.append(CGPoint.init(x: +a, y: +a))
         case .sc_6_1:
             positions.append(CGPoint.init(x: -hm - r_2_0, y: -vm_0_5 - r))
             positions.append(CGPoint.init(x: 0, y: -vm_0_5 - r))
@@ -485,25 +485,25 @@ class ButtonPlaceManager: NSObject {
             positions.append(CGPoint.init(x: +hm + r_2_0, y: +vm_0_5 + r))
         case .sc_6_2:
             positions.append(CGPoint.init(x: -hm_0_5 - r, y: -vm - r_2_0))
-            positions.append(CGPoint.init(x: -hm_0_5 - r, y: 0))
-            positions.append(CGPoint.init(x: -hm_0_5 - r, y: +vm + r_2_0))
             positions.append(CGPoint.init(x: +hm_0_5 + r, y: -vm - r_2_0))
+            positions.append(CGPoint.init(x: -hm_0_5 - r, y: 0))
             positions.append(CGPoint.init(x: +hm_0_5 + r, y: 0))
+            positions.append(CGPoint.init(x: -hm_0_5 - r, y: +vm + r_2_0))
             positions.append(CGPoint.init(x: +hm_0_5 + r, y: +vm + r_2_0))
         case .sc_6_3:
             positions.append(CGPoint.init(x: -b, y: -a - c))
             positions.append(CGPoint.init(x: +b, y: -a - c))
-            positions.append(CGPoint.init(x: +b_2_0, y: 0))
-            positions.append(CGPoint.init(x: +b, y: +a + c))
-            positions.append(CGPoint.init(x: -b, y: +a + c))
             positions.append(CGPoint.init(x: -b_2_0, y: 0))
+            positions.append(CGPoint.init(x: +b_2_0, y: 0))
+            positions.append(CGPoint.init(x: -b, y: +a + c))
+            positions.append(CGPoint.init(x: +b, y: +a + c))
         case .sc_6_4:
             positions.append(CGPoint.init(x: 0, y: -b_2_0))
+            positions.append(CGPoint.init(x: -a - c, y: -b))
             positions.append(CGPoint.init(x: +a + c, y: -b))
+            positions.append(CGPoint.init(x: -a - c, y: +b))
             positions.append(CGPoint.init(x: +a + c, y: +b))
             positions.append(CGPoint.init(x: 0, y: +b_2_0))
-            positions.append(CGPoint.init(x: -a - c, y: +b))
-            positions.append(CGPoint.init(x: -a - c, y: -b))
         case .sc_6_5:
             positions.append(CGPoint.init(x: -b_2_0, y: -a - c + e))
             positions.append(CGPoint.init(x: 0, y: -a - c + e))
@@ -525,7 +525,7 @@ class ButtonPlaceManager: NSObject {
             positions.append(CGPoint.init(x: -hm - r_2_0, y: 0))
             positions.append(CGPoint.init(x: 0, y: 0))
             positions.append(CGPoint.init(x: +hm + r_2_0, y: 0))
-            positions.append(CGPoint.init(x: 0, y: vm + r_2_0))
+            positions.append(CGPoint.init(x: 0, y: +vm + r_2_0))
         case .sc_7_2:
             positions.append(CGPoint.init(x: 0, y: -vm - r_2_0))
             positions.append(CGPoint.init(x: -hm - r_2_0, y: 0))
@@ -535,21 +535,21 @@ class ButtonPlaceManager: NSObject {
             positions.append(CGPoint.init(x: 0, y: vm + r_2_0))
             positions.append(CGPoint.init(x: +hm + r_2_0, y: vm + r_2_0))
         case .sc_7_3:
-            positions.append(CGPoint.init(x: 0, y: 0))
             positions.append(CGPoint.init(x: -b, y: -a - c))
             positions.append(CGPoint.init(x: +b, y: -a - c))
-            positions.append(CGPoint.init(x: +b_2_0, y: 0))
-            positions.append(CGPoint.init(x: +b, y: +a + c))
-            positions.append(CGPoint.init(x: -b, y: +a + c))
             positions.append(CGPoint.init(x: -b_2_0, y: 0))
-        case .sc_7_4:
             positions.append(CGPoint.init(x: 0, y: 0))
+            positions.append(CGPoint.init(x: +b_2_0, y: 0))
+            positions.append(CGPoint.init(x: -b, y: +a + c))
+            positions.append(CGPoint.init(x: +b, y: +a + c))
+        case .sc_7_4:
             positions.append(CGPoint.init(x: 0, y: -b_2_0))
+            positions.append(CGPoint.init(x: -a - c, y: -b))
             positions.append(CGPoint.init(x: +a + c, y: -b))
+            positions.append(CGPoint.init(x: 0, y: 0))
+            positions.append(CGPoint.init(x: -a - c, y: +b))
             positions.append(CGPoint.init(x: +a + c, y: +b))
             positions.append(CGPoint.init(x: 0, y: +b_2_0))
-            positions.append(CGPoint.init(x: -a - c, y: +b))
-            positions.append(CGPoint.init(x: -a - c, y: -b))
         case .sc_7_5:
             positions.append(CGPoint.init(x: -b_3_0, y: -a))
             positions.append(CGPoint.init(x: -b, y: -a))
@@ -577,12 +577,12 @@ class ButtonPlaceManager: NSObject {
             positions.append(CGPoint.init(x: +b_2_0, y: +a + c))
         case .sc_8_2:
             positions.append(CGPoint.init(x: -a - c, y: -b_2_0))
-            positions.append(CGPoint.init(x: -a - c, y: 0))
-            positions.append(CGPoint.init(x: -a - c, y: +b_2_0))
-            positions.append(CGPoint.init(x: 0, y: -vm_0_5 - r))
-            positions.append(CGPoint.init(x: 0, y: +vm_0_5 + r))
             positions.append(CGPoint.init(x: +a + c, y: -b_2_0))
+            positions.append(CGPoint.init(x: 0, y: -vm_0_5 - r))
+            positions.append(CGPoint.init(x: -a - c, y: 0))
             positions.append(CGPoint.init(x: +a + c, y: 0))
+            positions.append(CGPoint.init(x: 0, y: +vm_0_5 + r))
+            positions.append(CGPoint.init(x: -a - c, y: +b_2_0))
             positions.append(CGPoint.init(x: +a + c, y: +b_2_0))
         case .sc_8_3:
             positions.append(CGPoint.init(x: -hm - r_2_0, y: -vm - r_2_0))
@@ -604,31 +604,31 @@ class ButtonPlaceManager: NSObject {
             positions.append(CGPoint.init(x: 0, y: +a_2_0 + c_2_0))
         case .sc_8_5:
             positions.append(CGPoint.init(x: 0, y: -a_2_0))
+            positions.append(CGPoint.init(x: -a, y: -a))
             positions.append(CGPoint.init(x: +a, y: -a))
+            positions.append(CGPoint.init(x: -a_2_0, y: 0))
             positions.append(CGPoint.init(x: +a_2_0, y: 0))
+            positions.append(CGPoint.init(x: -a, y: +a))
             positions.append(CGPoint.init(x: +a, y: +a))
             positions.append(CGPoint.init(x: 0, y: +a_2_0))
-            positions.append(CGPoint.init(x: -a, y: +a))
-            positions.append(CGPoint.init(x: -a_2_0, y: 0))
-            positions.append(CGPoint.init(x: -a, y: -a))
         case .sc_8_6:
-            positions.append(CGPoint.init(x: -hm * 1.5 - r_3_0, y: -vm_0_5 - r))
+            positions.append(CGPoint.init(x: -hm_1_5 - r_3_0, y: -vm_0_5 - r))
             positions.append(CGPoint.init(x: -hm_0_5 - r, y: -vm_0_5 - r))
             positions.append(CGPoint.init(x: +hm_0_5 + r, y: -vm_0_5 - r))
-            positions.append(CGPoint.init(x: +hm * 1.5 + r_3_0, y: -vm_0_5 - r))
-            positions.append(CGPoint.init(x: -hm * 1.5 - r_3_0, y: +vm_0_5 + r))
+            positions.append(CGPoint.init(x: +hm_1_5 + r_3_0, y: -vm_0_5 - r))
+            positions.append(CGPoint.init(x: -hm_1_5 - r_3_0, y: +vm_0_5 + r))
             positions.append(CGPoint.init(x: -hm_0_5 - r, y: +vm_0_5 + r))
             positions.append(CGPoint.init(x: +hm_0_5 + r, y: +vm_0_5 + r))
-            positions.append(CGPoint.init(x: +hm * 1.5 + r_3_0, y: +vm_0_5 + r))
+            positions.append(CGPoint.init(x: +hm_1_5 + r_3_0, y: +vm_0_5 + r))
         case .sc_8_7:
-            positions.append(CGPoint.init(x: -hm_0_5 - r, y: -vm * 1.5 - r_3_0))
-            positions.append(CGPoint.init(x: +hm_0_5 + r, y: -vm * 1.5 - r_3_0))
+            positions.append(CGPoint.init(x: -hm_0_5 - r, y: -vm_1_5 - r_3_0))
+            positions.append(CGPoint.init(x: +hm_0_5 + r, y: -vm_1_5 - r_3_0))
             positions.append(CGPoint.init(x: -hm_0_5 - r, y: -vm_0_5 - r))
             positions.append(CGPoint.init(x: +hm_0_5 + r, y: -vm_0_5 - r))
             positions.append(CGPoint.init(x: -hm_0_5 - r, y: +vm_0_5 + r))
             positions.append(CGPoint.init(x: +hm_0_5 + r, y: +vm_0_5 + r))
-            positions.append(CGPoint.init(x: -hm_0_5 - r, y: +vm * 1.5 + r_3_0))
-            positions.append(CGPoint.init(x: +hm_0_5 + r, y: +vm * 1.5 + r_3_0))
+            positions.append(CGPoint.init(x: -hm_0_5 - r, y: +vm_1_5 + r_3_0))
+            positions.append(CGPoint.init(x: +hm_0_5 + r, y: +vm_1_5 + r_3_0))
         case .sc_9_1:
             positions.append(CGPoint.init(x: -hm - r_2_0, y: -vm - r_2_0))
             positions.append(CGPoint.init(x: 0, y: -vm - r_2_0))
@@ -651,14 +651,16 @@ class ButtonPlaceManager: NSObject {
             positions.append(CGPoint.init(x: 0, y: +a_2_0 + c_2_0))
         case .sc_9_3:
             positions.append(CGPoint.init(x: 0, y: -a_2_0))
-            positions.append(CGPoint.init(x: +a, y: -a))
-            positions.append(CGPoint.init(x: +a_2_0, y: 0))
-            positions.append(CGPoint.init(x: +a, y: +a))
-            positions.append(CGPoint.init(x: 0, y: 0))
-            positions.append(CGPoint.init(x: 0, y: a_2_0))
-            positions.append(CGPoint.init(x: -a, y: +a))
-            positions.append(CGPoint.init(x: -a_2_0, y: 0))
             positions.append(CGPoint.init(x: -a, y: -a))
+            positions.append(CGPoint.init(x: +a, y: -a))
+            positions.append(CGPoint.init(x: -a_2_0, y: 0))
+            positions.append(CGPoint.init(x: 0, y: 0))
+            positions.append(CGPoint.init(x: +a_2_0, y: 0))
+            positions.append(CGPoint.init(x: -a, y: +a))
+            positions.append(CGPoint.init(x: +a, y: +a))
+            positions.append(CGPoint.init(x: 0, y: +a_2_0))
+        case .custom:
+            positions += bmb.customButtonPlacePositions
         default:
             assert(false, "Button place enum not found!")
             break

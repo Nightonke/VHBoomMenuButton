@@ -35,6 +35,11 @@
 typedef void (^DelayBlock) (void);
 
 static NSString *const kFillColorAnimation = @"kFillColorAnimation";
+static NSString *const kBoomButtonAnimation = @"kBoomButtonAnimation";
+static NSString *const kBoomButton3DAnimation = @"kBoomButton3DAnimation";
+static NSString *const kBoomButtonRotateViewAnimation = @"kBoomButtonRotateViewAnimation";
+static NSString *const kBoomButtonGoneViewAnimation = @"kBoomButtonGoneViewAnimation";
+static NSString *const kFadeViewAnimation = @"kFadeViewAnimation";
 
 @interface VHBoomMenuButton ()<VHBoomButtonDelegate, VHBackgroundDelegate>
 
@@ -56,12 +61,6 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 #pragma mark - Animation
 
 @property (nonatomic, assign) int animatingViewsNumber;
-@property (nonatomic, strong) VHEase *boomMoveEase;
-@property (nonatomic, strong) VHEase *boomScaleEase;
-@property (nonatomic, strong) VHEase *boomRotateEase;
-@property (nonatomic, strong) VHEase *reboomMoveEase;
-@property (nonatomic, strong) VHEase *reboomScaleEase;
-@property (nonatomic, strong) VHEase *reboomRotateEase;
 @property (nonatomic, assign) VHBoomStateEnum boomState;
 
 #pragma mark - Background
@@ -92,30 +91,74 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 
 @property (nonatomic, assign) UIDeviceOrientation lastDeviceOrientation;
 
+#pragma mark - Fade Views
+
+@property (nonatomic, strong) NSMutableArray<UIView *> *fadeViews;
+
 @end
 
 @implementation VHBoomMenuButton
 
 #pragma mark - Convenience Methods
 
-+ (NSInteger)pieceNumber:(VHPiecePlaceEnum)placeEnum
++ (int)pieceNumber:(VHPiecePlaceEnum)piecePlaceEnum
 {
-    return [VHPiecePlaceManager pieceNumber:placeEnum];
+    return [VHPiecePlaceManager pieceNumber:piecePlaceEnum];
 }
 
-+ (NSInteger)buttonNumber:(VHButtonPlaceEnum)placeEnum
++ (int)minPieceNumber:(VHPiecePlaceEnum)piecePlaceEnum
 {
-    return [VHButtonPlaceManager buttonNumber:placeEnum];
+    return [VHPiecePlaceManager minPieceNumber:piecePlaceEnum];
 }
 
-- (NSInteger)pieceNumber
++ (int)maxPieceNumber:(VHPiecePlaceEnum)piecePlaceEnum
 {
-    return [VHPiecePlaceManager pieceNumber:self.piecePlaceEnum];
+    return [VHPiecePlaceManager maxPieceNumber:piecePlaceEnum];
 }
 
-- (NSInteger)buttonNumber
++ (int)buttonNumber:(VHButtonPlaceEnum)buttonPlaceEnum
 {
-    return [VHButtonPlaceManager buttonNumber:self.buttonPlaceEnum];
+    return [VHButtonPlaceManager buttonNumber:buttonPlaceEnum];
+}
+
++ (int)minButtonNumber:(VHButtonPlaceEnum)buttonPlaceEnum
+{
+    return [VHButtonPlaceManager minButtonNumber:buttonPlaceEnum];
+}
+
++ (int)maxButtonNumber:(VHButtonPlaceEnum)buttonPlaceEnum
+{
+    return [VHButtonPlaceManager maxButtonNumber:buttonPlaceEnum];
+}
+
+- (int)pieceNumber
+{
+    return [VHBoomMenuButton pieceNumber:self.piecePlaceEnum];
+}
+
+- (int)minPieceNumber
+{
+    return [VHBoomMenuButton minPieceNumber:self.piecePlaceEnum];
+}
+
+- (int)maxPieceNumber
+{
+    return [VHBoomMenuButton maxPieceNumber:self.piecePlaceEnum];
+}
+
+- (int)buttonNumber
+{
+    return [VHBoomMenuButton buttonNumber:self.buttonPlaceEnum];
+}
+
+- (int)minButtonNumber
+{
+    return [VHBoomMenuButton minButtonNumber:self.buttonPlaceEnum];
+}
+
+- (int)maxButtonNumber
+{
+    return [VHBoomMenuButton maxButtonNumber:self.buttonPlaceEnum];
 }
 
 #pragma mark - Initialize
@@ -186,6 +229,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     _shareLine2Color = [UIColor whiteColor];
     _shareLineWidth = 1.5;
     _piecePlaceEnum = VHPiecePlaceUnknown;
+    _customPiecePositions = [NSMutableArray array];
     
     _backgroundBlurred = NO;
     if ([UIBlurEffect class])
@@ -223,6 +267,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     _autoBoomImmediately = NO;
     
     _buttonPlaceEnum = VHButtonPlaceUnknown;
+    _customButtonPositions = [NSMutableArray array];
     _buttonPlaceAlignmentEnum = VHButtonPlaceAlignmentCenter;
     _buttonHorizontalMargin = 12;
     _buttonVerticalMargin = 12;
@@ -252,6 +297,8 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     _needToCreateButtons = YES;
     
     _lastDeviceOrientation = [[UIDevice currentDevice] orientation];
+    
+    _fadeViews = [NSMutableArray array];
 }
 
 - (void)initializeDeviceOrientation
@@ -314,6 +361,11 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 {
     [super layoutSubviews];
     self.backgroundColor = [UIColor clearColor];
+    if ([self uninitializedBoomButtons])
+    {
+        return;
+    }
+    [self placeFadeViews];
     [self clearPieces];
     [self createPieces];
     [self placeShareLinesView];
@@ -335,7 +387,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 {
     [self calculatePiecePositons];
     int pieceNumber = [self innerPieceNumber];
-    self.pieces = [NSMutableArray arrayWithCapacity:pieceNumber];
+    self.pieces = [NSMutableArray array];
     for (int i = 0; i < pieceNumber; i++)
     {
         VHBoomPiece *piece = [[VHBoomPiece alloc] initWithFrame:[[self.piecePositions objectAtIndex:i] CGRectValue]
@@ -419,29 +471,17 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         {
             if (self.piecePlaceEnum == VHPiecePlaceShare)
             {
-                self.piecePositions = [VHPiecePlaceManager positionsForShareStyleWithParentFrame:self.bounds
-                                                                                   withDotRadius:self.dotRadius
-                                                                                   withDotNumber:self.boomButtonBuilders.count
-                                                                             withShareLineLength:self.shareLineLength];
+                self.piecePositions = [VHPiecePlaceManager shareDotPositionsWithDotNumber:self.boomButtonBuilders.count
+                                                                       withBoomMenuButton:self];
             }
             else
             {
-                self.piecePositions = [VHPiecePlaceManager positionsWithEnum:self.piecePlaceEnum
-                                                             withParentFrame:self.bounds
-                                                               withDotRadius:self.dotRadius
-                                                        withHorizontalMargin:self.pieceHorizontalMargin
-                                                          withVerticalMargin:self.pieceVerticalMargin
-                                                          withInclinedMargin:self.pieceInclinedMargin];
+                self.piecePositions = [VHPiecePlaceManager dotPositions:self];
             }
             break;
         }
         case VHButtonHam:
-            self.piecePositions = [VHPiecePlaceManager positionsWithEnum:self.piecePlaceEnum
-                                                         withParentFrame:self.bounds
-                                                            withHamWidth:self.hamWidth
-                                                           withHamHeight:self.hamHeight
-                                                    withHorizontalMargin:self.pieceHorizontalMargin
-                                                      withVerticalMargin:self.pieceInclinedMargin];
+            self.piecePositions = [VHPiecePlaceManager hamPositions:self];
             break;
         default:
             break;
@@ -589,7 +629,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 
 - (void)innerBoom:(BOOL)immediately
 {
-    if ([self uninitializedBoomButtons] || [self isAnimating] || self.boomState != VHBoomStateDidReboom)
+    if ([self isAnimating] || self.boomState != VHBoomStateDidReboom)
     {
         return;
     }
@@ -603,6 +643,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     [self createButtons];
     [self dimBackground:immediately];
     [self startBoomAnimations:immediately];
+    [self startBoomAnimationForFadeViews:immediately];
     [self adjustTipLabel];
 }
 
@@ -629,6 +670,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     }
     [self lightBackground:immediately];
     [self startReboomAnimation:immediately];
+    [self startReboomAnimationForFadeViews:immediately];
 }
 
 - (void)dimBackground:(BOOL)immediately
@@ -823,9 +865,9 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
                                                                            frames:self.frames
                                                                             start:scaleY
                                                                               end:1];
-        [VHAnimationManager addAnimations:boomButton, xPositionAnimation, yPositionAnimation, xScaleAnimation, yScaleAnimation, nil];
-        [VHAnimationManager addAnimation:rotateAnimation toViews:boomButton.rotateViews];
-        [VHAnimationManager addAnimation:opacityAnimation toViews:boomButton.goneViews];
+        [VHAnimationManager addAnimations:boomButton forKey:kBoomButtonAnimation, xPositionAnimation, yPositionAnimation, xScaleAnimation, yScaleAnimation, nil];
+        [VHAnimationManager addAnimation:rotateAnimation forKey:kBoomButtonRotateViewAnimation toViews:boomButton.rotateViews];
+        [VHAnimationManager addAnimation:opacityAnimation forKey:kBoomButtonGoneViewAnimation toViews:boomButton.goneViews];
         
         if (self.use3DTransformAnimation)
         {
@@ -833,7 +875,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 //            CAKeyframeAnimation *rotateYAnimation = [VHAnimationManager rotateYAnimationFromFrames:self.frames startX:startPosition.x endX:endPosition.x delay:0 duration:duration];
             CAKeyframeAnimation *rotateXAnimation = [VHAnimationManager rotateXAnimationFromVelocity:ys delay:0 duration:duration];
             CAKeyframeAnimation *rotateYAnimation = [VHAnimationManager rotateYAnimationFromVelocity:xs delay:0 duration:duration];
-            [VHAnimationManager addAnimations:boomButton, rotateXAnimation, rotateYAnimation, nil];
+            [VHAnimationManager addAnimations:boomButton forKey:kBoomButton3DAnimation, rotateXAnimation, rotateYAnimation, nil];
         }
         
         boomButton.frame = CGRectMake(endPosition.x - boomButton.centerPoint.x,
@@ -952,9 +994,9 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
                                                                            frames:self.frames
                                                                             start:1
                                                                               end:scaleY];
-        [VHAnimationManager addAnimations:boomButton, xPositionAnimation, yPositionAnimation, xScaleAnimation, yScaleAnimation, nil];
-        [VHAnimationManager addAnimation:rotateAnimation toViews:boomButton.rotateViews];
-        [VHAnimationManager addAnimation:opacityAnimation toViews:boomButton.goneViews];
+        [VHAnimationManager addAnimations:boomButton forKey:kBoomButtonAnimation, xPositionAnimation, yPositionAnimation, xScaleAnimation, yScaleAnimation, nil];
+        [VHAnimationManager addAnimation:rotateAnimation forKey:kBoomButtonRotateViewAnimation toViews:boomButton.rotateViews];
+        [VHAnimationManager addAnimation:opacityAnimation forKey:kBoomButtonGoneViewAnimation toViews:boomButton.goneViews];
         
         if (self.use3DTransformAnimation)
         {
@@ -962,7 +1004,7 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 //            CAKeyframeAnimation *rotateYAnimation = [VHAnimationManager rotateYAnimationFromFrames:self.frames startX:startPosition.x endX:endPosition.x delay:0 duration:duration];
             CAKeyframeAnimation *rotateXAnimation = [VHAnimationManager rotateXAnimationFromVelocity:ys delay:0 duration:duration];
             CAKeyframeAnimation *rotateYAnimation = [VHAnimationManager rotateYAnimationFromVelocity:xs delay:0 duration:duration];
-            [VHAnimationManager addAnimations:boomButton, rotateXAnimation, rotateYAnimation, nil];
+            [VHAnimationManager addAnimations:boomButton forKey:kBoomButton3DAnimation, rotateXAnimation, rotateYAnimation, nil];
         }
         
         boomButton.frame = CGRectMake(endPosition.x - boomButton.centerPoint.x,
@@ -1104,63 +1146,30 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
 {
     switch (self.buttonEnum) {
         case VHButtonSimpleCircle:
-            self.endPositions = [VHButtonPlaceManager positionsWithEnum:self.buttonPlaceEnum
-                                                          withAlignment:self.buttonPlaceAlignmentEnum
-                                                        withParentFrame:[self parentView].bounds
-                                                       withButtonRadius:self.simpleCircleButtonRadius
-                                                       withButtonNumber:self.boomButtonBuilders.count
-                                             withButtonHorizontalMargin:self.buttonHorizontalMargin
-                                               withButtonInclinedMargin:self.buttonInclinedMargin
-                                               withButtonVerticalMargin:self.buttonVerticalMargin
-                                                    withButtonTopMargin:self.buttonTopMargin
-                                                 withButtonBottomMargin:self.buttonBottomMargin
-                                                   withButtonLeftMargin:self.buttonLeftMargin
-                                                  withButtonRightMargin:self.buttonRightMargin];
+            self.endPositions = [VHButtonPlaceManager positionsWithParentFrame:[self parentView].bounds
+                                                              withButtonRadius:self.simpleCircleButtonRadius
+                                                              withButtonNumber:self.boomButtonBuilders.count
+                                                            withBoomMenuButton:self];
             break;
         case VHButtonTextInsideCircle:
-            self.endPositions = [VHButtonPlaceManager positionsWithEnum:self.buttonPlaceEnum
-                                                          withAlignment:self.buttonPlaceAlignmentEnum
-                                                        withParentFrame:[self parentView].bounds
-                                                       withButtonRadius:self.textInsideCircleButtonRadius
-                                                       withButtonNumber:self.boomButtonBuilders.count
-                                             withButtonHorizontalMargin:self.buttonHorizontalMargin
-                                               withButtonInclinedMargin:self.buttonInclinedMargin
-                                               withButtonVerticalMargin:self.buttonVerticalMargin
-                                                    withButtonTopMargin:self.buttonTopMargin
-                                                 withButtonBottomMargin:self.buttonBottomMargin
-                                                   withButtonLeftMargin:self.buttonLeftMargin
-                                                  withButtonRightMargin:self.buttonRightMargin];
+            self.endPositions = [VHButtonPlaceManager positionsWithParentFrame:[self parentView].bounds
+                                                              withButtonRadius:self.textInsideCircleButtonRadius
+                                                              withButtonNumber:self.boomButtonBuilders.count
+                                                            withBoomMenuButton:self];
             break;
         case VHButtonTextOutsideCircle:
-            self.endPositions = [VHButtonPlaceManager positionsWithEnum:self.buttonPlaceEnum
-                                                          withAlignment:self.buttonPlaceAlignmentEnum
-                                                        withParentFrame:[self parentView].bounds
-                                                        withButtonWidth:self.textOutsideCircleButtonWidth
-                                                       withButtonHeight:self.textOutsideCircleButtonHeight
-                                                       withButtonNumber:self.boomButtonBuilders.count
-                                             withButtonHorizontalMargin:self.buttonHorizontalMargin
-                                               withButtonInclinedMargin:self.buttonInclinedMargin
-                                               withButtonVerticalMargin:self.buttonVerticalMargin
-                                                    withButtonTopMargin:self.buttonTopMargin
-                                                 withButtonBottomMargin:self.buttonBottomMargin
-                                                   withButtonLeftMargin:self.buttonLeftMargin
-                                                  withButtonRightMargin:self.buttonRightMargin];
+            self.endPositions = [VHButtonPlaceManager positionsWithParentFrame:[self parentView].bounds
+                                                               withButtonWidth:self.textOutsideCircleButtonWidth
+                                                              withButtonHeight:self.textOutsideCircleButtonHeight
+                                                              withButtonNumber:self.boomButtonBuilders.count
+                                                            withBoomMenuButton:self];
             break;
         case VHButtonHam:
-            self.endPositions = [VHButtonPlaceManager positionsForHamWithEnum:self.buttonPlaceEnum
-                                                                withAlignment:self.buttonPlaceAlignmentEnum
-                                                              withParentFrame:[self parentView].bounds
-                                                              withButtonWidth:self.hamButtonWidth
-                                                             withButtonHeight:self.hamButtonHeight
-                                                             withButtonNumber:self.boomButtonBuilders.count
-                                                   withButtonHorizontalMargin:self.buttonHorizontalMargin
-                                                     withButtonVerticalMargin:self.buttonVerticalMargin
-                                                          withButtonTopMargin:self.buttonTopMargin
-                                                       withButtonBottomMargin:self.buttonBottomMargin
-                                                         withButtonLeftMargin:self.buttonLeftMargin
-                                                        withButtonRightMargin:self.buttonRightMargin
-                                                  withLastButtonMarginMoreTop:self.bottomHamButtonTopMargin > 0
-                                                      withLastButtonTopMargin:self.bottomHamButtonTopMargin];
+            self.endPositions = [VHButtonPlaceManager positionsWithParentFrame:[self parentView].bounds
+                                                               withButtonWidth:self.hamButtonWidth
+                                                              withButtonHeight:self.hamButtonHeight
+                                                              withButtonNumber:self.boomButtonBuilders.count
+                                                            withBoomMenuButton:self];
             break;
         default:
             break;
@@ -1200,6 +1209,10 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     else if (self.piecePlaceEnum == VHPiecePlaceShare)
     {
         return (int)self.boomButtonBuilders.count;
+    }
+    else if (self.piecePlaceEnum == VHPiecePlaceCustom)
+    {
+        return self.customPiecePositions.count;
     }
     else
     {
@@ -1490,6 +1503,60 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
         _tipLabel = [UILabel new];
     }
     return _tipLabel;
+}
+
+#pragma mark - Fade Views
+
+- (void)placeFadeViews
+{
+    for (UIView *view in self.fadeViews)
+    {
+        [view removeFromSuperview];
+        [self addSubview:view];
+    }
+}
+
+- (void)addFadeView:(UIView *)view
+{
+    if (!view)
+    {
+        return;
+    }
+    [self.fadeViews addObject:view];
+    [self addSubview:view];
+}
+
+- (void)removeFadeView:(UIView *)view
+{
+    if (!view)
+    {
+        return;
+    }
+    [self.fadeViews removeObject:view];
+    [view removeFromSuperview];
+}
+
+- (void)clearFadeViews
+{
+    for (UIView *view in self.fadeViews)
+    {
+        [view removeFromSuperview];
+    }
+    [self.fadeViews removeAllObjects];
+}
+
+- (void)startBoomAnimationForFadeViews:(BOOL)immediately
+{
+    CFTimeInterval duration = immediately ? 0.001 : self.boomDuration + (self.pieces.count - 1) * self.boomDelay;
+    CAAnimation *opacityAnimation = [VHAnimationManager fadeViewsOpacityAnimation:YES duration:duration];
+    [VHAnimationManager addAnimation:opacityAnimation forKey:kFadeViewAnimation toViews:self.fadeViews];
+}
+
+- (void)startReboomAnimationForFadeViews:(BOOL)immediately
+{
+    CFTimeInterval duration = immediately ? 0.001 : self.reboomDuration + (self.pieces.count - 1) * self.reboomDelay;
+    CAAnimation *opacityAnimation = [VHAnimationManager fadeViewsOpacityAnimation:NO duration:duration];
+    [VHAnimationManager addAnimation:opacityAnimation forKey:kFadeViewAnimation toViews:self.fadeViews];
 }
 
 #pragma mark - Setters
@@ -1923,6 +1990,18 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     [self setBoomScaleEaseName:boomEaseName];
 }
 
+- (void)setBoomEase:(id<VHTimeInterpolator>)boomEase
+{
+    if ([_boomEase isEqual:boomEase])
+    {
+        return;
+    }
+    _boomEase = boomEase;
+    [self setBoomMoveEase:boomEase];
+    [self setBoomRotateEase:boomEase];
+    [self setBoomScaleEase:boomEase];
+}
+
 - (void)setBoomMoveEaseName:(NSString *)boomMoveEaseName
 {
     if ([_boomMoveEaseName isEqualToString:boomMoveEaseName])
@@ -1931,6 +2010,15 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     }
     _boomMoveEaseName = boomMoveEaseName;
     self.boomMoveEase = [VHEase easeWithName:_boomMoveEaseName];
+}
+
+- (void)setBoomMoveEase:(id<VHTimeInterpolator>)boomMoveEase
+{
+    if ([_boomMoveEase isEqual:boomMoveEase])
+    {
+        return;
+    }
+    _boomMoveEase = boomMoveEase;
 }
 
 - (void)setBoomRotateEaseName:(NSString *)boomRotateEaseName
@@ -1943,6 +2031,15 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     self.boomRotateEase = [VHEase easeWithName:_boomRotateEaseName];
 }
 
+- (void)setBoomRotateEase:(id<VHTimeInterpolator>)boomRotateEase
+{
+    if ([_boomRotateEase isEqual:boomRotateEase])
+    {
+        return;
+    }
+    _boomRotateEase = boomRotateEase;
+}
+
 - (void)setBoomScaleEaseName:(NSString *)boomScaleEaseName
 {
     if ([_boomScaleEaseName isEqualToString:boomScaleEaseName])
@@ -1951,6 +2048,15 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     }
     _boomScaleEaseName = boomScaleEaseName;
     self.boomScaleEase = [VHEase easeWithName:boomScaleEaseName];
+}
+
+- (void)setBoomScaleEase:(id<VHTimeInterpolator>)boomScaleEase
+{
+    if ([_boomScaleEase isEqual:boomScaleEase])
+    {
+        return;
+    }
+    _boomScaleEase = boomScaleEase;
 }
 
 - (void)setReboomEaseName:(NSString *)reboomEaseName
@@ -1965,6 +2071,18 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     [self setReboomScaleEaseName:_reboomEaseName];
 }
 
+- (void)setReboomEase:(id<VHTimeInterpolator>)reboomEase
+{
+    if ([_reboomEase isEqual:reboomEase])
+    {
+        return;
+    }
+    _reboomEase = reboomEase;
+    [self setReboomMoveEase:reboomEase];
+    [self setReboomRotateEase:reboomEase];
+    [self setReboomScaleEase:reboomEase];
+}
+
 - (void)setReboomMoveEaseName:(NSString *)reboomMoveEaseName
 {
     if ([_reboomMoveEaseName isEqualToString:reboomMoveEaseName])
@@ -1973,6 +2091,15 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     }
     _reboomMoveEaseName = reboomMoveEaseName;
     self.reboomMoveEase = [VHEase easeWithName:_reboomMoveEaseName];
+}
+
+- (void)setReboomMoveEase:(id<VHTimeInterpolator>)reboomMoveEase
+{
+    if ([_reboomMoveEase isEqual:reboomMoveEase])
+    {
+        return;
+    }
+    _reboomMoveEase = reboomMoveEase;
 }
 
 - (void)setReboomRotateEaseName:(NSString *)reboomRotateEaseName
@@ -1985,6 +2112,15 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     self.reboomRotateEase = [VHEase easeWithName:_reboomRotateEaseName];
 }
 
+- (void)setReboomRotateEase:(id<VHTimeInterpolator>)reboomRotateEase
+{
+    if ([_reboomRotateEase isEqual:reboomRotateEase])
+    {
+        return;
+    }
+    _reboomRotateEase = reboomRotateEase;
+}
+
 - (void)setReboomScaleEaseName:(NSString *)reboomScaleEaseName
 {
     if ([_reboomScaleEaseName isEqualToString:reboomScaleEaseName])
@@ -1993,6 +2129,15 @@ static NSString *const kFillColorAnimation = @"kFillColorAnimation";
     }
     _reboomScaleEaseName = reboomScaleEaseName;
     self.reboomScaleEase = [VHEase easeWithName:_reboomScaleEaseName];
+}
+
+- (void)setReboomScaleEase:(id<VHTimeInterpolator>)reboomScaleEase
+{
+    if ([_reboomScaleEase isEqual:reboomScaleEase])
+    {
+        return;
+    }
+    _reboomScaleEase = reboomScaleEase;
 }
 
 #pragma mark Boom Buttons

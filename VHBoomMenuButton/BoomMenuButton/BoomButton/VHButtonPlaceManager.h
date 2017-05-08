@@ -9,51 +9,25 @@
 #import <UIKit/UIKit.h>
 #import "VHButtonPlaceEnum.h"
 #import "VHButtonPlaceAlignmentEnum.h"
+#import "VHBoomMenuButton.h"
 
 @interface VHButtonPlaceManager : NSObject
 
-+ (NSMutableArray<NSValue *> *)positionsWithEnum:(VHButtonPlaceEnum)placeEnum
-                                   withAlignment:(VHButtonPlaceAlignmentEnum)alignmentEnum
-                                 withParentFrame:(CGRect)frame
-                                 withButtonWidth:(CGFloat)width
-                                withButtonHeight:(CGFloat)height
-                                withButtonNumber:(long)buttonNumber
-                      withButtonHorizontalMargin:(CGFloat)buttonHorizontalMargin
-                        withButtonInclinedMargin:(CGFloat)buttonInclinedMargin
-                        withButtonVerticalMargin:(CGFloat)buttonVerticalMargin
-                             withButtonTopMargin:(CGFloat)buttonTopMargin
-                          withButtonBottomMargin:(CGFloat)buttonBottomMargin
-                            withButtonLeftMargin:(CGFloat)buttonLeftMargin
-                           withButtonRightMargin:(CGFloat)buttonRightMargin;
++ (NSMutableArray<NSValue *> *)positionsWithParentFrame:(CGRect)parentFrame
+                                        withButtonWidth:(CGFloat)buttonWidth
+                                       withButtonHeight:(CGFloat)buttonHeight
+                                       withButtonNumber:(long)buttonNumber
+                                     withBoomMenuButton:(VHBoomMenuButton *)bmb;
 
-+ (NSMutableArray<NSValue *> *)positionsWithEnum:(VHButtonPlaceEnum)placeEnum
-                                   withAlignment:(VHButtonPlaceAlignmentEnum)alignmentEnum
-                                 withParentFrame:(CGRect)frame
-                                withButtonRadius:(CGFloat)radius
-                                withButtonNumber:(long)buttonNumber
-                      withButtonHorizontalMargin:(CGFloat)buttonHorizontalMargin
-                        withButtonInclinedMargin:(CGFloat)buttonInclinedMargin
-                        withButtonVerticalMargin:(CGFloat)buttonVerticalMargin
-                             withButtonTopMargin:(CGFloat)buttonTopMargin
-                          withButtonBottomMargin:(CGFloat)buttonBottomMargin
-                            withButtonLeftMargin:(CGFloat)buttonLeftMargin
-                           withButtonRightMargin:(CGFloat)buttonRightMargin;
++ (NSMutableArray<NSValue *> *)positionsWithParentFrame:(CGRect)parentFrame
+                                       withButtonRadius:(CGFloat)radius
+                                       withButtonNumber:(long)buttonNumber
+                                     withBoomMenuButton:(VHBoomMenuButton *)bmb;
 
-+ (NSMutableArray<NSValue *> *)positionsForHamWithEnum:(VHButtonPlaceEnum)placeEnum
-                                         withAlignment:(VHButtonPlaceAlignmentEnum)alignmentEnum
-                                       withParentFrame:(CGRect)frame
-                                       withButtonWidth:(CGFloat)width
-                                      withButtonHeight:(CGFloat)height
-                                      withButtonNumber:(long)buttonNumber
-                            withButtonHorizontalMargin:(CGFloat)buttonHorizontalMargin
-                              withButtonVerticalMargin:(CGFloat)buttonVerticalMargin
-                                   withButtonTopMargin:(CGFloat)buttonTopMargin
-                                withButtonBottomMargin:(CGFloat)buttonBottomMargin
-                                  withButtonLeftMargin:(CGFloat)buttonLeftMargin
-                                 withButtonRightMargin:(CGFloat)buttonRightMargin
-                           withLastButtonMarginMoreTop:(BOOL)lastButtonMarginMoreTop
-                               withLastButtonTopMargin:(CGFloat)lastButtonTopMargin;
++ (int)buttonNumber:(VHButtonPlaceEnum)buttonPlaceEnum;
 
-+ (NSInteger)buttonNumber:(VHButtonPlaceEnum)placeEnum;
++ (int)minButtonNumber:(VHButtonPlaceEnum)buttonPlaceEnum;
+
++ (int)maxButtonNumber:(VHButtonPlaceEnum)buttonPlaceEnum;
 
 @end

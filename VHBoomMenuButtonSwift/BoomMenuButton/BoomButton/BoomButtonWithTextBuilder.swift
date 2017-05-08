@@ -8,6 +8,11 @@
 
 public class BoomButtonWithTextBuilder: BoomButtonBuilder {
 
+    /// The text on boom-button at normal state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var normalText: String? {
         didSet {
             if normalText == oldValue {
@@ -20,6 +25,11 @@ public class BoomButtonWithTextBuilder: BoomButtonBuilder {
         }
     }
     
+    /// The text on boom-button at highlighted state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var highlightedText: String? {
         didSet {
             if highlightedText == oldValue {
@@ -32,6 +42,11 @@ public class BoomButtonWithTextBuilder: BoomButtonBuilder {
         }
     }
     
+    /// The text on boom-button at unable state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var unableText: String? {
         didSet {
             if unableText == oldValue {
@@ -44,6 +59,11 @@ public class BoomButtonWithTextBuilder: BoomButtonBuilder {
         }
     }
     
+    /// The attributed text on boom-button at normal state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var normalAttributedText: NSAttributedString? {
         didSet {
             if Utils.isSameAttributedString(normalAttributedText, oldValue) {
@@ -56,6 +76,11 @@ public class BoomButtonWithTextBuilder: BoomButtonBuilder {
         }
     }
     
+    /// The attributed text on boom-button at highlighted state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var highlightedAttributedText: NSAttributedString? {
         didSet {
             if Utils.isSameAttributedString(highlightedAttributedText, oldValue) {
@@ -68,6 +93,11 @@ public class BoomButtonWithTextBuilder: BoomButtonBuilder {
         }
     }
     
+    /// The attributed text on boom-button at unable state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var unableAttributedText: NSAttributedString? {
         didSet {
             if Utils.isSameAttributedString(unableAttributedText, oldValue) {
@@ -80,6 +110,11 @@ public class BoomButtonWithTextBuilder: BoomButtonBuilder {
         }
     }
     
+    /// The color of text on boom-button at normal state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **UIColor.white**.
     public var normalTextColor: UIColor = UIColor.white {
         didSet {
             if Utils.isSameColor(normalTextColor, oldValue) {
@@ -92,6 +127,11 @@ public class BoomButtonWithTextBuilder: BoomButtonBuilder {
         }
     }
     
+    /// The color of text on boom-button at highlighted state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var highlightedTextColor: UIColor? {
         didSet {
             if Utils.isSameColor(highlightedTextColor, oldValue) {
@@ -104,6 +144,11 @@ public class BoomButtonWithTextBuilder: BoomButtonBuilder {
         }
     }
     
+    /// The color of text on boom-button at unable state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var unableTextColor: UIColor? {
         didSet {
             if Utils.isSameColor(unableTextColor, oldValue) {
@@ -116,6 +161,11 @@ public class BoomButtonWithTextBuilder: BoomButtonBuilder {
         }
     }
     
+    /// The frame of text on boom-button.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value depends on different type of boom-buttons. Check the init methods in builders of different boom-buttons for more information.
     public var textFrame: CGRect {
         didSet {
             if textFrame.equalTo(oldValue) {
@@ -126,6 +176,11 @@ public class BoomButtonWithTextBuilder: BoomButtonBuilder {
         }
     }
     
+    /// The font of text on boom-button.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value depends on different type of boom-buttons. Check the init methods in builders of different boom-buttons for more information.
     public var textFont: UIFont {
         didSet {
             if textFont.isEqual(oldValue) {
@@ -136,6 +191,11 @@ public class BoomButtonWithTextBuilder: BoomButtonBuilder {
         }
     }
     
+    /// The alignment of text on boom-button.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value depends on different type of boom-buttons. Check the init methods in builders of different boom-buttons for more information.
     public var textAlignment: NSTextAlignment {
         didSet {
             if textAlignment == oldValue {
@@ -146,6 +206,11 @@ public class BoomButtonWithTextBuilder: BoomButtonBuilder {
         }
     }
     
+    /// The line break mode of text on boom-button.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **NSLineBreakMode.byTruncatingTail**.
     public var textLineBreakMode: NSLineBreakMode = NSLineBreakMode.byTruncatingTail {
         didSet {
             if textLineBreakMode == oldValue {
@@ -156,6 +221,11 @@ public class BoomButtonWithTextBuilder: BoomButtonBuilder {
         }
     }
     
+    /// The maximum number of lines to use for text on boom-button.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **1**.
     public var textLines: Int = 1 {
         didSet {
             if textLines == oldValue {
@@ -166,6 +236,11 @@ public class BoomButtonWithTextBuilder: BoomButtonBuilder {
         }
     }
     
+    /// The color of shadow for text on boom-button.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var textShadowColor: UIColor? {
         didSet {
             if Utils.isSameColor(textShadowColor, oldValue) {
@@ -176,6 +251,11 @@ public class BoomButtonWithTextBuilder: BoomButtonBuilder {
         }
     }
     
+    /// The shadow offset (in points) on x axis for text on boom-button.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **0**.
     public var textShadowOffsetX: CGFloat = 0 {
         didSet {
             if textShadowOffsetX == oldValue {
@@ -186,6 +266,11 @@ public class BoomButtonWithTextBuilder: BoomButtonBuilder {
         }
     }
     
+    /// The shadow offset (in points) on y axis for text on boom-button.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **0**.
     public var textShadowOffsetY: CGFloat = 0 {
         didSet {
             if textShadowOffsetY == oldValue {
@@ -196,6 +281,11 @@ public class BoomButtonWithTextBuilder: BoomButtonBuilder {
         }
     }
     
+    /// Whether the text plays rotation animation when booming and rebooming.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value depends on different type of boom-buttons. Check the init methods in builders of different boom-buttons for more information.
     public var rotateText: Bool {
         didSet {
             if rotateText == oldValue {

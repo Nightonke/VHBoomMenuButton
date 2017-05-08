@@ -8,6 +8,11 @@
 
 public class HamButtonBuilder: BoomButtonWithTextBuilder {
 
+    /// Width (in points) of the boom-button (including the text label).
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **UIScreen.main.bounds.size.width - 40**.
     public var width: CGFloat = Utils.screenWidth() - 40 {
         didSet {
             if width == oldValue {
@@ -28,6 +33,11 @@ public class HamButtonBuilder: BoomButtonWithTextBuilder {
         }
     }
     
+    /// Height (in points) of the boom-button (including the text label).
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **60**.
     public var height: CGFloat = 60 {
         didSet {
             if height == oldValue {
@@ -48,6 +58,11 @@ public class HamButtonBuilder: BoomButtonWithTextBuilder {
         }
     }
     
+    /// Whether the boom-button contains a sub-text. All properties for sub-text only work when "containsSubText" is true.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **true**.
     public var containsSubText: Bool = true {
         didSet {
             if containsSubText == oldValue {
@@ -58,6 +73,11 @@ public class HamButtonBuilder: BoomButtonWithTextBuilder {
         }
     }
     
+    /// The sub-text on boom-button at normal state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var normalSubText: String? {
         didSet {
             if normalSubText == oldValue {
@@ -70,6 +90,11 @@ public class HamButtonBuilder: BoomButtonWithTextBuilder {
         }
     }
     
+    /// The sub-text on boom-button at highlighted state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var highlightedSubText: String? {
         didSet {
             if highlightedSubText == oldValue {
@@ -82,6 +107,11 @@ public class HamButtonBuilder: BoomButtonWithTextBuilder {
         }
     }
     
+    /// The sub-text on boom-button at unable state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var unableSubText: String? {
         didSet {
             if unableSubText == oldValue {
@@ -94,6 +124,11 @@ public class HamButtonBuilder: BoomButtonWithTextBuilder {
         }
     }
     
+    /// The attributed sub-text on boom-button at normal state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var normalAttributedSubText: NSAttributedString? {
         didSet {
             if Utils.isSameAttributedString(normalAttributedSubText, oldValue) {
@@ -106,6 +141,11 @@ public class HamButtonBuilder: BoomButtonWithTextBuilder {
         }
     }
     
+    /// The attributed sub-text on boom-button at highlighted state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var highlightedAttributedSubText: NSAttributedString? {
         didSet {
             if Utils.isSameAttributedString(highlightedAttributedSubText, oldValue) {
@@ -118,6 +158,11 @@ public class HamButtonBuilder: BoomButtonWithTextBuilder {
         }
     }
     
+    /// The attributed sub-text on boom-button at unable state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var unableAttributedSubText: NSAttributedString? {
         didSet {
             if Utils.isSameAttributedString(unableAttributedSubText, oldValue) {
@@ -130,6 +175,11 @@ public class HamButtonBuilder: BoomButtonWithTextBuilder {
         }
     }
     
+    /// The color of sub-text on boom-button at normal state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **UIColor.white**.
     public var normalSubTextColor: UIColor = UIColor.white {
         didSet {
             if Utils.isSameColor(normalSubTextColor, oldValue) {
@@ -142,6 +192,11 @@ public class HamButtonBuilder: BoomButtonWithTextBuilder {
         }
     }
     
+    /// The color of sub-text on boom-button at highlighted state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var highlightedSubTextColor: UIColor? {
         didSet {
             if Utils.isSameColor(highlightedSubTextColor, oldValue) {
@@ -154,6 +209,11 @@ public class HamButtonBuilder: BoomButtonWithTextBuilder {
         }
     }
     
+    /// The color of sub-text on boom-button at unable state.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var unableSubTextColor: UIColor? {
         didSet {
             if Utils.isSameColor(unableSubTextColor, oldValue) {
@@ -166,6 +226,11 @@ public class HamButtonBuilder: BoomButtonWithTextBuilder {
         }
     }
     
+    /// The frame of sub-text on boom-button.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is CGRect.init(x: 70, y: 35, width: boom-button width - 80, height: 15).
     public var subTextFrame: CGRect = CGRect.init(x: 70, y: 35, width: Utils.screenWidth() - 80, height: 15) {
         didSet {
             if subTextFrame == oldValue {
@@ -176,6 +241,11 @@ public class HamButtonBuilder: BoomButtonWithTextBuilder {
         }
     }
     
+    /// The font of sub-text on boom-button.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is UIFont.systemFont(ofSize: 9).
     public var subTextFont: UIFont = UIFont.systemFont(ofSize: 9) {
         didSet {
             if subTextFont.isEqual(oldValue) {
@@ -186,6 +256,11 @@ public class HamButtonBuilder: BoomButtonWithTextBuilder {
         }
     }
     
+    /// The alignment of sub-text on boom-button.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **NSTextAlignment.left**.
     public var subTextAlignment: NSTextAlignment = NSTextAlignment.left {
         didSet {
             if subTextAlignment == oldValue {
@@ -196,6 +271,11 @@ public class HamButtonBuilder: BoomButtonWithTextBuilder {
         }
     }
     
+    /// The line break mode of sub-text on boom-button.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **NSLineBreakMode.byTruncatingTail**.
     public var subTextLineBreakMode: NSLineBreakMode = NSLineBreakMode.byTruncatingTail {
         didSet {
             if subTextLineBreakMode == oldValue {
@@ -206,6 +286,11 @@ public class HamButtonBuilder: BoomButtonWithTextBuilder {
         }
     }
     
+    /// The maximum number of lines to use for sub-text on boom-button.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **1**.
     public var subTextLines: Int = 1 {
         didSet {
             if subTextLines == oldValue {
@@ -216,6 +301,11 @@ public class HamButtonBuilder: BoomButtonWithTextBuilder {
         }
     }
     
+    /// The color of shadow for sub-text on boom-button.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **nil**.
     public var subTextShadowColor: UIColor? {
         didSet {
             if Utils.isSameColor(subTextShadowColor, oldValue) {
@@ -226,6 +316,11 @@ public class HamButtonBuilder: BoomButtonWithTextBuilder {
         }
     }
     
+    /// The shadow offset (in points) on x axis for sub-text on boom-button.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **0**.
     public var subTextShadowOffsetX: CGFloat = 0 {
         didSet {
             if subTextShadowOffsetX == oldValue {
@@ -236,6 +331,11 @@ public class HamButtonBuilder: BoomButtonWithTextBuilder {
         }
     }
     
+    /// The shadow offset (in points) on y axis for sub-text on boom-button.
+    ///
+    /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
+    ///
+    /// The default value is **0**.
     public var subTextShadowOffsetY: CGFloat = 0 {
         didSet {
             if subTextShadowOffsetY == oldValue {

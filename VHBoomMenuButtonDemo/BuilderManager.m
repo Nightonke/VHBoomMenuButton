@@ -121,12 +121,14 @@ static int imageNameIndex = 0;
                     || piecePlaceEnum == VHPiecePlaceHAM_5
                     || piecePlaceEnum == VHPiecePlaceHAM_6
                     || piecePlaceEnum == VHPiecePlaceShare
+                    || piecePlaceEnum == VHPiecePlaceCustom
                     || buttonPlaceEnum == VHButtonPlaceHAM_1
                     || buttonPlaceEnum == VHButtonPlaceHAM_2
                     || buttonPlaceEnum == VHButtonPlaceHAM_3
                     || buttonPlaceEnum == VHButtonPlaceHAM_4
                     || buttonPlaceEnum == VHButtonPlaceHAM_5
-                    || buttonPlaceEnum == VHButtonPlaceHAM_6)
+                    || buttonPlaceEnum == VHButtonPlaceHAM_6
+                    || buttonPlaceEnum == VHButtonPlaceCustom)
                 {
                     [datas removeLastObject];
                     [piecesAndButtons removeLastObject];
@@ -162,7 +164,9 @@ static int imageNameIndex = 0;
                 [piecesAndButtons addObject:[NSValue valueWithCGPoint:CGPointMake(piecePlaceEnum, buttonPlaceEnum)]];
                 if (piecePlaceEnum < VHPiecePlaceHAM_1
                     || piecePlaceEnum == VHPiecePlaceShare
-                    || buttonPlaceEnum < VHButtonPlaceHAM_1)
+                    || piecePlaceEnum == VHPiecePlaceCustom
+                    || buttonPlaceEnum < VHButtonPlaceHAM_1
+                    || buttonPlaceEnum == VHButtonPlaceCustom)
                 {
                     [datas removeLastObject];
                     [piecesAndButtons removeLastObject];

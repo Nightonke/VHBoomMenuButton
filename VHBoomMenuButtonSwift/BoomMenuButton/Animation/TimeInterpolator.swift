@@ -6,6 +6,6 @@
 //  Copyright © 2017年 Nightonke. All rights reserved.
 //
 
-protocol TimeInterpolator {
+public protocol TimeInterpolator {
     func interpolation(_ offset: CGFloat) -> CGFloat
 }
