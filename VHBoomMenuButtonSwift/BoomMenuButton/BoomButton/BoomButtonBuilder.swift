@@ -464,6 +464,7 @@ public class BoomButtonBuilder: NSObject {
     
     func build() -> BoomButton {
         assert(false, "Method type should be overrided in child class")
+        return BoomButton.init(builder: self)
     }
     
     func innerPieceColor() -> UIColor {
@@ -480,5 +481,6 @@ public class BoomButtonBuilder: NSObject {
     
     func type() -> ButtonEnum {
         assert(false, "Method type should be overrided in child class")
+        return .unknown
     }
 }

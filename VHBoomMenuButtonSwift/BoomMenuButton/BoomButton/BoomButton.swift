@@ -513,22 +513,27 @@ class BoomButton: UIView {
     
     func type() -> ButtonEnum {
         assert(false, "Method type should be overrided in child class")
+        return .unknown
     }
     
     func goneViews() -> [UIView] {
         assert(false, "Method type should be overrided in child class")
+        return [UIView]()
     }
     
     func rotateViews() -> [UIView] {
         assert(false, "Method type should be overrided in child class")
+        return [UIView]()
     }
     
     func buttonWidth() -> CGFloat {
         assert(false, "Method type should be overrided in child class")
+        return CGFloat.init(0)
     }
     
     func buttonHeight() -> CGFloat {
         assert(false, "Method type should be overrided in child class")
+        return CGFloat.init(0)
     }
     
     func toUnable() {
@@ -560,6 +565,7 @@ class BoomButton: UIView {
     
     func rotateAnchorPoint() -> CGPoint {
         assert(false, "Method type should be overrided in child class")
+        return CGPoint.zero
     }
     
     func setAnchorPointOfLayer() {
@@ -568,6 +574,7 @@ class BoomButton: UIView {
     
     func centerPoint() -> CGPoint {
         assert(false, "Method type should be overrided in child class")
+        return CGPoint.zero
     }
     
 }
