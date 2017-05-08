@@ -22,6 +22,7 @@ Pod::Spec.new do |s|
   s.subspec 'Swift' do |ss|
     ss.ios.deployment_target = '8.0'
     ss.source_files = 'VHBoomMenuButtonSwift/**/*.{h,m,swift}'
+    ss.pod_target_xcconfig = { 'SWIFT_VERSION' => '3' }
   end
   
 end
