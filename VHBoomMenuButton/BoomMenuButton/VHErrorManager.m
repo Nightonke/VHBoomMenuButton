@@ -24,14 +24,14 @@
     int pieceNumber = bmb.pieceNumber;
     int minPieceNumber = bmb.minPieceNumber;
     int maxPieceNumber = bmb.maxPieceNumber;
-    int customPiecePositionsNumber = bmb.customPiecePositions.count;
+    int customPiecePositionsNumber = (int)bmb.customPiecePositions.count;
     
     int buttonNumber = bmb.buttonNumber;
     int minButtonNumber = bmb.minButtonNumber;
     int maxButtonNumber = bmb.maxButtonNumber;
-    int customButtonPositionsNumber = bmb.customButtonPositions.count;
+    int customButtonPositionsNumber = (int)bmb.customButtonPositions.count;
     
-    int builderNumber = builders.count;
+    int builderNumber = (int)builders.count;
     
     if (pieceNumber == -1)
     {

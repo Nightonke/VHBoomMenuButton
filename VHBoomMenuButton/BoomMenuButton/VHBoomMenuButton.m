@@ -1212,7 +1212,7 @@ static NSString *const kFadeViewAnimation = @"kFadeViewAnimation";
     }
     else if (self.piecePlaceEnum == VHPiecePlaceCustom)
     {
-        return self.customPiecePositions.count;
+        return (int)self.customPiecePositions.count;
     }
     else
     {
