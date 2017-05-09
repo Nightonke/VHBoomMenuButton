@@ -38,6 +38,9 @@
     self.bmb2.piecePlaceEnum = VHPiecePlaceDOT_9_1;
     self.bmb2.buttonPlaceEnum = VHButtonPlaceSC_9_1;
     self.bmb2.pieceCornerRadius = 2;
+    self.bmb2.boomEnum = VHBoomParabola1;
+    self.bmb2.duration = 1;
+    self.bmb2.backgroundBlurred = YES;
     for (int i = 0; i < self.bmb2.pieceNumber; i++)
     {
         [self.bmb2 addBuilder:[BuilderManager squareTextInsideCircleButtonBuilder]];
@@ -47,6 +50,10 @@
     self.bmb3.piecePlaceEnum = VHPiecePlaceDOT_9_1;
     self.bmb3.buttonPlaceEnum = VHButtonPlaceSC_9_1;
     self.bmb3.pieceCornerRadius = 0;
+    self.bmb3.boomEnum = VHBoomParabola3;
+    self.bmb3.use3DTransformAnimation = NO;
+    self.bmb3.duration = 1;
+    self.bmb3.pieceCornerRadius = 1;
     for (int i = 0; i < self.bmb3.pieceNumber; i++)
     {
         [self.bmb3 addBuilder:[BuilderManager squareTextOutsideCircleButtonBuilder]];

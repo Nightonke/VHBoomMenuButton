@@ -66,6 +66,7 @@ static int imageNameIndex = 0;
     VHTextOutsideCircleButtonBuilder *builder = [BuilderManager textOutsideCircleButtonBuilder];
     builder.rotateText = NO;
     builder.round = NO;
+    builder.cornerRadius = 10;
     return builder;
 }
 
