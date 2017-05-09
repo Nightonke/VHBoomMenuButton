@@ -26,6 +26,7 @@
     [super viewDidLoad];
     
     self.bmb.buttonEnum = VHButtonTextInsideCircle;
+    self.bmb.duration = 3;
     
     [self initializeDatas];
     [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];

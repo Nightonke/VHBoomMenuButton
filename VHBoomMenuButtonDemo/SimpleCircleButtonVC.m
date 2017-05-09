@@ -28,7 +28,6 @@
     [super viewDidLoad];
     
     self.bmb.buttonEnum = VHButtonSimpleCircle;
-    self.bmb.boomDelegate = self;
     
     [self initializeDatas];
     [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
