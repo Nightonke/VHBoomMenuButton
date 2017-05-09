@@ -5,9 +5,9 @@ After the version 2.0.0 has been published on [Android platform](https://github.
 
 And now, just enjoy BMB.
 
-<img src="https://github.com/Nightonke/VHBoomMenuButton/blob/master/Pictures/TextInsideCircleButton.gif" width="380"/>
-<img src="https://github.com/Nightonke/VHBoomMenuButton/blob/master/Pictures/SquareAndPieceCornerRadius.gif" width="380"/>
-<img src="https://github.com/Nightonke/VHBoomMenuButton/blob/master/Pictures/BlurBackgroundAndTip.gif" width="380"/>
-<img src="https://github.com/Nightonke/VHBoomMenuButton/blob/master/Pictures/NavigationBar.gif" width="380"/>
-<img src="https://github.com/Nightonke/VHBoomMenuButton/blob/master/Pictures/TableView.gif" width="380"/>
-<img src="https://github.com/Nightonke/VHBoomMenuButton/blob/master/Pictures/Share.gif" width="380"/>
+<img src="https://github.com/Nightonke/VHBoomMenuButton/blob/master/Pictures/TextInsideCircleButton.gif" width="375"/>
+<img src="https://github.com/Nightonke/VHBoomMenuButton/blob/master/Pictures/SquareAndPieceCornerRadius.gif" width="375"/>
+<img src="https://github.com/Nightonke/VHBoomMenuButton/blob/master/Pictures/BlurBackgroundAndTip.gif" width="375"/>
+<img src="https://github.com/Nightonke/VHBoomMenuButton/blob/master/Pictures/NavigationBar.gif" width="375"/>
+<img src="https://github.com/Nightonke/VHBoomMenuButton/blob/master/Pictures/TableView.gif" width="375"/>
+<img src="https://github.com/Nightonke/VHBoomMenuButton/blob/master/Pictures/Share.gif" width="375"/>
