@@ -2,8 +2,8 @@
 //  BoomMenuButtonVC.m
 //  VHBoomMenuButton
 //
-//  Created by viktorhuang on 2017/4/11.
-//  Copyright © 2017年 Nightonke. All rights reserved.
+//  Created by Nightonke on 2017/4/11.
+//  Copyright © 2017 Nightonke. All rights reserved.
 //
 
 #import "BoomMenuButtonVC.h"
@@ -52,28 +52,28 @@
     [self.overlapWindow addSubview:self.logo];
 }
 
-- (void)dimBMBLogoAnimation
+- (void)dimBMBLogoAnimation:(CFTimeInterval)duration
 {
-    [UIView animateWithDuration:1.4 animations:^{
+    [UIView animateWithDuration:duration animations:^{
         self.animateView.backgroundColor = [self colorFromARGB:0x55000000];
     }];
 }
 
-- (void)lightBMBLogoAnimation
+- (void)lightBMBLogoAnimation:(CFTimeInterval)duration
 {
-    [UIView animateWithDuration:1.4 animations:^{
+    [UIView animateWithDuration:duration animations:^{
         self.animateView.backgroundColor = [self colorFromARGB:0x00000000];
     }];
 }
 
-- (void)onBoomWillShow
+- (void)boomMenuButtonWillBoom:(VHBoomMenuButton *)bmb
 {
-    [self dimBMBLogoAnimation];
+    [self dimBMBLogoAnimation:bmb.boomDuration + bmb.boomDelay * (bmb.pieceNumber - 1)];
 }
 
-- (void)onBoomwillReboom
+- (void)boomMenuButtonWillReboom:(VHBoomMenuButton *)bmb
 {
-    [self lightBMBLogoAnimation];
+    [self lightBMBLogoAnimation:bmb.reboomDuration + bmb.reboomDelay * (bmb.pieceNumber - 1)];
 }
 
 - (UIColor *)colorFromARGB:(int)color

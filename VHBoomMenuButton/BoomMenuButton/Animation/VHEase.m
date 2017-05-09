@@ -3,7 +3,7 @@
 //  VHMediaTimingFunction
 //
 //  Created by Nightonke on 16/7/22.
-//  Copyright © 2016年 Nightonke. All rights reserved.
+//  Copyright © 2016 Nightonke. All rights reserved.
 //
 
 #import "VHEase.h"

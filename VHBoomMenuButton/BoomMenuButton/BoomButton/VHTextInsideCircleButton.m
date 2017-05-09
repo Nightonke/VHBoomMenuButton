@@ -3,7 +3,7 @@
 //  VHBoomMenuButton
 //
 //  Created by Nightonke on 16/8/2.
-//  Copyright © 2016年 Nightonke. All rights reserved.
+//  Copyright © 2016 Nightonke. All rights reserved.
 //
 
 #import "VHTextInsideCircleButton.h"

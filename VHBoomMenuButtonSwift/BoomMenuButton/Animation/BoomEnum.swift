@@ -3,7 +3,7 @@
 //  BoomMenuButton
 //
 //  Created by Nightonke on 2017/4/26.
-//  Copyright © 2017年 Nightonke. All rights reserved.
+//  Copyright © 2017 Nightonke. All rights reserved.
 //
 
 /// The trace of position animations of boom-buttons when booming or rebooming.

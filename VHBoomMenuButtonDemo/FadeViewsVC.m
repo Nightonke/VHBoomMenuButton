@@ -2,8 +2,8 @@
 //  FadeViewsVC.m
 //  VHBoomMenuButtonDemo
 //
-//  Created by viktorhuang on 2017/5/7.
-//  Copyright © 2017年 Nightonke. All rights reserved.
+//  Created by Nightonke on 2017/5/7.
+//  Copyright © 2017 Nightonke. All rights reserved.
 //
 
 #import "FadeViewsVC.h"

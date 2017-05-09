@@ -2,8 +2,8 @@
 //  ButtonPlaceManager.swift
 //  BoomMenuButton
 //
-//  Created by viktorhuang on 2017/4/28.
-//  Copyright © 2017年 Nightonke. All rights reserved.
+//  Created by Nightonke on 2017/4/28.
+//  Copyright © 2017 Nightonke. All rights reserved.
 //
 
 class ButtonPlaceManager: NSObject {

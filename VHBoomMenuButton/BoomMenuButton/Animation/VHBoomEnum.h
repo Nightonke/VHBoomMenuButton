@@ -3,7 +3,7 @@
 //  VHBoomMenuExample
 //
 //  Created by Nightonke on 16/7/28.
-//  Copyright © 2016年 Nightonke. All rights reserved.
+//  Copyright © 2016 Nightonke. All rights reserved.
 //
 
 #ifndef VHBoomEnum_h

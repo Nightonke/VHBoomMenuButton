@@ -3,7 +3,7 @@
 //  VHBoomMenuButton
 //
 //  Created by Nightonke on 16/8/2.
-//  Copyright © 2016年 Nightonke. All rights reserved.
+//  Copyright © 2016 Nightonke. All rights reserved.
 //
 
 #import "VHErrorManager.h"
@@ -39,12 +39,12 @@
         if (buttonNumber != -1 && !(minPieceNumber <= buttonNumber && buttonNumber <= maxPieceNumber))
         {
             // The button-place-enum has a certain number of buttons, then it must be in the range
-            NSAssert(NO, @"[BMB] The number(%d) of buttons of button-place-enum(%lu) is not in the range([%d, %d]) of the piece-place-enum(%lu)", buttonNumber, (unsigned long)bmb.buttonPlaceEnum, minPieceNumber, maxPieceNumber, bmb.piecePlaceEnum);
+            NSAssert(NO, @"[BMB] The number(%d) of buttons of button-place-enum(%lu) is not in the range([%d, %d]) of the piece-place-enum(%lu)", buttonNumber, (unsigned long)bmb.buttonPlaceEnum, minPieceNumber, maxPieceNumber, (unsigned long)bmb.piecePlaceEnum);
         }
         if (!(minPieceNumber <= builderNumber && builderNumber <= maxPieceNumber))
         {
             // The number of builders must be in the range
-            NSAssert(NO, @"[BMB] The number of builders(%d) is not in the range([%d, %d]) of the piece-place-enum(%lu)", builderNumber, minPieceNumber, maxPieceNumber, bmb.piecePlaceEnum);
+            NSAssert(NO, @"[BMB] The number of builders(%d) is not in the range([%d, %d]) of the piece-place-enum(%lu)", builderNumber, minPieceNumber, maxPieceNumber, (unsigned long)bmb.piecePlaceEnum);
         }
     }
     else
