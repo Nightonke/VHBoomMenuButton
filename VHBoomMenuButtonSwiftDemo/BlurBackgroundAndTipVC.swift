@@ -25,6 +25,7 @@ class BlurBackgroundAndTipVC: BoomMenuButtonVC {
         bmb1.backgroundBlurred = true
         bmb1.blurEffect = UIBlurEffect.init(style: UIBlurEffectStyle.extraLight)
         bmb1.tip = "Select an animal to feed!"
+        bmb1.tipBelowButtons = false
         bmb1.tipButtonMargin = 30
         bmb1.tipLabel().textColor = UIColor.darkGray
         for _ in 0..<bmb1.piecePlaceEnum.pieceNumber() {

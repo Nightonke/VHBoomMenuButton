@@ -327,12 +327,13 @@ class ButtonPlaceManager: NSObject {
              .sc_7_1, .sc_7_2, .sc_7_3, .sc_7_4, .sc_7_5, .sc_7_6, .sc_8_1, .sc_8_2, .sc_8_3, .sc_8_4, .sc_8_5,
              .sc_8_6, .sc_8_7, .sc_9_1, .sc_9_2, .sc_9_3:
             adjust(positions: &positions, offsetX: 0, offsetY: h_0_5 - w_0_5)
-        case .ham_2, .ham_3, .ham_3, .ham_4, .ham_5, .ham_6:
-            if buttonNumber >= 2 && bmb.buttonHamButtonTopMargin > 0 {
+        default:
+            if buttonNumber >= 2
+                && bmb.buttonEnum == .ham
+                && bmb.buttonHamButtonTopMargin > 0
+                && bmb.buttonPlaceEnum != .horizontal {
                 positions[buttonNumber - 1].y += bmb.buttonHamButtonTopMargin - vm
             }
-        default:
-            break
         }
         
         adjust(positions: &positions, offsetX: parentFrame.size.width / 2, offsetY: parentFrame.size.height / 2)

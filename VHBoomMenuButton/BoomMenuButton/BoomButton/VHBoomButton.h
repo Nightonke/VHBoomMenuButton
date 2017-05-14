@@ -109,4 +109,14 @@
 
 - (CGPoint)centerPoint;
 
+#pragma mark - Public Methods
+
+- (UIImageView *)imageView;
+
+- (UILabel *)label;
+
+- (UILabel *)subLabel;
+
+- (CAShapeLayer *)buttonLayer;
+
 @end

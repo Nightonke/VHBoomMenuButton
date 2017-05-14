@@ -17,7 +17,7 @@
  
  @b Synchronicity : Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
  
- The default value is @b [UIScreen mainScreen].bounds.size.width - 40 .
+ The default value is @b 300 .
  */
 @property (nonatomic, assign) CGFloat width;
 

@@ -26,6 +26,4 @@
 
 + (BOOL)sameColor:(UIColor *)color1 asColor:(UIColor *)color2;
 
-+ (CGFloat)screenWidth;
-
 @end

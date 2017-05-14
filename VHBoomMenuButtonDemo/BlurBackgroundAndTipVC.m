@@ -29,10 +29,7 @@
     self.bmb1.buttonPlaceEnum = VHButtonPlaceSC_9_1;
     self.bmb1.pieceCornerRadius = 1;
     self.bmb1.backgroundBlurred = YES;
-    if ([UIBlurEffect class])
-    {
-        self.bmb1.blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
-    }
+    self.bmb1.blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     self.bmb1.tip = @"Select an animal to feed!";
     self.bmb1.tipBelowButtons = YES;
     self.bmb1.tipButtonMargin = 30;
@@ -46,10 +43,7 @@
     self.bmb2.piecePlaceEnum = VHPiecePlaceHAM_4;
     self.bmb2.buttonPlaceEnum = VHButtonPlaceHAM_4;
     self.bmb2.backgroundBlurred = YES;
-    if ([UIBlurEffect class])
-    {
-        self.bmb2.blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-    }
+    self.bmb2.blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     self.bmb2.tip = @"Nightonke BMB";
     for (int i = 0; i < [VHBoomMenuButton pieceNumber:self.bmb2.piecePlaceEnum]; i++)
     {
@@ -60,10 +54,7 @@
     self.bmb3.piecePlaceEnum = VHPiecePlaceDOT_9_1;
     self.bmb3.buttonPlaceEnum = VHButtonPlaceSC_9_1;
     self.bmb3.backgroundBlurred = YES;
-    if ([UIBlurEffect class])
-    {
-        self.bmb3.blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-    }
+    self.bmb3.blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     self.bmb3.tip = @"Select an animal to feed!";
     self.bmb3.tipLabel.textColor = [UIColor darkGrayColor];
     self.bmb3.tipLabel.font = [UIFont systemFontOfSize:15];

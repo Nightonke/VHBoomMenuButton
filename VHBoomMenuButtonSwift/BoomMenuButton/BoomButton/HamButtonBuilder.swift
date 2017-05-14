@@ -12,8 +12,8 @@ public class HamButtonBuilder: BoomButtonWithTextBuilder {
     ///
     /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
     ///
-    /// The default value is **UIScreen.main.bounds.size.width - 40**.
-    public var width: CGFloat = Utils.screenWidth() - 40 {
+    /// The default value is **300**.
+    public var width: CGFloat = 300 {
         didSet {
             if width == oldValue {
                 return
@@ -231,7 +231,7 @@ public class HamButtonBuilder: BoomButtonWithTextBuilder {
     /// **Synchronicity:** Changing this property from builder will synchronically affect the corresponding boom-button, even the boom-button has been shown on the screen.
     ///
     /// The default value is CGRect.init(x: 70, y: 35, width: boom-button width - 80, height: 15).
-    public var subTextFrame: CGRect = CGRect.init(x: 70, y: 35, width: Utils.screenWidth() - 80, height: 15) {
+    public var subTextFrame: CGRect = CGRect.init(x: 70, y: 35, width: 300 - 80, height: 15) {
         didSet {
             if subTextFrame == oldValue {
                 return

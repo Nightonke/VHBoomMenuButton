@@ -49,7 +49,7 @@ class ShareVC: BoomMenuButtonVC {
         bmb.buttonEnum = .textInsideCircle
         bmb.piecePlaceEnum = .share
         bmb.buttonPlaceEnum = .sc_9_1
-        // Notice that you should use 'bmb.buttonPlaceEnum.buttonNumber()' as a loop number.
+        // Notice that you should use 'bmb.buttonPlaceEnum.buttonNumber()' as a loop count.
         // Because 'bmb.piecePlaceEnum.pieceNumber()' could NOT know the number of the pieces
         // when the piece-place-enum is Share.
         for _ in 0..<bmb.buttonPlaceEnum.buttonNumber() {

@@ -107,11 +107,6 @@ static NSMutableArray *usedColors;
     return [rgbSpaceColor1 isEqual:rgbSpaceColor2];
 }
 
-+ (CGFloat)screenWidth
-{
-    return [UIScreen mainScreen].bounds.size.width;
-}
-
 #pragma mark - Private Methods
 
 + (NSMutableArray<UIColor *> *)colors

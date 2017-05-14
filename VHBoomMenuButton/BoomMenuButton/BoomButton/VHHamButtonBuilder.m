@@ -18,7 +18,7 @@
 {
     if (self = [super init])
     {
-        _width = [VHUtils screenWidth] - 40;
+        _width = 300;
         _height = 60;
         
         self.shadowPathRect = CGRectMake(2, 2, _width - 4, _height - 4);

@@ -97,8 +97,8 @@
                 {
                     addPosition(0, +h + vm + i * (h + vm));
                 }
-                break;
             }
+            break;
         case VHButtonPlaceSC_1:
             addPosition(0, 0);
             break;
@@ -107,8 +107,8 @@
             addPosition(+hm_0_5 + w_0_5, 0);
             break;
         case VHButtonPlaceSC_2_2:
-            addPosition(0, -vm_0_5 - hm_0_5);
-            addPosition(0, +vm_0_5 + hm_0_5);
+            addPosition(0, -vm_0_5 - h_0_5);
+            addPosition(0, +vm_0_5 + h_0_5);
             break;
         case VHButtonPlaceSC_3_1:
             addPosition(-hm - w, 0);
@@ -121,40 +121,40 @@
             addPosition(0, +vm + h);
             break;
         case VHButtonPlaceSC_3_3:
-            addPosition(-hm_0_5 - w_0_5, -vm_0_5 - hm_0_5);
-            addPosition(+hm_0_5 + w_0_5, -vm_0_5 - hm_0_5);
-            addPosition(0, vm_0_5 + hm_0_5);
+            addPosition(-hm_0_5 - w_0_5, -vm_0_5 - h_0_5);
+            addPosition(+hm_0_5 + w_0_5, -vm_0_5 - h_0_5);
+            addPosition(0, vm_0_5 + h_0_5);
             break;
         case VHButtonPlaceSC_3_4:
-            addPosition(0, -vm_0_5 - hm_0_5);
-            addPosition(-hm_0_5 - w_0_5, vm_0_5 + hm_0_5);
-            addPosition(+hm_0_5 + w_0_5, vm_0_5 + hm_0_5);
+            addPosition(0, -vm_0_5 - h_0_5);
+            addPosition(-hm_0_5 - w_0_5, vm_0_5 + h_0_5);
+            addPosition(+hm_0_5 + w_0_5, vm_0_5 + h_0_5);
             break;
         case VHButtonPlaceSC_4_1:
-            addPosition(-hm_0_5 - w_0_5, -vm_0_5 - hm_0_5);
-            addPosition(+hm_0_5 + w_0_5, -vm_0_5 - hm_0_5);
-            addPosition(-hm_0_5 - w_0_5, +vm_0_5 + hm_0_5);
-            addPosition(+hm_0_5 + w_0_5, +vm_0_5 + hm_0_5);
+            addPosition(-hm_0_5 - w_0_5, -vm_0_5 - h_0_5);
+            addPosition(+hm_0_5 + w_0_5, -vm_0_5 - h_0_5);
+            addPosition(-hm_0_5 - w_0_5, +vm_0_5 + h_0_5);
+            addPosition(+hm_0_5 + w_0_5, +vm_0_5 + h_0_5);
             break;
         case VHButtonPlaceSC_4_2:
-            addPosition(0, -vm_0_5 - hm_0_5);
+            addPosition(0, -vm_0_5 - h_0_5);
             addPosition(-hm - w, 0);
             addPosition(+hm + w, 0);
-            addPosition(0, +vm_0_5 + hm_0_5);
+            addPosition(0, +vm_0_5 + h_0_5);
             break;
         case VHButtonPlaceSC_5_1:
-            addPosition(-hm - w, -vm_0_5 - hm_0_5);
-            addPosition(0, -vm_0_5 - hm_0_5);
-            addPosition(+hm + w, -vm_0_5 - hm_0_5);
-            addPosition(-hm_0_5 - w_0_5, vm_0_5 + hm_0_5);
-            addPosition(+hm_0_5 + w_0_5, vm_0_5 + hm_0_5);
+            addPosition(-hm - w, -vm_0_5 - h_0_5);
+            addPosition(0, -vm_0_5 - h_0_5);
+            addPosition(+hm + w, -vm_0_5 - h_0_5);
+            addPosition(-hm_0_5 - w_0_5, vm_0_5 + h_0_5);
+            addPosition(+hm_0_5 + w_0_5, vm_0_5 + h_0_5);
             break;
         case VHButtonPlaceSC_5_2:
-            addPosition(-hm_0_5 - w_0_5, -vm_0_5 - hm_0_5);
-            addPosition(+hm_0_5 + w_0_5, -vm_0_5 - hm_0_5);
-            addPosition(-hm - w, vm_0_5 + hm_0_5);
-            addPosition(0, vm_0_5 + hm_0_5);
-            addPosition(+hm + w, vm_0_5 + hm_0_5);
+            addPosition(-hm_0_5 - w_0_5, -vm_0_5 - h_0_5);
+            addPosition(+hm_0_5 + w_0_5, -vm_0_5 - h_0_5);
+            addPosition(-hm - w, vm_0_5 + h_0_5);
+            addPosition(0, vm_0_5 + h_0_5);
+            addPosition(+hm + w, vm_0_5 + h_0_5);
             break;
         case VHButtonPlaceSC_5_3:
             addPosition(0, -vm - h);
@@ -164,19 +164,19 @@
             addPosition(0, +vm + h);
             break;
         case VHButtonPlaceSC_5_4:
-            addPosition(-hm - w, -vm_0_5 - hm_0_5);
-            addPosition(+hm + w, -vm_0_5 - hm_0_5);
+            addPosition(-hm - w, -vm_0_5 - h_0_5);
+            addPosition(+hm + w, -vm_0_5 - h_0_5);
             addPosition(0, 0);
-            addPosition(-hm - w, vm_0_5 + hm_0_5);
-            addPosition(+hm + w, vm_0_5 + hm_0_5);
+            addPosition(-hm - w, vm_0_5 + h_0_5);
+            addPosition(+hm + w, vm_0_5 + h_0_5);
             break;
         case VHButtonPlaceSC_6_1:
-            addPosition(-hm - w, -vm_0_5 - hm_0_5);
-            addPosition(0, -vm_0_5 - hm_0_5);
-            addPosition(+hm + w, -vm_0_5 - hm_0_5);
-            addPosition(-hm - w, vm_0_5 + hm_0_5);
-            addPosition(0, vm_0_5 + hm_0_5);
-            addPosition(+hm + w, vm_0_5 + hm_0_5);
+            addPosition(-hm - w, -vm_0_5 - h_0_5);
+            addPosition(0, -vm_0_5 - h_0_5);
+            addPosition(+hm + w, -vm_0_5 - h_0_5);
+            addPosition(-hm - w, vm_0_5 + h_0_5);
+            addPosition(0, vm_0_5 + h_0_5);
+            addPosition(+hm + w, vm_0_5 + h_0_5);
             break;
         case VHButtonPlaceSC_6_2:
             addPosition(-hm_0_5 - w_0_5, -vm - h);
@@ -196,10 +196,10 @@
             break;
         case VHButtonPlaceSC_6_4:
             addPosition(0, -vm - h);
-            addPosition(-hm - w, -vm_0_5 - hm_0_5);
-            addPosition(+hm + w, -vm_0_5 - hm_0_5);
-            addPosition(-hm - w, +vm_0_5 + hm_0_5);
-            addPosition(+hm + w, +vm_0_5 + hm_0_5);
+            addPosition(-hm - w, -vm_0_5 - h_0_5);
+            addPosition(+hm + w, -vm_0_5 - h_0_5);
+            addPosition(-hm - w, +vm_0_5 + h_0_5);
+            addPosition(+hm + w, +vm_0_5 + h_0_5);
             addPosition(0, +vm + h);
             break;
         case VHButtonPlaceSC_6_5:
@@ -247,30 +247,30 @@
             break;
         case VHButtonPlaceSC_7_4:
             addPosition(0, -vm - h);
-            addPosition(-hm - w, -vm_0_5 - hm_0_5);
-            addPosition(+hm + w, -vm_0_5 - hm_0_5);
+            addPosition(-hm - w, -vm_0_5 - h_0_5);
+            addPosition(+hm + w, -vm_0_5 - h_0_5);
             addPosition(0, 0);
-            addPosition(-hm - w, +vm_0_5 + hm_0_5);
-            addPosition(+hm + w, +vm_0_5 + hm_0_5);
+            addPosition(-hm - w, +vm_0_5 + h_0_5);
+            addPosition(+hm + w, +vm_0_5 + h_0_5);
             addPosition(0, vm + h);
             break;
         case VHButtonPlaceSC_7_5:
-            addPosition(-hm_1_5 - w_1_5, -vm_0_5 - hm_0_5);
-            addPosition(-hm_0_5 - w_0_5, -vm_0_5 - hm_0_5);
-            addPosition(+hm_0_5 + w_0_5, -vm_0_5 - hm_0_5);
-            addPosition(+hm_1_5 + w_1_5, -vm_0_5 - hm_0_5);
-            addPosition(-hm - w, vm_0_5 + hm_0_5);
-            addPosition(0, vm_0_5 + hm_0_5);
-            addPosition(+hm + w, vm_0_5 + hm_0_5);
+            addPosition(-hm_1_5 - w_1_5, -vm_0_5 - h_0_5);
+            addPosition(-hm_0_5 - w_0_5, -vm_0_5 - h_0_5);
+            addPosition(+hm_0_5 + w_0_5, -vm_0_5 - h_0_5);
+            addPosition(+hm_1_5 + w_1_5, -vm_0_5 - h_0_5);
+            addPosition(-hm - w, vm_0_5 + h_0_5);
+            addPosition(0, vm_0_5 + h_0_5);
+            addPosition(+hm + w, vm_0_5 + h_0_5);
             break;
         case VHButtonPlaceSC_7_6:
-            addPosition(-hm - w, -vm_0_5 - hm_0_5);
-            addPosition(0, -vm_0_5 - hm_0_5);
-            addPosition(+hm + w, -vm_0_5 - hm_0_5);
-            addPosition(-hm_1_5 - w_1_5, vm_0_5 + hm_0_5);
-            addPosition(-hm_0_5 - w_0_5, vm_0_5 + hm_0_5);
-            addPosition(+hm_0_5 + w_0_5, vm_0_5 + hm_0_5);
-            addPosition(+hm_1_5 + w_1_5, vm_0_5 + hm_0_5);
+            addPosition(-hm - w, -vm_0_5 - h_0_5);
+            addPosition(0, -vm_0_5 - h_0_5);
+            addPosition(+hm + w, -vm_0_5 - h_0_5);
+            addPosition(-hm_1_5 - w_1_5, vm_0_5 + h_0_5);
+            addPosition(-hm_0_5 - w_0_5, vm_0_5 + h_0_5);
+            addPosition(+hm_0_5 + w_0_5, vm_0_5 + h_0_5);
+            addPosition(+hm_1_5 + w_1_5, vm_0_5 + h_0_5);
             break;
         case VHButtonPlaceSC_8_1:
             addPosition(-hm - w, -vm - h);
@@ -285,10 +285,10 @@
         case VHButtonPlaceSC_8_2:
             addPosition(-hm - w, -vm - h);
             addPosition(+hm + w, -vm - h);
-            addPosition(0, -vm_0_5 - hm_0_5);
+            addPosition(0, -vm_0_5 - h_0_5);
             addPosition(-hm - w, 0);
             addPosition(+hm + w, 0);
-            addPosition(0, +vm_0_5 + hm_0_5);
+            addPosition(0, +vm_0_5 + h_0_5);
             addPosition(-hm - w, +vm + h);
             addPosition(+hm + w, +vm + h);
             break;
@@ -314,31 +314,31 @@
             break;
         case VHButtonPlaceSC_8_5:
             addPosition(0, -vm - h);
-            addPosition(-hm - w, -vm_0_5 - hm_0_5);
-            addPosition(+hm + w, -vm_0_5 - hm_0_5);
+            addPosition(-hm - w, -vm_0_5 - h_0_5);
+            addPosition(+hm + w, -vm_0_5 - h_0_5);
             addPosition(-hm_2_0 - w_2_0, 0);
             addPosition(+hm_2_0 + w_2_0, 0);
-            addPosition(-hm - w, +vm_0_5 + hm_0_5);
-            addPosition(+hm + w, +vm_0_5 + hm_0_5);
+            addPosition(-hm - w, +vm_0_5 + h_0_5);
+            addPosition(+hm + w, +vm_0_5 + h_0_5);
             addPosition(0, +vm + h);
             break;
         case VHButtonPlaceSC_8_6:
-            addPosition(-hm_1_5 - w_1_5, -vm_0_5 - hm_0_5);
-            addPosition(-hm_0_5 - w_0_5, -vm_0_5 - hm_0_5);
-            addPosition(+hm_0_5 + w_0_5, -vm_0_5 - hm_0_5);
-            addPosition(+hm_1_5 + w_1_5, -vm_0_5 - hm_0_5);
-            addPosition(-hm_1_5 - w_1_5, +vm_0_5 + hm_0_5);
-            addPosition(-hm_0_5 - w_0_5, +vm_0_5 + hm_0_5);
-            addPosition(+hm_0_5 + w_0_5, +vm_0_5 + hm_0_5);
-            addPosition(+hm_1_5 + w_1_5, +vm_0_5 + hm_0_5);
+            addPosition(-hm_1_5 - w_1_5, -vm_0_5 - h_0_5);
+            addPosition(-hm_0_5 - w_0_5, -vm_0_5 - h_0_5);
+            addPosition(+hm_0_5 + w_0_5, -vm_0_5 - h_0_5);
+            addPosition(+hm_1_5 + w_1_5, -vm_0_5 - h_0_5);
+            addPosition(-hm_1_5 - w_1_5, +vm_0_5 + h_0_5);
+            addPosition(-hm_0_5 - w_0_5, +vm_0_5 + h_0_5);
+            addPosition(+hm_0_5 + w_0_5, +vm_0_5 + h_0_5);
+            addPosition(+hm_1_5 + w_1_5, +vm_0_5 + h_0_5);
             break;
         case VHButtonPlaceSC_8_7:
             addPosition(-hm_0_5 - w_0_5, -vm_1_5 - h_1_5);
             addPosition(+hm_0_5 + w_0_5, -vm_1_5 - h_1_5);
-            addPosition(-hm_0_5 - w_0_5, -vm_0_5 - hm_0_5);
-            addPosition(+hm_0_5 + w_0_5, -vm_0_5 - hm_0_5);
-            addPosition(-hm_0_5 - w_0_5, +vm_0_5 + hm_0_5);
-            addPosition(+hm_0_5 + w_0_5, +vm_0_5 + hm_0_5);
+            addPosition(-hm_0_5 - w_0_5, -vm_0_5 - h_0_5);
+            addPosition(+hm_0_5 + w_0_5, -vm_0_5 - h_0_5);
+            addPosition(-hm_0_5 - w_0_5, +vm_0_5 + h_0_5);
+            addPosition(+hm_0_5 + w_0_5, +vm_0_5 + h_0_5);
             addPosition(-hm_0_5 - w_0_5, +vm_1_5 + h_1_5);
             addPosition(+hm_0_5 + w_0_5, +vm_1_5 + h_1_5);
             break;
@@ -354,7 +354,7 @@
             addPosition(+hm + w, +vm + h);
             break;
         case VHButtonPlaceSC_9_2:
-            addPosition(0, -vm_2_0 - hm_2_0);
+            addPosition(0, -vm_2_0 - h_2_0);
             addPosition(-hm_0_5 - w_0_5, -vm - h);
             addPosition(+hm_0_5 + w_0_5, -vm - h);
             addPosition(-hm - w, 0);
@@ -362,17 +362,17 @@
             addPosition(+hm + w, 0);
             addPosition(-hm_0_5 - w_0_5, +vm + h);
             addPosition(+hm_0_5 + w_0_5, +vm + h);
-            addPosition(0, +vm_2_0 + hm_2_0);
+            addPosition(0, +vm_2_0 + h_2_0);
             break;
         case VHButtonPlaceSC_9_3:
             addPosition(0, -vm - h);
-            addPosition(-hm - w, -vm_0_5 - hm_0_5);
-            addPosition(+hm + w, -vm_0_5 - hm_0_5);
+            addPosition(-hm - w, -vm_0_5 - h_0_5);
+            addPosition(+hm + w, -vm_0_5 - h_0_5);
             addPosition(-hm_2_0 - w_2_0, 0);
             addPosition(0, 0);
             addPosition(+hm_2_0 + w_2_0, 0);
-            addPosition(-hm - w, +vm_0_5 + hm_0_5);
-            addPosition(+hm + w, +vm_0_5 + hm_0_5);
+            addPosition(-hm - w, +vm_0_5 + h_0_5);
+            addPosition(+hm + w, +vm_0_5 + h_0_5);
             addPosition(0, vm + h);
             break;
         case VHButtonPlaceCustom:
@@ -419,20 +419,17 @@
         case VHButtonPlaceSC_9_3:
             [VHButtonPlaceManager adjustPositions:positions withX:0 withY:h_0_5 - w_0_5];
             break;
-        case VHButtonPlaceHAM_2:
-        case VHButtonPlaceHAM_3:
-        case VHButtonPlaceHAM_4:
-        case VHButtonPlaceHAM_5:
-        case VHButtonPlaceHAM_6:
-            if (buttonNumber >= 2 && bmb.bottomHamButtonTopMargin > 0)
+        default:
+            if (buttonNumber >= 2
+                && bmb.buttonEnum == VHButtonHam
+                && bmb.bottomHamButtonTopMargin > 0
+                && bmb.buttonPlaceEnum != VHButtonPlaceHorizontal)
             {
                 CGPoint point = [positions.lastObject CGPointValue];
                 [positions setObject:[NSValue valueWithCGPoint:CGPointMake(point.x,
                                                                            point.y + bmb.bottomHamButtonTopMargin - vm)]
                   atIndexedSubscript:buttonNumber - 1];
             }
-            break;
-        default:
             break;
     }
     

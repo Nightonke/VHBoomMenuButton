@@ -108,9 +108,4 @@ class Utils: NSObject {
         }
         return s1!.isEqual(to: s2!)
     }
-    
-    static func screenWidth() -> CGFloat {
-        return UIScreen.main.bounds.size.width
-    }
-    
 }

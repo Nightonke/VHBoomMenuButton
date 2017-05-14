@@ -625,4 +625,26 @@
     return CGPointZero;
 }
 
+#pragma mark - Public Methods
+
+- (UIImageView *)imageView
+{
+    return _imageView;
+}
+
+- (UILabel *)label
+{
+    return _label;
+}
+
+- (UILabel *)subLabel
+{
+    return _subLabel;
+}
+
+- (CAShapeLayer *)buttonLayer
+{
+    return _buttonLayer;
+}
+
 @end

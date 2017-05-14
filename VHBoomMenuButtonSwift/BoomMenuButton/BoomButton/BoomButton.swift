@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BoomButton: UIView {
+public class BoomButton: UIView {
 
     // MARK: - Basic
     
@@ -45,7 +45,7 @@ class BoomButton: UIView {
     var imageFrame: CGRect!
     var imageSize: CGSize!
     var rotateImage = true
-    var imageView: UIImageView?
+    public var imageView: UIImageView?
     
     // MARK: - Button
     
@@ -57,7 +57,7 @@ class BoomButton: UIView {
     var height: CGFloat = 0
     var cornerRadius: CGFloat = 5
     var round = true
-    var buttonLayer: CAShapeLayer?
+    public var buttonLayer: CAShapeLayer?
     
     // MARK: - Text
     
@@ -85,7 +85,7 @@ class BoomButton: UIView {
     
     var rotateText = true
     
-    var label: UILabel?
+    public var label: UILabel?
     
     // MARK: - Sub Text
     
@@ -113,7 +113,7 @@ class BoomButton: UIView {
     var subTextShadowOffsetX: CGFloat = 0
     var subTextShadowOffsetY: CGFloat = 0
     
-    var subLabel: UILabel?
+    public var subLabel: UILabel?
     
     // MARK: - Private Properties
     
@@ -158,7 +158,7 @@ class BoomButton: UIView {
         backgroundColor = UIColor.clear
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("BoomButton does not support NSCoding")
     }
     
@@ -467,13 +467,13 @@ class BoomButton: UIView {
     
     // MARK: - Private Methods
     
-    override func draw(_ rect: CGRect) {
+    override public func draw(_ rect: CGRect) {
         resetShadow()
     }
     
     // MARK: - Touch Action
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let anyTouch = touches.first
         let touchLocation = anyTouch?.location(in: self)
         if touchLocation != nil && buttonLayer != nil && buttonLayer!.frame.contains(touchLocation!) {
@@ -485,7 +485,7 @@ class BoomButton: UIView {
         }
     }
     
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override public func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         let anyTouch = touches.first
         let touchLocation = anyTouch?.location(in: self)
         if touchLocation != nil && buttonLayer != nil && !buttonLayer!.frame.contains(touchLocation!) && !unable {
@@ -493,7 +493,7 @@ class BoomButton: UIView {
         }
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let anyTouch = touches.first
         let touchLocation = anyTouch?.location(in: self)
         if touchLocation != nil && buttonLayer != nil && buttonLayer!.frame.contains(touchLocation!) && !unable {
@@ -576,5 +576,4 @@ class BoomButton: UIView {
         assert(false, "Method type should be overrided in child class")
         return CGPoint.zero
     }
-    
 }

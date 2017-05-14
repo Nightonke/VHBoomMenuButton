@@ -139,6 +139,18 @@ class BackgroundView: UIView {
         addSubview(goneView!)
     }
     
+    func removeGoneView(_ goneView: UIView?) {
+        guard goneView != nil else {
+            return
+        }
+        if self.subviews.contains(goneView!){
+            goneView!.removeFromSuperview()
+        }
+        if let index = goneViews.index(of: goneView!) {
+            goneViews.remove(at: index)
+        }
+    }
+    
     func adjustTipLabel(tipBelowButton: Bool, tipButtonMargin: CGFloat, boomButtonEndPositions endPositions: [CGPoint], buttonHeight: CGFloat) {
         tipLabel.frame.origin.x = bounds.size.width / 2 - tipLabel.frame.size.width / 2
         if tipBelowButton {

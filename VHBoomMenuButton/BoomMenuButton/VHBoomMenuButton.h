@@ -736,6 +736,13 @@ IB_DESIGNABLE
 - (void)addViewToBackground:(UIView *)view;
 
 /**
+ Remove views from background view. The background view is the superview of boom-buttons when the animations are processing.
+
+ @param view View that's to be removed into background.
+ */
+- (void)removeViewFromBackground:(UIView *)view;
+
+/**
  Get the tip-label that shows a tip in background.
  Use this method to customize the tip-label.
 
@@ -751,6 +758,20 @@ IB_DESIGNABLE
  @return Is animating.
  */
 - (BOOL)isAnimating;
+
+/**
+ Whether BMB is boomed.
+
+ @return Is boomed.
+ */
+- (BOOL)isBoomed;
+
+/**
+ Whether BMB is reboomed.
+
+ @return Is reboomed.
+ */
+- (BOOL)isReboomed;
 
 /**
  Make BMB boom.
@@ -831,6 +852,14 @@ IB_DESIGNABLE
  Remove all builders.
  */
 - (void)clearBuilders;
+
+/**
+ Get the boom-button at index. Notice that the boom-buttons may not be created by BMB, so this method may return nil.
+
+ @param index Index.
+ @return The boom-button at the given index, may be nil.
+ */
+- (VHBoomButton *)boomButtonAtIndex:(NSUInteger)index;
 
 #pragma mark - Fade Views
 

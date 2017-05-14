@@ -934,6 +934,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         }
         for i in indexes.reversed() {
             self.addSubview(pieces[i])
+            if boomState != .didReboom {
+                pieces[i].isHidden = true
+            }
         }
         if piecePlaceEnum == .share {
             // For share-style, the edges of overrided pieces are still visible.
@@ -1086,6 +1089,20 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
     /// - Returns: Is animating.
     public func isAnimating() -> Bool! {
         return animatingViewsNumber != 0
+    }
+    
+    /// Whether BMB is boomed.
+    ///
+    /// - Returns: Is boomed.
+    public func isBoomed() -> Bool! {
+        return boomState == .didBoom
+    }
+    
+    /// Whether BMB is reboomed.
+    ///
+    /// - Returns: Is reboomed.
+    public func isReboomed() -> Bool! {
+        return boomState == .didReboom
     }
     
     /// Make BMB boom. BMB can only boom when it's NOT animating and it has finished rebooming.
@@ -1439,7 +1456,7 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
     // MARK: - Support Methods
     
     private func createBackground() {
-        if background == nil && parentView() != nil{
+        if background == nil && parentView() != nil {
             background = BackgroundView.init(frame: parentView()!.bounds, boomMenuButton: self)
             if _tipLabel != nil {
                 // tip-label has been set by developer
@@ -1449,6 +1466,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
             }
             background?.tip = tip
             parentView()!.addSubview(background!)
+        }
+        if boomState == .didReboom {
+            background?.isHidden = true
         }
     }
     
@@ -1590,6 +1610,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         shareLinesView?.line2Color = shareLine2Color
         shareLinesView?.lineWidth = shareLineWidth
         addSubview(shareLinesView!)
+        if boomState != .didReboom {
+            shareLinesView?.alpha = 0
+        }
     }
     
     private func setShareLinesViewData() {
@@ -1806,6 +1829,17 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         boomButtonBuilders.removeAll()
     }
     
+    /// Get the boom-button at index. Notice that the boom-buttons may not be created by BMB, so this method may return nil.
+    ///
+    /// - Parameter index: Index.
+    /// - Returns: The boom-button at the given index, may be nil.
+    public func boomButton(at index: Int) -> BoomButton? {
+        if 0 <= index && index < boomButtons.count {
+            return boomButtons[index]
+        }
+        return nil
+    }
+    
     // MARK: - On Button Clicked
     
     internal func boomButton(_ boomButton: BoomButton, didClickAt index: Int) {
@@ -1837,6 +1871,14 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         background?.addGoneView(view)
     }
     
+    /// Remove views from background view. The background view is the superview of boom-buttons when the animations are processing.
+    ///
+    /// - Parameter view: View that's to be removed into background.
+    public func removeViewFromBackground(view: UIView) {
+        createBackground()
+        background?.removeGoneView(view)
+    }
+    
     /// Get the tip-label that shows a tip in background. Use this method to customize the tip-label.
     ///
     /// - Returns: UILabel of tip in background.
@@ -1853,6 +1895,9 @@ public class BoomMenuButton: UIView, BoomButtonDelegate, BackgroundDelegate {
         for view in fadeViews {
             view.removeFromSuperview()
             self.addSubview(view)
+            if boomState != .didReboom {
+                view.alpha = 0
+            }
         }
     }
     

@@ -32,6 +32,8 @@
 
 - (void)addGoneView:(UIView *_Nonnull)view;
 
+- (void)removeGoneView:(UIView *_Nonnull)view;
+
 - (void)adjustTipLabel:(BOOL)tipBelowButton
    withTipButtonMargin:(CGFloat)tipButtonMargin
        withEndPosition:(NSArray<NSValue *> * _Nullable)endPositions

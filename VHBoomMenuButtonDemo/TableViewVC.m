@@ -42,7 +42,7 @@
     cell.bmb1.buttonPlaceEnum = VHButtonPlaceSC_9_1;
     cell.bmb1.isInList = YES;
     [cell.bmb1 clearBuilders];
-    for (int i = 0; i < [VHBoomMenuButton buttonNumber:cell.bmb1.buttonPlaceEnum]; i++)
+    for (int i = 0; i < cell.bmb1.buttonNumber; i++)
     {
         [cell.bmb1 addBuilder:[BuilderManager simpleCircleButtonBuilder]];
     }

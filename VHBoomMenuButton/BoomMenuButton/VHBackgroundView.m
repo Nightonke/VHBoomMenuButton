@@ -106,6 +106,19 @@ static NSString *const kOpacityAnimation = @"kOpacityAnimation";
     [self addSubview:view];
 }
 
+- (void)removeGoneView:(UIView *_Nonnull)view
+{
+    if (!self.goneViews)
+    {
+        self.goneViews = [NSMutableArray arrayWithCapacity:1];
+    }
+    if ([self.subviews containsObject:view])
+    {
+        view.removeFromSuperview;
+    }
+    [self.goneViews removeObject:view];
+}
+
 - (void)adjustTipLabel:(BOOL)tipBelowButton
    withTipButtonMargin:(CGFloat)tipButtonMargin
        withEndPosition:(NSArray<NSValue *> * _Nullable)endPositions

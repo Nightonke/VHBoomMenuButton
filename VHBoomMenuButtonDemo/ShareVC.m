@@ -56,7 +56,7 @@
     bmb.buttonEnum = VHButtonTextInsideCircle;
     bmb.piecePlaceEnum = VHPiecePlaceShare;
     bmb.buttonPlaceEnum = VHButtonPlaceSC_9_1;
-    // Notice that you should use 'buttonNumber' as a loop number.
+    // Notice that you should use 'buttonNumber' as a loop count.
     // Because [VHBoomMenuButton pieceNumber] could NOT know the number of the pieces
     // when the piece-place-enum is Share.
     for (int i = 0; i < bmb.buttonNumber; i++)

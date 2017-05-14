@@ -411,6 +411,10 @@ static NSString *const kFadeViewAnimation = @"kFadeViewAnimation";
     [indexes enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(NSNumber * _Nonnull indexObj, NSUInteger i, BOOL * _Nonnull stop) {
         int index = [indexObj intValue];
         [self addSubview:[self.pieces objectAtIndex:index]];
+        if (self.boomState != VHBoomStateDidReboom)
+        {
+            [self.pieces objectAtIndex:index].hidden = YES;
+        }
         
     }];
     if (self.piecePlaceEnum == VHPiecePlaceShare)
@@ -615,6 +619,16 @@ static NSString *const kFadeViewAnimation = @"kFadeViewAnimation";
 - (BOOL)isAnimating
 {
     return self.animatingViewsNumber != 0;
+}
+
+- (BOOL)isBoomed
+{
+    return self.boomState == VHBoomStateDidBoom;
+}
+
+- (BOOL)isReboomed
+{
+    return self.boomState == VHBoomStateDidReboom;
 }
 
 - (void)boom
@@ -1045,6 +1059,10 @@ static NSString *const kFadeViewAnimation = @"kFadeViewAnimation";
         self.background.tip = self.tip;
         [parentView addSubview:self.background];
     }
+    if (self.boomState == VHBoomStateDidReboom)
+    {
+        self.background.hidden = YES;
+    }
 }
 
 - (void)createButtons
@@ -1236,6 +1254,10 @@ static NSString *const kFadeViewAnimation = @"kFadeViewAnimation";
     self.shareLinesView.line2Color = self.shareLine2Color;
     self.shareLinesView.lineWidth = self.shareLineWidth;
     [self addSubview:self.shareLinesView];
+    if (self.boomState != VHBoomStateDidReboom)
+    {
+        self.shareLinesView.alpha = 0;
+    }
 }
 
 - (void)setShareLinesViewData
@@ -1456,6 +1478,15 @@ static NSString *const kFadeViewAnimation = @"kFadeViewAnimation";
     [self.boomButtonBuilders removeAllObjects];
 }
 
+- (VHBoomButton *)boomButtonAtIndex:(NSUInteger)index
+{
+    if (index < self.boomButtons.count)
+    {
+        return [self.boomButtons objectAtIndex:index];
+    }
+    return nil;
+}
+
 #pragma mark - On Button Clicked
 
 - (void)onButton:(VHBoomButton *)boomButton clickedAt:(int)index
@@ -1496,6 +1527,12 @@ static NSString *const kFadeViewAnimation = @"kFadeViewAnimation";
     [self.background addGoneView:view];
 }
 
+- (void)removeViewFromBackground:(UIView *)view
+{
+    [self createBackground];
+    [self.background removeGoneView:view];
+}
+
 - (UILabel *)tipLabel
 {
     if (!self.background.tipLabel)
@@ -1513,6 +1550,10 @@ static NSString *const kFadeViewAnimation = @"kFadeViewAnimation";
     {
         [view removeFromSuperview];
         [self addSubview:view];
+        if (self.boomState != VHBoomStateDidReboom)
+        {
+            view.alpha = 0;
+        }
     }
 }
 
